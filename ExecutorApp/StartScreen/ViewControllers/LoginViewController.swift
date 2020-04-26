@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, KeyboardHandler {
         emailTextField.setLeftPaddingPoints(10)
         emailTextField.layer.cornerRadius = 10
         emailTextField.backgroundColor = UIColor.textControlsBackgroundColor
-        emailTextField.placeholder = "E-mail".localized
+        emailTextField.placeholder = Strings.email
         
        
         passwordTextField.delegate = self
@@ -76,9 +76,9 @@ class LoginViewController: UIViewController, KeyboardHandler {
         passwordTextField.setLeftPaddingPoints(10)
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.backgroundColor = UIColor.textControlsBackgroundColor
-        passwordTextField.placeholder = "Password".localized
+        passwordTextField.placeholder = Strings.password
         
-        loginButton.setTitle("Login".localized, for: .normal)
+        loginButton.setTitle(Strings.login, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
     
@@ -114,7 +114,7 @@ class LoginViewController: UIViewController, KeyboardHandler {
     }
     
     func showLoginFailed(message: String) {
-        let alert = UIAlertController(title: "Login failed".localized, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: Strings.loginFailed, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in
             self?.restoreAppearance()
         }

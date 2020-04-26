@@ -11,17 +11,15 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     let ordersCoordinator = OrdersCoordinator()
-    
-    let financesVC = FinancesViewController()
+    let financesCoordinator = FinancesCoordinator()
+ 
     let settingsVC = SettingsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ordersCoordinator.start()
-        
-        financesVC.tabBarItem = UITabBarItem(title: "Finances".localized, image: nil, tag: 1)
-        financesVC.title = "Finances".localized
+        financesCoordinator.start()
         
         settingsVC.tabBarItem = UITabBarItem(title: "Settings".localized, image: nil, tag: 2)
         settingsVC.title = "Settings".localized
@@ -29,7 +27,7 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [
             ordersCoordinator.navigationController,
-            UINavigationController(rootViewController: financesVC),
+            financesCoordinator.navigationController,
             UINavigationController(rootViewController: settingsVC)]
         
     }

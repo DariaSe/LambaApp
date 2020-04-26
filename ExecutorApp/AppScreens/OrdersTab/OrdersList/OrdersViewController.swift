@@ -10,11 +10,17 @@ import UIKit
 
 class OrdersViewController: UIViewController {
     
-    var orders: [Order] = Order.sampleOrders()
+    weak var coordinator: OrdersCoordinator?
+    
+    var orders: [Order] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
@@ -22,9 +28,9 @@ class OrdersViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-
+        
         tableView.register(OrderTableViewCell.self, forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
-       
+        
         refreshControl.addTarget(self, action: #selector(refresh), for: .touchDragInside)
         tableView.refreshControl = refreshControl
         
@@ -34,7 +40,7 @@ class OrdersViewController: UIViewController {
         refreshControl.beginRefreshing()
         // send request to server
     }
-
+    
 }
 
 extension OrdersViewController: UITableViewDataSource {
@@ -46,8 +52,10 @@ extension OrdersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
         let order = orders[indexPath.row]
         cell.update(with: order)
-        if indexPath.row == (orders.count - 1) {
-            // load more here
+        if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
+            if indexPath.row == (orders.count - 1) && indexPathsForVisibleRows.count < orders.count {
+                coordinator?.loadMore()
+            }
         }
         return cell
     }
@@ -57,7 +65,7 @@ extension OrdersViewController: UITableViewDataSource {
 
 extension OrdersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        coordinator?.showOrderDetails(orderID: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

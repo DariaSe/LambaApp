@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  ExecutorApp
+
+  Created by Дарья Селезнёва on 20.04.2020.
+  Copyright © 2020 dariaS. All rights reserved.
+*/
+
+
+// Tab bar
+"Orders" = "Заказы";
+"Finances" = "Финансы";
+"Settings" = "Настройки";
+
+// Login Screen
+"E-mail" = "E-mail";
+"Password" = "Пароль";
+"Login" = "Войти";
+"Incorrect e-mail or password" = "Неправильный e-mail или пароль";
+"Login failed" = "Не удалось выполнить вход.";
+
+
+// Orders
+"You have no orders yet" = "У вас пока нет заказов";
+"Try again" = "Попробовать снова";
+"Open camera" = "Открыть камеру";
+"Reject" = "Отказаться";
+"Cancel" = "Отменить";
+"Do you want to reject this order?" = "Вы хотите отказаться от этого заказа?";
+"This action can not be undone." = "Это действие не может быть отменено.";
+"Done" = "Выполнено";
+"You've rejected the order" = "Вы отказались от этого заказа";
+"Failed to connect with server.\nCheck your internet connection\nand try again later." = "Не удалось соединиться с сервером.\nПроверьте соединение с интернетом\nи попробуйте ещё раз позже.";
+
+// Camera
+"Do you want to save this video to your library?" = "Сохранить видео в медиатеку?";
+"You might need it later." = "Оно может понадобиться Вам позже.";
+"Save" = "Сохранить";
+"Do not save" = "Не сохранять";
+
+// Finances
+"Ready for transfer" = "Готово к выводу";
+"Total:" = "Итого:";
+"Unexecuted orders" = "Невыполненные заказы";
+"Money transfer allowed" = "Вывод средств доступен";
+"Transfer money" = "Вывести средства";
+"Transaction success" = "Вывод средств прошёл успешно";
+"Transaction failed" = "Вывод средств не удался";

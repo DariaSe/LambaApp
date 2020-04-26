@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  ExecutorApp
+
+  Created by Дарья Селезнёва on 20.04.2020.
+  Copyright © 2020 dariaS. All rights reserved.
+*/
+
+
+// Tab bar
+"Orders" = "Orders";
+"Finances" = "Finances";
+"Settings" = "Settings";
+
+// Login Screen
+"E-mail" = "E-mail";
+"Password" = "Password";
+"Login" = "Login";
+"Incorrect e-mail or password" = "Incorrect e-mail or password";
+"Login failed" = "Login failed";
+
+
+// Orders
+"You have no orders yet" = "You have no orders yet";
+"Try again" = "Try again";
+"Open camera" = "Open camera";
+"Reject" = "Reject";
+"Cancel" = "Cancel";
+"Do you want to reject this order?" = "Do you want to reject this order?";
+"This action can not be undone." = "This action can not be undone.";
+"Done" = "Done";
+"You've rejected the order" = "You've rejected the order";
+"Failed to connect with server.\nCheck your internet connection\nand try again later." = "Failed to connect with server.\nCheck your internet connection\nand try again later.";
+
+// Camera
+"Do you want to save this video to your library?" = "Do you want to save this video to your library?";
+"You might need it later." = "You might need it later.";
+"Save" = "Save";
+"Do not save" = "Do not save";
+
+// Finances
+"Ready for transfer" = "Ready for transfer";
+"Total:" = "Total:";
+"Unexecuted orders" = "Unexecuted orders";
+"Money transfer allowed" = "Money transfer allowed";
+"Transfer money" = "Transfer money";
+"Transaction success" = "Transaction success";
+"Transaction failed" = "Transaction failed";
+
+

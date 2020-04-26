@@ -98,8 +98,10 @@ class OrderTableViewCell: UITableViewCell {
                 return UIColor.greenIndicatorColor
             case .todo:
                 return UIColor.yellowIndicatorColor
-            case .cancelled:
+            case .rejected:
                 return UIColor.redIndicatorColor
+            case .uploading:
+                return UIColor.gray
             }
         }
         statusIndicatorView.backgroundColor = color

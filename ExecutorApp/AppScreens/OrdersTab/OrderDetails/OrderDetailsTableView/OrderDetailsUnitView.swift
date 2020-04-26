@@ -45,12 +45,9 @@ class OrderDetailsUnitView: UIView {
         titleLabel.textAlignment = .natural
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         titleLabel.textColor = UIColor.gray
-        titleLabel.text = "Title"
         
         dataLabel.textAlignment = .center
         dataLabel.font = UIFont.systemFont(ofSize: 24)
-        dataLabel.textColor = UIColor.gray
-        dataLabel.text = "Some text"
     }
     
 }

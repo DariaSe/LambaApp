@@ -15,11 +15,13 @@ enum OrderType {
 }
 
 struct OrderDetails {
+    var id: Int
     var type: OrderType
     var cost: String
     var units: [OrderDetailUnit]
+    var status: OrderStatus
     
     static func sample() -> OrderDetails {
-        return OrderDetails(type: .promo, cost: "2000", units: [OrderDetailUnit(title: "What to promote", data: "Dog toy"), OrderDetailUnit(title: "Link", data: "google.com"), OrderDetailUnit(title: "Text", data: "From executor"), OrderDetailUnit(title: "Options", data: "Post to Stories")])
+        return OrderDetails(id: 1, type: .promo, cost: "2000", units: [OrderDetailUnit(title: "What to promote", data: "Dog toy"), OrderDetailUnit(title: "Link", data: "google.com"), OrderDetailUnit(title: "Text", data: "From executor"), OrderDetailUnit(title: "Options", data: "Post to Stories")], status: .todo)
     }
 }

@@ -22,4 +22,7 @@ extension UIColor {
     static let yellowIndicatorColor = UIColor(netHex: 0xFFA800)
     static let redIndicatorColor = UIColor(netHex: 0xEB5757)
     static let greenIndicatorColor = UIColor(netHex: 0x2ECD51)
+    
+    static let readyToTransferBgColor =  UIColor(netHex: 0xE5F3F4)
+    static let unexecutedBgColor = UIColor(netHex: 0xFDF3F1)
 }

@@ -1,5 +1,5 @@
 //
-//  ErrorViewController.swift
+//  EmptyViewController.swift
 //  ExecutorApp
 //
 //  Created by Дарья Селезнёва on 22.04.2020.
@@ -8,21 +8,22 @@
 
 import UIKit
 
-class ErrorViewController: UIViewController {
+class EmptyViewController: UIViewController {
     
-    var message: String = Strings.error.localized {
-        didSet {
-            errorLabel.text = message
-        }
+    convenience init(message: String) {
+        self.init()
+        label.text = message
     }
+    
+    var canReload: Bool = true
     
     var reload: (() -> Void)?
     
     private let stackView = UIStackView()
     
-    private let errorLabel = UILabel()
-    let reloadButton = AppButton()
-
+    private let label = UILabel()
+    private let reloadButton = AppButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
@@ -31,12 +32,13 @@ class ErrorViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 40
         stackView.alignment = .center
-        stackView.addArrangedSubview(errorLabel)
-        stackView.addArrangedSubview(reloadButton)
+        stackView.addArrangedSubview(label)
+        if canReload {
+            stackView.addArrangedSubview(reloadButton)
+        }
         
-        errorLabel.text = message
-        errorLabel.textAlignment = .center
-        errorLabel.numberOfLines = 0
+        label.text = Strings.noOrdersYet
+        label.textAlignment = .center
         
         reloadButton.setTitle(Strings.tryAgain, for: .normal)
         reloadButton.setWidth(equalTo: 100)

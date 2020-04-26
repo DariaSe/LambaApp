@@ -32,7 +32,7 @@ class LoginService {
                     completion(true, token, nil)
                 }
                 else {
-                    completion(false, nil, "Invalid e-mail or password".localized)
+                    completion(false, nil, Strings.incorrectEmailOrPassword)
                 }
                 
             }
