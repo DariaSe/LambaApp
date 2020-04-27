@@ -23,12 +23,12 @@ class CameraViewController: UIViewController {
         
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
         
-        let mediaUI = UIImagePickerController()
-        mediaUI.sourceType = .camera
-        mediaUI.mediaTypes = [kUTTypeMovie as String]
-        mediaUI.allowsEditing = true
-        mediaUI.delegate = self
-        self.present(mediaUI, animated: true, completion: nil)
+        let videoPicker = UIImagePickerController()
+        videoPicker.sourceType = .camera
+        videoPicker.mediaTypes = [kUTTypeMovie as String]
+        videoPicker.allowsEditing = true
+        videoPicker.delegate = self
+        self.present(videoPicker, animated: true, completion: nil)
     }
     
     func showSaveToLibraryAlert(videoURL: URL) {

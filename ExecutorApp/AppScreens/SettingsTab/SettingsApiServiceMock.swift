@@ -8,6 +8,19 @@
 
 import Foundation
 
-class SettingsApiServiceMock {
+class SettingsApiServiceMock: SettingsApiService {
+    
+    var userInfo = UserInfo.sample()
+    
+    func getUserInfo(completion: @escaping (UserInfo?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion(self.userInfo)
+        }
+    }
+    
+    func postUserInfo(_ userInfo: UserInfo, completion: @escaping (Bool) -> Void) {
+        
+    }
+    
     
 }

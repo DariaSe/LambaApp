@@ -9,6 +9,10 @@
 import Foundation
 
 protocol SettingsApiService {
+    
+    // for mock
+    var userInfo: UserInfo { get set }
+    
     func getUserInfo(completion: @escaping (UserInfo?) -> Void)
-    func postUserInfo(_ userInfo: UserInfo, completion: @escaping(Bool) -> Void)s
+    func postUserInfo(_ userInfo: UserInfo, completion: @escaping(Bool) -> Void)
 }

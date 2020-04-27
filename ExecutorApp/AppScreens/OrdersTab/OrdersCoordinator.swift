@@ -24,8 +24,8 @@ class OrdersCoordinator: Coordinator {
         ordersVC.coordinator = self
         navigationController.viewControllers = [ordersVC]
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
-        ordersVC.add(loadingVC)
         ordersVC.title = Strings.orders
+        ordersVC.add(loadingVC)
         apiService.getOrders { [weak self] (orders) in
             self?.loadingVC.remove()
             guard let orders = orders else {

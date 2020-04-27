@@ -9,7 +9,7 @@
 import UIKit
 
 struct SocialMedia {
-    var image: UIImage
+    var image: UIImage?
     var title: String
     var baseURL: String
     var nickName: String

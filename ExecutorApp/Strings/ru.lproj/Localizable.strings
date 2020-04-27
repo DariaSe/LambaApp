@@ -46,3 +46,14 @@
 "Transfer money" = "Вывести средства";
 "Transaction success" = "Вывод средств прошёл успешно";
 "Transaction failed" = "Вывод средств не удался";
+
+// Settings
+"Profile settings" = "Настройки профиля";
+"Order settings" = "Настройки заказов";
+"Change photo" = "Сменить фото";
+"Change password" = "Сменить пароль";
+
+// Photo picker
+"Choose source" = "Выберите источник";
+"Camera" = "Камера";
+"Photos" = "Мои фото";

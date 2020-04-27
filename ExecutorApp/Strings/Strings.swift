@@ -48,4 +48,15 @@ struct Strings {
     static let transferMoney = "Transfer money".localized
     static let transactionSuccess = "Transaction success".localized
     static let transactionFailed = "Transaction failed".localized
+    
+    // Settings
+    static let profileSettings = "Profile settings".localized
+    static let orderSettings = "Order settings".localized
+    static let changePhoto = "Change photo".localized
+    static let changePassword = "Change password".localized
+    
+    // Photo picker
+    static let chooseSource = "Choose source".localized
+    static let camera = "Camera".localized
+    static let photos = "Photos".localized
 }

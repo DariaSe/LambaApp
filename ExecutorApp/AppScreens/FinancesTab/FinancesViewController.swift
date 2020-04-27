@@ -52,7 +52,7 @@ class FinancesViewController: UIViewController {
         scrollView.setWidth(equalTo: stackView)
         
         moneyViewsStackView.pinToEdges(to: scrollView)
-        moneyViewsStackView.setWidth(equalTo: stackView)
+        moneyViewsStackView.setWidth(equalTo: scrollView)
         moneyViewsStackView.axis = .vertical
         moneyViewsStackView.spacing = 10
         moneyViewsStackView.addArrangedSubview(readyForTransferView)
@@ -84,6 +84,7 @@ class FinancesViewController: UIViewController {
         transferButton.addTarget(self, action: #selector(transferButtonPressed), for: .touchUpInside)
         
         scrollView.indicatorStyle = .black
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20)
         
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         scrollView.refreshControl = refreshControl

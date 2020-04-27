@@ -47,4 +47,14 @@
 "Transaction success" = "Transaction success";
 "Transaction failed" = "Transaction failed";
 
+// Settings
+"Profile settings" = "Profile settings";
+"Order settings" = "Order settings";
+"Change photo" = "Change photo";
+"Change password" = "Change password";
+
+// Photo picker
+"Choose source" = "Choose source";
+"Camera" = "Camera";
+"Photos" = "Photos";
 

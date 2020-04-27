@@ -16,7 +16,7 @@ class FinancesApiServiceMock: FinancesApiService {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if !self.isTransfered {
                 completion(FinancesInfo.sample(), nil)
-                self.isTransfered = true
+//                self.isTransfered = true
             }
             else {
                 completion(FinancesInfo(readyToTransferUnits: [], sum: "0", notReadySum: "8000", isAllowedToTransfer: false), nil)

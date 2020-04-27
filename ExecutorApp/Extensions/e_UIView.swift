@@ -64,6 +64,33 @@ extension UIView {
         }
     }
     
+    func pinTopAndBottomToLayoutMargins(to superview: UIView, constant: CGFloat = 0) {
+        superview.addSubview(self)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: superview.layoutMarginsGuide.topAnchor, constant: constant).isActive = true
+        self.bottomAnchor.constraint(equalTo: superview.layoutMarginsGuide.bottomAnchor, constant: -constant).isActive = true
+    }
+    
+    func constrainTopAndBottomToLayoutMargins(of superview: UIView, leading: CGFloat?, trailing: CGFloat?, top: CGFloat?, bottom: CGFloat?) {
+        superview.addSubview(self)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        if let leading = leading {
+            self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: leading).isActive = true
+        }
+        if let trailing = trailing {
+            self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -trailing).isActive = true
+        }
+        if let top = top {
+            self.topAnchor.constraint(equalTo: superview.layoutMarginsGuide.topAnchor, constant: top).isActive = true
+        }
+        if let bottom = bottom {
+            self.bottomAnchor.constraint(equalTo: superview.layoutMarginsGuide.bottomAnchor, constant: -bottom).isActive = true
+        }
+    }
+    
+    
     func center(in superview: UIView) {
         superview.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false

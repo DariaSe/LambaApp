@@ -31,6 +31,13 @@
 		DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963032455BD1D002BBC3F /* UserInfo.swift */; };
 		DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963052455BDB2002BBC3F /* SocialMedia.swift */; };
 		DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963072455C244002BBC3F /* OrderSettings.swift */; };
+		DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */; };
+		DAB9630C2455C9F1002BBC3F /* OrdersSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */; };
+		DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */; };
+		DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */; };
+		DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */; };
+		DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */; };
+		DAB963162457088E002BBC3F /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963152457088E002BBC3F /* LabelTextFieldView.swift */; };
 		DABCA635244DD78200682368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA634244DD78200682368 /* AppDelegate.swift */; };
 		DABCA63E244DD78500682368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63D244DD78500682368 /* Assets.xcassets */; };
 		DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63F244DD78500682368 /* LaunchScreen.storyboard */; };
@@ -94,6 +101,13 @@
 		DAB963032455BD1D002BBC3F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		DAB963052455BDB2002BBC3F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		DAB963072455C244002BBC3F /* OrderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSettings.swift; sourceTree = "<group>"; };
+		DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersSettingsView.swift; sourceTree = "<group>"; };
+		DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaTableView.swift; sourceTree = "<group>"; };
+		DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaTableViewCell.swift; sourceTree = "<group>"; };
+		DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		DAB963152457088E002BBC3F /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
 		DABCA631244DD78200682368 /* ExecutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABCA634244DD78200682368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DABCA63D244DD78500682368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -307,6 +321,12 @@
 				DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */,
 				DAB962FF2455BC05002BBC3F /* SettingsApiServiceMock.swift */,
 				DABCA676244F1C8000682368 /* SettingsViewController.swift */,
+				DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */,
+				DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */,
+				DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */,
+				DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */,
+				DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */,
+				DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */,
 			);
 			path = SettingsTab;
 			sourceTree = "<group>";
@@ -357,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				DABCA6872450279E00682368 /* AppButton.swift */,
+				DAB963152457088E002BBC3F /* LabelTextFieldView.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -473,6 +494,8 @@
 				DAB963002455BC05002BBC3F /* SettingsApiServiceMock.swift in Sources */,
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
+				DAB9630C2455C9F1002BBC3F /* OrdersSettingsView.swift in Sources */,
+				DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */,
 				DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */,
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
 				DABCA67E244F38D300682368 /* OrderDetailsViewController.swift in Sources */,
@@ -484,6 +507,7 @@
 				DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */,
 				DA6716C624541868001791E3 /* SumView.swift in Sources */,
 				DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */,
+				DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */,
 				DABCA6A324509A6E00682368 /* EmptyViewController.swift in Sources */,
 				DABCA6852450267300682368 /* CostView.swift in Sources */,
 				DABCA664244EF77D00682368 /* BiometricAuthViewController.swift in Sources */,
@@ -491,6 +515,7 @@
 				DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */,
 				DA6716D324545AAC001791E3 /* FinancesApiServiceMock.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
+				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA6716BA2453138E001791E3 /* PopupErrorViewController.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
 				DABCA671244F1C4900682368 /* MainTabBarController.swift in Sources */,
@@ -498,12 +523,15 @@
 				DABCA677244F1C8000682368 /* SettingsViewController.swift in Sources */,
 				DABCA69024508FEA00682368 /* p_Coordinator.swift in Sources */,
 				DABCA635244DD78200682368 /* AppDelegate.swift in Sources */,
+				DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */,
+				DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */,
 				DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */,
 				DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */,
 				DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */,
 				DABCA675244F1C7500682368 /* FinancesViewController.swift in Sources */,
 				DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */,
 				DABCA65C244DFE2500682368 /* LoginService.swift in Sources */,
+				DAB963162457088E002BBC3F /* LabelTextFieldView.swift in Sources */,
 				DA6716C824541A8D001791E3 /* ReadyToTransferTableViewCell.swift in Sources */,
 				DABCA694245090A300682368 /* OrdersCoordinator.swift in Sources */,
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,

@@ -12,25 +12,19 @@ class MainTabBarController: UITabBarController {
     
     let ordersCoordinator = OrdersCoordinator()
     let financesCoordinator = FinancesCoordinator()
- 
-    let settingsVC = SettingsViewController()
+    let settingsCoordinator = SettingsCoordinator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ordersCoordinator.start()
         financesCoordinator.start()
-        
-        settingsVC.tabBarItem = UITabBarItem(title: "Settings".localized, image: nil, tag: 2)
-        settingsVC.title = "Settings".localized
-        
+        settingsCoordinator.start()
         
         viewControllers = [
             ordersCoordinator.navigationController,
             financesCoordinator.navigationController,
-            UINavigationController(rootViewController: settingsVC)]
+            settingsCoordinator.navigationController]
         
     }
-    
-    
 }
