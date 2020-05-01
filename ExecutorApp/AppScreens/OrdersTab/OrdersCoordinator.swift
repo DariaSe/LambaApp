@@ -12,7 +12,8 @@ class OrdersCoordinator: Coordinator {
     
     var navigationController = UINavigationController()
     
-    let apiService: OrdersApiService = OrdersApiServiceMock()
+    let ordersApiService: OrdersApiService = OrdersApiServiceMain()
+    let orderDetailsApiService: OrderDetailsApiService = OrderDetailsApiServiceMain()
     
     lazy var loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
     lazy var clearLoadingVC = LoadingViewController(backgroundColor: UIColor.clear)
@@ -26,33 +27,35 @@ class OrdersCoordinator: Coordinator {
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
         ordersVC.title = Strings.orders
         ordersVC.add(loadingVC)
-        apiService.getOrders { [weak self] (orders) in
-            self?.loadingVC.remove()
-            guard let orders = orders else {
-                let errorVC = ErrorViewController()
-                errorVC.reload = { [weak self] in
-                    self?.start()
+        ordersApiService.getOrders { [weak self] (orders) in
+            DispatchQueue.main.async {
+                self?.loadingVC.remove()
+                guard let orders = orders else {
+                    let errorVC = ErrorViewController()
+                    errorVC.reload = { [weak self] in
+                        self?.start()
+                    }
+                    self?.ordersVC.add(errorVC)
+                    return
                 }
-                self?.ordersVC.add(errorVC)
-                return
-            }
-            if !orders.isEmpty {
-                self?.ordersVC.orders = orders
-            }
-            else {
-                let emptyVC = EmptyViewController(message: Strings.noOrdersYet)
-                emptyVC.reload = { [weak self] in
-                    self?.start()
+                if !orders.isEmpty {
+                    self?.ordersVC.orders = orders
                 }
-                self?.ordersVC.add(emptyVC)
+                else {
+                    let emptyVC = EmptyViewController(message: Strings.noOrdersYet)
+                    emptyVC.reload = { [weak self] in
+                        self?.start()
+                    }
+                    self?.ordersVC.add(emptyVC)
+                }
             }
         }
     }
     
     func loadMore() {
-        if apiService.isMore {
+        if ordersApiService.isMore {
             ordersVC.add(clearLoadingVC)
-            apiService.loadMore { [weak self] (orders) in
+            ordersApiService.loadMore { [weak self] (orders) in
                 self?.clearLoadingVC.remove()
                 guard let orders = orders else {
                     let popUpErrorVC = PopupErrorViewController(message: Strings.error)
@@ -67,16 +70,18 @@ class OrdersCoordinator: Coordinator {
         orderDetailsVC.coordinator = self
         navigationController.pushViewController(orderDetailsVC, animated: true)
         orderDetailsVC.add(loadingVC)
-        apiService.showOrderDetails(orderID: orderID) { [weak self] (orderDetails) in
-            self?.loadingVC.remove()
-            guard let orderDetails = orderDetails else {
-                let errorVC = ErrorViewController()
-                errorVC.reloadButton.isHidden = true
-                self?.orderDetailsVC.add(errorVC)
-                return
+        ordersApiService.showOrderDetails(orderID: orderID) { [weak self] (orderDetails) in
+            DispatchQueue.main.async {
+                self?.loadingVC.remove()
+                guard let orderDetails = orderDetails else {
+                    let errorVC = ErrorViewController()
+                    errorVC.reloadButton.isHidden = true
+                    self?.orderDetailsVC.add(errorVC)
+                    return
+                }
+                
+                self?.orderDetailsVC.orderDetails = orderDetails
             }
-            
-            self?.orderDetailsVC.orderDetails = orderDetails
         }
     }
     
@@ -87,7 +92,7 @@ class OrdersCoordinator: Coordinator {
         cameraVC.urlReceived = { [weak self] url in
             self?.ordersVC.orders = self!.ordersVC.orders.map { $0.id == orderID ? $0.withStatus(.uploading) : $0 }
             self?.navigationController.popViewController(animated: true)
-            self?.apiService.uploadVideo(orderID: orderID, url: url) { (id, success) in
+            self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url) { (id, success) in
                 self?.clearLoadingVC.remove()
                 if success {
                     
@@ -100,7 +105,7 @@ class OrdersCoordinator: Coordinator {
         let alert = UIAlertController(title: Strings.doYouWantToReject, message: Strings.actionCanNotBeUndone, preferredStyle: .alert)
         let rejectAction = UIAlertAction(title: Strings.reject, style: .destructive) { [weak self] (_) in
             self?.orderDetailsVC.add(self?.clearLoadingVC ?? LoadingViewController())
-            self?.apiService.rejectOrder(orderID: orderID) { [weak self] (success) in
+            self?.orderDetailsApiService.rejectOrder(orderID: orderID) { [weak self] (success) in
                 self?.clearLoadingVC.remove()
                 if success {
                     self?.orderDetailsVC.statusView.status = .rejected
