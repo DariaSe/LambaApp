@@ -22,7 +22,7 @@ class OrderStatusView: UIView {
                 descrLabel.textColor = UIColor.greenIndicatorColor
                 openCameraButton.isHidden = true
                 rejectButton.isHidden = true
-            case .todo:
+            case .active:
                 imageView.isHidden = true
                 descrLabel.isHidden = true
                 openCameraButton.isHidden = false
@@ -78,13 +78,13 @@ class OrderStatusView: UIView {
         descrLabel.font = UIFont.systemFont(ofSize: 12)
         
         openCameraButton.setTitle(Strings.openCamera, for: .normal)
-        openCameraButton.setHeight(equalTo: 40)
+        openCameraButton.setHeight(equalTo: SizeConstants.buttonHeight)
         openCameraButton.setWidth(equalTo: self)
         openCameraButton.addTarget(self, action: #selector(openCameraButtonPressed), for: .touchUpInside)
         
         rejectButton.setTitle(Strings.reject, for: .normal)
         rejectButton.isDestructive = true
-        rejectButton.setHeight(equalTo: 40)
+        rejectButton.setHeight(equalTo: SizeConstants.buttonHeight)
         rejectButton.setWidth(equalTo: self)
         rejectButton.addTarget(self, action: #selector(rejectButtonPressed), for: .touchUpInside)
     }

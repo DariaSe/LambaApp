@@ -10,16 +10,24 @@ import Foundation
 
 class SettingsApiServiceMock: SettingsApiService {
     
-    var userInfo = UserInfo.sample()
+//    var userInfo = UserInfo.sample()
     
-    func getUserInfo(completion: @escaping (UserInfo?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            completion(self.userInfo)
+//    func getUserInfo(completion: @escaping (UserInfo?) -> Void) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            completion(self.userInfo)
+//        }
+//    }
+    
+    func postUserInfo(_ userInfo: UserInfo, completion: @escaping (Bool) -> Void) {
+       DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion(true)
         }
     }
     
-    func postUserInfo(_ userInfo: UserInfo, completion: @escaping (Bool) -> Void) {
-        
+    func changePassword(passInfo: PassInfo, completion: @escaping (Bool, String?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion(true, nil)
+        }
     }
     
     

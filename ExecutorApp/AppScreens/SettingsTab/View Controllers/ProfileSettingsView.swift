@@ -14,7 +14,7 @@ class ProfileSettingsView: UIView {
         didSet {
             guard let userInfo = userInfo else { return }
             imageView.image = userInfo.image
-            socialMediaTableView.setHeight(equalTo: CGFloat(userInfo.socialMedia.count * 70))
+            socialMediaTableView.setHeight(equalTo: CGFloat(userInfo.socialMedia.count * 80))
             socialMediaTableView.socialMedia = userInfo.socialMedia
         }
     }
@@ -23,15 +23,19 @@ class ProfileSettingsView: UIView {
     
     private let stackView = UIStackView()
     
-    private let imageView = UIImageView()
+    let imageView = UIImageView()
     private let changePhotoButton = UIButton()
-    
-    private let socialMediaTableView = SocialMediaTableView()
+
+    let socialMediaTableView = SocialMediaTableView()
+    let hashtagsView = HashtagsView()
     
     private let changePasswordButton = AppButton()
     
+    private let logoutButton = AppButton()
+    
     var changePhoto: (() -> Void)?
     var changePassword: (() -> Void)?
+    var logout: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,11 +52,13 @@ class ProfileSettingsView: UIView {
         stackView.pinToEdges(to: scrollView)
         stackView.setWidth(equalTo: scrollView)
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 30
         stackView.alignment = .center
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(socialMediaTableView)
+        stackView.addArrangedSubview(hashtagsView)
         stackView.addArrangedSubview(changePasswordButton)
+        stackView.addArrangedSubview(logoutButton)
         
         imageView.image = UIImage(named: "Portrait_Placeholder")
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.7).isActive = true
@@ -69,18 +75,25 @@ class ProfileSettingsView: UIView {
         changePhotoButton.setTitleColor(UIColor.white, for: .normal)
         changePhotoButton.addTarget(self, action: #selector(changePhotoButtonPressed), for: .touchUpInside)
         changePhotoButton.isUserInteractionEnabled = true
-//        changePhotoButton.showsTouchWhenHighlighted = true
+        changePhotoButton.showsTouchWhenHighlighted = true
         
         socialMediaTableView.setWidth(equalTo: self, multiplier: 0.9)
         
-        changePasswordButton.setHeight(equalTo: 40)
+        hashtagsView.setWidth(equalTo: stackView, multiplier: 0.9)
+        
+        changePasswordButton.setHeight(equalTo: SizeConstants.buttonHeight)
         changePasswordButton.setWidth(equalTo: self, multiplier: 0.9)
         changePasswordButton.setTitle(Strings.changePassword, for: .normal)
         changePasswordButton.addTarget(self, action: #selector(changePasswordButtonPressed), for: .touchUpInside)
+        
+        logoutButton.isSolid = false
+        logoutButton.setHeight(equalTo: SizeConstants.buttonHeight)
+        logoutButton.setWidth(equalTo: self, multiplier: 0.9)
+        logoutButton.setTitle(Strings.logout, for: .normal)
+        logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
     }
     
     @objc func changePhotoButtonPressed() {
-        print("change photo button")
         changePhotoButton.animate(scale: 1.1)
         changePhoto?()
     }
@@ -88,6 +101,11 @@ class ProfileSettingsView: UIView {
     @objc func changePasswordButtonPressed() {
         changePasswordButton.animate(scale: 1.05)
         changePassword?()
+    }
+    
+    @objc func logoutButtonPressed() {
+        logoutButton.animate(scale: 1.05)
+        logout?()
     }
 }
 

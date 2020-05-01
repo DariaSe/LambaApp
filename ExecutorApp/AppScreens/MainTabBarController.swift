@@ -17,6 +17,8 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.addObserver(self, forKeyPath: Defaults.tokenKey, options: .new, context: nil)
+        
         ordersCoordinator.start()
         financesCoordinator.start()
         settingsCoordinator.start()
@@ -26,5 +28,15 @@ class MainTabBarController: UITabBarController {
             financesCoordinator.navigationController,
             settingsCoordinator.navigationController]
         
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == Defaults.tokenKey {
+            DispatchQueue.main.async { [weak self] in
+                self?.ordersCoordinator.start()
+                self?.financesCoordinator.start()
+                self?.settingsCoordinator.start()
+            }
+        }
     }
 }

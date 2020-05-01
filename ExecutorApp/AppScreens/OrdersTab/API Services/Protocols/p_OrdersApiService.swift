@@ -15,7 +15,5 @@ protocol OrdersApiService {
     func loadMore(completion: @escaping ([Order]?) -> Void)
     
     func showOrderDetails(orderID: Int, completion: @escaping (OrderDetails?) -> Void)
-    func rejectOrder(orderID: Int, completion: @escaping (Bool) -> Void)
     
-    func uploadVideo(orderID: Int, url: URL, completion: @escaping(Int, Bool) -> Void)
 }

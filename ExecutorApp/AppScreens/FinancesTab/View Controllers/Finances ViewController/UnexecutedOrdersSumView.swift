@@ -46,7 +46,7 @@ class UnexecutedOrdersSumView: UIView {
         label.textAlignment = .left
         label.text = Strings.unexecutedOrders
         
-        sumView.setHeight(equalTo: 40)
+        sumView.setHeight(equalTo: SizeConstants.sumViewHeight)
         sumView.setWidth(equalTo: 120)
     }
 

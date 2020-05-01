@@ -10,7 +10,6 @@
 		DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B02450C795001791E3 /* OrderStatusView.swift */; };
 		DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */; };
 		DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */; };
-		DA6716BA2453138E001791E3 /* PopupErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B92453138E001791E3 /* PopupErrorViewController.swift */; };
 		DA6716BC24531A31001791E3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716BB24531A31001791E3 /* Strings.swift */; };
 		DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716BD245322E2001791E3 /* e_UIButton.swift */; };
 		DA6716C224532F63001791E3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716C124532F63001791E3 /* CameraViewController.swift */; };
@@ -32,12 +31,29 @@
 		DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963052455BDB2002BBC3F /* SocialMedia.swift */; };
 		DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963072455C244002BBC3F /* OrderSettings.swift */; };
 		DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */; };
-		DAB9630C2455C9F1002BBC3F /* OrdersSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */; };
 		DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */; };
 		DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */; };
 		DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */; };
 		DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */; };
-		DAB963162457088E002BBC3F /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963152457088E002BBC3F /* LabelTextFieldView.swift */; };
+		DAB9631824570E73002BBC3F /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631724570E73002BBC3F /* SizeConstants.swift */; };
+		DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */; };
+		DAB9631C24582A50002BBC3F /* PassInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631B24582A50002BBC3F /* PassInfo.swift */; };
+		DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632624584144002BBC3F /* OrderSettingsTableViewCell.swift */; };
+		DAB9632924584246002BBC3F /* AppSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632824584246002BBC3F /* AppSwitch.swift */; };
+		DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632A24584CBD002BBC3F /* AppTextField.swift */; };
+		DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632C24585B98002BBC3F /* OrderSettingsTableView.swift */; };
+		DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632E24589E1D002BBC3F /* HashtagsView.swift */; };
+		DAB963352459B06C002BBC3F /* e_UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963342459B06C002BBC3F /* e_UIAlertController.swift */; };
+		DAB963372459BECA002BBC3F /* PopupErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963362459BECA002BBC3F /* PopupErrorViewController.swift */; };
+		DAB963402459FE2D002BBC3F /* InfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9633F2459FE2D002BBC3F /* InfoService.swift */; };
+		DAB96342245AB35A002BBC3F /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96341245AB35A002BBC3F /* StartCoordinator.swift */; };
+		DAB96344245B3825002BBC3F /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96343245B3825002BBC3F /* AppURL.swift */; };
+		DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96347245B5852002BBC3F /* StartViewController.swift */; };
+		DAB9634E245C1B0B002BBC3F /* p_OrderDetailsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */; };
+		DAB96350245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */; };
+		DAB96359245C1D65002BBC3F /* OrdersApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */; };
+		DAB9635B245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */; };
+		DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635C245C9410002BBC3F /* e_UIImage.swift */; };
 		DABCA635244DD78200682368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA634244DD78200682368 /* AppDelegate.swift */; };
 		DABCA63E244DD78500682368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63D244DD78500682368 /* Assets.xcassets */; };
 		DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63F244DD78500682368 /* LaunchScreen.storyboard */; };
@@ -49,9 +65,7 @@
 		DABCA65A244DFCA800682368 /* e_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA659244DFCA800682368 /* e_String.swift */; };
 		DABCA65C244DFE2500682368 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65B244DFE2500682368 /* LoginService.swift */; };
 		DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65D244E09E400682368 /* e_UITextField.swift */; };
-		DABCA660244EF57F00682368 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65F244EF57F00682368 /* KeychainService.swift */; };
 		DABCA662244EF5EF00682368 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA661244EF5EF00682368 /* Defaults.swift */; };
-		DABCA664244EF77D00682368 /* BiometricAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA663244EF77D00682368 /* BiometricAuthViewController.swift */; };
 		DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */; };
 		DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */; };
 		DABCA671244F1C4900682368 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA670244F1C4900682368 /* MainTabBarController.swift */; };
@@ -80,7 +94,6 @@
 		DA6716B02450C795001791E3 /* OrderStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusView.swift; sourceTree = "<group>"; };
 		DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsTableView.swift; sourceTree = "<group>"; };
 		DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
-		DA6716B92453138E001791E3 /* PopupErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupErrorViewController.swift; sourceTree = "<group>"; };
 		DA6716BB24531A31001791E3 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		DA6716BD245322E2001791E3 /* e_UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIButton.swift; sourceTree = "<group>"; };
 		DA6716C124532F63001791E3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -102,12 +115,29 @@
 		DAB963052455BDB2002BBC3F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
 		DAB963072455C244002BBC3F /* OrderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSettings.swift; sourceTree = "<group>"; };
 		DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
-		DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersSettingsView.swift; sourceTree = "<group>"; };
 		DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaTableView.swift; sourceTree = "<group>"; };
 		DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaTableViewCell.swift; sourceTree = "<group>"; };
 		DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		DAB963152457088E002BBC3F /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
+		DAB9631724570E73002BBC3F /* SizeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstants.swift; sourceTree = "<group>"; };
+		DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordLabelTextFieldView.swift; sourceTree = "<group>"; };
+		DAB9631B24582A50002BBC3F /* PassInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassInfo.swift; sourceTree = "<group>"; };
+		DAB9632624584144002BBC3F /* OrderSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		DAB9632824584246002BBC3F /* AppSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitch.swift; sourceTree = "<group>"; };
+		DAB9632A24584CBD002BBC3F /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
+		DAB9632C24585B98002BBC3F /* OrderSettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSettingsTableView.swift; sourceTree = "<group>"; };
+		DAB9632E24589E1D002BBC3F /* HashtagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagsView.swift; sourceTree = "<group>"; };
+		DAB963342459B06C002BBC3F /* e_UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIAlertController.swift; sourceTree = "<group>"; };
+		DAB963362459BECA002BBC3F /* PopupErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupErrorViewController.swift; sourceTree = "<group>"; };
+		DAB9633F2459FE2D002BBC3F /* InfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoService.swift; sourceTree = "<group>"; };
+		DAB96341245AB35A002BBC3F /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		DAB96343245B3825002BBC3F /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
+		DAB96347245B5852002BBC3F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_OrderDetailsApiService.swift; sourceTree = "<group>"; };
+		DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsApiServiceMock.swift; sourceTree = "<group>"; };
+		DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersApiServiceMain.swift; sourceTree = "<group>"; };
+		DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsApiServiceMain.swift; sourceTree = "<group>"; };
+		DAB9635C245C9410002BBC3F /* e_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIImage.swift; sourceTree = "<group>"; };
 		DABCA631244DD78200682368 /* ExecutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABCA634244DD78200682368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DABCA63D244DD78500682368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,9 +153,7 @@
 		DABCA659244DFCA800682368 /* e_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_String.swift; sourceTree = "<group>"; };
 		DABCA65B244DFE2500682368 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		DABCA65D244E09E400682368 /* e_UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UITextField.swift; sourceTree = "<group>"; };
-		DABCA65F244EF57F00682368 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		DABCA661244EF5EF00682368 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		DABCA663244EF77D00682368 /* BiometricAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthViewController.swift; sourceTree = "<group>"; };
 		DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_KeyboardHandler.swift; sourceTree = "<group>"; };
 		DABCA670244F1C4900682368 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -191,6 +219,130 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		DAB9631D24583EF6002BBC3F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9632024583F6D002BBC3F /* Settings ViewController */,
+				DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */,
+				DAB9632124583F97002BBC3F /* Change Password ViewController */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DAB9631E24583F0E002BBC3F /* Profile settings subviews */ = {
+			isa = PBXGroup;
+			children = (
+				DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */,
+				DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */,
+				DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */,
+				DAB9632E24589E1D002BBC3F /* HashtagsView.swift */,
+			);
+			name = "Profile settings subviews";
+			sourceTree = "<group>";
+		};
+		DAB9631F24583F29002BBC3F /* Order settings subviews */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9632C24585B98002BBC3F /* OrderSettingsTableView.swift */,
+				DAB9632624584144002BBC3F /* OrderSettingsTableViewCell.swift */,
+			);
+			name = "Order settings subviews";
+			sourceTree = "<group>";
+		};
+		DAB9632024583F6D002BBC3F /* Settings ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA676244F1C8000682368 /* SettingsViewController.swift */,
+				DAB9631E24583F0E002BBC3F /* Profile settings subviews */,
+				DAB9631F24583F29002BBC3F /* Order settings subviews */,
+			);
+			name = "Settings ViewController";
+			sourceTree = "<group>";
+		};
+		DAB9632124583F97002BBC3F /* Change Password ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */,
+				DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */,
+			);
+			name = "Change Password ViewController";
+			sourceTree = "<group>";
+		};
+		DAB9632224583FC6002BBC3F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA67F244F38F500682368 /* OrdersList */,
+				DABCA680244F390D00682368 /* OrderDetails */,
+				DABCA681244F391E00682368 /* Camera */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DAB9632324583FFD002BBC3F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAB963242458400A002BBC3F /* Finances ViewController */,
+				DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DAB963242458400A002BBC3F /* Finances ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA674244F1C7500682368 /* FinancesViewController.swift */,
+				DA6716CD2454574D001791E3 /* ReadyForTransfer */,
+				DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */,
+				DA6716C524541868001791E3 /* SumView.swift */,
+			);
+			path = "Finances ViewController";
+			sourceTree = "<group>";
+		};
+		DAB96353245C1C45002BBC3F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA69B2450954D00682368 /* p_OrdersApiService.swift */,
+				DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DAB96354245C1C55002BBC3F /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				DAB96355245C1C85002BBC3F /* Mocks */,
+				DAB96356245C1C8E002BBC3F /* API */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		DAB96355245C1C85002BBC3F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */,
+				DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		DAB96356245C1C8E002BBC3F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */,
+				DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		DAB96357245C1CAC002BBC3F /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAB96353245C1C45002BBC3F /* Protocols */,
+				DAB96354245C1C55002BBC3F /* Implementations */,
+			);
+			path = "API Services";
+			sourceTree = "<group>";
+		};
 		DABCA628244DD78200682368 = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +364,7 @@
 			children = (
 				DABCA634244DD78200682368 /* AppDelegate.swift */,
 				DABCA661244EF5EF00682368 /* Defaults.swift */,
-				DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */,
+				DAB96343245B3825002BBC3F /* AppURL.swift */,
 				DABCA69D2450991D00682368 /* States */,
 				DABCA6862450278100682368 /* Reusable Views */,
 				DABCA667244F088E00682368 /* StartScreen */,
@@ -223,6 +375,7 @@
 				DABCA67C244F243A00682368 /* Model */,
 				DABCA63F244DD78500682368 /* LaunchScreen.storyboard */,
 				DABCA642244DD78500682368 /* Info.plist */,
+				DAB9631724570E73002BBC3F /* SizeConstants.swift */,
 				DA6716D624546B9D001791E3 /* Strings */,
 			);
 			path = ExecutorApp;
@@ -232,11 +385,13 @@
 			isa = PBXGroup;
 			children = (
 				DABCA64B244DD9C000682368 /* e_UIView.swift */,
+				DAB9635C245C9410002BBC3F /* e_UIImage.swift */,
 				DABCA65D244E09E400682368 /* e_UITextField.swift */,
 				DABCA650244DF2FA00682368 /* e_UIColor.swift */,
 				DABCA659244DFCA800682368 /* e_String.swift */,
 				DABCA6A0245099B800682368 /* e_UIViewController.swift */,
 				DA6716BD245322E2001791E3 /* e_UIButton.swift */,
+				DAB963342459B06C002BBC3F /* e_UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +407,9 @@
 		DABCA667244F088E00682368 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
+				DAB96347245B5852002BBC3F /* StartViewController.swift */,
+				DAB96341245AB35A002BBC3F /* StartCoordinator.swift */,
+				DAB9633F2459FE2D002BBC3F /* InfoService.swift */,
 				DABCA668244F08B100682368 /* ViewControllers */,
 				DABCA669244F08BA00682368 /* Services */,
 			);
@@ -262,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				DABCA648244DD84A00682368 /* LoginViewController.swift */,
-				DABCA663244EF77D00682368 /* BiometricAuthViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -271,7 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				DABCA65B244DFE2500682368 /* LoginService.swift */,
-				DABCA65F244EF57F00682368 /* KeychainService.swift */,
 				DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */,
 			);
 			path = Services;
@@ -293,10 +449,8 @@
 			isa = PBXGroup;
 			children = (
 				DABCA693245090A300682368 /* OrdersCoordinator.swift */,
-				DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */,
-				DABCA67F244F38F500682368 /* OrdersList */,
-				DABCA680244F390D00682368 /* OrderDetails */,
-				DABCA681244F391E00682368 /* Camera */,
+				DAB96357245C1CAC002BBC3F /* API Services */,
+				DAB9632224583FC6002BBC3F /* View Controllers */,
 			);
 			path = OrdersTab;
 			sourceTree = "<group>";
@@ -306,11 +460,7 @@
 			children = (
 				DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */,
 				DA6716D224545AAC001791E3 /* FinancesApiServiceMock.swift */,
-				DABCA674244F1C7500682368 /* FinancesViewController.swift */,
-				DA6716CD2454574D001791E3 /* ReadyForTransfer */,
-				DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */,
-				DA6716C524541868001791E3 /* SumView.swift */,
-				DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */,
+				DAB9632324583FFD002BBC3F /* View Controllers */,
 			);
 			path = FinancesTab;
 			sourceTree = "<group>";
@@ -320,13 +470,7 @@
 			children = (
 				DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */,
 				DAB962FF2455BC05002BBC3F /* SettingsApiServiceMock.swift */,
-				DABCA676244F1C8000682368 /* SettingsViewController.swift */,
-				DAB963092455C9E3002BBC3F /* ProfileSettingsView.swift */,
-				DAB9630D2455CAA1002BBC3F /* SocialMediaTableView.swift */,
-				DAB9630F2455CB40002BBC3F /* SocialMediaTableViewCell.swift */,
-				DAB9630B2455C9F1002BBC3F /* OrdersSettingsView.swift */,
-				DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */,
-				DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */,
+				DAB9631D24583EF6002BBC3F /* View Controllers */,
 			);
 			path = SettingsTab;
 			sourceTree = "<group>";
@@ -341,6 +485,7 @@
 				DAB963032455BD1D002BBC3F /* UserInfo.swift */,
 				DAB963052455BDB2002BBC3F /* SocialMedia.swift */,
 				DAB963072455C244002BBC3F /* OrderSettings.swift */,
+				DAB9631B24582A50002BBC3F /* PassInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,7 +522,8 @@
 			isa = PBXGroup;
 			children = (
 				DABCA6872450279E00682368 /* AppButton.swift */,
-				DAB963152457088E002BBC3F /* LabelTextFieldView.swift */,
+				DAB9632824584246002BBC3F /* AppSwitch.swift */,
+				DAB9632A24584CBD002BBC3F /* AppTextField.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -385,8 +531,8 @@
 		DABCA695245092C800682368 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */,
 				DABCA68F24508FEA00682368 /* p_Coordinator.swift */,
-				DABCA69B2450954D00682368 /* p_OrdersApiService.swift */,
 				DA6716D424545AC7001791E3 /* p_FinancesApiService.swift */,
 				DAB963012455BC19002BBC3F /* p_SettingsApiService.swift */,
 			);
@@ -399,7 +545,7 @@
 				DABCA69E2450994200682368 /* LoadingViewController.swift */,
 				DABCA6A224509A6E00682368 /* EmptyViewController.swift */,
 				DABCA6A624509C3B00682368 /* ErrorViewController.swift */,
-				DA6716B92453138E001791E3 /* PopupErrorViewController.swift */,
+				DAB963362459BECA002BBC3F /* PopupErrorViewController.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -477,46 +623,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				DABCA651244DF2FA00682368 /* e_UIColor.swift in Sources */,
+				DAB963372459BECA002BBC3F /* PopupErrorViewController.swift in Sources */,
 				DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */,
 				DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */,
 				DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */,
 				DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */,
 				DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */,
+				DAB9631824570E73002BBC3F /* SizeConstants.swift in Sources */,
+				DAB9632924584246002BBC3F /* AppSwitch.swift in Sources */,
 				DABCA683244F396600682368 /* OrderDetailsUnitView.swift in Sources */,
 				DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */,
+				DAB96344245B3825002BBC3F /* AppURL.swift in Sources */,
 				DAB963022455BC19002BBC3F /* p_SettingsApiService.swift in Sources */,
 				DABCA6882450279E00682368 /* AppButton.swift in Sources */,
 				DABCA67B244F243500682368 /* Order.swift in Sources */,
 				DA6716BC24531A31001791E3 /* Strings.swift in Sources */,
 				DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */,
 				DABCA64C244DD9C000682368 /* e_UIView.swift in Sources */,
+				DAB96350245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift in Sources */,
 				DABCA64F244DF17000682368 /* Colors.swift in Sources */,
 				DAB963002455BC05002BBC3F /* SettingsApiServiceMock.swift in Sources */,
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
-				DAB9630C2455C9F1002BBC3F /* OrdersSettingsView.swift in Sources */,
 				DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */,
+				DAB96342245AB35A002BBC3F /* StartCoordinator.swift in Sources */,
 				DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */,
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
 				DABCA67E244F38D300682368 /* OrderDetailsViewController.swift in Sources */,
+				DAB9634E245C1B0B002BBC3F /* p_OrderDetailsApiService.swift in Sources */,
 				DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */,
 				DA6716D524545AC7001791E3 /* p_FinancesApiService.swift in Sources */,
-				DABCA660244EF57F00682368 /* KeychainService.swift in Sources */,
+				DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */,
+				DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */,
 				DABCA65A244DFCA800682368 /* e_String.swift in Sources */,
 				DABCA662244EF5EF00682368 /* Defaults.swift in Sources */,
+				DAB963352459B06C002BBC3F /* e_UIAlertController.swift in Sources */,
 				DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */,
 				DA6716C624541868001791E3 /* SumView.swift in Sources */,
 				DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */,
 				DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */,
 				DABCA6A324509A6E00682368 /* EmptyViewController.swift in Sources */,
 				DABCA6852450267300682368 /* CostView.swift in Sources */,
-				DABCA664244EF77D00682368 /* BiometricAuthViewController.swift in Sources */,
 				DA6716C224532F63001791E3 /* CameraViewController.swift in Sources */,
+				DAB9635B245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift in Sources */,
 				DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */,
+				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
 				DA6716D324545AAC001791E3 /* FinancesApiServiceMock.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
+				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
-				DA6716BA2453138E001791E3 /* PopupErrorViewController.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
 				DABCA671244F1C4900682368 /* MainTabBarController.swift in Sources */,
 				DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */,
@@ -525,20 +680,25 @@
 				DABCA635244DD78200682368 /* AppDelegate.swift in Sources */,
 				DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */,
 				DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */,
+				DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */,
 				DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */,
 				DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */,
 				DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */,
 				DABCA675244F1C7500682368 /* FinancesViewController.swift in Sources */,
 				DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */,
 				DABCA65C244DFE2500682368 /* LoginService.swift in Sources */,
-				DAB963162457088E002BBC3F /* LabelTextFieldView.swift in Sources */,
+				DAB963402459FE2D002BBC3F /* InfoService.swift in Sources */,
+				DAB9631C24582A50002BBC3F /* PassInfo.swift in Sources */,
 				DA6716C824541A8D001791E3 /* ReadyToTransferTableViewCell.swift in Sources */,
 				DABCA694245090A300682368 /* OrdersCoordinator.swift in Sources */,
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,
+				DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */,
 				DA6716C42454167D001791E3 /* ReadyToTransferView.swift in Sources */,
 				DABCA69C2450954D00682368 /* p_OrdersApiService.swift in Sources */,
+				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
 				DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
+				DAB96359245C1D65002BBC3F /* OrdersApiServiceMain.swift in Sources */,
 				DABCA6A524509B5C00682368 /* OrdersApiServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

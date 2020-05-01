@@ -12,15 +12,21 @@ class AppButton: UIButton {
     
     var isDestructive: Bool = false {
         didSet {
-            backgroundColor = color
+            setup()
         }
     }
     
     var color: UIColor { isDestructive ? UIColor.destructiveColor : UIColor.tintColor }
     
+    var isSolid: Bool = true {
+        didSet {
+            setup()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initialSetup()
+        setup()
     }
     
     required init?(coder: NSCoder) {
@@ -28,9 +34,17 @@ class AppButton: UIButton {
     }
     
     
-    func initialSetup() {
-        setTitleColor(UIColor.white, for: .normal)
-        backgroundColor = color
-        layer.cornerRadius = 12
+    func setup() {
+        layer.cornerRadius = SizeConstants.buttonCornerRadius
+        layer.borderWidth = 1.0
+        layer.borderColor = color.cgColor
+        if isSolid {
+            setTitleColor(UIColor.white, for: .normal)
+            backgroundColor = color
+        }
+        else {
+            setTitleColor(color, for: .normal)
+            backgroundColor = .clear
+        }
     }
 }

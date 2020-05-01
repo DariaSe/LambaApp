@@ -13,23 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let startCoordinator = StartCoordinator()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Defaults.setDefault()
-        
-        var rootVC: UIViewController
-        
-        if Defaults.hasToken {
-            rootVC = BiometricAuthViewController()
-        }
-        else {
-//            rootVC = LoginViewController()
-            rootVC = MainTabBarController()
-        }
-        
+    
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootVC
+        window?.rootViewController = startCoordinator.mainVC
         window?.makeKeyAndVisible()
+        startCoordinator.start()
 
         return true
     }

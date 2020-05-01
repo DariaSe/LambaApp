@@ -42,7 +42,7 @@ class EmptyViewController: UIViewController {
         
         reloadButton.setTitle(Strings.tryAgain, for: .normal)
         reloadButton.setWidth(equalTo: 100)
-        reloadButton.setHeight(equalTo: 40)
+        reloadButton.setHeight(equalTo: SizeConstants.buttonHeight)
         reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
     }
     

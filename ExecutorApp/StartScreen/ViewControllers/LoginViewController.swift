@@ -10,26 +10,27 @@ import UIKit
 
 class LoginViewController: UIViewController, KeyboardHandler {
    
-    var scrollView = UIScrollView()
+    let scrollView = UIScrollView()
     let stackView = UIStackView()
     
     let textFieldsStackView = UIStackView()
     
 //    let logoImageView = UIImageView()
     
-    let emailTextField = UITextField()
-    let passwordTextField = UITextField()
+    let emailTextField = AppTextField()
+    let passwordTextField = AppTextField()
     
     let loginButton = AppButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyboardNotifications()
+        registerForKeyboardNotifications(for: scrollView)
         view.backgroundColor = UIColor.backgroundColor
         setupLayout()
         initialSetup()
     }
     
+   
     func setupLayout() {
         scrollView.pinToLayoutMargins(to: view)
         scrollView.isScrollEnabled = true
@@ -51,31 +52,20 @@ class LoginViewController: UIViewController, KeyboardHandler {
         textFieldsStackView.addArrangedSubview(emailTextField)
         textFieldsStackView.addArrangedSubview(passwordTextField)
         
-        emailTextField.setHeight(equalTo: 40)
+        emailTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
         passwordTextField.setHeight(equalTo: emailTextField)
         
         loginButton.setWidth(equalTo: 100)
-        loginButton.setHeight(equalTo: emailTextField)
+        loginButton.setHeight(equalTo: SizeConstants.buttonHeight)
     }
     
     func initialSetup() {
         
         emailTextField.delegate = self
-        emailTextField.returnKeyType = .done
-        emailTextField.autocapitalizationType = .none
-        emailTextField.setLeftPaddingPoints(10)
-        emailTextField.layer.cornerRadius = 10
-        emailTextField.backgroundColor = UIColor.textControlsBackgroundColor
         emailTextField.placeholder = Strings.email
         
-       
         passwordTextField.delegate = self
-        passwordTextField.returnKeyType = .done
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.setLeftPaddingPoints(10)
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.backgroundColor = UIColor.textControlsBackgroundColor
         passwordTextField.placeholder = Strings.password
         
         loginButton.setTitle(Strings.login, for: .normal)
@@ -94,15 +84,13 @@ class LoginViewController: UIViewController, KeyboardHandler {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.center(in: view)
         activityIndicator.startAnimating()
-        LoginService.login(email: email, password: password) { [weak self] (success, token, errorMessage) in
-            if success, let token = token {
+        LoginService.login(email: email, password: password) { [weak self] (token, errorMessage) in
+            if let token = token {
+                Defaults.token = token
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
+                    self?.dismiss(animated: true, completion: nil)
                 }
-                print(token)
-                // save token to Keychain here (forward to KeychainService)
-                
-                // show next screen
             }
             else if let errorMessage = errorMessage {
                 DispatchQueue.main.async {
@@ -123,8 +111,8 @@ class LoginViewController: UIViewController, KeyboardHandler {
     }
     
     func restoreAppearance() {
-        emailTextField.layer.borderWidth = 0
-        passwordTextField.layer.borderWidth = 0
+        emailTextField.setNormalBorder()
+        passwordTextField.setNormalBorder()
         passwordTextField.text = ""
     }
 
@@ -133,8 +121,8 @@ class LoginViewController: UIViewController, KeyboardHandler {
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        emailTextField.layer.borderWidth = 0
-        passwordTextField.layer.borderWidth = 0
+        emailTextField.setNormalBorder()
+        passwordTextField.setNormalBorder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

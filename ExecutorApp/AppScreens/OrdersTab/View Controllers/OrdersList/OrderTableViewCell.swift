@@ -96,7 +96,7 @@ class OrderTableViewCell: UITableViewCell {
             switch order.status {
             case .done:
                 return UIColor.greenIndicatorColor
-            case .todo:
+            case .active:
                 return UIColor.yellowIndicatorColor
             case .rejected:
                 return UIColor.redIndicatorColor

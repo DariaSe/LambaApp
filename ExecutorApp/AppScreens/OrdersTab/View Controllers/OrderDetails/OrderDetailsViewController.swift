@@ -16,7 +16,7 @@ class OrderDetailsViewController: UIViewController {
         didSet {
             guard let orderDetails = orderDetails else { return }
             let id = orderDetails.id
-            costView.cost = orderDetails.cost
+            costView.cost = orderDetails.cost + " " + orderDetails.currency
             orderInfoView.orderDetailUnits = orderDetails.units
             statusView.status = orderDetails.status
             statusView.openCamera = { [weak self] in
@@ -50,7 +50,7 @@ class OrderDetailsViewController: UIViewController {
         stackView.addArrangedSubview(costView)
         stackView.addArrangedSubview(orderInfoView)
         stackView.addArrangedSubview(statusView)
-        costView.setHeight(equalTo: 40)
+        costView.setHeight(equalTo: SizeConstants.sumViewHeight)
         costView.setWidth(equalTo: 100)
         orderInfoView.setWidth(equalTo: stackView)
         statusView.setWidth(equalTo: stackView)

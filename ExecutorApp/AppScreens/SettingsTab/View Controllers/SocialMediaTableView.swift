@@ -12,9 +12,12 @@ class SocialMediaTableView: UIView {
     
     var socialMedia: [SocialMedia] = [] {
         didSet {
+            newSocialMedia = socialMedia
             tableView.reloadData()
         }
     }
+    
+    var newSocialMedia: [SocialMedia] = []
     
     let tableView = UITableView()
     
@@ -48,6 +51,9 @@ extension SocialMediaTableView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SocialMediaTableViewCell.reuseIdentifier, for: indexPath) as! SocialMediaTableViewCell
         let socialMediaUnit = socialMedia[indexPath.row]
         cell.update(with: socialMediaUnit)
+        cell.textChanged = { [weak self] text in
+            self?.newSocialMedia[indexPath.row].nickName = text
+        }
         return cell
     }
 }
@@ -59,6 +65,6 @@ extension SocialMediaTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
 }

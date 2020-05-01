@@ -68,7 +68,7 @@ class ReadyToTransferView: UIView {
         sumTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         sumTitleLabel.text = Strings.total
        
-        sumView.setHeight(equalTo: 40)
+        sumView.setHeight(equalTo: SizeConstants.sumViewHeight)
         sumView.setWidth(equalTo: 120)
     }
 }

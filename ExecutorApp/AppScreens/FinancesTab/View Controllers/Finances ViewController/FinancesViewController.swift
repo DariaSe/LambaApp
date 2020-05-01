@@ -80,7 +80,7 @@ class FinancesViewController: UIViewController {
         descrButton.addTarget(self, action: #selector(descriptionButtonPressed), for: .touchUpInside)
         
         transferButton.setTitle(Strings.transferMoney, for: .normal)
-        transferButton.setHeight(equalTo: 40)
+        transferButton.setHeight(equalTo: SizeConstants.buttonHeight)
         transferButton.addTarget(self, action: #selector(transferButtonPressed), for: .touchUpInside)
         
         scrollView.indicatorStyle = .black

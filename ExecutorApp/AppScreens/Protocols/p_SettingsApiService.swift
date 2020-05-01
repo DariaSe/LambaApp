@@ -11,8 +11,9 @@ import Foundation
 protocol SettingsApiService {
     
     // for mock
-    var userInfo: UserInfo { get set }
+//    var userInfo: UserInfo { get set }
     
-    func getUserInfo(completion: @escaping (UserInfo?) -> Void)
+//    func getUserInfo(completion: @escaping (UserInfo?) -> Void)
     func postUserInfo(_ userInfo: UserInfo, completion: @escaping(Bool) -> Void)
+    func changePassword(passInfo: PassInfo, completion: @escaping(Bool, String?) -> Void)
 }

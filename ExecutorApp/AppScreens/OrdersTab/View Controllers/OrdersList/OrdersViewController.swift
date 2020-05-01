@@ -59,13 +59,12 @@ extension OrdersViewController: UITableViewDataSource {
         }
         return cell
     }
-    
-    
 }
 
 extension OrdersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.showOrderDetails(orderID: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+        coordinator?.showOrderDetails(orderID: orders[indexPath.row].id)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

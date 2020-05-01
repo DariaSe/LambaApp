@@ -42,7 +42,7 @@ class TransferDescriptionViewController: UIViewController {
         
         infoLabel.numberOfLines = 0
         
-        okButton.setHeight(equalTo: 40)
+        okButton.setHeight(equalTo: SizeConstants.buttonHeight)
         okButton.setTitle("OK", for: .normal)
         okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
         

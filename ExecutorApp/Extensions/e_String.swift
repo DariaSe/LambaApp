@@ -29,3 +29,14 @@ extension String {
         return ceil(boundingBox.width)
     }
 }
+
+extension String {
+    func containsDigit() -> Bool {
+        if let range = self.range(of: "[0-9]", options: .regularExpression), self[range].count != 0 {
+               return true
+        }
+        else {
+            return false
+        }
+    }
+}

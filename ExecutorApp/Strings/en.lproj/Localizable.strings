@@ -48,10 +48,31 @@
 "Transaction failed" = "Transaction failed";
 
 // Settings
+"Settings successfully changed." = "Settings successfully changed.";
+
+// Profile settings
 "Profile settings" = "Profile settings";
 "Order settings" = "Order settings";
 "Change photo" = "Change photo";
+"List the hashtags divided by space:" = "List the hashtags divided by space:";
+"#hashtag1 #hashtag2" = "#hashtag1 #hashtag2";
+
+// Password
 "Change password" = "Change password";
+"Password should consist of at least 6 characters and contain at least 1 digit." = "Password should consist of at least 6 characters and contain at least 1 digit.";
+"Old password" = "Old password";
+"New password" = "New password";
+"Confirm new password" = "Confirm new password";
+"Password successfully changed" = "Password successfully changed";
+
+// Logout
+"Log out" = "Log out";
+"Do you really want to log out?" = "Do you really want to log out?";
+"Yes" = "Yes";
+
+// Orders settings
+"Receive orders" = "Receive orders";
+"Price" = "Price";
 
 // Photo picker
 "Choose source" = "Choose source";

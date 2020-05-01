@@ -11,11 +11,9 @@ import UIKit
 extension UITextField {
     
     func showInvalid() {
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.destructiveColor.cgColor
+        setRedBorder()
         shake()
     }
-    
 }
 
 extension UITextField {
@@ -28,5 +26,19 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always
+    }
+}
+
+extension UITextField {
+    func setGreenBorder() {
+        layer.borderColor = UIColor.greenIndicatorColor.cgColor
+    }
+    
+    func setRedBorder() {
+        layer.borderColor = UIColor.destructiveColor.cgColor
+    }
+    
+    func setNormalBorder() {
+        layer.borderColor = UIColor.textControlsBackgroundColor.cgColor
     }
 }

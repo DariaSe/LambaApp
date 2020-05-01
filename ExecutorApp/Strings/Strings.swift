@@ -50,13 +50,35 @@ struct Strings {
     static let transactionFailed = "Transaction failed".localized
     
     // Settings
+    static let settingsChanged = "Settings successfully changed.".localized
+    
+    // Profile settings
     static let profileSettings = "Profile settings".localized
     static let orderSettings = "Order settings".localized
     static let changePhoto = "Change photo".localized
+    static let listHashtags = "List the hashtags divided by space:".localized
+    static let hashtagPlaceholder = "#hashtag1 #hashtag2"
+    
+    // Password
     static let changePassword = "Change password".localized
+    static let passReqiurements = "Password should consist of at least 6 characters and contain at least 1 digit.".localized
+    static let oldPassword = "Old password".localized
+    static let newPassword = "New password".localized
+    static let confirmNewPass = "Confirm new password".localized
+    static let passChanged = "Password successfully changed".localized
+    
+    // Logout
+    static let logout = "Log out".localized
+    static let logoutWarning = "Do you really want to log out?".localized
+    static let yes = "Yes".localized
+    
+    // Orders settings
+    static let receiveOrders = "Receive orders".localized
+    static let price = "Price".localized
     
     // Photo picker
     static let chooseSource = "Choose source".localized
     static let camera = "Camera".localized
     static let photos = "Photos".localized
+    
 }

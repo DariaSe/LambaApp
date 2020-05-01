@@ -17,7 +17,7 @@ class SocialMediaTableViewCell: UITableViewCell {
     
     private let textStackView = UIStackView()
     private let titleLabel = UILabel()
-    private let textField = UITextField()
+    private let textField = AppTextField()
     
     var textChanged: ((String) -> Void)?
     
@@ -52,11 +52,8 @@ class SocialMediaTableViewCell: UITableViewCell {
         titleLabel.textColor = UIColor.darkGray
         
         textField.delegate = self
-        textField.layer.cornerRadius = 10
-        textField.setHeight(equalTo: 30)
-        textField.setLeftPaddingPoints(10)
-        textField.returnKeyType = .done
-        textField.autocapitalizationType = .none
+        textField.setHeight(equalTo: SizeConstants.textFieldHeight)
+        textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
     }
     
     func update(with socialMedia: SocialMedia) {
@@ -65,16 +62,12 @@ class SocialMediaTableViewCell: UITableViewCell {
         textField.text = socialMedia.nickName
     }
     
+    @objc func textFieldTextChanged() {
+        textChanged?(textField.text ?? "")
+    }
 }
 
 extension SocialMediaTableViewCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.backgroundColor = UIColor.textControlsBackgroundColor
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.backgroundColor = UIColor.clear
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contentView.endEditing(true)

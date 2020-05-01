@@ -48,10 +48,31 @@
 "Transaction failed" = "Вывод средств не удался";
 
 // Settings
+"Settings successfully changed." = "Настройки были успешно изменены.";
+
+// Profile settings
 "Profile settings" = "Настройки профиля";
 "Order settings" = "Настройки заказов";
 "Change photo" = "Сменить фото";
+"List the hashtags divided by space:" = "Перечислите хэштеги, разделённые пробелом:";
+"#hashtag1 #hashtag2" = "#хэштег1 #хэштег2";
+
+// Password
 "Change password" = "Сменить пароль";
+"Password should consist of at least 6 characters and contain at least 1 digit." = "Пароль должен состоять минимум из 6 знаков и содержать минимум одну цифру.";
+"Old password" = "Старый пароль";
+"New password" = "Новый пароль";
+"Confirm new password" = "Подтвердите новый пароль";
+"Password successfully changed" = "Пароль был успешно изменён";
+
+// Logout
+"Log out" = "Выйти из аккаунта";
+"Do you really want to log out?" = "Вы действительно хотите выйти из аккаунта?";
+"Yes" = "Да";
+
+// Orders settings
+"Receive orders" = "Получать заказы";
+"Price" = "Цена";
 
 // Photo picker
 "Choose source" = "Выберите источник";
