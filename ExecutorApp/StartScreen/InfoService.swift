@@ -24,9 +24,10 @@ class InfoService {
                 let data = data,
                 let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                 let user = jsonDict["user"] as? [String : Any] {
-                // make userInfo from dict
-//                print(user)
-                completion(UserInfo.sample(), nil)
+                print(user)
+                UserInfo.initialize(from: user) { (userInfo) in
+                    completion(userInfo, nil)
+                }
             }
             else {
                 completion(nil, nil)

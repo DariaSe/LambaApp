@@ -9,18 +9,122 @@
 import UIKit
 
 extension UIImage {
-    enum JPEGQuality: CGFloat {
-        case lowest  = 0
-        case low     = 0.25
-        case medium  = 0.5
-        case high    = 0.75
-        case highest = 1
+    
+    func jpgDataWithSize(kb: Int) -> Data? {
+        guard let originalImageData = self.jpegData(compressionQuality: 1.0) else { return nil }
+        let quality: CGFloat = kb.cgFloat / (originalImageData.count.cgFloat / 1024)
+        guard let imageData = self.jpegData(compressionQuality: quality) else { return nil }
+        return imageData
     }
+    
+    func resized(for size: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { (context) in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+    
+    func resized(for width: CGFloat) -> UIImage {
+        let scaleFactor = size.width / width
+        let height = size.height / scaleFactor
+        let newSize = CGSize(width: width, height: height)
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        return renderer.image { (context) in
+            self.draw(in: CGRect(origin: .zero, size: newSize))
+        }
+    }
+}
 
-    /// Returns the data for the specified image in JPEG format.
-    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
-        return jpegData(compressionQuality: jpegQuality.rawValue)
+extension UIImage {
+    
+    var aspectRatio: CGFloat {
+        return self.size.width / self.size.height
+    }
+    
+    func fittedHeight(in imageView: UIImageView) -> CGFloat {
+        let imageViewAspectRatio = imageView.bounds.width / imageView.bounds.height
+        if aspectRatio <= 1 && aspectRatio <= imageViewAspectRatio {
+            return imageView.bounds.height
+        }
+        else {
+            return imageView.bounds.width / aspectRatio
+        }
+    }
+    
+    func fittedWidth(in imageView: UIImageView) -> CGFloat {
+        let imageViewAspectRatio = imageView.bounds.width / imageView.bounds.height
+        if aspectRatio <= 1 && aspectRatio <= imageViewAspectRatio {
+            return imageView.bounds.height * aspectRatio
+        }
+        else {
+            return imageView.bounds.width
+        }
+    }
+    
+    func origin(in imageView: UIImageView) -> CGPoint {
+        let originX = (imageView.bounds.width - fittedWidth(in: imageView)) / 2
+        let originY = (imageView.bounds.height - fittedHeight(in: imageView)) / 2
+        return CGPoint(x: originX, y: originY)
+    }
+}
+
+
+
+extension UIImage {
+    
+    // Fix image orientaton to portrait up
+    func fixedOrientation() -> UIImage? {
+        guard imageOrientation != UIImage.Orientation.up else {
+            // This is default orientation, don't need to do anything
+            return self.copy() as? UIImage
+        }
+        
+        guard let cgImage = self.cgImage,
+            let colorSpace = cgImage.colorSpace, let ctx = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return nil }
+        
+        var transform: CGAffineTransform = CGAffineTransform.identity
+        
+        switch imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi)
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi / -2.0)
+        case .up, .upMirrored:
+            break
+        @unknown default:
+            break
+        }
+        
+        // Flip image one more time if needed to, this is to prevent flipped image
+        switch imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .up, .down, .left, .right:
+            break
+        @unknown default:
+            break
+        }
+        
+        ctx.concatenate(transform)
+        
+        switch imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+        default:
+            ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            break
+        }
+        
+        guard let newCGImage = ctx.makeImage() else { return nil }
+        return UIImage.init(cgImage: newCGImage, scale: 1, orientation: .up)
     }
 }

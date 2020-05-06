@@ -59,7 +59,7 @@ class SocialMediaTableViewCell: UITableViewCell {
     func update(with socialMedia: SocialMedia) {
         socialMediaImageView.image = socialMedia.image
         titleLabel.text = socialMedia.title
-        textField.text = socialMedia.nickName
+        textField.text = socialMedia.url
     }
     
     @objc func textFieldTextChanged() {

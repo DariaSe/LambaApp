@@ -80,5 +80,6 @@ struct Strings {
     static let chooseSource = "Choose source".localized
     static let camera = "Camera".localized
     static let photos = "Photos".localized
+    static let imageChanged = "Image successfully changed".localized
     
 }

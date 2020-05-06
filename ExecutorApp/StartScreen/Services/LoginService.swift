@@ -10,7 +10,7 @@ import Foundation
 
 class LoginService {
     
-    static func login(email: String, password: String, completion: @escaping (_ token: String?, _ error: String?) -> Void) {
+    func login(email: String, password: String, completion: @escaping (_ token: String?, _ error: String?) -> Void) {
         let url = AppURL.loginURL
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

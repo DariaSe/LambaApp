@@ -91,14 +91,13 @@ class FinancesViewController: UIViewController {
     }
     
     @objc func refresh() {
-        coordinator?.getFinancesInfo(completion: { [weak self] in
-            self?.scrollView.refreshControl?.endRefreshing()
-        })
+        coordinator?.getFinancesInfo()
+        scrollView.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        coordinator?.getFinancesInfo(completion: nil)
+        coordinator?.getFinancesInfo()
     }
     
     @objc func transferButtonPressed() {

@@ -76,7 +76,7 @@ class SettingsViewController: UIViewController, KeyboardHandler {
     @objc func saveChanges() {
         view.endEditing(true)
         let newUserInfo = UserInfo(
-            image: profileSettingsView.imageView.image,
+            image: nil,
             socialMedia: profileSettingsView.socialMediaTableView.newSocialMedia,
             hashtags: profileSettingsView.hashtagsView.newHashtags,
             orderSettings: orderSettingsTableView.orderSettings,

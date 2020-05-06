@@ -29,6 +29,9 @@ struct AppURL {
     static let order = "/order"
     static let orderReject = "/order-reject"
     
+    static let image = "/image"
+    static let passwordChange = "/password-change"
+    
     static let getOrdersURL = URL(string: baseURL + api + executor + orders)!
     static func getOrderDetailsURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + order + "/" + String(orderID))!
@@ -36,4 +39,7 @@ struct AppURL {
     static func rejectOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + orderReject + "/" + String(orderID))!
     }
+    
+    static let imageChangeURL = URL(string: baseURL + api + executor + image)!
+    static let passwordChangeURL = URL(string: baseURL + api + executor + passwordChange)!
 }

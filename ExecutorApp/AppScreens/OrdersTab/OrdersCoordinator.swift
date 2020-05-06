@@ -26,6 +26,10 @@ class OrdersCoordinator: Coordinator {
         navigationController.viewControllers = [ordersVC]
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
         ordersVC.title = Strings.orders
+    }
+    
+    
+    func getOrders() {
         ordersVC.add(loadingVC)
         ordersApiService.getOrders { [weak self] (orders) in
             DispatchQueue.main.async {
@@ -33,7 +37,7 @@ class OrdersCoordinator: Coordinator {
                 guard let orders = orders else {
                     let errorVC = ErrorViewController()
                     errorVC.reload = { [weak self] in
-                        self?.start()
+                        self?.getOrders()
                     }
                     self?.ordersVC.add(errorVC)
                     return
@@ -44,7 +48,7 @@ class OrdersCoordinator: Coordinator {
                 else {
                     let emptyVC = EmptyViewController(message: Strings.noOrdersYet)
                     emptyVC.reload = { [weak self] in
-                        self?.start()
+                        self?.getOrders()
                     }
                     self?.ordersVC.add(emptyVC)
                 }

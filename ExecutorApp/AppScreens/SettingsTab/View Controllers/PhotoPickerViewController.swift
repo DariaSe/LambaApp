@@ -11,11 +11,11 @@ import UIKit
 class PhotoPickerViewController: UIViewController {
     
     var imagePicked: ((UIImage) -> Void)?
+    var deletePhoto: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
     }
     
     func showImagePicker() {
@@ -30,15 +30,15 @@ class PhotoPickerViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: Strings.camera, style: .default, handler: { action in
+            let cameraAction = UIAlertAction(title: Strings.camera, style: .default, handler: { [weak self] _ in
             imagePicker.sourceType = .camera
-            self.present(imagePicker, animated: true, completion: nil) })
+            self?.present(imagePicker, animated: true, completion: nil) })
             alertController.addAction(cameraAction) }
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryAction = UIAlertAction(title: Strings.photos, style: .default, handler: { action in
+            let photoLibraryAction = UIAlertAction(title: Strings.photos, style: .default, handler: { [weak self] _ in
                 imagePicker.sourceType = .photoLibrary
-                self.present(imagePicker, animated: true,completion: nil) })
+                self?.present(imagePicker, animated: true,completion: nil) })
             alertController.addAction(photoLibraryAction) }
         
         present(alertController, animated: true, completion: nil)

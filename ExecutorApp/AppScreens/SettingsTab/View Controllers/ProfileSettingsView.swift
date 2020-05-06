@@ -14,8 +14,11 @@ class ProfileSettingsView: UIView {
         didSet {
             guard let userInfo = userInfo else { return }
             imageView.image = userInfo.image
+            
             socialMediaTableView.setHeight(equalTo: CGFloat(userInfo.socialMedia.count * 80))
             socialMediaTableView.socialMedia = userInfo.socialMedia
+            
+            hashtagsView.hashtags = userInfo.hashtags
         }
     }
     

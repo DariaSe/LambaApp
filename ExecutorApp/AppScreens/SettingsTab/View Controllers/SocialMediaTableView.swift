@@ -52,7 +52,7 @@ extension SocialMediaTableView: UITableViewDataSource {
         let socialMediaUnit = socialMedia[indexPath.row]
         cell.update(with: socialMediaUnit)
         cell.textChanged = { [weak self] text in
-            self?.newSocialMedia[indexPath.row].nickName = text
+            self?.newSocialMedia[indexPath.row].url = text
         }
         return cell
     }

@@ -24,14 +24,12 @@ class FinancesCoordinator: Coordinator {
         navigationController.viewControllers = [financesVC]
         financesVC.tabBarItem = UITabBarItem(title: Strings.finances, image: nil, tag: 1)
         financesVC.title = Strings.finances
-        getFinancesInfo(completion: nil)
     }
 
-    func getFinancesInfo(completion: (() -> ())?) {
+    func getFinancesInfo() {
         financesVC.add(clearLoadingVC)
         apiService.getFinances { [weak self] (financesInfo, error) in
             self?.clearLoadingVC.remove()
-            completion?()
             if let error = error, financesInfo == nil {
                 let errorVC = ErrorViewController()
                 errorVC.message = error.localizedDescription
@@ -55,7 +53,7 @@ class FinancesCoordinator: Coordinator {
             let message = success ? "" : Strings.error
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                self?.getFinancesInfo(completion: nil)
+                self?.getFinancesInfo()
             }
             alert.addAction(okAction)
             self?.financesVC.present(alert, animated: true, completion: nil)

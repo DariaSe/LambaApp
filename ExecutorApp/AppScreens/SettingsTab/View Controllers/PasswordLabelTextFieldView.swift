@@ -34,7 +34,7 @@ class PasswordLabelTextFieldView: UIView {
     private func initialSetup() {
         stackView.pinToEdges(to: self)
         stackView.axis = .vertical
-        stackView.spacing = 10
+//        stackView.spacing = 10
         stackView.distribution = .fillProportionally
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(textField)
@@ -51,7 +51,7 @@ class PasswordLabelTextFieldView: UIView {
     }
     
     func isValid() -> Bool {
-        if let text = textField.text, text.containsDigit(), text.count >= 6 {
+        if let text = textField.text, text.count >= 6 {
             return true
         }
         else {

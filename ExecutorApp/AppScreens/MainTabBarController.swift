@@ -10,6 +10,8 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    weak var coordinator: MainCoordinator?
+    
     let ordersCoordinator = OrdersCoordinator()
     let financesCoordinator = FinancesCoordinator()
     let settingsCoordinator = SettingsCoordinator()
@@ -30,13 +32,25 @@ class MainTabBarController: UITabBarController {
         
     }
     
+    func getData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.ordersCoordinator.getOrders()
+            self?.financesCoordinator.getFinancesInfo()
+            self?.settingsCoordinator.getUserInfo()
+        }
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == Defaults.tokenKey {
-            DispatchQueue.main.async { [weak self] in
-                self?.ordersCoordinator.start()
-                self?.financesCoordinator.start()
-                self?.settingsCoordinator.start()
-            }
+            getData()
         }
+    }
+}
+
+extension MainTabBarController: LoginDelegate {
+    func showOrders() {
+        print("show orders called")
+        selectedIndex = 0
+        getData()
     }
 }

@@ -9,6 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController, KeyboardHandler {
+    
+    weak var loginCoordinator: LoginCoordinator?
    
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -81,34 +83,9 @@ class LoginViewController: UIViewController, KeyboardHandler {
         guard let password = passwordTextField.text, !password.isEmpty else { passwordTextField.showInvalid()
             return
         }
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center(in: view)
-        activityIndicator.startAnimating()
-        LoginService.login(email: email, password: password) { [weak self] (token, errorMessage) in
-            if let token = token {
-                Defaults.token = token
-                DispatchQueue.main.async {
-                    activityIndicator.stopAnimating()
-                    self?.dismiss(animated: true, completion: nil)
-                }
-            }
-            else if let errorMessage = errorMessage {
-                DispatchQueue.main.async {
-                    activityIndicator.stopAnimating()
-                    self?.showLoginFailed(message: errorMessage)
-                }
-            }
-        }
+        loginCoordinator?.login(email: email, password: password)
     }
     
-    func showLoginFailed(message: String) {
-        let alert = UIAlertController(title: Strings.loginFailed, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in
-            self?.restoreAppearance()
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: true)
-    }
     
     func restoreAppearance() {
         emailTextField.setNormalBorder()
@@ -130,3 +107,4 @@ extension LoginViewController: UITextFieldDelegate {
         return false
     }
 }
+

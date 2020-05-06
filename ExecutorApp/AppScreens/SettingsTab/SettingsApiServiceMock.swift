@@ -6,9 +6,13 @@
 //  Copyright © 2020 dariaS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SettingsApiServiceMock: SettingsApiService {
+    func postImage(_ image: UIImage, completion: @escaping (Bool, String?) -> Void) {
+        
+    }
+    
     
 //    var userInfo = UserInfo.sample()
     

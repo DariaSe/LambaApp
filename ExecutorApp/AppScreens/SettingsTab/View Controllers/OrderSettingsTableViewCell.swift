@@ -80,7 +80,7 @@ class OrderSettingsTableViewCell: UITableViewCell {
         titleLabel.text = settings.title
         optionSwitch.isOn = settings.isOn
         priceTextField.text = settings.price
-        currencyLabel.text = settings.currency
+        currencyLabel.text = settings.currencySign
     }
     
     func updateReceiveOrders(isOn: Bool) {
