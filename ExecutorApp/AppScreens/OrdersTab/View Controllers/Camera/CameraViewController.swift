@@ -21,13 +21,18 @@ class CameraViewController: UIViewController {
     
     func showImagePicker() {
         
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            self.remove()
+            return
+        }
         
         let videoPicker = UIImagePickerController()
         videoPicker.sourceType = .camera
         videoPicker.mediaTypes = [kUTTypeMovie as String]
         videoPicker.allowsEditing = true
         videoPicker.delegate = self
+        videoPicker.videoMaximumDuration = 600
+        videoPicker.videoQuality = .type640x480
         self.present(videoPicker, animated: true, completion: nil)
     }
     
@@ -46,25 +51,7 @@ class CameraViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func generateThumbnail(path: URL) -> String? {
-        do {
-            let asset = AVURLAsset(url: path, options: nil)
-            let imgGenerator = AVAssetImageGenerator(asset: asset)
-            imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-            let thumbnail = UIImage(cgImage: cgImage)
-            if let imageData = thumbnail.pngData() {
-                let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
-                return strBase64
-            }
-            else {
-                return nil
-            }
-        } catch let error {
-            print("*** Error generating thumbnail: \(error.localizedDescription)")
-            return nil
-        }
-    }
+    
 }
 
 extension CameraViewController: UIImagePickerControllerDelegate {
@@ -76,7 +63,10 @@ extension CameraViewController: UIImagePickerControllerDelegate {
             let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
             UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path)
             else { return }
-        urlReceived?(url)
+        VideoService.encodeVideo(videoUrl: url) { [weak self] (comprURL) in
+            guard let comprURL = comprURL else { self?.urlReceived?(url); return }
+            self?.urlReceived?(comprURL)
+        }
         showSaveToLibraryAlert(videoURL: url)
         
     }

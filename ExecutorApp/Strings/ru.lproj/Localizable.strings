@@ -24,19 +24,28 @@
 "You have no orders yet" = "У вас пока нет заказов";
 "Try again" = "Попробовать снова";
 "Open camera" = "Открыть камеру";
+"Upload video from library" = "Загрузить видео из медиатеки";
+"Choose video source" = "Выберите источник видео";
+"Media Library" = "Медиатека";
+"Video duration shouldn't be more than 10 minutes" = "Длительность видео должна быть не больше 10 минут";
 "Reject" = "Отказаться";
 "Cancel" = "Отменить";
 "Do you want to reject this order?" = "Вы хотите отказаться от этого заказа?";
 "This action can not be undone." = "Это действие не может быть отменено.";
 "Done" = "Выполнено";
 "You've rejected the order" = "Вы отказались от этого заказа";
-"Failed to connect with server.\nCheck your internet connection\nand try again later." = "Не удалось соединиться с сервером.\nПроверьте соединение с интернетом\nи попробуйте ещё раз позже.";
+"Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Не удалось соединиться с сервером.\n\nПроверьте соединение с интернетом\nи попробуйте ещё раз позже.";
 
 // Camera
 "Do you want to save this video to your library?" = "Сохранить видео в медиатеку?";
 "You might need it later." = "Оно может понадобиться Вам позже.";
 "Save" = "Сохранить";
 "Do not save" = "Не сохранять";
+"Open video" = "Открыть видео";
+"Choose video" = "Выберите видео";
+"Video is uploading.\nPlease wait" = "Видео загружается.\nПожалуйста, подождите";
+"Cancel uploading" = "Отменить загрузку";
+"Couldn't upload video. Try again later" = "Не удалось загрузить видео. Повторите попытку позже.";
 
 // Finances
 "Ready for transfer" = "Готово к выводу";
@@ -54,8 +63,10 @@
 "Profile settings" = "Настройки профиля";
 "Order settings" = "Настройки заказов";
 "Change photo" = "Сменить фото";
+"(Enter the full links, like\n https://www.instagram.com/your_profile/)" = "(Укажите полные ссылки, как\n https://www.instagram.com/your_profile/)";
 "List the hashtags divided by space:" = "Перечислите хэштеги, разделённые пробелом:";
 "#hashtag1 #hashtag2" = "#хэштег1 #хэштег2";
+"Enter price first" = "Сначала укажите цену";
 
 // Password
 "Change password" = "Сменить пароль";

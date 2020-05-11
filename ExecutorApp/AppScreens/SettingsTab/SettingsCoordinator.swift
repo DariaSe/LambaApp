@@ -17,44 +17,30 @@ class SettingsCoordinator: Coordinator {
         }
     }
     
-    var navigationController = UINavigationController()
-    
     var apiService: SettingsApiService = SettingsApiServiceMain()
     
     let settingsVC = SettingsViewController()
-    
-    lazy var clearLoadingVC = LoadingViewController(backgroundColor: UIColor.clear)
     
     func start() {
         settingsVC.coordinator = self
         navigationController.viewControllers = [settingsVC]
         settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: nil, tag: 2)
         settingsVC.title = Strings.settings
+        errorVC.reload = { [weak self] in self?.getUserInfo() }
     }
     
     func getUserInfo() {
-        guard let userInfo = userInfo else {
-            guard let token = Defaults.token else { return }
-            InfoService.getUserInfo(token: token) { [weak self] (userInfo, error) in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        let errorVC = ErrorViewController()
-                        errorVC.message = error.localizedDescription
-                        errorVC.reload = { [weak self] in
-                            errorVC.dismiss(animated: true)
-                            self?.getUserInfo()
-                        }
-                        errorVC.modalPresentationStyle = .overFullScreen
-                        self?.settingsVC.present(errorVC, animated: true)
-                    }
-                    if let userInfo = userInfo {
-                        self?.userInfo = userInfo
-                    }
+        InfoService.getUserInfo() { [weak self] (userInfo, errorMessage) in
+            DispatchQueue.main.async {
+                if let errorMessage = errorMessage {
+                    self?.showFullScreenError(message: errorMessage)
+                }
+                if let userInfo = userInfo {
+                    self?.removeFullScreenError()
+                    self?.userInfo = userInfo
                 }
             }
-            return
         }
-        settingsVC.userInfo = userInfo
     }
     
     func showPhotoPicker() {
@@ -80,14 +66,13 @@ class SettingsCoordinator: Coordinator {
     
     func showChangePasswordScreen() {
         let passwordVC = ChangePasswordViewController()
-        passwordVC.title = Strings.changePassword
         passwordVC.changePassword = { [weak self] passInfo in
-            passwordVC.add(self?.clearLoadingVC ?? LoadingViewController())
+            self?.showLoadingIndicator()
             self?.apiService.changePassword(passInfo: passInfo) { [weak self] (success, message) in
                 DispatchQueue.main.async {
-                    self?.clearLoadingVC.remove()
-                    let title = success ? Strings.passChanged : message
-                    let alert = UIAlertController.simpleAlert(title: title, message: nil) { [weak self] (_) in
+                    self?.removeLoadingIndicator()
+                    let title = success ? Strings.passChanged : (message ?? Strings.error)
+                    passwordVC.showSimpleAlert(title: title) { [weak self] in
                         if success {
                             self?.navigationController.popViewController(animated: true)
                         }
@@ -95,7 +80,6 @@ class SettingsCoordinator: Coordinator {
                             passwordVC.clearTextFields()
                         }
                     }
-                    passwordVC.present(alert, animated: true, completion: nil)
                 }
             }
         }
@@ -103,8 +87,12 @@ class SettingsCoordinator: Coordinator {
     }
     
     func postUserInfo(_ userInfo: UserInfo) {
-        apiService.postUserInfo(userInfo) { [weak self] (success) in
-            
+        apiService.postUserInfo(userInfo) { [weak self] success, errorMessage  in
+            DispatchQueue.main.async {
+                if errorMessage != nil || !success {
+                    self?.showPopUpError(message: errorMessage ?? Strings.error)
+                }
+            }
         }
     }
     

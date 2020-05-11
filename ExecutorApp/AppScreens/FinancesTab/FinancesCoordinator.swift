@@ -10,12 +10,7 @@ import UIKit
 
 class FinancesCoordinator: Coordinator {
     
-    var navigationController = UINavigationController()
-    
     let apiService: FinancesApiService = FinancesApiServiceMock()
-    
-    lazy var loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
-    lazy var clearLoadingVC = LoadingViewController(backgroundColor: UIColor.clear)
     
     let financesVC = FinancesViewController()
     

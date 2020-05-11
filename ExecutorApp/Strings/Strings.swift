@@ -26,6 +26,10 @@ struct Strings {
     static let noOrdersYet = "You have no orders yet".localized
     static let tryAgain = "Try again".localized
     static let openCamera = "Open camera".localized
+    static let addFromLibrary = "Upload video from library".localized
+    static let chooseVideoSource = "Choose video source".localized
+    static let durationWarning = "Video duration shouldn't be more than 10 minutes".localized
+    static let mediaLibrary = "Media Library".localized
     static let reject = "Reject".localized
     static let cancel = "Cancel".localized
     static let doYouWantToReject = "Do you want to reject this order?".localized
@@ -39,6 +43,11 @@ struct Strings {
     static let youMightNeedItLater = "You might need it later.".localized
     static let save = "Save".localized
     static let doNotSave = "Do not save".localized
+    static let openVideo = "Open video".localized
+    static let chooseVideo = "Choose video".localized
+    static let videoUploading = "Video is uploading.\nPlease wait".localized
+    static let cancelUploading = "Cancel uploading".localized
+    static let uploadError = "Couldn't upload video. Try again later".localized
     
     // Finances
     static let readyForTransfer = "Ready for transfer".localized
@@ -56,8 +65,10 @@ struct Strings {
     static let profileSettings = "Profile settings".localized
     static let orderSettings = "Order settings".localized
     static let changePhoto = "Change photo".localized
+    static let socialLinksDescription = "(Enter the full links, like\n https://www.instagram.com/your_profile/)".localized
     static let listHashtags = "List the hashtags divided by space:".localized
     static let hashtagPlaceholder = "#hashtag1 #hashtag2"
+    static let emptyOrderPriceAlert = "Enter price first".localized
     
     // Password
     static let changePassword = "Change password".localized

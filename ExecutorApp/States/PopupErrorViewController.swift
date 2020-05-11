@@ -16,6 +16,11 @@ class PopupErrorViewController: UIViewController {
         self.init()
         errorLabel.text = message
     }
+    var message: String = "" {
+        didSet {
+            errorLabel.text = self.message
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

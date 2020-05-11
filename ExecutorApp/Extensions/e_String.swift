@@ -39,4 +39,8 @@ extension String {
             return false
         }
     }
+    
+    func containsInvalidCharacters() -> Bool {
+        return Int(self) == nil
+    }
 }

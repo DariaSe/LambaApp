@@ -54,6 +54,7 @@ struct Order {
         case "active" : return .active
         case "rejected_executor": return .rejected
         case "done": return .done
+        case "upload": return .uploading
         default: return nil
         }
     }

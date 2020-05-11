@@ -15,6 +15,6 @@ protocol SettingsApiService {
     
 //    func getUserInfo(completion: @escaping (UserInfo?) -> Void)
     func postImage(_ image: UIImage, completion: @escaping (Bool, String?) -> Void)
-    func postUserInfo(_ userInfo: UserInfo, completion: @escaping(Bool) -> Void)
+    func postUserInfo(_ userInfo: UserInfo, completion: @escaping(Bool, String?) -> Void)
     func changePassword(passInfo: PassInfo, completion: @escaping(Bool, String?) -> Void)
 }

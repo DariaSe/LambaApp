@@ -20,7 +20,15 @@ class HashtagsView: UIView {
         }
     }
     
-    var newHashtags: [String] = []
+    var newHashtags: [String] = [] {
+        didSet {
+            delegate?.sendChanges()
+        }
+    }
+    
+    var hashtagsChanged: (() -> Void)?
+    
+    var delegate: SettingsDelegate?
     
     private let stackView = UIStackView()
     
@@ -79,16 +87,16 @@ extension HashtagsView: UITextViewDelegate {
         else {
             placeholderLabel.isHidden = true
         }
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
         guard let text = textView.text else { return }
         let tags = text.components(separatedBy: " ")
         newHashtags = tags
         if newHashtags.last == "" {
             newHashtags.removeLast()
         }
-        if text.last == "\n" {
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.last == "\n" {
             textView.text.removeLast()
             self.endEditing(true)
         }

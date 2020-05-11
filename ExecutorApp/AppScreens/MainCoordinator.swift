@@ -22,21 +22,21 @@ class MainCoordinator {
         loginCoordinator.delegate = mainVC
         loginCoordinator.start()
         mainVC.present(loginCoordinator.loginVC, animated: false)
-        if let token = Defaults.token {
+        if Defaults.token != nil {
             loginCoordinator.loginVC.add(startVC)
-            getUserInfo(token: token)
+            getUserInfo()
         }
     }
     
-    func getUserInfo(token: String) {
-        InfoService.getUserInfo(token: token, completion: { [weak self] userInfo, error in
+    func getUserInfo() {
+        InfoService.getUserInfo(completion: { [weak self] userInfo, errorMessage in
             DispatchQueue.main.async {
-                if let error = error {
+                if let errorMessage = errorMessage {
                     let errorVC = ErrorViewController()
-                    errorVC.message = error.localizedDescription
+                    errorVC.message = errorMessage
                     errorVC.reload = { [weak self] in
                         errorVC.dismiss(animated: true)
-                        self?.getUserInfo(token: token)
+                        self?.getUserInfo()
                     }
                     errorVC.modalPresentationStyle = .overFullScreen
                     self?.loginCoordinator.loginVC.present(errorVC, animated: true)

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = mainCoordinator.mainVC
         window?.makeKeyAndVisible()
         mainCoordinator.start()
+        
+        print("temp files: \(FileManager.default.sizeOfTmpFolder())")
 
         return true
     }

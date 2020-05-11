@@ -10,6 +10,19 @@ import UIKit
 
 extension UIImage {
     
+    static func getImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+        let dataTask = URLSession.shared.dataTask(with: url, completionHandler: {
+            data, response, error in
+            if let data = data {
+                completion(UIImage(data: data))
+            }
+            else {
+                completion(nil)
+            }
+        })
+        dataTask.resume()
+    }
+    
     func jpgDataWithSize(kb: Int) -> Data? {
         guard let originalImageData = self.jpegData(compressionQuality: 1.0) else { return nil }
         let quality: CGFloat = kb.cgFloat / (originalImageData.count.cgFloat / 1024)

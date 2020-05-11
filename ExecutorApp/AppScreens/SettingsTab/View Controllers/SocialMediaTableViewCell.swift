@@ -40,7 +40,7 @@ class SocialMediaTableViewCell: UITableViewCell {
         
         textStackView.axis = .vertical
         textStackView.distribution = .fill
-        textStackView.spacing = 10
+        textStackView.spacing = 4
         textStackView.addArrangedSubview(titleLabel)
         textStackView.addArrangedSubview(textField)
         
@@ -63,7 +63,7 @@ class SocialMediaTableViewCell: UITableViewCell {
     }
     
     @objc func textFieldTextChanged() {
-        textChanged?(textField.text ?? "")
+        
     }
 }
 
@@ -72,5 +72,9 @@ extension SocialMediaTableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contentView.endEditing(true)
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textChanged?(textField.text ?? "")
     }
 }

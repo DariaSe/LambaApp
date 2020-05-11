@@ -21,12 +21,14 @@ class OrderSettingsTableViewCell: UITableViewCell {
     private let priceStackView = UIStackView()
     private let priceLabel = UILabel()
     private let separatorView = UIView()
-    private let priceTextField = AppTextField()
+    private let priceTextField = NoPasteTextField()
     private let currencyLabel = UILabel()
     
     var switchIsOn: ((Bool) -> Void)?
     
     var textChanged: ((String) -> Void)?
+    
+    var showAlert: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -90,15 +92,16 @@ class OrderSettingsTableViewCell: UITableViewCell {
     }
     
     @objc func switchValueChanged() {
+        priceTextField.endEditing(true)
         switchIsOn?(optionSwitch.isOn)
     }
     
     @objc func textFieldChanged() {
-        textChanged?(priceTextField.text ?? "")
+        
     }
     
     func isTextFieldValid() -> Bool {
-        if let text = priceTextField.text, !text.isEmpty, Int(text) != nil {
+        if let text = priceTextField.text, !text.isEmpty, text != "0", Int(text) != nil {
             return true
         }
         else {
@@ -109,20 +112,20 @@ class OrderSettingsTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         priceStackView.isHidden = false
+        priceTextField.setNormalBorder()
     }
 }
 
 extension OrderSettingsTableViewCell: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.setNormalBorder()
+        if textField.text == "0" {
+            textField.text = ""
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if optionSwitch.isOn && !isTextFieldValid() {
-            textField.shake()
-            textField.setRedBorder()
-        }
+        textChanged?(textField.text ?? "")
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

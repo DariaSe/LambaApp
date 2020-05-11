@@ -17,9 +17,17 @@ class SocialMediaTableView: UIView {
         }
     }
     
-    var newSocialMedia: [SocialMedia] = []
+    var newSocialMedia: [SocialMedia] = [] {
+        didSet {
+            delegate?.sendChanges()
+        }
+    }
     
+    private let stackView = UIStackView()
+    private let descriptionLabel = UILabel()
     let tableView = UITableView()
+    
+    var delegate: SettingsDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +39,13 @@ class SocialMediaTableView: UIView {
     }
     
     private func initialSetup() {
-        tableView.pinToEdges(to: self)
+        stackView.pinToEdges(to: self)
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 20
+        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(descriptionLabel)
+//        tableView.pinToEdges(to: self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.bounces = false
@@ -39,6 +53,11 @@ class SocialMediaTableView: UIView {
         tableView.tableFooterView = UIView()
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.register(SocialMediaTableViewCell.self, forCellReuseIdentifier: SocialMediaTableViewCell.reuseIdentifier)
+        
+        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+        descriptionLabel.numberOfLines = 2
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.text = Strings.socialLinksDescription
     }
 }
 

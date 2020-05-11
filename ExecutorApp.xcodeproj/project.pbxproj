@@ -55,10 +55,22 @@
 		DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635C245C9410002BBC3F /* e_UIImage.swift */; };
 		DAB9635F245C9AE9002BBC3F /* SettingsApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635E245C9AE9002BBC3F /* SettingsApiServiceMain.swift */; };
 		DAB96361245EB9DE002BBC3F /* e_Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96360245EB9DD002BBC3F /* e_Converting.swift */; };
-		DAB96363245EFB4C002BBC3F /* Zoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96362245EFB4C002BBC3F /* Zoom.swift */; };
 		DAB96365245F047E002BBC3F /* ImageCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96364245F047E002BBC3F /* ImageCropperViewController.swift */; };
 		DAB963672462DBE8002BBC3F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963662462DBE8002BBC3F /* MainCoordinator.swift */; };
 		DAB963692462DF45002BBC3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963682462DF45002BBC3F /* LoginCoordinator.swift */; };
+		DAB9636B2463061B002BBC3F /* p_VideoActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9636A2463061B002BBC3F /* p_VideoActionsDelegate.swift */; };
+		DAB9636D246324E2002BBC3F /* OrderStatusButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9636C246324E1002BBC3F /* OrderStatusButtonsView.swift */; };
+		DAB9636F24632721002BBC3F /* OrderStatusImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9636E24632720002BBC3F /* OrderStatusImageView.swift */; };
+		DAB9637124632DF5002BBC3F /* VideoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637024632DF4002BBC3F /* VideoPickerViewController.swift */; };
+		DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963722465AFAF002BBC3F /* p_SettingsDelegate.swift */; };
+		DAB963752465B977002BBC3F /* e_URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963742465B977002BBC3F /* e_URLSession.swift */; };
+		DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963762465C929002BBC3F /* e_URLRequest.swift */; };
+		DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637A2466EB83002BBC3F /* VideoService.swift */; };
+		DAB9637D2468244F002BBC3F /* e_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637C2468244E002BBC3F /* e_Data.swift */; };
+		DAB9637F246836D4002BBC3F /* StatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637E246836D4002BBC3F /* StatesViewController.swift */; };
+		DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963802468891A002BBC3F /* NoPasteTextField.swift */; };
+		DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96382246975B0002BBC3F /* Coordinator.swift */; };
+		DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963842469C00F002BBC3F /* e_FileManager.swift */; };
 		DABCA635244DD78200682368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA634244DD78200682368 /* AppDelegate.swift */; };
 		DABCA63E244DD78500682368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63D244DD78500682368 /* Assets.xcassets */; };
 		DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63F244DD78500682368 /* LaunchScreen.storyboard */; };
@@ -85,7 +97,6 @@
 		DABCA6882450279E00682368 /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6872450279E00682368 /* AppButton.swift */; };
 		DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA68B2450878600682368 /* OrderDetailUnit.swift */; };
 		DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA68D245087FD00682368 /* OrderDetails.swift */; };
-		DABCA69024508FEA00682368 /* p_Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA68F24508FEA00682368 /* p_Coordinator.swift */; };
 		DABCA694245090A300682368 /* OrdersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA693245090A300682368 /* OrdersCoordinator.swift */; };
 		DABCA69C2450954D00682368 /* p_OrdersApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69B2450954D00682368 /* p_OrdersApiService.swift */; };
 		DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69E2450994200682368 /* LoadingViewController.swift */; };
@@ -144,10 +155,22 @@
 		DAB9635C245C9410002BBC3F /* e_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIImage.swift; sourceTree = "<group>"; };
 		DAB9635E245C9AE9002BBC3F /* SettingsApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsApiServiceMain.swift; sourceTree = "<group>"; };
 		DAB96360245EB9DD002BBC3F /* e_Converting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_Converting.swift; sourceTree = "<group>"; };
-		DAB96362245EFB4C002BBC3F /* Zoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zoom.swift; sourceTree = "<group>"; };
 		DAB96364245F047E002BBC3F /* ImageCropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewController.swift; sourceTree = "<group>"; };
 		DAB963662462DBE8002BBC3F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		DAB963682462DF45002BBC3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		DAB9636A2463061B002BBC3F /* p_VideoActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_VideoActionsDelegate.swift; sourceTree = "<group>"; };
+		DAB9636C246324E1002BBC3F /* OrderStatusButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusButtonsView.swift; sourceTree = "<group>"; };
+		DAB9636E24632720002BBC3F /* OrderStatusImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusImageView.swift; sourceTree = "<group>"; };
+		DAB9637024632DF4002BBC3F /* VideoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerViewController.swift; sourceTree = "<group>"; };
+		DAB963722465AFAF002BBC3F /* p_SettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_SettingsDelegate.swift; sourceTree = "<group>"; };
+		DAB963742465B977002BBC3F /* e_URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_URLSession.swift; sourceTree = "<group>"; };
+		DAB963762465C929002BBC3F /* e_URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_URLRequest.swift; sourceTree = "<group>"; };
+		DAB9637A2466EB83002BBC3F /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
+		DAB9637C2468244E002BBC3F /* e_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_Data.swift; sourceTree = "<group>"; };
+		DAB9637E246836D4002BBC3F /* StatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesViewController.swift; sourceTree = "<group>"; };
+		DAB963802468891A002BBC3F /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
+		DAB96382246975B0002BBC3F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DAB963842469C00F002BBC3F /* e_FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_FileManager.swift; sourceTree = "<group>"; };
 		DABCA631244DD78200682368 /* ExecutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABCA634244DD78200682368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DABCA63D244DD78500682368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +201,6 @@
 		DABCA6872450279E00682368 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		DABCA68B2450878600682368 /* OrderDetailUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailUnit.swift; sourceTree = "<group>"; };
 		DABCA68D245087FD00682368 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
-		DABCA68F24508FEA00682368 /* p_Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_Coordinator.swift; sourceTree = "<group>"; };
 		DABCA693245090A300682368 /* OrdersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCoordinator.swift; sourceTree = "<group>"; };
 		DABCA69B2450954D00682368 /* p_OrdersApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_OrdersApiService.swift; sourceTree = "<group>"; };
 		DABCA69E2450994200682368 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -235,7 +257,6 @@
 				DAB9632024583F6D002BBC3F /* Settings ViewController */,
 				DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */,
 				DAB96364245F047E002BBC3F /* ImageCropperViewController.swift */,
-				DAB96362245EFB4C002BBC3F /* Zoom.swift */,
 				DAB9632124583F97002BBC3F /* Change Password ViewController */,
 			);
 			path = "View Controllers";
@@ -265,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				DABCA676244F1C8000682368 /* SettingsViewController.swift */,
+				DAB963722465AFAF002BBC3F /* p_SettingsDelegate.swift */,
 				DAB9631E24583F0E002BBC3F /* Profile settings subviews */,
 				DAB9631F24583F29002BBC3F /* Order settings subviews */,
 			);
@@ -342,6 +364,7 @@
 			children = (
 				DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */,
 				DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */,
+				DAB9637A2466EB83002BBC3F /* VideoService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -396,15 +419,19 @@
 		DABCA64A244DD9AE00682368 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DAB96360245EB9DD002BBC3F /* e_Converting.swift */,
 				DABCA64B244DD9C000682368 /* e_UIView.swift */,
-				DAB9635C245C9410002BBC3F /* e_UIImage.swift */,
-				DABCA65D244E09E400682368 /* e_UITextField.swift */,
-				DABCA650244DF2FA00682368 /* e_UIColor.swift */,
-				DABCA659244DFCA800682368 /* e_String.swift */,
 				DABCA6A0245099B800682368 /* e_UIViewController.swift */,
+				DAB9635C245C9410002BBC3F /* e_UIImage.swift */,
 				DA6716BD245322E2001791E3 /* e_UIButton.swift */,
 				DAB963342459B06C002BBC3F /* e_UIAlertController.swift */,
+				DABCA65D244E09E400682368 /* e_UITextField.swift */,
+				DABCA650244DF2FA00682368 /* e_UIColor.swift */,
+				DAB963842469C00F002BBC3F /* e_FileManager.swift */,
+				DAB963742465B977002BBC3F /* e_URLSession.swift */,
+				DAB963762465C929002BBC3F /* e_URLRequest.swift */,
+				DABCA659244DFCA800682368 /* e_String.swift */,
+				DAB9637C2468244E002BBC3F /* e_Data.swift */,
+				DAB96360245EB9DD002BBC3F /* e_Converting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				DABCA693245090A300682368 /* OrdersCoordinator.swift */,
+				DAB96382246975B0002BBC3F /* Coordinator.swift */,
 				DAB96357245C1CAC002BBC3F /* API Services */,
 				DAB9632224583FC6002BBC3F /* View Controllers */,
 			);
@@ -521,6 +549,9 @@
 				DABCA6842450267300682368 /* CostView.swift */,
 				DA6716B62452C088001791E3 /* OrderDetailsTableView */,
 				DA6716B02450C795001791E3 /* OrderStatusView.swift */,
+				DAB9636E24632720002BBC3F /* OrderStatusImageView.swift */,
+				DAB9636C246324E1002BBC3F /* OrderStatusButtonsView.swift */,
+				DAB9636A2463061B002BBC3F /* p_VideoActionsDelegate.swift */,
 			);
 			path = OrderDetails;
 			sourceTree = "<group>";
@@ -529,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				DA6716C124532F63001791E3 /* CameraViewController.swift */,
+				DAB9637024632DF4002BBC3F /* VideoPickerViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -539,6 +571,7 @@
 				DABCA6872450279E00682368 /* AppButton.swift */,
 				DAB9632824584246002BBC3F /* AppSwitch.swift */,
 				DAB9632A24584CBD002BBC3F /* AppTextField.swift */,
+				DAB963802468891A002BBC3F /* NoPasteTextField.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -547,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */,
-				DABCA68F24508FEA00682368 /* p_Coordinator.swift */,
 				DA6716D424545AC7001791E3 /* p_FinancesApiService.swift */,
 				DAB963012455BC19002BBC3F /* p_SettingsApiService.swift */,
 			);
@@ -557,6 +589,7 @@
 		DABCA69D2450991D00682368 /* States */ = {
 			isa = PBXGroup;
 			children = (
+				DAB9637E246836D4002BBC3F /* StatesViewController.swift */,
 				DABCA69E2450994200682368 /* LoadingViewController.swift */,
 				DABCA6A224509A6E00682368 /* EmptyViewController.swift */,
 				DABCA6A624509C3B00682368 /* ErrorViewController.swift */,
@@ -639,9 +672,11 @@
 			files = (
 				DABCA651244DF2FA00682368 /* e_UIColor.swift in Sources */,
 				DAB963372459BECA002BBC3F /* PopupErrorViewController.swift in Sources */,
+				DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */,
 				DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */,
 				DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */,
 				DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */,
+				DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */,
 				DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */,
 				DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */,
 				DAB9631824570E73002BBC3F /* SizeConstants.swift in Sources */,
@@ -650,6 +685,7 @@
 				DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */,
 				DAB96344245B3825002BBC3F /* AppURL.swift in Sources */,
 				DAB963022455BC19002BBC3F /* p_SettingsApiService.swift in Sources */,
+				DAB9636B2463061B002BBC3F /* p_VideoActionsDelegate.swift in Sources */,
 				DABCA6882450279E00682368 /* AppButton.swift in Sources */,
 				DABCA67B244F243500682368 /* Order.swift in Sources */,
 				DA6716BC24531A31001791E3 /* Strings.swift in Sources */,
@@ -659,9 +695,9 @@
 				DAB96350245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift in Sources */,
 				DABCA64F244DF17000682368 /* Colors.swift in Sources */,
 				DAB963002455BC05002BBC3F /* SettingsApiServiceMock.swift in Sources */,
+				DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */,
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
-				DAB96363245EFB4C002BBC3F /* Zoom.swift in Sources */,
 				DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */,
 				DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */,
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
@@ -671,6 +707,7 @@
 				DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */,
 				DA6716D524545AC7001791E3 /* p_FinancesApiService.swift in Sources */,
 				DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */,
+				DAB9637124632DF5002BBC3F /* VideoPickerViewController.swift in Sources */,
 				DAB96361245EB9DE002BBC3F /* e_Converting.swift in Sources */,
 				DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */,
 				DABCA65A244DFCA800682368 /* e_String.swift in Sources */,
@@ -679,6 +716,7 @@
 				DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */,
 				DA6716C624541868001791E3 /* SumView.swift in Sources */,
 				DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */,
+				DAB9637D2468244F002BBC3F /* e_Data.swift in Sources */,
 				DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */,
 				DABCA6A324509A6E00682368 /* EmptyViewController.swift in Sources */,
 				DABCA6852450267300682368 /* CostView.swift in Sources */,
@@ -686,22 +724,27 @@
 				DAB9635B245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift in Sources */,
 				DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */,
 				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
+				DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */,
 				DA6716D324545AAC001791E3 /* FinancesApiServiceMock.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
 				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
+				DAB963752465B977002BBC3F /* e_URLSession.swift in Sources */,
+				DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */,
 				DABCA671244F1C4900682368 /* MainTabBarController.swift in Sources */,
 				DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */,
 				DABCA677244F1C8000682368 /* SettingsViewController.swift in Sources */,
-				DABCA69024508FEA00682368 /* p_Coordinator.swift in Sources */,
+				DAB9636D246324E2002BBC3F /* OrderStatusButtonsView.swift in Sources */,
 				DABCA635244DD78200682368 /* AppDelegate.swift in Sources */,
 				DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */,
 				DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */,
 				DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */,
+				DAB9637F246836D4002BBC3F /* StatesViewController.swift in Sources */,
 				DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */,
 				DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */,
 				DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */,
+				DAB9636F24632721002BBC3F /* OrderStatusImageView.swift in Sources */,
 				DAB96365245F047E002BBC3F /* ImageCropperViewController.swift in Sources */,
 				DABCA675244F1C7500682368 /* FinancesViewController.swift in Sources */,
 				DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */,
@@ -718,6 +761,7 @@
 				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
 				DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
+				DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */,
 				DAB96359245C1D65002BBC3F /* OrdersApiServiceMain.swift in Sources */,
 				DABCA6A524509B5C00682368 /* OrdersApiServiceMock.swift in Sources */,
 			);

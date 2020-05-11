@@ -15,16 +15,10 @@ class OrderDetailsViewController: UIViewController {
     var orderDetails: OrderDetails? {
         didSet {
             guard let orderDetails = orderDetails else { return }
-            let id = orderDetails.id
-            costView.cost = orderDetails.cost + " " + orderDetails.currency
+            costView.cost = orderDetails.cost + " " + (InfoService.userInfo?.currencySign ?? "")
             orderInfoView.orderDetailUnits = orderDetails.units
             statusView.status = orderDetails.status
-            statusView.openCamera = { [weak self] in
-                self?.coordinator?.openCamera(orderID: id)
-            }
-            statusView.reject = { [weak self] in
-                self?.coordinator?.rejectOrder(orderID: id)
-            }
+            statusView.delegate = self
         }
     }
     
@@ -57,3 +51,22 @@ class OrderDetailsViewController: UIViewController {
     }
 }
 
+extension OrderDetailsViewController: VideoActionsDelegate {
+    func showUploadOptions() {
+        guard let orderDetails = orderDetails else { return }
+        coordinator?.showUploadOptions(orderID: orderDetails.id)
+    }
+    
+    func reject() {
+        guard let orderDetails = orderDetails else { return }
+        coordinator?.rejectOrder(orderID: orderDetails.id)
+    }
+    
+    func openVideo() {
+        guard let orderDetails = orderDetails else { return }
+    }
+    
+    func cancelUploading() {
+        guard let orderDetails = orderDetails else { return }
+    }
+}

@@ -10,19 +10,17 @@ import UIKit
 
 class OrdersCoordinator: Coordinator {
     
-    var navigationController = UINavigationController()
-    
-    let ordersApiService: OrdersApiService = OrdersApiServiceMain()
-    let orderDetailsApiService: OrderDetailsApiService = OrderDetailsApiServiceMain()
-    
-    lazy var loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
-    lazy var clearLoadingVC = LoadingViewController(backgroundColor: UIColor.clear)
+    var ordersApiService = OrdersApiServiceMain()
+    let orderDetailsApiService = OrderDetailsApiServiceMain()
     
     let ordersVC = OrdersViewController()
     let orderDetailsVC = OrderDetailsViewController()
     
     func start() {
+        orderDetailsApiService.delegate = self
+        navigationController.delegate = self
         ordersVC.coordinator = self
+        ordersVC.reload = { [weak self] in self?.getOrders() }
         navigationController.viewControllers = [ordersVC]
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
         ordersVC.title = Strings.orders
@@ -30,63 +28,80 @@ class OrdersCoordinator: Coordinator {
     
     
     func getOrders() {
-        ordersVC.add(loadingVC)
-        ordersApiService.getOrders { [weak self] (orders) in
-            DispatchQueue.main.async {
-                self?.loadingVC.remove()
-                guard let orders = orders else {
-                    let errorVC = ErrorViewController()
-                    errorVC.reload = { [weak self] in
-                        self?.getOrders()
-                    }
-                    self?.ordersVC.add(errorVC)
-                    return
-                }
-                if !orders.isEmpty {
-                    self?.ordersVC.orders = orders
-                }
-                else {
-                    let emptyVC = EmptyViewController(message: Strings.noOrdersYet)
-                    emptyVC.reload = { [weak self] in
-                        self?.getOrders()
-                    }
-                    self?.ordersVC.add(emptyVC)
-                }
+        errorVC.reload = { [weak self] in self?.getOrders() }
+        showLoadingIndicator()
+        ordersApiService.getOrders { [weak self] orders, errorMessage in
+            self?.removeLoadingIndicator()
+            if let errorMessage = errorMessage {
+                self?.showFullScreenError(message: errorMessage)
+            }
+            guard let orders = orders else { return }
+            self?.removeFullScreenError()
+            if !orders.isEmpty {
+                self?.ordersVC.orders = orders
+            }
+            else {
+                self?.showFullScreenError(message: Strings.noOrdersYet)
             }
         }
     }
     
     func loadMore() {
         if ordersApiService.isMore {
-            ordersVC.add(clearLoadingVC)
-            ordersApiService.loadMore { [weak self] (orders) in
-                self?.clearLoadingVC.remove()
-                guard let orders = orders else {
-                    let popUpErrorVC = PopupErrorViewController(message: Strings.error)
-                    self?.ordersVC.add(popUpErrorVC)
-                    return }
-                self?.ordersVC.orders.append(contentsOf: orders)
+            showLoadingIndicator()
+            ordersApiService.page += 1
+            ordersApiService.getOrders { [weak self] orders, errorMessage in
+                self?.removeLoadingIndicator()
+                if let errorMessage = errorMessage {
+                    self?.showPopUpError(message: errorMessage)
+                }
+                if let orders = orders {
+                    self?.ordersVC.orders.append(contentsOf: orders)
+                }
             }
         }
+    }
+    
+    func refresh() {
+        ordersApiService.page = 1
+        getOrders()
     }
     
     func showOrderDetails(orderID: Int) {
         orderDetailsVC.coordinator = self
         navigationController.pushViewController(orderDetailsVC, animated: true)
-        orderDetailsVC.add(loadingVC)
-        ordersApiService.showOrderDetails(orderID: orderID) { [weak self] (orderDetails) in
-            DispatchQueue.main.async {
-                self?.loadingVC.remove()
-                guard let orderDetails = orderDetails else {
-                    let errorVC = ErrorViewController()
-                    errorVC.reloadButton.isHidden = true
-                    self?.orderDetailsVC.add(errorVC)
-                    return
-                }
+        getOrderDetails(orderID: orderID)
+    }
+    
+    func getOrderDetails(orderID: Int) {
+        errorVC.reload = { [weak self] in self?.getOrderDetails(orderID: orderID) }
+        showFullScreenLoading()
+        ordersApiService.showOrderDetails(orderID: orderID) { [weak self] orderDetails, errorMessage in
+            self?.removeFullScreenLoading()
+            if let errorMessage = errorMessage {
+                self?.showFullScreenError(message: errorMessage)
                 
+            }
+            else {
+                self?.removeFullScreenError()
                 self?.orderDetailsVC.orderDetails = orderDetails
             }
         }
+    }
+    
+    func showUploadOptions(orderID: Int) {
+        let alert = UIAlertController(title: Strings.chooseVideoSource, message: Strings.durationWarning, preferredStyle: .alert)
+        let cameraAction = UIAlertAction(title: Strings.camera, style: .default) { [weak self] (_) in
+            self?.openCamera(orderID: orderID)
+        }
+        let libraryAction = UIAlertAction(title: Strings.mediaLibrary, style: .default) { [weak self] (_) in
+            self?.openLibrary(orderID: orderID)
+        }
+        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(cancelAction)
+        orderDetailsVC.present(alert, animated: true)
     }
     
     func openCamera(orderID: Int) {
@@ -94,29 +109,56 @@ class OrdersCoordinator: Coordinator {
         orderDetailsVC.add(cameraVC)
         cameraVC.showImagePicker()
         cameraVC.urlReceived = { [weak self] url in
-            self?.ordersVC.orders = self!.ordersVC.orders.map { $0.id == orderID ? $0.withStatus(.uploading) : $0 }
-            self?.navigationController.popViewController(animated: true)
-            self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url) { (id, success) in
-                self?.clearLoadingVC.remove()
+            self?.uploadVideo(orderID: orderID, url: url)
+        }
+    }
+    
+    func openLibrary(orderID: Int) {
+        let videoPicker = VideoPickerViewController()
+        orderDetailsVC.add(videoPicker)
+        videoPicker.showVideoPicker()
+        videoPicker.urlReceived = { [weak self] url in
+            print(url)
+            self?.uploadVideo(orderID: orderID, url: url)
+        }
+    }
+    
+    func uploadVideo(orderID: Int, url: URL) {
+        showLoadingIndicator()
+        orderDetailsApiService.setOrderStatus(status: .uploading, orderID: orderID) { [weak self] (success, errorMessage) in
+            DispatchQueue.main.async {
                 if success {
-                    
+                    self?.orderDetailsVC.statusView.status = .uploading
+                    self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
+                }
+                else {
+                    self?.removeLoadingIndicator()
+                    self?.showSimpleAlert(title: errorMessage ?? Strings.uploadError, handler: nil)
                 }
             }
         }
     }
     
+    func cancelUploading(orderID: Int) {
+        
+    }
+    
     func rejectOrder(orderID: Int) {
         let alert = UIAlertController(title: Strings.doYouWantToReject, message: Strings.actionCanNotBeUndone, preferredStyle: .alert)
         let rejectAction = UIAlertAction(title: Strings.reject, style: .destructive) { [weak self] (_) in
-            self?.orderDetailsVC.add(self?.clearLoadingVC ?? LoadingViewController())
-            self?.orderDetailsApiService.rejectOrder(orderID: orderID) { [weak self] (success) in
-                self?.clearLoadingVC.remove()
-                if success {
-                    self?.orderDetailsVC.statusView.status = .rejected
-                }
-                else {
-                    let popUpErrorVC = PopupErrorViewController(message: Strings.error)
-                    self?.orderDetailsVC.add(popUpErrorVC)
+            self?.showLoadingIndicator()
+            self?.orderDetailsApiService.rejectOrder(orderID: orderID) { [weak self] success, errorMessage  in
+                DispatchQueue.main.async {
+                    self?.removeLoadingIndicator()
+                    if let errorMessage = errorMessage {
+                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                    }
+                    if success {
+                        self?.orderDetailsVC.statusView.status = .rejected
+                    }
+                    else {
+                        self?.showSimpleAlert(title: Strings.error, handler: nil)
+                    }
                 }
             }
         }
@@ -124,5 +166,31 @@ class OrdersCoordinator: Coordinator {
         alert.addAction(rejectAction)
         alert.addAction(cancelAction)
         orderDetailsVC.present(alert, animated: true)
+    }
+}
+
+extension OrdersCoordinator: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController == ordersVC {
+            ordersApiService.page = 1
+            getOrders()
+        }
+    }
+}
+
+extension OrdersCoordinator: URLSessionDataDelegate {
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.removeLoadingIndicator()
+            if let error = error {
+                self?.showSimpleAlert(title: error.localizedDescription, handler: nil)
+            }
+            else {
+                print("upload completed")
+                self?.orderDetailsVC.statusView.status = .done
+            }
+        }
     }
 }

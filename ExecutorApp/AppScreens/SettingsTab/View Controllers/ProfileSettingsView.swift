@@ -15,7 +15,7 @@ class ProfileSettingsView: UIView {
             guard let userInfo = userInfo else { return }
             imageView.image = userInfo.image
             
-            socialMediaTableView.setHeight(equalTo: CGFloat(userInfo.socialMedia.count * 80))
+            socialMediaTableView.setHeight(equalTo: CGFloat(userInfo.socialMedia.count * 80) + 40)
             socialMediaTableView.socialMedia = userInfo.socialMedia
             
             hashtagsView.hashtags = userInfo.hashtags
@@ -32,13 +32,19 @@ class ProfileSettingsView: UIView {
     let socialMediaTableView = SocialMediaTableView()
     let hashtagsView = HashtagsView()
     
-    private let changePasswordButton = AppButton()
+    private let buttonsStackView = UIStackView()
     
+    private let changePasswordButton = AppButton()
     private let logoutButton = AppButton()
     
-    var changePhoto: (() -> Void)?
-    var changePassword: (() -> Void)?
-    var logout: (() -> Void)?
+    private let refreshControl = UIRefreshControl()
+    
+    var delegate: SettingsDelegate? {
+        didSet {
+            socialMediaTableView.delegate = delegate
+            hashtagsView.delegate = delegate
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,8 +66,13 @@ class ProfileSettingsView: UIView {
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(socialMediaTableView)
         stackView.addArrangedSubview(hashtagsView)
-        stackView.addArrangedSubview(changePasswordButton)
-        stackView.addArrangedSubview(logoutButton)
+        stackView.addArrangedSubview(buttonsStackView)
+        
+        buttonsStackView.axis = .vertical
+        buttonsStackView.spacing = 12
+        buttonsStackView.alignment = .fill
+        buttonsStackView.addArrangedSubview(changePasswordButton)
+        buttonsStackView.addArrangedSubview(logoutButton)
         
         imageView.image = UIImage(named: "Portrait_Placeholder")
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.7).isActive = true
@@ -94,21 +105,32 @@ class ProfileSettingsView: UIView {
         logoutButton.setWidth(equalTo: self, multiplier: 0.9)
         logoutButton.setTitle(Strings.logout, for: .normal)
         logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        refreshControl.beginRefreshing()
+        delegate?.refresh()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+            self?.refreshControl.endRefreshing()
+        })
     }
     
     @objc func changePhotoButtonPressed() {
         changePhotoButton.animate(scale: 1.1)
-        changePhoto?()
+        delegate?.changePhoto()
     }
     
     @objc func changePasswordButtonPressed() {
         changePasswordButton.animate(scale: 1.05)
-        changePassword?()
+        delegate?.changePassword()
     }
     
     @objc func logoutButtonPressed() {
         logoutButton.animate(scale: 1.05)
-        logout?()
+        delegate?.logout()
     }
 }
 

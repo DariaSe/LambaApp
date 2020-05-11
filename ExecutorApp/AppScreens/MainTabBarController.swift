@@ -49,7 +49,6 @@ class MainTabBarController: UITabBarController {
 
 extension MainTabBarController: LoginDelegate {
     func showOrders() {
-        print("show orders called")
         selectedIndex = 0
         getData()
     }

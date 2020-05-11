@@ -8,12 +8,13 @@
 
 import UIKit
 
-class OrdersViewController: UIViewController {
+class OrdersViewController: StatesViewController {
     
     weak var coordinator: OrdersCoordinator?
     
     var orders: [Order] = [] {
         didSet {
+            refreshControl.endRefreshing()
             tableView.reloadData()
         }
     }
@@ -31,14 +32,14 @@ class OrdersViewController: UIViewController {
         
         tableView.register(OrderTableViewCell.self, forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
         
-        refreshControl.addTarget(self, action: #selector(refresh), for: .touchDragInside)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
     }
     
     @objc func refresh() {
         refreshControl.beginRefreshing()
-        // send request to server
+        coordinator?.refresh()
     }
     
 }

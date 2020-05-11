@@ -29,8 +29,6 @@ class SettingsViewController: UIViewController, KeyboardHandler {
         registerForKeyboardNotifications(for: profileSettingsView.scrollView)
         registerForKeyboardNotifications(for: orderSettingsTableView.tableView)
         view.backgroundColor = UIColor.backgroundColor
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Strings.save, style: .done, target: self, action: #selector(saveChanges))
     
         segmentedControl.constrainTopAndBottomToLayoutMargins(of: view, leading: 20, trailing: 20, top: 10, bottom: nil)
         segmentedControl.setHeight(equalTo: 30)
@@ -42,21 +40,19 @@ class SettingsViewController: UIViewController, KeyboardHandler {
         segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
         
         profileSettingsView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 10)
-        profileSettingsView.changePhoto = { [weak self] in
-            self?.coordinator?.showPhotoPicker()
-        }
-        profileSettingsView.changePassword = { [weak self] in
-            self?.coordinator?.showChangePasswordScreen()
-        }
-        profileSettingsView.logout = { [weak self] in
-            self?.coordinator?.logout()
-        }
-        
+        profileSettingsView.delegate = self
+      
         orderSettingsTableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 10)
         orderSettingsTableView.isHidden = true
-    
+        orderSettingsTableView.delegate = self
+
+        hideKeyboardWhenTappedAround()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        sendChanges()
+    }
     
     @objc func segmentSelected() {
         if segmentedControl.selectedSegmentIndex == 0 {
@@ -72,42 +68,37 @@ class SettingsViewController: UIViewController, KeyboardHandler {
     func setImage(_  image: UIImage) {
         profileSettingsView.imageView.image = image
     }
+}
+
+extension SettingsViewController: SettingsDelegate {
     
-    @objc func saveChanges() {
-        view.endEditing(true)
+    func refresh() {
+        coordinator?.getUserInfo()
+    }
+    
+    func changePhoto() {
+        coordinator?.showPhotoPicker()
+    }
+    
+    func changePassword() {
+        coordinator?.showChangePasswordScreen()
+    }
+    
+    func showEmptyPriceAlert() {
+        coordinator?.showSimpleAlert(title: Strings.emptyOrderPriceAlert, handler: nil)
+    }
+    
+    func logout() {
+        coordinator?.logout()
+    }
+    
+    func sendChanges() {
         let newUserInfo = UserInfo(
             image: nil,
             socialMedia: profileSettingsView.socialMediaTableView.newSocialMedia,
             hashtags: profileSettingsView.hashtagsView.newHashtags,
             orderSettings: orderSettingsTableView.orderSettings,
-            isReceivingOrders: orderSettingsTableView.isReceivingOrders)
+            isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "")
         coordinator?.postUserInfo(newUserInfo)
     }
 }
-
-//extension SettingsViewController {
-//
-//    func registerForKeyboardNotifications() {
-//
-//            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] notification in
-//                self?.keyboardWasShown(notification)
-//            }
-//            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [weak self] _ in
-//                self?.keyboardWillBeHidden()
-//            }
-//        }
-//
-//        func keyboardWasShown(_ notification: Notification) {
-//            let info = notification.userInfo!
-//            let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
-//            let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize!.height - (self.navigationController?.tabBarController?.tabBar.frame.height ?? 0), right: 0)
-//            profileSettingsView.scrollView.contentInset = insets
-//            profileSettingsView.scrollView.scrollIndicatorInsets = insets
-//        }
-//
-//        func keyboardWillBeHidden() {
-//            profileSettingsView.scrollView.contentInset = UIEdgeInsets.zero
-//            profileSettingsView.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
-//            view.endEditing(true)
-//        }
-//}

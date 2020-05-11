@@ -27,14 +27,27 @@ struct AppURL {
     
     static let orders = "/orders"
     static let order = "/order"
+    
+    static let changeOrderStatus = "/order-status"
+    static let videoUpload = "/upload"
     static let orderReject = "/order-reject"
     
     static let image = "/image"
     static let passwordChange = "/password-change"
+    static let settings = "/settings"
     
-    static let getOrdersURL = URL(string: baseURL + api + executor + orders)!
+    static func getOrdersURL(page: Int, limit: Int) -> URL {
+        let query = "?page=\(page)&limit=\(limit)"
+        return URL(string: baseURL + api + executor + orders + query)!
+    }
     static func getOrderDetailsURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + order + "/" + String(orderID))!
+    }
+    static func setOrderStatusURL() -> URL {
+        return URL(string: baseURL + api + executor + changeOrderStatus)!
+    }
+    static func uploadVideoURL(orderID: Int) -> URL {
+        return URL(string: baseURL + api + executor + videoUpload + "/" + String(orderID))!
     }
     static func rejectOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + orderReject + "/" + String(orderID))!
@@ -42,4 +55,5 @@ struct AppURL {
     
     static let imageChangeURL = URL(string: baseURL + api + executor + image)!
     static let passwordChangeURL = URL(string: baseURL + api + executor + passwordChange)!
+    static let changeSettingsURL = URL(string: baseURL + api + executor + settings)!
 }

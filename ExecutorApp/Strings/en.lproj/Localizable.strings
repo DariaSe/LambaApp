@@ -24,19 +24,28 @@
 "You have no orders yet" = "You have no orders yet";
 "Try again" = "Try again";
 "Open camera" = "Open camera";
+"Upload video from library" = "Upload video from library";
+"Choose video source" ="Choose video source";
+"Media Library" = "Media Library";
+"Video duration shouldn't be more than 10 minutes" = "Video duration shouldn't be more than 10 minutes";
 "Reject" = "Reject";
 "Cancel" = "Cancel";
 "Do you want to reject this order?" = "Do you want to reject this order?";
 "This action can not be undone." = "This action can not be undone.";
 "Done" = "Done";
 "You've rejected the order" = "You've rejected the order";
-"Failed to connect with server.\nCheck your internet connection\nand try again later." = "Failed to connect with server.\nCheck your internet connection\nand try again later.";
+"Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Failed to connect with server.\n\nCheck your internet connection\nand try again later.";
 
 // Camera
 "Do you want to save this video to your library?" = "Do you want to save this video to your library?";
 "You might need it later." = "You might need it later.";
 "Save" = "Save";
 "Do not save" = "Do not save";
+"Open video" = "Open video";
+"Choose video" = "Choose video";
+"Video is uploading.\nPlease wait" = "Video is uploading.\nPlease wait";
+"Cancel uploading" = "Cancel uploading";
+"Couldn't upload video. Try again later" = "Couldn't upload video. Try again later";
 
 // Finances
 "Ready for transfer" = "Ready for transfer";
@@ -54,8 +63,10 @@
 "Profile settings" = "Profile settings";
 "Order settings" = "Order settings";
 "Change photo" = "Change photo";
+"(Enter the full links, like\n https://www.instagram.com/your_profile/)" = "(Enter the full links, like\n https://www.instagram.com/your_profile/)";
 "List the hashtags divided by space:" = "List the hashtags divided by space:";
 "#hashtag1 #hashtag2" = "#hashtag1 #hashtag2";
+"Enter price first" = "Enter price first";
 
 // Password
 "Change password" = "Change password";

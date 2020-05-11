@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController, KeyboardHandler {
+class ChangePasswordViewController: StatesViewController, KeyboardHandler {
    
     var changePassword: ((PassInfo) -> Void)?
     
@@ -27,6 +27,7 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Strings.changePassword
         registerForKeyboardNotifications(for: scrollView)
         view.backgroundColor = UIColor.backgroundColor
         scrollView.pinTopAndBottomToLayoutMargins(to: view)

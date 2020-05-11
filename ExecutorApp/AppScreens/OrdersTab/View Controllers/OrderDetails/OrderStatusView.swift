@@ -15,42 +15,30 @@ class OrderStatusView: UIView {
             guard let status = status else { return }
             switch status {
             case .done:
-                imageView.isHidden = false
-                descrLabel.isHidden = false
-                imageView.image = UIImage(named: "Done")
-                descrLabel.text = Strings.done
-                descrLabel.textColor = UIColor.greenIndicatorColor
-                openCameraButton.isHidden = true
-                rejectButton.isHidden = true
+                imageStatusView.status = .done
+                imageStatusView.isHidden = false
+                buttonsStatusView.isHidden = true
             case .active:
-                imageView.isHidden = true
-                descrLabel.isHidden = true
-                openCameraButton.isHidden = false
-                rejectButton.isHidden = false
+                imageStatusView.isHidden = true
+                buttonsStatusView.isHidden = false
             case .rejected:
-                imageView.isHidden = false
-                descrLabel.isHidden = false
-                imageView.image = UIImage(named: "Cancelled")
-                descrLabel.text = Strings.youRejected
-                descrLabel.textColor = UIColor.redIndicatorColor
-                openCameraButton.isHidden = true
-                rejectButton.isHidden = true
+                imageStatusView.status = .rejected
+                imageStatusView.isHidden = false
+                buttonsStatusView.isHidden = true
             case .uploading:
-                break
+               imageStatusView.status = .uploading
+               imageStatusView.isHidden = false
+               buttonsStatusView.isHidden = true
             }
         }
     }
     
-    var openCamera: (() -> Void)?
-    var reject: (() -> Void)?
+    var delegate: VideoActionsDelegate?
     
     private let stackView = UIStackView()
     
-    private let imageView = UIImageView()
-    private let descrLabel = UILabel()
-    
-    private let openCameraButton = AppButton()
-    private let rejectButton = AppButton()
+    private let imageStatusView = OrderStatusImageView()
+    private let buttonsStatusView = OrderStatusButtonsView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,42 +49,27 @@ class OrderStatusView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func initialSetup() {
         stackView.pinToEdges(to: self)
         stackView.axis = .vertical
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.spacing = 12
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(descrLabel)
-        stackView.addArrangedSubview(openCameraButton)
-        stackView.addArrangedSubview(rejectButton)
+        stackView.addArrangedSubview(buttonsStatusView)
+        stackView.addArrangedSubview(imageStatusView)
         
-        imageView.setWidth(equalTo: 80)
-        imageView.setHeight(equalTo: 80)
+        buttonsStatusView.uploadOptions = { [weak self] in
+            self?.delegate?.showUploadOptions()
+        }
         
-        descrLabel.font = UIFont.systemFont(ofSize: 12)
+        buttonsStatusView.reject = { [weak self] in
+            self?.delegate?.reject()
+        }
         
-        openCameraButton.setTitle(Strings.openCamera, for: .normal)
-        openCameraButton.setHeight(equalTo: SizeConstants.buttonHeight)
-        openCameraButton.setWidth(equalTo: self)
-        openCameraButton.addTarget(self, action: #selector(openCameraButtonPressed), for: .touchUpInside)
-        
-        rejectButton.setTitle(Strings.reject, for: .normal)
-        rejectButton.isDestructive = true
-        rejectButton.setHeight(equalTo: SizeConstants.buttonHeight)
-        rejectButton.setWidth(equalTo: self)
-        rejectButton.addTarget(self, action: #selector(rejectButtonPressed), for: .touchUpInside)
+        imageStatusView.openVideo = { [weak self] in
+            self?.delegate?.openVideo()
+        }
+        imageStatusView.cancelUploading = { [weak self] in
+            self?.delegate?.cancelUploading()
+        }
     }
-    
-    @objc func openCameraButtonPressed() {
-        openCameraButton.animate(scale: 1.05)
-        openCamera?()
-    }
-    
-    @objc func rejectButtonPressed() {
-        rejectButton.animate(scale: 1.05)
-        reject?()
-    }
-    
 }

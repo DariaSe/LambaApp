@@ -9,11 +9,12 @@
 import Foundation
 
 protocol OrdersApiService {
+    
     var isMore: Bool { get set }
+    var page: Int { get set }
+    var limit: Int { get set }
     
     func getOrders(completion: @escaping ([Order]?) -> Void)
-    func loadMore(completion: @escaping ([Order]?) -> Void)
-    
     func showOrderDetails(orderID: Int, completion: @escaping (OrderDetails?) -> Void)
     
 }

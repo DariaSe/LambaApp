@@ -39,12 +39,13 @@ class ErrorViewController: UIViewController {
         errorLabel.numberOfLines = 0
         
         reloadButton.setTitle(Strings.tryAgain, for: .normal)
-        reloadButton.setWidth(equalTo: 100)
+        reloadButton.setWidth(equalTo: 200)
         reloadButton.setHeight(equalTo: SizeConstants.buttonHeight)
         reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
     }
     
     @objc private func reloadButtonTapped() {
+        reloadButton.animate(scale: 1.05)
         reload?()
     }
 }

@@ -14,18 +14,19 @@ struct SocialMedia {
     var title: String
     var url: String
     
-    static func initialize(from dictionary: Dictionary<String, Any>) -> SocialMedia? {
+    static func initialize(from dictionary: Dictionary<String, Any>, completion: @escaping (SocialMedia?) -> Void) {
         guard
             let socialType = dictionary["socialType"] as? [String : Any],
             let id = socialType["id"] as? Int,
-            let imageString = socialType["image"] as? String,
             let title = socialType["title"] as? String,
-            let url = dictionary["url"] as? String else { return nil }
-        var image: UIImage?
-        if let imageData = Data(base64Encoded: imageString) {
-            image = UIImage(data: imageData)
+            let url = dictionary["url"] as? String,
+            let imageURLString = socialType["image"] as? String,
+            let imageURL = URL(string: imageURLString)
+            else { completion(nil); return }
+        UIImage.getImage(from: imageURL) { (image) in
+            let socialMedia = SocialMedia(id: id, image: image, title: title, url: url)
+            completion(socialMedia)
         }
-        return SocialMedia(id: id, image: image, title: title, url: url)
     }
     
     func dict() -> [String : Any] {

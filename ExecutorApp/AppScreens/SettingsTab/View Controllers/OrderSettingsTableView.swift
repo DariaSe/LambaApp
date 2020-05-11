@@ -19,10 +19,22 @@ class OrderSettingsTableView: UIView {
         }
     }
     
-    var orderSettings: [OrderSettings] = []
-    var isReceivingOrders: Bool = true
+    var orderSettings: [OrderSettings] = [] {
+        didSet {
+            delegate?.sendChanges()
+        }
+    }
+    var isReceivingOrders: Bool = true {
+        didSet {
+            delegate?.sendChanges()
+        }
+    }
+    
+    var delegate: SettingsDelegate?
     
     let tableView = SelfSizingTableView()
+    
+    private let refreshControl = UIRefreshControl()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,9 +50,19 @@ class OrderSettingsTableView: UIView {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
-        tableView.bounces = false
         tableView.register(OrderSettingsTableViewCell.self, forCellReuseIdentifier: OrderSettingsTableViewCell.reuseIdentifier)
         tableView.separatorInset = UIEdgeInsets.zero
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        refreshControl.beginRefreshing()
+        delegate?.refresh()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+            self?.refreshControl.endRefreshing()
+        })
     }
     
 }
@@ -56,17 +78,28 @@ extension OrderSettingsTableView: UITableViewDataSource {
         if indexPath.row == orderSettings.count {
             cell.updateReceiveOrders(isOn: isReceivingOrders)
             cell.switchIsOn = { [weak self] bool in
-                self?.isReceivingOrders = bool
+                self?.userInfo?.isReceivingOrders = bool
             }
         }
         else {
             let settings = orderSettings[indexPath.row]
             cell.update(with: settings)
             cell.switchIsOn = { [weak self] bool in
-                self?.orderSettings[indexPath.row].isOn = bool
+                self?.userInfo?.orderSettings[indexPath.row].isOn = bool
+                if let price = self?.userInfo?.orderSettings[indexPath.row].price,
+                    (price == "" || price == "0" || price.containsInvalidCharacters()) {
+                    self?.delegate?.showEmptyPriceAlert()
+                    self?.userInfo?.orderSettings[indexPath.row].isOn = false
+                    tableView.reloadData()
+                }
             }
             cell.textChanged = { [weak self] text in
-                self?.orderSettings[indexPath.row].price = text
+                self?.userInfo?.orderSettings[indexPath.row].price = text
+                if text.isEmpty {
+                    self?.userInfo?.orderSettings[indexPath.row].isOn = false
+                    self?.userInfo?.orderSettings[indexPath.row].price = "0"
+                    tableView.reloadData()
+                }
             }
         }
         return cell
