@@ -12,7 +12,7 @@ class FinancesApiServiceMock: FinancesApiService {
     
     var isTransfered: Bool = false
     
-    func getFinances(completion: @escaping (FinancesInfo?, Error?) -> Void) {
+    func getFinances(completion: @escaping (FinancesInfo?, String?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if !self.isTransfered {
                 completion(FinancesInfo.sample(), nil)
@@ -24,15 +24,15 @@ class FinancesApiServiceMock: FinancesApiService {
         }
     }
     
-    func getTransferDescription(completion: @escaping (String?) -> Void) {
+    func getTransferDescription(completion: @escaping (String?, String?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            completion("Some transfer description")
+            completion("Some transfer description", nil)
         }
     }
     
-    func transferMoney(completion: @escaping (Bool) -> Void) {
+    func transferMoney(completion: @escaping (Bool, String?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            completion(true)
+            completion(true, nil)
         }
     }
     

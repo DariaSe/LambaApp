@@ -20,7 +20,7 @@ class OrdersCoordinator: Coordinator {
         orderDetailsApiService.delegate = self
         navigationController.delegate = self
         ordersVC.coordinator = self
-        ordersVC.reload = { [weak self] in self?.getOrders() }
+        errorVC.reload = { [weak self] in self?.getOrders() }
         navigationController.viewControllers = [ordersVC]
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
         ordersVC.title = Strings.orders

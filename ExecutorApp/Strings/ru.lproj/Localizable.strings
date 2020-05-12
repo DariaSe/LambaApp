@@ -7,6 +7,13 @@
 */
 
 
+
+// Order status
+"Done" = "Исполнено";
+"Active" = "Активный";
+"You rejected" = "Вы отказались";
+"Uploading" = "Загружается";
+
 // Tab bar
 "Orders" = "Заказы";
 "Finances" = "Финансы";
@@ -32,7 +39,6 @@
 "Cancel" = "Отменить";
 "Do you want to reject this order?" = "Вы хотите отказаться от этого заказа?";
 "This action can not be undone." = "Это действие не может быть отменено.";
-"Done" = "Выполнено";
 "You've rejected the order" = "Вы отказались от этого заказа";
 "Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Не удалось соединиться с сервером.\n\nПроверьте соединение с интернетом\nи попробуйте ещё раз позже.";
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: StatesViewController, KeyboardHandler {
+class ChangePasswordViewController: UIViewController, KeyboardHandler {
    
     var changePassword: ((PassInfo) -> Void)?
     

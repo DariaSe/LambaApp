@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrdersViewController: StatesViewController {
+class OrdersViewController: UIViewController {
     
     weak var coordinator: OrdersCoordinator?
     

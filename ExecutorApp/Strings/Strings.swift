@@ -10,6 +10,12 @@ import Foundation
 
 struct Strings {
     
+    // Order status
+    static let statusDone = "Done".localized
+    static let statusActive = "Active".localized
+    static let statusRejected = "You rejected".localized
+    static let statusUploading = "Uploading".localized
+    
     // Tab bar
     static let orders = "Orders".localized
     static let finances = "Finances".localized
@@ -34,7 +40,7 @@ struct Strings {
     static let cancel = "Cancel".localized
     static let doYouWantToReject = "Do you want to reject this order?".localized
     static let actionCanNotBeUndone = "This action can not be undone.".localized
-    static let done = "Done".localized
+//    static let done = "Done".localized
     static let youRejected = "You've rejected the order".localized
     static let error = "Failed to connect with server.\n\nCheck your internet connection\nand try again later.".localized
     

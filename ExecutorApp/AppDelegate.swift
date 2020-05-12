@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         mainCoordinator.start()
         
-        print("temp files: \(FileManager.default.sizeOfTmpFolder())")
+        FileManager.default.clearTmpDirectory()
 
         return true
     }

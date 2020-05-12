@@ -75,10 +75,10 @@ class OrderTableViewCell: UITableViewCell {
         moneySignImageView.image = UIImage(named: "DollarSign")
         
         costLabel.textAlignment = .left
-        costLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        costLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         
         descriptionLabel.textAlignment = .left
-        descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
         
         statusLabel.font = UIFont.systemFont(ofSize: 14)
         statusLabel.textColor = UIColor.gray
@@ -89,8 +89,8 @@ class OrderTableViewCell: UITableViewCell {
     
     func update(with order: Order) {
         costLabel.text = order.cost
-        descriptionLabel.text = order.description
-        statusLabel.text = order.status.rawValue
+        descriptionLabel.text = order.orderTypeTitle
+        statusLabel.text = Order.statusString(status: order.status)
         dateLabel.text = order.date
         var color: UIColor {
             switch order.status {

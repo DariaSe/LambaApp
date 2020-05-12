@@ -38,7 +38,6 @@ class OrderDetailsApiServiceMain {
         default: break
         }
         let jsonDict: [String : Any] = ["orderId" : orderID, "newStatus" : statusString ?? ""]
-        print(jsonDict)
         guard let request = URLRequest.signedPostRequest(url: AppURL.setOrderStatusURL(), jsonDict: jsonDict) else { return }
         let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
         task.resume()
@@ -80,9 +79,5 @@ class OrderDetailsApiServiceMain {
         
         let task = uploadSession.uploadTask(with: request, fromFile: dataURL)
         task.resume()
-    }
-    
-    func cancelUploading(orderID: Int) {
-       
     }
 }

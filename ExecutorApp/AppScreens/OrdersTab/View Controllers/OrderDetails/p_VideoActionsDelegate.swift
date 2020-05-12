@@ -12,5 +12,4 @@ protocol VideoActionsDelegate {
     func showUploadOptions()
     func reject()
     func openVideo()
-    func cancelUploading()
 }

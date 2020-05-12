@@ -16,43 +16,28 @@ class FinancesCoordinator: Coordinator {
     
     func start() {
         financesVC.coordinator = self
+        errorVC.reload = { [weak self] in self?.getFinancesInfo() }
         navigationController.viewControllers = [financesVC]
         financesVC.tabBarItem = UITabBarItem(title: Strings.finances, image: nil, tag: 1)
         financesVC.title = Strings.finances
     }
 
     func getFinancesInfo() {
-        financesVC.add(clearLoadingVC)
-        apiService.getFinances { [weak self] (financesInfo, error) in
-            self?.clearLoadingVC.remove()
-            if let error = error, financesInfo == nil {
-                let errorVC = ErrorViewController()
-                errorVC.message = error.localizedDescription
-                self?.financesVC.add(errorVC)
+        showLoadingIndicator()
+        apiService.getFinances { [weak self] (financesInfo, errorMessage) in
+            self?.removeLoadingIndicator()
+            if let errorMessage = errorMessage {
+                self?.showFullScreenError(message: errorMessage)
             }
-            if let financesInfo = financesInfo, error == nil {
+            if let financesInfo = financesInfo {
+                self?.removeFullScreenError()
                 self?.financesVC.financesInfo = financesInfo
             }
             else {
-                let emptyVC = EmptyViewController(message: Strings.noOrdersYet)
+                let emptyVC = ErrorViewController()
+                emptyVC.message = Strings.noOrdersYet
                 self?.financesVC.add(emptyVC)
             }
-        }
-    }
-    
-    func transferMoney() {
-        financesVC.add(clearLoadingVC)
-        apiService.transferMoney { [weak self] (success) in
-            self?.clearLoadingVC.remove()
-            let title = success ? Strings.transactionSuccess : Strings.transactionFailed
-            let message = success ? "" : Strings.error
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                self?.getFinancesInfo()
-            }
-            alert.addAction(okAction)
-            self?.financesVC.present(alert, animated: true, completion: nil)
-            
         }
     }
     
@@ -60,9 +45,12 @@ class FinancesCoordinator: Coordinator {
         let infoVC = TransferDescriptionViewController()
         infoVC.modalPresentationStyle = .overCurrentContext
         financesVC.present(infoVC, animated: true, completion: nil)
-        infoVC.add(clearLoadingVC)
-        apiService.getTransferDescription { [weak self] (text) in
-            self?.clearLoadingVC.remove()
+        showLoadingIndicator()
+        apiService.getTransferDescription { [weak self] text, errorMessage in
+            self?.removeLoadingIndicator()
+            if let errorMessage = errorMessage {
+                infoVC.text = errorMessage
+            }
             if let text = text {
                 infoVC.text = text
             }
@@ -72,4 +60,16 @@ class FinancesCoordinator: Coordinator {
         }
     }
     
+    func transferMoney() {
+        showLoadingIndicator()
+        apiService.transferMoney { [weak self] success, errorMessage in
+            self?.removeLoadingIndicator()
+            let title = success ? Strings.transactionSuccess : Strings.transactionFailed
+            let message = success ? "" : Strings.error
+            let alert = UIAlertController.simpleAlert(title: title, message: message) { [weak self] (_) in
+                self?.getFinancesInfo()
+            }
+            self?.financesVC.present(alert, animated: true, completion: nil)
+        }
+    }
 }

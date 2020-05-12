@@ -72,7 +72,7 @@ class SettingsCoordinator: Coordinator {
                 DispatchQueue.main.async {
                     self?.removeLoadingIndicator()
                     let title = success ? Strings.passChanged : (message ?? Strings.error)
-                    passwordVC.showSimpleAlert(title: title) { [weak self] in
+                    self?.showSimpleAlert(title: title) { [weak self] in
                         if success {
                             self?.navigationController.popViewController(animated: true)
                         }

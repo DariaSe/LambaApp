@@ -32,6 +32,11 @@ struct AppURL {
     static let videoUpload = "/upload"
     static let orderReject = "/order-reject"
     
+    #warning("replace with actual api")
+    static let financesInfo = "/get-finances"
+    static let transferDescription = "/finances-description"
+    static let transfer = "/transfer"
+    
     static let image = "/image"
     static let passwordChange = "/password-change"
     static let settings = "/settings"
@@ -52,6 +57,10 @@ struct AppURL {
     static func rejectOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + orderReject + "/" + String(orderID))!
     }
+    
+    static let financesInfoURL = URL(string: baseURL + api + executor + financesInfo)!
+    static let transferDescriptionURL = URL(string: baseURL + api + executor + transferDescription)!
+    static let transferURL = URL(string: baseURL + api + executor + transfer)!
     
     static let imageChangeURL = URL(string: baseURL + api + executor + image)!
     static let passwordChangeURL = URL(string: baseURL + api + executor + passwordChange)!

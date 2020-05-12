@@ -10,6 +10,14 @@ import Foundation
 
 extension URLRequest {
     
+    static func signedGetRequest(url: URL) -> URLRequest? {
+        guard let token = Defaults.token else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: AppURL.xAuthToken)
+        return request
+    }
+    
     static func signedPostRequest(url: URL, jsonDict: [String : Any]) -> URLRequest? {
         guard let token = Defaults.token else { return nil }
         var request = URLRequest(url: url)

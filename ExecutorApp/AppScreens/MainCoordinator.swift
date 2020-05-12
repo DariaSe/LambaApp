@@ -36,6 +36,7 @@ class MainCoordinator {
                     errorVC.message = errorMessage
                     errorVC.reload = { [weak self] in
                         errorVC.dismiss(animated: true)
+                        self?.loginCoordinator.loginVC.add(self?.startVC ?? StartViewController())
                         self?.getUserInfo()
                     }
                     errorVC.modalPresentationStyle = .overFullScreen

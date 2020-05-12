@@ -67,10 +67,10 @@
 		DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963762465C929002BBC3F /* e_URLRequest.swift */; };
 		DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637A2466EB83002BBC3F /* VideoService.swift */; };
 		DAB9637D2468244F002BBC3F /* e_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637C2468244E002BBC3F /* e_Data.swift */; };
-		DAB9637F246836D4002BBC3F /* StatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9637E246836D4002BBC3F /* StatesViewController.swift */; };
 		DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963802468891A002BBC3F /* NoPasteTextField.swift */; };
 		DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96382246975B0002BBC3F /* Coordinator.swift */; };
 		DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963842469C00F002BBC3F /* e_FileManager.swift */; };
+		DAB96387246AE07D002BBC3F /* FinancesApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */; };
 		DABCA635244DD78200682368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA634244DD78200682368 /* AppDelegate.swift */; };
 		DABCA63E244DD78500682368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63D244DD78500682368 /* Assets.xcassets */; };
 		DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63F244DD78500682368 /* LaunchScreen.storyboard */; };
@@ -101,7 +101,6 @@
 		DABCA69C2450954D00682368 /* p_OrdersApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69B2450954D00682368 /* p_OrdersApiService.swift */; };
 		DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69E2450994200682368 /* LoadingViewController.swift */; };
 		DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A0245099B800682368 /* e_UIViewController.swift */; };
-		DABCA6A324509A6E00682368 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A224509A6E00682368 /* EmptyViewController.swift */; };
 		DABCA6A524509B5C00682368 /* OrdersApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */; };
 		DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A624509C3B00682368 /* ErrorViewController.swift */; };
 /* End PBXBuildFile section */
@@ -167,10 +166,10 @@
 		DAB963762465C929002BBC3F /* e_URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_URLRequest.swift; sourceTree = "<group>"; };
 		DAB9637A2466EB83002BBC3F /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
 		DAB9637C2468244E002BBC3F /* e_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_Data.swift; sourceTree = "<group>"; };
-		DAB9637E246836D4002BBC3F /* StatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesViewController.swift; sourceTree = "<group>"; };
 		DAB963802468891A002BBC3F /* NoPasteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPasteTextField.swift; sourceTree = "<group>"; };
 		DAB96382246975B0002BBC3F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DAB963842469C00F002BBC3F /* e_FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_FileManager.swift; sourceTree = "<group>"; };
+		DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesApiServiceMain.swift; sourceTree = "<group>"; };
 		DABCA631244DD78200682368 /* ExecutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABCA634244DD78200682368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DABCA63D244DD78500682368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -205,7 +204,6 @@
 		DABCA69B2450954D00682368 /* p_OrdersApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_OrdersApiService.swift; sourceTree = "<group>"; };
 		DABCA69E2450994200682368 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		DABCA6A0245099B800682368 /* e_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIViewController.swift; sourceTree = "<group>"; };
-		DABCA6A224509A6E00682368 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersApiServiceMock.swift; sourceTree = "<group>"; };
 		DABCA6A624509C3B00682368 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +500,7 @@
 			children = (
 				DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */,
 				DA6716D224545AAC001791E3 /* FinancesApiServiceMock.swift */,
+				DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */,
 				DAB9632324583FFD002BBC3F /* View Controllers */,
 			);
 			path = FinancesTab;
@@ -589,9 +588,7 @@
 		DABCA69D2450991D00682368 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				DAB9637E246836D4002BBC3F /* StatesViewController.swift */,
 				DABCA69E2450994200682368 /* LoadingViewController.swift */,
-				DABCA6A224509A6E00682368 /* EmptyViewController.swift */,
 				DABCA6A624509C3B00682368 /* ErrorViewController.swift */,
 				DAB963362459BECA002BBC3F /* PopupErrorViewController.swift */,
 			);
@@ -674,6 +671,7 @@
 				DAB963372459BECA002BBC3F /* PopupErrorViewController.swift in Sources */,
 				DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */,
 				DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */,
+				DAB96387246AE07D002BBC3F /* FinancesApiServiceMain.swift in Sources */,
 				DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */,
 				DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */,
 				DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */,
@@ -718,7 +716,6 @@
 				DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */,
 				DAB9637D2468244F002BBC3F /* e_Data.swift in Sources */,
 				DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */,
-				DABCA6A324509A6E00682368 /* EmptyViewController.swift in Sources */,
 				DABCA6852450267300682368 /* CostView.swift in Sources */,
 				DA6716C224532F63001791E3 /* CameraViewController.swift in Sources */,
 				DAB9635B245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift in Sources */,
@@ -740,7 +737,6 @@
 				DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */,
 				DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */,
 				DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */,
-				DAB9637F246836D4002BBC3F /* StatesViewController.swift in Sources */,
 				DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */,
 				DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */,
 				DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */,

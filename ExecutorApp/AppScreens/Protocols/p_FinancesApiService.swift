@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FinancesApiService {
-    func getFinances(completion: @escaping (FinancesInfo?, Error?) -> Void)
-    func getTransferDescription(completion: @escaping (String?) -> Void)
-    func transferMoney(completion: @escaping (Bool) -> Void)
+    func getFinances(completion: @escaping (FinancesInfo?, String?) -> Void)
+    func getTransferDescription(completion: @escaping (String?, String?) -> Void)
+    func transferMoney(completion: @escaping (Bool, String?) -> Void)
 }

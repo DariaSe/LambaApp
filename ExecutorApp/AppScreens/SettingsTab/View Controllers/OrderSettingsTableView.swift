@@ -16,17 +16,19 @@ class OrderSettingsTableView: UIView {
             orderSettings = userInfo.orderSettings
             isReceivingOrders = userInfo.isReceivingOrders
             tableView.reloadData()
+            delegate?.sendChanges()
         }
     }
     
     var orderSettings: [OrderSettings] = [] {
         didSet {
-            delegate?.sendChanges()
+            (print("did set called"))
+            
         }
     }
     var isReceivingOrders: Bool = true {
         didSet {
-            delegate?.sendChanges()
+//            delegate?.sendChanges()
         }
     }
     

@@ -15,6 +15,7 @@ class OrderDetailsViewController: UIViewController {
     var orderDetails: OrderDetails? {
         didSet {
             guard let orderDetails = orderDetails else { return }
+            title = orderDetails.orderTypeTitle
             costView.cost = orderDetails.cost + " " + (InfoService.userInfo?.currencySign ?? "")
             orderInfoView.orderDetailUnits = orderDetails.units
             statusView.status = orderDetails.status
@@ -63,10 +64,6 @@ extension OrderDetailsViewController: VideoActionsDelegate {
     }
     
     func openVideo() {
-        guard let orderDetails = orderDetails else { return }
-    }
-    
-    func cancelUploading() {
         guard let orderDetails = orderDetails else { return }
     }
 }

@@ -68,8 +68,5 @@ class OrderStatusView: UIView {
         imageStatusView.openVideo = { [weak self] in
             self?.delegate?.openVideo()
         }
-        imageStatusView.cancelUploading = { [weak self] in
-            self?.delegate?.cancelUploading()
-        }
     }
 }

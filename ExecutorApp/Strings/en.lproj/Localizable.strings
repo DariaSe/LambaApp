@@ -7,6 +7,12 @@
 */
 
 
+// Order status
+"Done" = "Done";
+"Active" = "Active";
+"You rejected" = "You rejected";
+"Uploading" = "Uploading";
+
 // Tab bar
 "Orders" = "Orders";
 "Finances" = "Finances";
@@ -32,7 +38,6 @@
 "Cancel" = "Cancel";
 "Do you want to reject this order?" = "Do you want to reject this order?";
 "This action can not be undone." = "This action can not be undone.";
-"Done" = "Done";
 "You've rejected the order" = "You've rejected the order";
 "Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Failed to connect with server.\n\nCheck your internet connection\nand try again later.";
 

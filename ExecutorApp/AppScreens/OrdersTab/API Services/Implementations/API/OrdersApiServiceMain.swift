@@ -16,11 +16,7 @@ class OrdersApiServiceMain {
     var limit: Int = 30
     
     func getOrders(completion: @escaping ([Order]?, String?) -> Void) {
-        guard let token = Defaults.token else { return }
-        var request = URLRequest(url: AppURL.getOrdersURL(page: page, limit: limit))
-        request.httpMethod = "GET"
-        request.setValue(token, forHTTPHeaderField: AppURL.xAuthToken)
-        
+        guard let request = URLRequest.signedGetRequest(url: AppURL.getOrdersURL(page: page, limit: limit)) else { return }
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -44,11 +40,7 @@ class OrdersApiServiceMain {
     }
     
     func showOrderDetails(orderID: Int, completion: @escaping (OrderDetails?, String?) -> Void) {
-        guard let token = Defaults.token else { return }
-        var request = URLRequest(url: AppURL.getOrderDetailsURL(orderID: orderID))
-        request.httpMethod = "GET"
-        request.setValue(token, forHTTPHeaderField: AppURL.xAuthToken)
-        
+        guard let request = URLRequest.signedGetRequest(url: AppURL.getOrderDetailsURL(orderID: orderID)) else { return }
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
