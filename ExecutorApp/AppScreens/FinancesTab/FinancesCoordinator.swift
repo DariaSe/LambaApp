@@ -10,7 +10,7 @@ import UIKit
 
 class FinancesCoordinator: Coordinator {
     
-    let apiService: FinancesApiService = FinancesApiServiceMock()
+    let apiService: FinancesApiService = FinancesApiServiceMain()
     
     let financesVC = FinancesViewController()
     

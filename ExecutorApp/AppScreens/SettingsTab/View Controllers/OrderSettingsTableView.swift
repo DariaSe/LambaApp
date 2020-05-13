@@ -20,17 +20,8 @@ class OrderSettingsTableView: UIView {
         }
     }
     
-    var orderSettings: [OrderSettings] = [] {
-        didSet {
-            (print("did set called"))
-            
-        }
-    }
-    var isReceivingOrders: Bool = true {
-        didSet {
-//            delegate?.sendChanges()
-        }
-    }
+    var orderSettings: [OrderSettings] = []
+    var isReceivingOrders: Bool = true
     
     var delegate: SettingsDelegate?
     

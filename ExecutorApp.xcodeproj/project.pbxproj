@@ -48,8 +48,6 @@
 		DAB963402459FE2D002BBC3F /* InfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9633F2459FE2D002BBC3F /* InfoService.swift */; };
 		DAB96344245B3825002BBC3F /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96343245B3825002BBC3F /* AppURL.swift */; };
 		DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96347245B5852002BBC3F /* StartViewController.swift */; };
-		DAB9634E245C1B0B002BBC3F /* p_OrderDetailsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */; };
-		DAB96350245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */; };
 		DAB96359245C1D65002BBC3F /* OrdersApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */; };
 		DAB9635B245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */; };
 		DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635C245C9410002BBC3F /* e_UIImage.swift */; };
@@ -98,10 +96,8 @@
 		DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA68B2450878600682368 /* OrderDetailUnit.swift */; };
 		DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA68D245087FD00682368 /* OrderDetails.swift */; };
 		DABCA694245090A300682368 /* OrdersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA693245090A300682368 /* OrdersCoordinator.swift */; };
-		DABCA69C2450954D00682368 /* p_OrdersApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69B2450954D00682368 /* p_OrdersApiService.swift */; };
 		DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69E2450994200682368 /* LoadingViewController.swift */; };
 		DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A0245099B800682368 /* e_UIViewController.swift */; };
-		DABCA6A524509B5C00682368 /* OrdersApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */; };
 		DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A624509C3B00682368 /* ErrorViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,8 +143,6 @@
 		DAB9633F2459FE2D002BBC3F /* InfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoService.swift; sourceTree = "<group>"; };
 		DAB96343245B3825002BBC3F /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
 		DAB96347245B5852002BBC3F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_OrderDetailsApiService.swift; sourceTree = "<group>"; };
-		DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsApiServiceMock.swift; sourceTree = "<group>"; };
 		DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersApiServiceMain.swift; sourceTree = "<group>"; };
 		DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsApiServiceMain.swift; sourceTree = "<group>"; };
 		DAB9635C245C9410002BBC3F /* e_UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIImage.swift; sourceTree = "<group>"; };
@@ -201,10 +195,8 @@
 		DABCA68B2450878600682368 /* OrderDetailUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailUnit.swift; sourceTree = "<group>"; };
 		DABCA68D245087FD00682368 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
 		DABCA693245090A300682368 /* OrdersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCoordinator.swift; sourceTree = "<group>"; };
-		DABCA69B2450954D00682368 /* p_OrdersApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_OrdersApiService.swift; sourceTree = "<group>"; };
 		DABCA69E2450994200682368 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		DABCA6A0245099B800682368 /* e_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIViewController.swift; sourceTree = "<group>"; };
-		DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersApiServiceMock.swift; sourceTree = "<group>"; };
 		DABCA6A624509C3B00682368 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,31 +322,12 @@
 			path = "Finances ViewController";
 			sourceTree = "<group>";
 		};
-		DAB96353245C1C45002BBC3F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				DABCA69B2450954D00682368 /* p_OrdersApiService.swift */,
-				DAB9634D245C1B0B002BBC3F /* p_OrderDetailsApiService.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		DAB96354245C1C55002BBC3F /* Implementations */ = {
 			isa = PBXGroup;
 			children = (
-				DAB96355245C1C85002BBC3F /* Mocks */,
 				DAB96356245C1C8E002BBC3F /* API */,
 			);
 			path = Implementations;
-			sourceTree = "<group>";
-		};
-		DAB96355245C1C85002BBC3F /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				DABCA6A424509B5C00682368 /* OrdersApiServiceMock.swift */,
-				DAB9634F245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift */,
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		DAB96356245C1C8E002BBC3F /* API */ = {
@@ -370,7 +343,6 @@
 		DAB96357245C1CAC002BBC3F /* API Services */ = {
 			isa = PBXGroup;
 			children = (
-				DAB96353245C1C45002BBC3F /* Protocols */,
 				DAB96354245C1C55002BBC3F /* Implementations */,
 			);
 			path = "API Services";
@@ -690,7 +662,6 @@
 				DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */,
 				DAB963672462DBE8002BBC3F /* MainCoordinator.swift in Sources */,
 				DABCA64C244DD9C000682368 /* e_UIView.swift in Sources */,
-				DAB96350245C1BA7002BBC3F /* OrderDetailsApiServiceMock.swift in Sources */,
 				DABCA64F244DF17000682368 /* Colors.swift in Sources */,
 				DAB963002455BC05002BBC3F /* SettingsApiServiceMock.swift in Sources */,
 				DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */,
@@ -701,7 +672,6 @@
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
 				DABCA67E244F38D300682368 /* OrderDetailsViewController.swift in Sources */,
 				DAB963692462DF45002BBC3F /* LoginCoordinator.swift in Sources */,
-				DAB9634E245C1B0B002BBC3F /* p_OrderDetailsApiService.swift in Sources */,
 				DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */,
 				DA6716D524545AC7001791E3 /* p_FinancesApiService.swift in Sources */,
 				DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */,
@@ -753,13 +723,11 @@
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,
 				DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */,
 				DA6716C42454167D001791E3 /* ReadyToTransferView.swift in Sources */,
-				DABCA69C2450954D00682368 /* p_OrdersApiService.swift in Sources */,
 				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
 				DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
 				DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */,
 				DAB96359245C1D65002BBC3F /* OrdersApiServiceMain.swift in Sources */,
-				DABCA6A524509B5C00682368 /* OrdersApiServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

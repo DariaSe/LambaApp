@@ -118,7 +118,6 @@ class OrdersCoordinator: Coordinator {
         orderDetailsVC.add(videoPicker)
         videoPicker.showVideoPicker()
         videoPicker.urlReceived = { [weak self] url in
-            print(url)
             self?.uploadVideo(orderID: orderID, url: url)
         }
     }

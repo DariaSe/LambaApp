@@ -55,7 +55,6 @@ class VideoService {
             let imgGenerator = AVAssetImageGenerator(asset: asset)
             imgGenerator.appliesPreferredTrackTransform = true
             let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-            print(cgImage)
             let thumbnail = UIImage(cgImage: cgImage)
             if let imageData = thumbnail.pngData() {
                 let strBase64 = imageData.base64EncodedString()

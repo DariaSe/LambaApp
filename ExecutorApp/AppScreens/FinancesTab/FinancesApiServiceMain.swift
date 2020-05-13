@@ -11,7 +11,7 @@ import Foundation
 class FinancesApiServiceMain: FinancesApiService {
     
     func getFinances(completion: @escaping (FinancesInfo?, String?) -> Void) {
-        guard let request = URLRequest.signedGetRequest(url: AppURL.financesInfoURL) else { return }
+        guard let request = URLRequest.signedGetRequest(url: AppURL.financesURL) else { return }
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -19,8 +19,8 @@ class FinancesApiServiceMain: FinancesApiService {
                 }
                 if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                    print(jsonDict)
-                    completion(FinancesInfo.sample(), nil)
+                    let financesInfo = FinancesInfo.initialize(from: jsonDict)
+                    completion(financesInfo, nil)
                 }
                 else {
                     completion(nil, Strings.error)
@@ -39,7 +39,6 @@ class FinancesApiServiceMain: FinancesApiService {
                 }
                 if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                    print(jsonDict)
                     completion("Some transfer description", nil)
                 }
                 else {

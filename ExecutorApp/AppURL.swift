@@ -33,7 +33,7 @@ struct AppURL {
     static let orderReject = "/order-reject"
     
     #warning("replace with actual api")
-    static let financesInfo = "/get-finances"
+    static let finances = "/finances"
     static let transferDescription = "/finances-description"
     static let transfer = "/transfer"
     
@@ -58,7 +58,7 @@ struct AppURL {
         return URL(string: baseURL + api + executor + orderReject + "/" + String(orderID))!
     }
     
-    static let financesInfoURL = URL(string: baseURL + api + executor + financesInfo)!
+    static let financesURL = URL(string: baseURL + api + executor + finances)!
     static let transferDescriptionURL = URL(string: baseURL + api + executor + transferDescription)!
     static let transferURL = URL(string: baseURL + api + executor + transfer)!
     

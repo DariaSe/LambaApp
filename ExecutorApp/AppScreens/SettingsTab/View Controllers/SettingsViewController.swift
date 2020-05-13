@@ -99,7 +99,6 @@ extension SettingsViewController: SettingsDelegate {
             hashtags: profileSettingsView.hashtagsView.newHashtags,
             orderSettings: orderSettingsTableView.orderSettings,
             isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "")
-        print(newUserInfo.orderSettings)
         coordinator?.postUserInfo(newUserInfo)
     }
 }

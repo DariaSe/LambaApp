@@ -12,13 +12,10 @@ extension URLSession {
     
     func postRequestDataTask(with request: URLRequest, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            print(response)
             if let error = error {
-                print(error.localizedDescription)
                 completion(false, error.localizedDescription)
             }
             if let data = data, let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                print(jsonDict)
                 if let code = jsonDict["code"] as? String, code == "OK" {
                     completion(true, nil)
                 }

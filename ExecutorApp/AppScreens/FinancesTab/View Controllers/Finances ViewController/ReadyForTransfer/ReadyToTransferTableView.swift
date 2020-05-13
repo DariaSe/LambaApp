@@ -10,7 +10,7 @@ import UIKit
 
 class ReadyToTransferTableView: UIView {
     
-    var units: [ReadyToTransferUnit] = [] {
+    var units: [ReadyToTransferUnit?] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -47,8 +47,9 @@ extension ReadyToTransferTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ReadyToTransferTableViewCell.reuseIdentifier, for: indexPath) as! ReadyToTransferTableViewCell
-        let unit = units[indexPath.row]
-        cell.update(title: unit.title, sum: unit.sum)
+        if let unit = units[indexPath.row] {
+            cell.update(title: unit.title, sum: unit.sum)
+        }
         return cell
     }
 }

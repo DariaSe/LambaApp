@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class OrderDetailsViewController: UIViewController {
     
@@ -64,6 +65,10 @@ extension OrderDetailsViewController: VideoActionsDelegate {
     }
     
     func openVideo() {
-        guard let orderDetails = orderDetails else { return }
+        guard let orderDetails = orderDetails, let url = orderDetails.videoURL else { return }
+        let player = AVPlayer(url: url)
+        let vcPlayer = AVPlayerViewController()
+        vcPlayer.player = player
+        self.present(vcPlayer, animated: true, completion: nil)
     }
 }
