@@ -43,3 +43,7 @@ struct OrderSettings {
         return dict
     }
 }
+
+extension OrderSettings: Equatable {
+    
+}

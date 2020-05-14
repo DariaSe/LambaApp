@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FinancesApiServiceMain: FinancesApiService {
+class FinancesApiServiceMain {
     
     func getFinances(completion: @escaping (FinancesInfo?, String?) -> Void) {
         guard let request = URLRequest.signedGetRequest(url: AppURL.financesURL) else { return }
@@ -30,26 +30,11 @@ class FinancesApiServiceMain: FinancesApiService {
         task.resume()
     }
     
-    func getTransferDescription(completion: @escaping (_ info: String?, _ errorMessage: String?) -> Void) {
-        guard let request = URLRequest.signedGetRequest(url: AppURL.transferDescriptionURL) else { return }
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completion(nil, error.localizedDescription)
-                }
-                if let data = data,
-                    let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                    completion("Some transfer description", nil)
-                }
-                else {
-                    completion(nil, Strings.error)
-                }
-            }
-        }
-        task.resume()
-    }
     
     func transferMoney(completion: @escaping (Bool, String?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion(true, nil)
+        }
 //        guard let request = URLRequest.signedGetRequest(url: AppURL.transferURL) else { return }
 //        let task = URLSession.shared.dataTask(with: request) { data, response, error in
 //            DispatchQueue.main.async {

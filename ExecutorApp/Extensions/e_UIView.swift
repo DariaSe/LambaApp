@@ -98,6 +98,13 @@ extension UIView {
         self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
     }
     
+    func centerInSafeArea(in superview: UIView) {
+        superview.addSubview(self)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.centerXAnchor.constraint(equalTo: superview.layoutMarginsGuide.centerXAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: superview.layoutMarginsGuide.centerYAnchor).isActive = true
+    }
+    
     func setSize(width: CGFloat, height: CGFloat) {
         self.widthAnchor.constraint(equalToConstant: width).isActive = true
         self.heightAnchor.constraint(equalToConstant: height).isActive = true

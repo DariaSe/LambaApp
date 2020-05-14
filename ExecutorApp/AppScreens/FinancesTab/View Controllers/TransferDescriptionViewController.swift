@@ -33,7 +33,7 @@ class TransferDescriptionViewController: UIViewController {
         containerView.setWidth(equalTo: view, multiplier: 0.9)
         containerView.setHeight(equalTo: view, multiplier: 0.7)
         containerView.backgroundColor = UIColor.backgroundColor
-        containerView.layer.cornerRadius = 20
+        containerView.layer.cornerRadius = SizeConstants.textFieldCornerRadius
         
         stackView.pinToLayoutMargins(to: containerView)
         stackView.axis = .vertical

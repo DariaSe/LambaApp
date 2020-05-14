@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct SocialMedia {
+struct SocialMedia: Equatable {
     var id: Int
     var image: UIImage?
     var title: String

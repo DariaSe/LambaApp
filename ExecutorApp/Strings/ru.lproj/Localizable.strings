@@ -43,6 +43,7 @@
 "Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Не удалось соединиться с сервером.\n\nПроверьте соединение с интернетом\nи попробуйте ещё раз позже.";
 
 // Camera
+"Upload video" = "Загрузить видео";
 "Do you want to save this video to your library?" = "Сохранить видео в медиатеку?";
 "You might need it later." = "Оно может понадобиться Вам позже.";
 "Save" = "Сохранить";

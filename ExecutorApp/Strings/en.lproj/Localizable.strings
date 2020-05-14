@@ -42,6 +42,7 @@
 "Failed to connect with server.\n\nCheck your internet connection\nand try again later." = "Failed to connect with server.\n\nCheck your internet connection\nand try again later.";
 
 // Camera
+"Upload video" = "Upload video";
 "Do you want to save this video to your library?" = "Do you want to save this video to your library?";
 "You might need it later." = "You might need it later.";
 "Save" = "Save";

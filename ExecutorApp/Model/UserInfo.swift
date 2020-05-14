@@ -73,6 +73,22 @@ struct UserInfo {
         dictionary["socialLinks"] = self.socialMedia.map { $0.dict() }
         dictionary["hashTags"] = hashtags
         dictionary["orderOptions"] = self.orderSettings.map { $0.dict() }
+        
+        #if DEBUG
+        let data = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
+        printWithTime(String(data: data, encoding: .utf8)!)
+        #endif
+        
         return dictionary
+    }
+}
+
+extension UserInfo: Equatable {
+    static func ==(lhs: UserInfo, rhs: UserInfo) -> Bool {
+        return
+            lhs.hashtags == rhs.hashtags &&
+            lhs.socialMedia == rhs.socialMedia &&
+            lhs.orderSettings == rhs.orderSettings &&
+            lhs.isReceivingOrders == rhs.isReceivingOrders
     }
 }

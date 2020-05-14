@@ -72,7 +72,7 @@ class OrderStatusImageView: UIView {
         
         openVideoButton.setTitle(Strings.openVideo, for: .normal)
         openVideoButton.setHeight(equalTo: SizeConstants.buttonHeight)
-        openVideoButton.setWidth(equalTo: self, multiplier: 0.5)
+        openVideoButton.setWidth(equalTo: self, multiplier: 0.7)
         openVideoButton.addTarget(self, action: #selector(openVideoButtonPressed), for: .touchUpInside)
         
     }

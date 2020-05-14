@@ -48,6 +48,10 @@ class SettingsViewController: UIViewController, KeyboardHandler {
 
         hideKeyboardWhenTappedAround()
     }
+    
+    func scrollToTop() {
+        profileSettingsView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -66,7 +70,7 @@ class SettingsViewController: UIViewController, KeyboardHandler {
     }
     
     func setImage(_  image: UIImage) {
-        profileSettingsView.imageView.image = image
+        userInfo?.image = image
     }
 }
 
@@ -95,10 +99,15 @@ extension SettingsViewController: SettingsDelegate {
     func sendChanges() {
         let newUserInfo = UserInfo(
             image: nil,
-            socialMedia: profileSettingsView.socialMediaTableView.newSocialMedia,
-            hashtags: profileSettingsView.hashtagsView.newHashtags,
+            socialMedia: profileSettingsView.socialMediaTableView.socialMedia,
+            hashtags: profileSettingsView.hashtagsView.hashtags,
             orderSettings: orderSettingsTableView.orderSettings,
             isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "")
-        coordinator?.postUserInfo(newUserInfo)
+        if userInfo != newUserInfo {
+            let image = userInfo?.image
+            userInfo = newUserInfo
+            userInfo?.image = image
+            coordinator?.postUserInfo(newUserInfo)
+        }
     }
 }

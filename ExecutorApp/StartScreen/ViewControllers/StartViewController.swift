@@ -10,7 +10,7 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    let imageView = UIImageView()
+    let label = UILabel()
     
     let activityIndicator = UIActivityIndicatorView()
 
@@ -18,11 +18,9 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         
-        imageView.center(in: view)
-        imageView.setHeight(equalTo: 200)
-        imageView.setWidth(equalTo: 200)
-        imageView.image = UIImage(named: "Harold")
-        imageView.contentMode = .scaleAspectFill
+        label.centerInSafeArea(in: view)
+        label.text = "App logo here"
+        label.font = UIFont.systemFont(ofSize: 24)
         
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

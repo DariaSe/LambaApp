@@ -12,15 +12,18 @@ struct AppURL {
     static let baseURL = "https://lamba.media"
     
     static let xAuthToken = "x-auth-token"
+    static let locale = "locale"
     
     // API
     static let api = "/api"
     
     static let login = "/login"
     static let info = "/info"
+    static let logout = "/logout"
        
     static let loginURL = URL(string: baseURL + api + login)!
     static let checkInfoURL = URL(string: baseURL + api + info)!
+    static let logoutURL = URL(string: baseURL + api + logout)!
     
     // Executor controller
     static let executor = "/executor"

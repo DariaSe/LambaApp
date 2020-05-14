@@ -10,9 +10,10 @@ import UIKit
 
 class FinancesCoordinator: Coordinator {
     
-    let apiService: FinancesApiService = FinancesApiServiceMain()
+    let apiService = FinancesApiServiceMain()
     
     let financesVC = FinancesViewController()
+    let infoVC = TransferDescriptionViewController()
     
     func start() {
         financesVC.coordinator = self
@@ -32,6 +33,8 @@ class FinancesCoordinator: Coordinator {
             if let financesInfo = financesInfo {
                 self?.removeFullScreenError()
                 self?.financesVC.financesInfo = financesInfo
+                self?.infoVC.text = financesInfo.transferDescription
+                
             }
             else {
                 let emptyVC = ErrorViewController()
@@ -42,22 +45,8 @@ class FinancesCoordinator: Coordinator {
     }
     
     func showTransferDescription() {
-        let infoVC = TransferDescriptionViewController()
         infoVC.modalPresentationStyle = .overCurrentContext
         financesVC.present(infoVC, animated: true, completion: nil)
-        showLoadingIndicator()
-        apiService.getTransferDescription { [weak self] text, errorMessage in
-            self?.removeLoadingIndicator()
-            if let errorMessage = errorMessage {
-                infoVC.text = errorMessage
-            }
-            if let text = text {
-                infoVC.text = text
-            }
-            else {
-                infoVC.text = Strings.error
-            }
-        }
     }
     
     func transferMoney() {

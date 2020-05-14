@@ -20,7 +20,6 @@
 		DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716CB24541E75001791E3 /* ReadyToTransferTableView.swift */; };
 		DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */; };
 		DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */; };
-		DA6716D324545AAC001791E3 /* FinancesApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D224545AAC001791E3 /* FinancesApiServiceMock.swift */; };
 		DA6716D524545AC7001791E3 /* p_FinancesApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D424545AC7001791E3 /* p_FinancesApiService.swift */; };
 		DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D72454783A001791E3 /* SelfSizingTableView.swift */; };
 		DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */; };
@@ -69,6 +68,7 @@
 		DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96382246975B0002BBC3F /* Coordinator.swift */; };
 		DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963842469C00F002BBC3F /* e_FileManager.swift */; };
 		DAB96387246AE07D002BBC3F /* FinancesApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */; };
+		DAB96389246C65A7002BBC3F /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96388246C65A6002BBC3F /* Print.swift */; };
 		DABCA635244DD78200682368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA634244DD78200682368 /* AppDelegate.swift */; };
 		DABCA63E244DD78500682368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63D244DD78500682368 /* Assets.xcassets */; };
 		DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DABCA63F244DD78500682368 /* LaunchScreen.storyboard */; };
@@ -115,7 +115,6 @@
 		DA6716CB24541E75001791E3 /* ReadyToTransferTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToTransferTableView.swift; sourceTree = "<group>"; };
 		DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnexecutedOrdersSumView.swift; sourceTree = "<group>"; };
 		DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesCoordinator.swift; sourceTree = "<group>"; };
-		DA6716D224545AAC001791E3 /* FinancesApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesApiServiceMock.swift; sourceTree = "<group>"; };
 		DA6716D424545AC7001791E3 /* p_FinancesApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_FinancesApiService.swift; sourceTree = "<group>"; };
 		DA6716D72454783A001791E3 /* SelfSizingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingTableView.swift; sourceTree = "<group>"; };
 		DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +163,7 @@
 		DAB96382246975B0002BBC3F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DAB963842469C00F002BBC3F /* e_FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_FileManager.swift; sourceTree = "<group>"; };
 		DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesApiServiceMain.swift; sourceTree = "<group>"; };
+		DAB96388246C65A6002BBC3F /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 		DABCA631244DD78200682368 /* ExecutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DABCA634244DD78200682368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DABCA63D244DD78500682368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -322,28 +322,12 @@
 			path = "Finances ViewController";
 			sourceTree = "<group>";
 		};
-		DAB96354245C1C55002BBC3F /* Implementations */ = {
-			isa = PBXGroup;
-			children = (
-				DAB96356245C1C8E002BBC3F /* API */,
-			);
-			path = Implementations;
-			sourceTree = "<group>";
-		};
-		DAB96356245C1C8E002BBC3F /* API */ = {
+		DAB96357245C1CAC002BBC3F /* API Services */ = {
 			isa = PBXGroup;
 			children = (
 				DAB96358245C1D65002BBC3F /* OrdersApiServiceMain.swift */,
 				DAB9635A245C1D93002BBC3F /* OrderDetailsApiServiceMain.swift */,
 				DAB9637A2466EB83002BBC3F /* VideoService.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		DAB96357245C1CAC002BBC3F /* API Services */ = {
-			isa = PBXGroup;
-			children = (
-				DAB96354245C1C55002BBC3F /* Implementations */,
 			);
 			path = "API Services";
 			sourceTree = "<group>";
@@ -371,7 +355,7 @@
 				DABCA661244EF5EF00682368 /* Defaults.swift */,
 				DAB96343245B3825002BBC3F /* AppURL.swift */,
 				DABCA69D2450991D00682368 /* States */,
-				DABCA6862450278100682368 /* Reusable Views */,
+				DABCA6862450278100682368 /* Base classes */,
 				DABCA667244F088E00682368 /* StartScreen */,
 				DABCA66C244F1BB600682368 /* AppScreens */,
 				DABCA64D244DF15B00682368 /* Design */,
@@ -417,8 +401,7 @@
 		DABCA667244F088E00682368 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				DAB96347245B5852002BBC3F /* StartViewController.swift */,
-				DAB9633F2459FE2D002BBC3F /* InfoService.swift */,
+				DAB963682462DF45002BBC3F /* LoginCoordinator.swift */,
 				DABCA668244F08B100682368 /* ViewControllers */,
 				DABCA669244F08BA00682368 /* Services */,
 			);
@@ -428,8 +411,8 @@
 		DABCA668244F08B100682368 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DAB96347245B5852002BBC3F /* StartViewController.swift */,
 				DABCA648244DD84A00682368 /* LoginViewController.swift */,
-				DAB963682462DF45002BBC3F /* LoginCoordinator.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -437,6 +420,7 @@
 		DABCA669244F08BA00682368 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DAB9633F2459FE2D002BBC3F /* InfoService.swift */,
 				DABCA65B244DFE2500682368 /* LoginService.swift */,
 				DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */,
 			);
@@ -471,7 +455,6 @@
 			isa = PBXGroup;
 			children = (
 				DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */,
-				DA6716D224545AAC001791E3 /* FinancesApiServiceMock.swift */,
 				DAB96386246AE07D002BBC3F /* FinancesApiServiceMain.swift */,
 				DAB9632324583FFD002BBC3F /* View Controllers */,
 			);
@@ -500,6 +483,7 @@
 				DAB963052455BDB2002BBC3F /* SocialMedia.swift */,
 				DAB963072455C244002BBC3F /* OrderSettings.swift */,
 				DAB9631B24582A50002BBC3F /* PassInfo.swift */,
+				DAB96388246C65A6002BBC3F /* Print.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -536,7 +520,7 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		DABCA6862450278100682368 /* Reusable Views */ = {
+		DABCA6862450278100682368 /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
 				DABCA6872450279E00682368 /* AppButton.swift */,
@@ -544,7 +528,7 @@
 				DAB9632A24584CBD002BBC3F /* AppTextField.swift */,
 				DAB963802468891A002BBC3F /* NoPasteTextField.swift */,
 			);
-			path = "Reusable Views";
+			path = "Base classes";
 			sourceTree = "<group>";
 		};
 		DABCA695245092C800682368 /* Protocols */ = {
@@ -692,12 +676,12 @@
 				DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */,
 				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
 				DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */,
-				DA6716D324545AAC001791E3 /* FinancesApiServiceMock.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
 				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
 				DAB963752465B977002BBC3F /* e_URLSession.swift in Sources */,
+				DAB96389246C65A7002BBC3F /* Print.swift in Sources */,
 				DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */,
 				DABCA671244F1C4900682368 /* MainTabBarController.swift in Sources */,
 				DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */,

@@ -21,6 +21,10 @@ class FinancesViewController: UIViewController {
                 readyForTransferView.isHidden = true
                 bottomElementsStackView.isHidden = true
             }
+            else {
+                readyForTransferView.isHidden = false
+                bottomElementsStackView.isHidden = false
+            }
         }
     }
     

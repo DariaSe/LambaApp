@@ -40,11 +40,11 @@ struct Strings {
     static let cancel = "Cancel".localized
     static let doYouWantToReject = "Do you want to reject this order?".localized
     static let actionCanNotBeUndone = "This action can not be undone.".localized
-//    static let done = "Done".localized
     static let youRejected = "You've rejected the order".localized
     static let error = "Failed to connect with server.\n\nCheck your internet connection\nand try again later.".localized
     
     // Camera
+    static let uploadVideo = "Upload video".localized
     static let saveVideoToLibrary = "Do you want to save this video to your library?".localized
     static let youMightNeedItLater = "You might need it later.".localized
     static let save = "Save".localized

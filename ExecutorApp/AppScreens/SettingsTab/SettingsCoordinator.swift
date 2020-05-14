@@ -17,7 +17,7 @@ class SettingsCoordinator: Coordinator {
         }
     }
     
-    var apiService: SettingsApiService = SettingsApiServiceMain()
+    var apiService = SettingsApiServiceMain()
     
     let settingsVC = SettingsViewController()
     
@@ -99,11 +99,24 @@ class SettingsCoordinator: Coordinator {
     func logout() {
         let alert = UIAlertController(title: "", message: Strings.logoutWarning, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: Strings.yes, style: .destructive) { [weak self] (_) in
-            Defaults.token = nil
-            self?.userInfo = nil
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let mainCoordinator = appDelegate.mainCoordinator
-            mainCoordinator.start()
+            self?.apiService.logout { [weak self] (success, errorMessage) in
+                DispatchQueue.main.async {
+                    if let errorMessage = errorMessage {
+                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                    }
+                    if success {
+                        Defaults.token = nil
+                        self?.userInfo = nil
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        let mainCoordinator = appDelegate.mainCoordinator
+                        mainCoordinator.start()
+                        self?.settingsVC.scrollToTop()
+                    }
+                    else {
+                        self?.showSimpleAlert(title: Strings.error, handler: nil)
+                    }
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
         alert.addAction(cancelAction)

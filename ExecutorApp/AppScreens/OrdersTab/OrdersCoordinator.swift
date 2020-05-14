@@ -28,6 +28,7 @@ class OrdersCoordinator: Coordinator {
     
     
     func getOrders() {
+        ordersApiService.page = 1
         errorVC.reload = { [weak self] in self?.getOrders() }
         showLoadingIndicator()
         ordersApiService.getOrders { [weak self] orders, errorMessage in
@@ -90,6 +91,7 @@ class OrdersCoordinator: Coordinator {
     }
     
     func showUploadOptions(orderID: Int) {
+        showLoadingIndicator()
         let alert = UIAlertController(title: Strings.chooseVideoSource, message: Strings.durationWarning, preferredStyle: .alert)
         let cameraAction = UIAlertAction(title: Strings.camera, style: .default) { [weak self] (_) in
             self?.openCamera(orderID: orderID)
@@ -97,7 +99,9 @@ class OrdersCoordinator: Coordinator {
         let libraryAction = UIAlertAction(title: Strings.mediaLibrary, style: .default) { [weak self] (_) in
             self?.openLibrary(orderID: orderID)
         }
-        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel) { [weak self] (_) in
+            self?.removeLoadingIndicator()
+        }
         alert.addAction(cameraAction)
         alert.addAction(libraryAction)
         alert.addAction(cancelAction)
@@ -118,6 +122,7 @@ class OrdersCoordinator: Coordinator {
         orderDetailsVC.add(videoPicker)
         videoPicker.showVideoPicker()
         videoPicker.urlReceived = { [weak self] url in
+            printWithTime("url received")
             self?.uploadVideo(orderID: orderID, url: url)
         }
     }
@@ -126,6 +131,7 @@ class OrdersCoordinator: Coordinator {
         showLoadingIndicator()
         orderDetailsApiService.setOrderStatus(status: .uploading, orderID: orderID) { [weak self] (success, errorMessage) in
             DispatchQueue.main.async {
+                printWithTime(success)
                 if success {
                     self?.orderDetailsVC.statusView.status = .uploading
                     self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
@@ -138,9 +144,6 @@ class OrdersCoordinator: Coordinator {
         }
     }
     
-    func cancelUploading(orderID: Int) {
-        
-    }
     
     func rejectOrder(orderID: Int) {
         let alert = UIAlertController(title: Strings.doYouWantToReject, message: Strings.actionCanNotBeUndone, preferredStyle: .alert)
@@ -187,8 +190,12 @@ extension OrdersCoordinator: URLSessionDataDelegate {
                 self?.showSimpleAlert(title: error.localizedDescription, handler: nil)
             }
             else {
-                print("upload completed")
-                self?.orderDetailsVC.statusView.status = .done
+                if self?.navigationController.topViewController == self?.orderDetailsVC, let orderDetails = self?.orderDetailsVC.orderDetails {
+                    self?.getOrderDetails(orderID: orderDetails.id)
+                }
+                else {
+                    self?.getOrders()
+                }
             }
         }
     }

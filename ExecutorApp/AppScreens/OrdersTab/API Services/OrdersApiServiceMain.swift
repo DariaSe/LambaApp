@@ -49,7 +49,6 @@ class OrdersApiServiceMain {
                 if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let order = jsonDict["order"] as? [String : Any] {
-                    print(order)
                     let orderDetails = OrderDetails.initialize(from: order)
                     completion(orderDetails, nil)
                 }

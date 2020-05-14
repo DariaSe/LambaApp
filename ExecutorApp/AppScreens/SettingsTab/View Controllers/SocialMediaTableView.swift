@@ -12,14 +12,7 @@ class SocialMediaTableView: UIView {
     
     var socialMedia: [SocialMedia] = [] {
         didSet {
-            newSocialMedia = socialMedia
             tableView.reloadData()
-        }
-    }
-    
-    var newSocialMedia: [SocialMedia] = [] {
-        didSet {
-            delegate?.sendChanges()
         }
     }
     
@@ -45,7 +38,6 @@ class SocialMediaTableView: UIView {
         stackView.spacing = 20
         stackView.addArrangedSubview(tableView)
         stackView.addArrangedSubview(descriptionLabel)
-//        tableView.pinToEdges(to: self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.bounces = false
@@ -71,7 +63,8 @@ extension SocialMediaTableView: UITableViewDataSource {
         let socialMediaUnit = socialMedia[indexPath.row]
         cell.update(with: socialMediaUnit)
         cell.textChanged = { [weak self] text in
-            self?.newSocialMedia[indexPath.row].url = text
+            self?.socialMedia[indexPath.row].url = text
+            self?.delegate?.sendChanges()
         }
         return cell
     }

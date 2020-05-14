@@ -13,9 +13,10 @@ struct FinancesInfo {
     var sum: String
     var notReadySum: String
     var isAllowedToTransfer: Bool
+    var transferDescription: String
     
     static func sample() -> FinancesInfo {
-        return FinancesInfo(readyToTransferUnits: [ReadyToTransferUnit(title: "Video", sum: "2000"), ReadyToTransferUnit(title: "Promo", sum: "4000"), ReadyToTransferUnit(title: "Order", sum: "15000")], sum: "21000", notReadySum: "8000", isAllowedToTransfer: true)
+        return FinancesInfo(readyToTransferUnits: [ReadyToTransferUnit(title: "Video", sum: "2000"), ReadyToTransferUnit(title: "Promo", sum: "4000"), ReadyToTransferUnit(title: "Order", sum: "15000")], sum: "21000", notReadySum: "8000", isAllowedToTransfer: true, transferDescription: "Some description")
     }
     
     static func initialize(from dictionary: [String : Any]) -> FinancesInfo? {
@@ -24,7 +25,7 @@ struct FinancesInfo {
             let totalUnfinishedOrders = dictionary["totalUnfinishedOrders"] as? Int
             else { return nil }
         let units = financeReadyList.map { ReadyToTransferUnit.initialize(from: $0) }
-        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: totalToWithdraw.string, notReadySum: totalUnfinishedOrders.string, isAllowedToTransfer: !units.isEmpty)
+        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: totalToWithdraw.string, notReadySum: totalUnfinishedOrders.string, isAllowedToTransfer: !units.isEmpty, transferDescription: "Some description")
         return financesInfo
     }
 }

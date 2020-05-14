@@ -35,7 +35,7 @@ class OrderStatusButtonsView: UIView {
         stackView.addArrangedSubview(uploadButton)
         stackView.addArrangedSubview(rejectButton)
         
-        uploadButton.setTitle(Strings.openCamera, for: .normal)
+        uploadButton.setTitle(Strings.uploadVideo, for: .normal)
         uploadButton.setHeight(equalTo: SizeConstants.buttonHeight)
         uploadButton.setWidth(equalTo: self)
         uploadButton.addTarget(self, action: #selector(uploadButtonPressed), for: .touchUpInside)

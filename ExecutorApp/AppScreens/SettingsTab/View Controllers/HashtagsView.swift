@@ -16,13 +16,6 @@ class HashtagsView: UIView {
             if !hashtags.isEmpty {
                 placeholderLabel.isHidden = true
             }
-            newHashtags = hashtags
-        }
-    }
-    
-    var newHashtags: [String] = [] {
-        didSet {
-            delegate?.sendChanges()
         }
     }
     
@@ -89,10 +82,11 @@ extension HashtagsView: UITextViewDelegate {
         }
         guard let text = textView.text else { return }
         let tags = text.components(separatedBy: " ")
-        newHashtags = tags
-        if newHashtags.last == "" {
-            newHashtags.removeLast()
+        hashtags = tags
+        if hashtags.last == "" {
+            hashtags.removeLast()
         }
+        delegate?.sendChanges()
     }
     
     func textViewDidChange(_ textView: UITextView) {

@@ -24,7 +24,7 @@ struct OrderDetails {
     var videoURL: URL?
     
     static func sample() -> OrderDetails {
-        return OrderDetails(id: 1, type: .promo, orderTypeTitle: "Promo", cost: "2000", units: [OrderDetailUnit(title: "What to promote", data: "Dog toy"), OrderDetailUnit(title: "Link", data: "google.com"), OrderDetailUnit(title: "Text", data: "From executor"), OrderDetailUnit(title: "Options", data: "Post to Stories")], status: .active, videoURL: nil)
+        return OrderDetails(id: 1, type: .promo, orderTypeTitle: "Promo", cost: "2000", units: OrderDetailUnit.samples(), status: .active, videoURL: nil)
     }
     
     static func initialize(from dictionary: [String : Any]) -> OrderDetails? {
@@ -40,7 +40,7 @@ struct OrderDetails {
             let videoURLString = dictionary["videoUrl"] as? String
             else { return nil }
         let videoURL = URL(string: videoURLString)
-        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: String(cost), units: [], status: orderStatus, videoURL: videoURL)
+        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: String(cost), units: OrderDetailUnit.samples(), status: orderStatus, videoURL: videoURL)
         return orderDetails
     }
 }

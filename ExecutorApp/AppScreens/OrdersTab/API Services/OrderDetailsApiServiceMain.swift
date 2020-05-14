@@ -26,6 +26,9 @@ class OrderDetailsApiServiceMain {
         var request = URLRequest(url: AppURL.rejectOrderURL(orderID: orderID))
         request.httpMethod = "DELETE"
         request.setValue(token, forHTTPHeaderField: AppURL.xAuthToken)
+        if let locale = Locale.current.languageCode {
+            request.setValue(locale, forHTTPHeaderField: AppURL.locale)
+        }
         let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
         task.resume()
     }
@@ -73,6 +76,9 @@ class OrderDetailsApiServiceMain {
         var request = URLRequest(url: AppURL.uploadVideoURL(orderID: orderID))
         request.addValue(token, forHTTPHeaderField: AppURL.xAuthToken)
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        if let locale = Locale.current.languageCode {
+            request.setValue(locale, forHTTPHeaderField: AppURL.locale)
+        }
         
         request.httpMethod = "PUT"
         let dataURL = data.write(withName: "data.data")
