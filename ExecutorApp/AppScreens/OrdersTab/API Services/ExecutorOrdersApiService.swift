@@ -8,7 +8,7 @@
 
 import Foundation
 
-class OrdersApiServiceMain {
+class ExecutorOrdersApiService {
     
     var isMore: Bool = false
     

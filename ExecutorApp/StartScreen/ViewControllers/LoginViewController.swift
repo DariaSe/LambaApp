@@ -34,8 +34,8 @@ class LoginViewController: UIViewController, KeyboardHandler {
     
    
     func setupLayout() {
-        scrollView.pinToLayoutMargins(to: view)
-        scrollView.isScrollEnabled = true
+        scrollView.pinToEdges(to: view)
+        scrollView.contentSize = CGSize(width: view.bounds.width - view.layoutMargins.left - view.layoutMargins.right, height: view.bounds.height - view.layoutMargins.top - view.layoutMargins.bottom)
         
         stackView.center(in: scrollView)
         stackView.setWidth(equalTo: view, multiplier: 0.8)
@@ -92,7 +92,6 @@ class LoginViewController: UIViewController, KeyboardHandler {
         passwordTextField.setNormalBorder()
         passwordTextField.text = ""
     }
-
 }
 
 extension LoginViewController: UITextFieldDelegate {

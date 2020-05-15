@@ -10,7 +10,7 @@ import UIKit
 
 class LoginCoordinator {
     
-    weak var mainCoordinator: MainCoordinator?
+    weak var mainCoordinator: ExecutorMainCoordinator?
     
     let loginVC = LoginViewController()
     

@@ -12,7 +12,7 @@ class TransferDescriptionViewController: UIViewController {
     
     var text: String = "" {
         didSet {
-            infoLabel.text = text
+            infoTextView.text = text
         }
     }
     
@@ -20,7 +20,7 @@ class TransferDescriptionViewController: UIViewController {
     
     private let stackView = UIStackView()
     
-    private let infoLabel = UILabel()
+    private let infoTextView = UITextView()
     private let okButton = AppButton()
     
     override func viewDidLoad() {
@@ -37,10 +37,12 @@ class TransferDescriptionViewController: UIViewController {
         
         stackView.pinToLayoutMargins(to: containerView)
         stackView.axis = .vertical
-        stackView.addArrangedSubview(infoLabel)
+        stackView.spacing = 12
+        stackView.addArrangedSubview(infoTextView)
         stackView.addArrangedSubview(okButton)
         
-        infoLabel.numberOfLines = 0
+        infoTextView.isEditable = false
+        infoTextView.font = UIFont.systemFont(ofSize: 14)
         
         okButton.setHeight(equalTo: SizeConstants.buttonHeight)
         okButton.setTitle("OK", for: .normal)

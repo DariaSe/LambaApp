@@ -10,7 +10,7 @@ import UIKit
 
 class OrdersViewController: UIViewController {
     
-    weak var coordinator: OrdersCoordinator?
+    weak var coordinator: ExecutorOrdersCoordinator?
     
     var orders: [Order] = [] {
         didSet {

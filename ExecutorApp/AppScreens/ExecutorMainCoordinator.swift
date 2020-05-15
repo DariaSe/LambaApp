@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MainCoordinator {
+class ExecutorMainCoordinator {
     
-    let mainVC = MainTabBarController()
+    let mainVC = ExecutorTabBarController()
     let startVC = StartViewController()
 
     let loginCoordinator = LoginCoordinator()

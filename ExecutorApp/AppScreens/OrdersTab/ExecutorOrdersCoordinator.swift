@@ -8,10 +8,10 @@
 
 import UIKit
 
-class OrdersCoordinator: Coordinator {
+class ExecutorOrdersCoordinator: Coordinator {
     
-    var ordersApiService = OrdersApiServiceMain()
-    let orderDetailsApiService = OrderDetailsApiServiceMain()
+    var ordersApiService = ExecutorOrdersApiService()
+    let orderDetailsApiService = ExecutorOrderDetailsApiService()
     
     let ordersVC = OrdersViewController()
     let orderDetailsVC = OrderDetailsViewController()
@@ -122,7 +122,6 @@ class OrdersCoordinator: Coordinator {
         orderDetailsVC.add(videoPicker)
         videoPicker.showVideoPicker()
         videoPicker.urlReceived = { [weak self] url in
-            printWithTime("url received")
             self?.uploadVideo(orderID: orderID, url: url)
         }
     }
@@ -131,7 +130,6 @@ class OrdersCoordinator: Coordinator {
         showLoadingIndicator()
         orderDetailsApiService.setOrderStatus(status: .uploading, orderID: orderID) { [weak self] (success, errorMessage) in
             DispatchQueue.main.async {
-                printWithTime(success)
                 if success {
                     self?.orderDetailsVC.statusView.status = .uploading
                     self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
@@ -171,7 +169,7 @@ class OrdersCoordinator: Coordinator {
     }
 }
 
-extension OrdersCoordinator: UINavigationControllerDelegate {
+extension ExecutorOrdersCoordinator: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController == ordersVC {
@@ -181,7 +179,7 @@ extension OrdersCoordinator: UINavigationControllerDelegate {
     }
 }
 
-extension OrdersCoordinator: URLSessionDataDelegate {
+extension ExecutorOrdersCoordinator: URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         DispatchQueue.main.async { [weak self] in

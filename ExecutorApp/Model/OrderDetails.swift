@@ -34,13 +34,16 @@ struct OrderDetails {
             let orderTypeInt = orderTypeDict["id"] as? Int,
             let orderType = OrderType(rawValue: orderTypeInt),
             let orderTypeTitle = orderTypeDict["title"] as? String,
+            let fields = dictionary["fields"] as? [[String : Any]],
             let statusString = dictionary["status"] as? String,
             let orderStatus = Order.status(from: statusString),
             let cost = dictionary["costs"] as? Int,
             let videoURLString = dictionary["videoUrl"] as? String
             else { return nil }
         let videoURL = URL(string: videoURLString)
-        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: String(cost), units: OrderDetailUnit.samples(), status: orderStatus, videoURL: videoURL)
+        let units = fields.map{ OrderDetailUnit.initialize(from: $0) }.filter { $0 != nil } as! [OrderDetailUnit]
+        let sortedUnits = units.sorted(by: <)
+        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: String(cost), units: sortedUnits, status: orderStatus, videoURL: videoURL)
         return orderDetails
     }
 }

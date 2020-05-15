@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class ExecutorTabBarController: UITabBarController {
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: ExecutorMainCoordinator?
     
-    let ordersCoordinator = OrdersCoordinator()
+    let ordersCoordinator = ExecutorOrdersCoordinator()
     let financesCoordinator = FinancesCoordinator()
     let settingsCoordinator = SettingsCoordinator()
     
@@ -47,7 +47,7 @@ class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController: LoginDelegate {
+extension ExecutorTabBarController: LoginDelegate {
     func showOrders() {
         selectedIndex = 0
         getData()

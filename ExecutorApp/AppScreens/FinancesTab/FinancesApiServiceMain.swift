@@ -20,6 +20,7 @@ class FinancesApiServiceMain {
                 if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
                     let financesInfo = FinancesInfo.initialize(from: jsonDict)
+                    print(jsonDict)
                     completion(financesInfo, nil)
                 }
                 else {

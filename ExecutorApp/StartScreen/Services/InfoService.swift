@@ -27,7 +27,6 @@ class InfoService {
                     let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let user = jsonDict["user"] as? [String : Any] {
-                    print(user)
                     UserInfo.initialize(from: user) { (userInfo) in
                         self.userInfo = userInfo
                         completion(userInfo, nil)

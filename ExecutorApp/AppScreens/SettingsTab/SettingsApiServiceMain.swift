@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsApiServiceMain: SettingsApiService {
+class SettingsApiServiceMain {
     
     func postImage(_ image: UIImage, completion: @escaping (Bool, String?) -> Void) {
         guard let jpgData = image.jpegData(compressionQuality: 0.5) else { return }

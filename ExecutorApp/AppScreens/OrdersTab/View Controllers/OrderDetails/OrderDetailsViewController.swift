@@ -11,7 +11,7 @@ import AVKit
 
 class OrderDetailsViewController: UIViewController {
     
-    weak var coordinator: OrdersCoordinator?
+    weak var coordinator: ExecutorOrdersCoordinator?
     
     var orderDetails: OrderDetails? {
         didSet {

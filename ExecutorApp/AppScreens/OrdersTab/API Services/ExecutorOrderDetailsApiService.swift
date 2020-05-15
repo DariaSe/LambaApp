@@ -8,7 +8,7 @@
 
 import Foundation
 
-class OrderDetailsApiServiceMain {
+class ExecutorOrderDetailsApiService {
     
     var delegate: URLSessionDataDelegate?
     

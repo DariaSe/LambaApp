@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let mainCoordinator = MainCoordinator()
+    let mainCoordinator = ExecutorMainCoordinator()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

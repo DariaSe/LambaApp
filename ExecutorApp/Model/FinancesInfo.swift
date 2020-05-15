@@ -22,10 +22,11 @@ struct FinancesInfo {
     static func initialize(from dictionary: [String : Any]) -> FinancesInfo? {
         guard let financeReadyList = dictionary["financeReadyList"] as? [[String : Any]],
             let totalToWithdraw = dictionary["totalToWithdraw"] as? Int,
-            let totalUnfinishedOrders = dictionary["totalUnfinishedOrders"] as? Int
+            let totalUnfinishedOrders = dictionary["totalUnfinishedOrders"] as? Int,
+            let transferDescription = dictionary["transferDescription"] as? String
             else { return nil }
         let units = financeReadyList.map { ReadyToTransferUnit.initialize(from: $0) }
-        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: totalToWithdraw.string, notReadySum: totalUnfinishedOrders.string, isAllowedToTransfer: !units.isEmpty, transferDescription: "Some description")
+        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: totalToWithdraw.string, notReadySum: totalUnfinishedOrders.string, isAllowedToTransfer: !units.isEmpty, transferDescription: transferDescription)
         return financesInfo
     }
 }
