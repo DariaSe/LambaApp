@@ -72,7 +72,7 @@ class OrderSettingsTableViewCell: UITableViewCell {
         priceTextField.delegate = self
         priceTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
         priceTextField.setWidth(equalTo: 100)
-        priceTextField.keyboardType = .numbersAndPunctuation
+        priceTextField.keyboardType = .decimalPad
         priceTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
         optionSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
@@ -122,6 +122,13 @@ extension OrderSettingsTableViewCell: UITextFieldDelegate {
         if textField.text == "0" {
             textField.text = ""
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

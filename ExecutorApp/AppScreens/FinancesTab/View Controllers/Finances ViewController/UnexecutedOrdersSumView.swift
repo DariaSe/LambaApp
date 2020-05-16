@@ -31,6 +31,11 @@ class UnexecutedOrdersSumView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dropShadow(height: 2, shadowRadius: 3, opacity: 0.1, cornerRadius: 20)
+    }
+    
     private func initialSetup() {
         backgroundColor = UIColor.unexecutedBgColor
         layer.cornerRadius = 20

@@ -26,7 +26,10 @@ struct FinancesInfo {
             let transferDescription = dictionary["transferDescription"] as? String
             else { return nil }
         let units = financeReadyList.map { ReadyToTransferUnit.initialize(from: $0) }
-        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: totalToWithdraw.string, notReadySum: totalUnfinishedOrders.string, isAllowedToTransfer: !units.isEmpty, transferDescription: transferDescription)
+        let sign = InfoService.userInfo?.currencySign ?? ""
+        let sum = sign == "₽" ? totalToWithdraw.string + sign : sign + totalToWithdraw.string
+        let notReadySum = sign == "₽" ? totalUnfinishedOrders.string + sign : sign + totalUnfinishedOrders.string
+        let financesInfo = FinancesInfo(readyToTransferUnits: units, sum: sum, notReadySum: notReadySum, isAllowedToTransfer: !units.isEmpty, transferDescription: transferDescription)
         return financesInfo
     }
 }
@@ -39,7 +42,9 @@ struct ReadyToTransferUnit {
         guard let sum = dictionary["sum"] as? Int,
             let title = dictionary["title"] as? String
             else { return nil }
-        let unit = ReadyToTransferUnit(title: title, sum: sum.string)
+        let sign = InfoService.userInfo?.currencySign ?? ""
+        let sumString = sign == "₽" ? sum.string + sign : sign + sum.string
+        let unit = ReadyToTransferUnit(title: title, sum: sumString)
         return unit
     }
 }

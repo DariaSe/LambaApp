@@ -24,7 +24,8 @@ class SettingsCoordinator: Coordinator {
     func start() {
         settingsVC.coordinator = self
         navigationController.viewControllers = [settingsVC]
-        settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: nil, tag: 2)
+        let settingsImage = UIImage(named: "Settings")
+        settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: settingsImage, tag: 2)
         settingsVC.title = Strings.settings
         errorVC.reload = { [weak self] in self?.getUserInfo() }
     }

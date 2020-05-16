@@ -40,10 +40,12 @@ struct OrderDetails {
             let cost = dictionary["costs"] as? Int,
             let videoURLString = dictionary["videoUrl"] as? String
             else { return nil }
+        let sign = InfoService.userInfo?.currencySign ?? ""
+        let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
         let videoURL = URL(string: videoURLString)
         let units = fields.map{ OrderDetailUnit.initialize(from: $0) }.filter { $0 != nil } as! [OrderDetailUnit]
         let sortedUnits = units.sorted(by: <)
-        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: String(cost), units: sortedUnits, status: orderStatus, videoURL: videoURL)
+        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: costString, units: sortedUnits, status: orderStatus, videoURL: videoURL)
         return orderDetails
     }
 }

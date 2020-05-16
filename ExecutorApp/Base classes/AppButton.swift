@@ -33,6 +33,11 @@ class AppButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dropShadow(height: 2, shadowRadius: 3, opacity: 0.1, cornerRadius: 12)
+    }
+    
     
     func setup() {
         layer.cornerRadius = SizeConstants.buttonCornerRadius
@@ -44,7 +49,7 @@ class AppButton: UIButton {
         }
         else {
             setTitleColor(color, for: .normal)
-            backgroundColor = .clear
+            backgroundColor = UIColor.backgroundColor
         }
     }
 }

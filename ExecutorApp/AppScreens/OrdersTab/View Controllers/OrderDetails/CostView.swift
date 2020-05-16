@@ -27,10 +27,15 @@ class CostView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dropShadow(height: 2, shadowRadius: 3, opacity: 0.1, cornerRadius: 15)
+    }
+    
     
     private func initialSetup() {
         label.center(in: self)
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont.boldSystemFont(ofSize: 28)
         label.textColor = UIColor.white
         self.layer.cornerRadius = 15
         self.backgroundColor = UIColor.tintColor

@@ -12,6 +12,13 @@ class OrdersViewController: UIViewController {
     
     weak var coordinator: ExecutorOrdersCoordinator?
     
+    var userImage: UIImage? {
+        didSet {
+            userButton.userImage = userImage
+            navigationItem.rightBarButtonItem = userButton
+        }
+    }
+    
     var orders: [Order] = [] {
         didSet {
             refreshControl.endRefreshing()
@@ -22,10 +29,13 @@ class OrdersViewController: UIViewController {
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
+    let userButton = UserButton()
+    var delegate: UserButtonDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
-        tableView.pinToEdges(to: view)
+        tableView.pinToEdges(to: view, constant: 4)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -35,8 +45,10 @@ class OrdersViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
+        userButton.userTapped = { [weak self] in self?.delegate?.showSettings() }
     }
     
+   
     @objc func refresh() {
         refreshControl.beginRefreshing()
         coordinator?.refresh()
@@ -69,6 +81,10 @@ extension OrdersViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 82
     }
+}
+
+protocol UserButtonDelegate {
+    func showSettings()
 }

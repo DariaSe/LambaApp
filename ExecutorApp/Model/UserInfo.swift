@@ -60,7 +60,7 @@ struct UserInfo {
                 }
             }
             else {
-                let userInfo = UserInfo(image: nil, socialMedia: socialMediaArr, hashtags: hashTags, orderSettings: orderSettings, isReceivingOrders: true, currencySign: currencySign)
+                let userInfo = UserInfo(image: UIImage(named: "Portrait_Placeholder"), socialMedia: socialMediaArr, hashtags: hashTags, orderSettings: orderSettings, isReceivingOrders: true, currencySign: currencySign)
                 completion(userInfo)
             }
         }

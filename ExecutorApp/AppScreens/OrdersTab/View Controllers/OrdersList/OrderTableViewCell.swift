@@ -15,6 +15,7 @@ class OrderTableViewCell: UITableViewCell {
     private let stackView = UIStackView()
     
     private let containerView = UIView()
+    private let shadowView = UIView()
     
     private let moneySignImageView = UIImageView()
     
@@ -38,21 +39,27 @@ class OrderTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shadowView.dropShadow(height: 0, shadowRadius: 3, opacity: 0.1, cornerRadius: 15)
+    }
+    
     private func setupLayout() {
-        containerView.pinToEdges(to: contentView, constant: 3)
+        shadowView.pinToEdges(to: contentView, constant: 4)
+        containerView.pinToEdges(to: contentView, constant: 4)
         containerView.clipsToBounds = true
         
         statusIndicatorView.constrainToEdges(of: containerView, leading: nil, trailing: 0, top: 0, bottom: 0)
         statusIndicatorView.setWidth(equalTo: 15)
         
-        stackView.constrainToEdges(of: containerView, leading: 10, trailing: 22, top: 0, bottom: 0)
+        stackView.constrainToEdges(of: containerView, leading: 18, trailing: 22, top: 0, bottom: 0)
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 14
         stackView.addArrangedSubview(moneySignImageView)
         stackView.addArrangedSubview(sumDescrStackView)
         stackView.addArrangedSubview(statusDateStackView)
-        moneySignImageView.setSize(width: 36, height: 36)
+        moneySignImageView.setSize(width: 25, height: 25)
         
         sumDescrStackView.axis = .vertical
         sumDescrStackView.spacing = 4
@@ -68,6 +75,7 @@ class OrderTableViewCell: UITableViewCell {
     }
     
     private func initialSetup() {
+        containerView.backgroundColor = UIColor.backgroundColor
         containerView.layer.cornerRadius = 15
         containerView.layer.borderWidth = 1.0
         containerView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
@@ -75,10 +83,10 @@ class OrderTableViewCell: UITableViewCell {
         moneySignImageView.image = UIImage(named: "DollarSign")
         
         costLabel.textAlignment = .left
-        costLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        costLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         
         descriptionLabel.textAlignment = .left
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         
         statusLabel.font = UIFont.systemFont(ofSize: 14)
         statusLabel.textColor = UIColor.gray

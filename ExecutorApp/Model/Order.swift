@@ -46,7 +46,9 @@ struct Order {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy, HH:mm"
         let dateString = dateFormatter.string(from: date)
-        let order = Order(id: id, cost: String(cost), orderTypeTitle: orderTypeTitle, date: dateString, status: orderStatus)
+        let sign = InfoService.userInfo?.currencySign ?? ""
+        let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
+        let order = Order(id: id, cost: costString, orderTypeTitle: orderTypeTitle, date: dateString, status: orderStatus)
         return order
     }
     

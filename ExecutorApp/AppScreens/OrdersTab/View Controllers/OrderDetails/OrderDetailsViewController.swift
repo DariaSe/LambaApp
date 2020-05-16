@@ -17,7 +17,7 @@ class OrderDetailsViewController: UIViewController {
         didSet {
             guard let orderDetails = orderDetails else { return }
             title = orderDetails.orderTypeTitle
-            costView.cost = orderDetails.cost + " " + (InfoService.userInfo?.currencySign ?? "")
+            costView.cost = orderDetails.cost
             orderInfoView.orderDetailUnits = orderDetails.units
             statusView.status = orderDetails.status
             statusView.delegate = self
@@ -47,7 +47,7 @@ class OrderDetailsViewController: UIViewController {
         stackView.addArrangedSubview(orderInfoView)
         stackView.addArrangedSubview(statusView)
         costView.setHeight(equalTo: SizeConstants.sumViewHeight)
-        costView.setWidth(equalTo: 100)
+        costView.setWidth(equalTo: view, multiplier: 0.7)
         orderInfoView.setWidth(equalTo: stackView)
         statusView.setWidth(equalTo: stackView)
     }

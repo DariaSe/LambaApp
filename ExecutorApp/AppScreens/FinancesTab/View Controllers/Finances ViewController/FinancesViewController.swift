@@ -54,6 +54,7 @@ class FinancesViewController: UIViewController {
         stackView.addArrangedSubview(scrollView)
         stackView.addArrangedSubview(bottomElementsStackView)
         scrollView.setWidth(equalTo: stackView)
+        scrollView.clipsToBounds = false
         
         moneyViewsStackView.pinToEdges(to: scrollView)
         moneyViewsStackView.setWidth(equalTo: scrollView)

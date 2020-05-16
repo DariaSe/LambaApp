@@ -22,7 +22,8 @@ class ExecutorOrdersCoordinator: Coordinator {
         ordersVC.coordinator = self
         errorVC.reload = { [weak self] in self?.getOrders() }
         navigationController.viewControllers = [ordersVC]
-        ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: nil, tag: 0)
+        let starImage = UIImage(named: "Star")
+        ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: starImage, tag: 0)
         ordersVC.title = Strings.orders
     }
     

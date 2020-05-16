@@ -30,6 +30,8 @@ class ExecutorTabBarController: UITabBarController {
             financesCoordinator.navigationController,
             settingsCoordinator.navigationController]
         
+        ordersCoordinator.ordersVC.delegate = self
+        
     }
     
     func getData() {
@@ -51,5 +53,11 @@ extension ExecutorTabBarController: LoginDelegate {
     func showOrders() {
         selectedIndex = 0
         getData()
+    }
+}
+
+extension ExecutorTabBarController: UserButtonDelegate {
+    func showSettings() {
+        selectedIndex = 2
     }
 }

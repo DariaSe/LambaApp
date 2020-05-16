@@ -29,8 +29,7 @@ class SumView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15).cgPath
-        layer.shadowRadius = 6
+        dropShadow(height: 2, shadowRadius: 1, opacity: 0.1, cornerRadius: 15)
     }
     
     private func initialSetup() {
@@ -38,6 +37,6 @@ class SumView: UIView {
         backgroundColor = UIColor.backgroundColor
         label.pinToLayoutMargins(to: self)
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
     }
 }

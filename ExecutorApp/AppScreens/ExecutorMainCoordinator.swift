@@ -43,6 +43,7 @@ class ExecutorMainCoordinator {
                     self?.loginCoordinator.loginVC.present(errorVC, animated: true)
                 }
                 if let userInfo = userInfo {
+                    self?.mainVC.ordersCoordinator.ordersVC.userImage = userInfo.image
                     self?.mainVC.settingsCoordinator.userInfo = userInfo
                     self?.loginCoordinator.loginVC.dismiss(animated: true, completion: nil)
                     self?.mainVC.getData()

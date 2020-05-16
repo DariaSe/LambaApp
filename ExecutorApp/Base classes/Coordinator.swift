@@ -10,7 +10,7 @@ import UIKit
 
 class Coordinator: NSObject {
     
-    var navigationController = UINavigationController()
+    var navigationController = AppNavigationController()
     
     let loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
     let clearLoadingVC = LoadingViewController(backgroundColor: .clear)

@@ -158,3 +158,25 @@ extension UIView {
         self.layer.mask = maskLayer
     }
 }
+
+extension UIView {
+    func dropShadow(height: CGFloat, shadowRadius: CGFloat, opacity: Float, cornerRadius: CGFloat) {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = CGSize(width: 0, height: height)
+        layer.shadowRadius = shadowRadius
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: cornerRadius).cgPath
+    }
+    
+    func animate(scale: CGFloat) {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, animations: {
+                self.transform = CGAffineTransform.identity
+            }, completion: nil)
+        }
+    }
+}
+
+

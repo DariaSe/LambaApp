@@ -9,13 +9,5 @@
 import UIKit
 
 extension UIButton {
-    func animate(scale: CGFloat) {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.transform = CGAffineTransform(scaleX: scale, y: scale)
-        }) { (_) in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.transform = CGAffineTransform.identity
-            }, completion: nil)
-        }
-    }
+    
 }

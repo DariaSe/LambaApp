@@ -35,9 +35,9 @@ struct AppURL {
     static let videoUpload = "/upload"
     static let orderReject = "/order-reject"
     
-    #warning("replace with actual api")
     static let finances = "/finances"
     static let transferDescription = "/finances-description"
+     #warning("replace with actual api")
     static let transfer = "/transfer"
     
     static let image = "/image"

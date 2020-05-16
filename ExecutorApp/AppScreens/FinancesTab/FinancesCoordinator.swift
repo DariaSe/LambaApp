@@ -19,7 +19,8 @@ class FinancesCoordinator: Coordinator {
         financesVC.coordinator = self
         errorVC.reload = { [weak self] in self?.getFinancesInfo() }
         navigationController.viewControllers = [financesVC]
-        financesVC.tabBarItem = UITabBarItem(title: Strings.finances, image: nil, tag: 1)
+        let dollarImage = UIImage(named: "DSign")
+        financesVC.tabBarItem = UITabBarItem(title: Strings.finances, image: dollarImage, tag: 1)
         financesVC.title = Strings.finances
     }
 
