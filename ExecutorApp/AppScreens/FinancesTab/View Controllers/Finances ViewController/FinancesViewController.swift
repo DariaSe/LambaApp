@@ -74,6 +74,7 @@ class FinancesViewController: UIViewController {
         
         descrLabel.textAlignment = .center
         descrLabel.text = Strings.transferAllowed
+        descrLabel.font = UIFont.systemFont(ofSize: 16)
         
         descrButton.setWidth(equalTo: 30)
         descrButton.setHeight(equalTo: 30)

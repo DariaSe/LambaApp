@@ -117,6 +117,9 @@ class OrderTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        let view = UIView()
+        view.backgroundColor = UIColor.backgroundColor
+        selectedBackgroundView = view
 
         // Configure the view for the selected state
     }

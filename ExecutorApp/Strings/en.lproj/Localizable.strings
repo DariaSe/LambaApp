@@ -52,6 +52,7 @@
 "Video is uploading.\nPlease wait" = "Video is uploading.\nPlease wait";
 "Cancel uploading" = "Cancel uploading";
 "Couldn't upload video. Try again later" = "Couldn't upload video. Try again later";
+"Failed to access video." = "Failed to access video.";
 
 // Finances
 "Ready for transfer" = "Ready for transfer";

@@ -31,7 +31,7 @@ class SocialMediaTableViewCell: UITableViewCell {
     }
     
     private func initialSetup() {
-        stackView.constrainToEdges(of: contentView, leading: 10, trailing: 0, top: 10, bottom: 10)
+        stackView.constrainToEdges(of: contentView, leading: 0, trailing: 0, top: 10, bottom: 10)
         stackView.axis = .horizontal
         stackView.spacing = 20
         stackView.alignment = .center
@@ -53,6 +53,7 @@ class SocialMediaTableViewCell: UITableViewCell {
         
         textField.delegate = self
         textField.setHeight(equalTo: SizeConstants.textFieldHeight)
+        textField.font = UIFont.systemFont(ofSize: 20)
         textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
     }
     

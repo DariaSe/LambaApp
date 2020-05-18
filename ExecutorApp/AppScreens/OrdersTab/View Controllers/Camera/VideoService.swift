@@ -10,6 +10,28 @@ import UIKit
 import AVFoundation
 
 class VideoService {
+    
+    /*
+     This function will copy a video file to a temporary location so that it remains accessible for further handling such as an upload.
+     - Parameter url: This is the url of the media item.
+     - Returns: Return a new URL for the local copy of the vidoe file.
+     */
+    static func createTemporaryURLforVideoFile(url: URL) -> URL? {
+        // Create the temporary directory.
+        let temporaryDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        // Create a temporary file for us to copy the video to.
+        let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(url.lastPathComponent)
+        // Attempt the copy.
+        do {
+            try FileManager().copyItem(at: url.absoluteURL, to: temporaryFileURL)
+        } catch {
+            print("There was an error copying the video file to the temporary location.")
+            return nil
+        }
+        
+        return temporaryFileURL
+    }
+    
     static func encodeVideo(videoUrl: URL, outputUrl: URL? = nil, completion: @escaping (URL?) -> Void ) {
         
         var finalOutputUrl: URL? = outputUrl
@@ -26,6 +48,7 @@ class VideoService {
             completion(finalOutputUrl)
             return
         }
+        
         
         let asset = AVURLAsset(url: videoUrl)
         guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality) else { completion(nil); return }
@@ -48,7 +71,7 @@ class VideoService {
             }
         }
     }
-
+    
     static func generateThumbnail(path: URL) -> String? {
         do {
             let asset = AVURLAsset(url: path, options: nil)

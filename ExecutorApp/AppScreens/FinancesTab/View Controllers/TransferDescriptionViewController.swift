@@ -43,7 +43,7 @@ class TransferDescriptionViewController: UIViewController {
         stackView.addArrangedSubview(okButton)
         
         infoTextView.isEditable = false
-        infoTextView.font = UIFont.systemFont(ofSize: 14)
+        infoTextView.font = UIFont.systemFont(ofSize: 16)
         
         okButton.setHeight(equalTo: SizeConstants.buttonHeight)
         okButton.setTitle("OK", for: .normal)

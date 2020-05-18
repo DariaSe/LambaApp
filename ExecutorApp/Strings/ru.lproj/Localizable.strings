@@ -53,6 +53,7 @@
 "Video is uploading.\nPlease wait" = "Видео загружается.\nПожалуйста, подождите";
 "Cancel uploading" = "Отменить загрузку";
 "Couldn't upload video. Try again later" = "Не удалось загрузить видео. Повторите попытку позже.";
+"Failed to access video." = "Не удалось получить доступ к видео.";
 
 // Finances
 "Ready for transfer" = "Готово к выводу";

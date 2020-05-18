@@ -106,10 +106,10 @@ extension OrderSettingsTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == orderSettings.count {
-            return 50
+            return 58
         }
         else {
-            return 100
+            return 108
         }
     }
 }

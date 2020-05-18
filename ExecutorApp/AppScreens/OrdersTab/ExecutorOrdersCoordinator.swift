@@ -113,8 +113,18 @@ class ExecutorOrdersCoordinator: Coordinator {
         let cameraVC = CameraViewController()
         orderDetailsVC.add(cameraVC)
         cameraVC.showImagePicker()
-        cameraVC.urlReceived = { [weak self] url in
-            self?.uploadVideo(orderID: orderID, url: url)
+        cameraVC.urlReceived = { [weak self] url, errorMessage in
+            DispatchQueue.main.async {
+                if let url = url {
+                self?.uploadVideo(orderID: orderID, url: url)
+                }
+                else {
+                    self?.removeLoadingIndicator()
+                    if let errorMessage = errorMessage {
+                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                    }
+                }
+            }
         }
     }
     
@@ -122,8 +132,18 @@ class ExecutorOrdersCoordinator: Coordinator {
         let videoPicker = VideoPickerViewController()
         orderDetailsVC.add(videoPicker)
         videoPicker.showVideoPicker()
-        videoPicker.urlReceived = { [weak self] url in
-            self?.uploadVideo(orderID: orderID, url: url)
+        videoPicker.urlReceived = { [weak self] url, errorMessage in
+            DispatchQueue.main.async {
+                if let url = url {
+                    self?.uploadVideo(orderID: orderID, url: url)
+                }
+                else {
+                    self?.removeLoadingIndicator()
+                    if let errorMessage = errorMessage {
+                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                    }
+                }
+            }
         }
     }
     

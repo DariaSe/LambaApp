@@ -10,7 +10,11 @@ import Foundation
 
 class InfoService {
     
-    static var userInfo: UserInfo?
+    static var userInfo: UserInfo? {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name("UserInfo"), object: nil)
+        }
+    }
     
     static func getUserInfo(completion: @escaping (UserInfo?, String?) -> Void) {
         guard let token = Defaults.token else { return }

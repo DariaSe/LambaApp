@@ -12,7 +12,7 @@ import AVKit
 
 class VideoPickerViewController: UIViewController {
     
-    var urlReceived: ((URL) -> Void)?
+    var urlReceived: ((URL?, String?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,21 +40,30 @@ class VideoPickerViewController: UIViewController {
 extension VideoPickerViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
+        guard
+            let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
             mediaType == (kUTTypeMovie as String),
-            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL
-            else { self.remove(); return }
-        VideoService.encodeVideo(videoUrl: url) { (comprURL) in
+            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
+            let newURL = VideoService.createTemporaryURLforVideoFile(url: url) else {
+                urlReceived?(nil, Strings.noAccessError)
+                self.remove()
+                return }
+        VideoService.encodeVideo(videoUrl: newURL) { (comprURL) in
             DispatchQueue.main.async {
-                guard let comprURL = comprURL else { self.urlReceived?(url); return }
-                self.urlReceived?(comprURL)
+                guard let comprURL = comprURL else {
+                    self.urlReceived?(nil, Strings.noAccessError)
+                    self.remove()
+                    return
+                }
+                self.urlReceived?(comprURL, nil)
+                self.dismiss(animated: true)
+                self.remove()
             }
         }
-        dismiss(animated: true)
-        self.remove()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        urlReceived?(nil, nil)
         self.remove()
     }
 }

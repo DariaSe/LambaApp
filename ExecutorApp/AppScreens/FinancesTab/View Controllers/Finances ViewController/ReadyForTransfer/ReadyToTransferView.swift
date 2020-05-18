@@ -63,14 +63,14 @@ class ReadyToTransferView: UIView {
         sumStackView.addArrangedSubview(sumView)
         
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.text = Strings.readyForTransfer
         
         separatorView.setHeight(equalTo: 1.0)
         separatorView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
         
         sumTitleLabel.textAlignment = .left
-        sumTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        sumTitleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         sumTitleLabel.text = Strings.total
        
         sumView.setHeight(equalTo: SizeConstants.sumViewHeight)

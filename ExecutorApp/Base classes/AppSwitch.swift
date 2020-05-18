@@ -21,6 +21,5 @@ class AppSwitch: UISwitch {
     
     private func initialSetup() {
         onTintColor = UIColor.greenIndicatorColor
-        thumbTintColor = UIColor.textControlsBackgroundColor
     }
 }

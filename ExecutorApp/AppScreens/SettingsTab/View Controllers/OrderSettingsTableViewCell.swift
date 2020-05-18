@@ -40,7 +40,8 @@ class OrderSettingsTableViewCell: UITableViewCell {
     }
     
     private func initialSetup() {
-        stackView.pinToEdges(to: contentView, constant: 10)
+        stackView.constrainToEdges(of: contentView, leading: 26, trailing: 26, top: 10, bottom: 10)
+//        stackView.pinToEdges(to: contentView, constant: 10)
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.addArrangedSubview(labelSwitchStackView)
@@ -71,7 +72,7 @@ class OrderSettingsTableViewCell: UITableViewCell {
         
         priceTextField.delegate = self
         priceTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
-        priceTextField.setWidth(equalTo: 100)
+        priceTextField.setWidth(equalTo: 130)
         priceTextField.keyboardType = .decimalPad
         priceTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         

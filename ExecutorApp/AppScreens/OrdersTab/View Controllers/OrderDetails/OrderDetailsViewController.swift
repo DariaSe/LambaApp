@@ -31,7 +31,7 @@ class OrderDetailsViewController: UIViewController {
     let costView = CostView()
     let orderInfoView = OrderDetailsTableView()
     let statusView = OrderStatusView()
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
@@ -46,6 +46,7 @@ class OrderDetailsViewController: UIViewController {
         stackView.addArrangedSubview(costView)
         stackView.addArrangedSubview(orderInfoView)
         stackView.addArrangedSubview(statusView)
+
         costView.setHeight(equalTo: SizeConstants.sumViewHeight)
         costView.setWidth(equalTo: view, multiplier: 0.7)
         orderInfoView.setWidth(equalTo: stackView)

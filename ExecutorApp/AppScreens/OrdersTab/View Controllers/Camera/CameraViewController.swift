@@ -12,7 +12,7 @@ import MobileCoreServices
 
 class CameraViewController: UIViewController {
     
-    var urlReceived: ((URL) -> Void)?
+    var urlReceived: ((URL?, String?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,16 +62,19 @@ extension CameraViewController: UIImagePickerControllerDelegate {
             mediaType == (kUTTypeMovie as String),
             let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
             UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path)
-            else { return }
+            else {
+                self.urlReceived?(nil, Strings.noAccessError)
+                return }
         VideoService.encodeVideo(videoUrl: url) { [weak self] (comprURL) in
-            guard let comprURL = comprURL else { self?.urlReceived?(url); return }
-            self?.urlReceived?(comprURL)
+            guard let comprURL = comprURL else { self?.urlReceived?(url, Strings.noAccessError); return }
+            self?.urlReceived?(comprURL, nil)
         }
         showSaveToLibraryAlert(videoURL: url)
         
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        urlReceived?(nil, nil)
         self.remove()
     }
 }

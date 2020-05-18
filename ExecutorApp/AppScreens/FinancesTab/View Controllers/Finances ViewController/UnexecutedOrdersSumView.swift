@@ -47,7 +47,7 @@ class UnexecutedOrdersSumView: UIView {
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(sumView)
         
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .left
         label.text = Strings.unexecutedOrders
         

@@ -34,8 +34,9 @@ class ReadyToTransferTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(sumLabel)
         
         titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
         sumLabel.textAlignment = .right
-        sumLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        sumLabel.font = UIFont.boldSystemFont(ofSize: 18)
     }
     
     func update(title: String, sum: String) {

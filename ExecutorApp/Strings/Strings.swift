@@ -54,6 +54,7 @@ struct Strings {
     static let videoUploading = "Video is uploading.\nPlease wait".localized
     static let cancelUploading = "Cancel uploading".localized
     static let uploadError = "Couldn't upload video. Try again later".localized
+    static let noAccessError = "Failed to access video.".localized
     
     // Finances
     static let readyForTransfer = "Ready for transfer".localized
