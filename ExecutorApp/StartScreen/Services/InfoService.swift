@@ -6,17 +6,25 @@
 //  Copyright © 2020 dariaS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class InfoService {
     
-    static var userInfo: UserInfo? {
+    static let shared = InfoService()
+    
+    private init() {
+        userImage = UIImage(named: "Portrait_Placeholder")
+    }
+    
+    var userInfo: UserInfo?
+    
+    var userImage: UIImage? {
         didSet {
-            NotificationCenter.default.post(name: NSNotification.Name("UserInfo"), object: nil)
+            NotificationService.postUserImageNotification()
         }
     }
     
-    static func getUserInfo(completion: @escaping (UserInfo?, String?) -> Void) {
+    func getUserInfo(completion: @escaping (UserInfo?, String?) -> Void) {
         guard let token = Defaults.token else { return }
         var request = URLRequest(url: AppURL.checkInfoURL)
         request.httpMethod = "GET"
@@ -31,6 +39,12 @@ class InfoService {
                     let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let user = jsonDict["user"] as? [String : Any] {
+                    if let imageURLString = user["image"] as? String,
+                        let imageURL = URL(string: imageURLString) {
+                        UIImage.getImage(from: imageURL) { (image) in
+                            self.userImage = image ?? UIImage(named: "Portrait_Placeholder")
+                        }
+                    }
                     UserInfo.initialize(from: user) { (userInfo) in
                         self.userInfo = userInfo
                         completion(userInfo, nil)

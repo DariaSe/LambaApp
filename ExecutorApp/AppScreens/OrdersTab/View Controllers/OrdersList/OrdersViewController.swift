@@ -15,7 +15,7 @@ class OrdersViewController: UIViewController {
     var userImage: UIImage? {
         didSet {
             userButton.userImage = userImage
-            navigationItem.rightBarButtonItem = userButton
+            
         }
     }
     
@@ -35,7 +35,8 @@ class OrdersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
-        tableView.pinToEdges(to: view, constant: 4)
+        navigationItem.rightBarButtonItem = userButton
+        tableView.constrainToEdges(of: view, leading: 4, trailing: 4, top: 4, bottom: 15)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none

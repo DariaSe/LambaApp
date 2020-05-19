@@ -39,7 +39,7 @@ class OrderDetailsViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        stackView.pinToLayoutMargins(to: view, constant: 10)
+        stackView.constrainToLayoutMargins(of: view, leading: 10, trailing: 10, top: 10, bottom: 30)
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.alignment = .center

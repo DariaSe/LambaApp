@@ -39,10 +39,10 @@ class SettingsViewController: UIViewController, KeyboardHandler {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
         
-        profileSettingsView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 10)
+        profileSettingsView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 25)
         profileSettingsView.delegate = self
       
-        orderSettingsTableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 10)
+        orderSettingsTableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: 50, bottom: 15)
         orderSettingsTableView.isHidden = true
         orderSettingsTableView.delegate = self
 
@@ -69,8 +69,8 @@ class SettingsViewController: UIViewController, KeyboardHandler {
         }
     }
     
-    func setImage(_  image: UIImage) {
-        userInfo?.image = image
+    func setImage(_  image: UIImage?) {
+        profileSettingsView.imageView.image = image
     }
 }
 
@@ -98,15 +98,12 @@ extension SettingsViewController: SettingsDelegate {
     
     func sendChanges() {
         let newUserInfo = UserInfo(
-            image: nil,
             socialMedia: profileSettingsView.socialMediaTableView.socialMedia,
             hashtags: profileSettingsView.hashtagsView.hashtags,
             orderSettings: orderSettingsTableView.orderSettings,
             isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "")
         if userInfo != newUserInfo {
-            let image = userInfo?.image
             userInfo = newUserInfo
-            userInfo?.image = image
             coordinator?.postUserInfo(newUserInfo)
         }
     }

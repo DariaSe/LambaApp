@@ -46,7 +46,7 @@ struct Order {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy, HH:mm"
         let dateString = dateFormatter.string(from: date)
-        let sign = InfoService.userInfo?.currencySign ?? ""
+        let sign = InfoService.shared.userInfo?.currencySign ?? ""
         let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
         let order = Order(id: id, cost: costString, orderTypeTitle: orderTypeTitle, date: dateString, status: orderStatus)
         return order
@@ -67,7 +67,7 @@ struct Order {
         case .active: return Strings.statusActive
         case .done: return Strings.statusDone
         case .rejected: return Strings.statusRejected
-        case .uploading: return Strings.statusRejected
+        case .uploading: return Strings.statusUploading
         }
     }
 }

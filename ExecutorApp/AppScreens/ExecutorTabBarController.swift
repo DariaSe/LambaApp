@@ -34,6 +34,23 @@ class ExecutorTabBarController: UITabBarController {
         
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tabBar.layer.masksToBounds = true
+        tabBar.isTranslucent = true
+        tabBar.barStyle = .default
+        tabBar.layer.cornerRadius = 15
+        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.layer.borderWidth = 1.0
+        tabBar.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let newHeight = tabBar.frame.size.height + 10
+        tabBar.frame.size.height = newHeight
+        tabBar.frame.origin.y = view.frame.height - newHeight
+    }
     func getData() {
         DispatchQueue.main.async { [weak self] in
             self?.ordersCoordinator.getOrders()

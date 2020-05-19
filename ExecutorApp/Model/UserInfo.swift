@@ -9,7 +9,6 @@
 import UIKit
 
 struct UserInfo {
-    var image: UIImage?
     var socialMedia: [SocialMedia]
     var hashtags: [String]
     var orderSettings: [OrderSettings]
@@ -17,7 +16,7 @@ struct UserInfo {
     var currencySign: String
     
     static func sample() -> UserInfo {
-        return UserInfo(image: UIImage(named: "Harold"), socialMedia: [SocialMedia(id: 1, image: UIImage(named: "insta"), title: "Instagram", url: "harold_pain"), SocialMedia(id: 2, image: UIImage(named: "youtube"), title: "YouTube", url: "harold_pain"), SocialMedia(id: 3, image: UIImage(named: "tiktok"), title: "TikTok", url: "harold_pain")], hashtags: ["harold", "pain"], orderSettings: OrderSettings.sample(), isReceivingOrders: true, currencySign: "$")
+        return UserInfo(socialMedia: [SocialMedia(id: 1, image: UIImage(named: "insta"), title: "Instagram", url: "harold_pain"), SocialMedia(id: 2, image: UIImage(named: "youtube"), title: "YouTube", url: "harold_pain"), SocialMedia(id: 3, image: UIImage(named: "tiktok"), title: "TikTok", url: "harold_pain")], hashtags: ["harold", "pain"], orderSettings: OrderSettings.sample(), isReceivingOrders: true, currencySign: "$")
     }
     
     static func initialize(from dictionary: Dictionary<String, Any>, completion: @escaping ((UserInfo?) -> Void)) {
@@ -52,17 +51,8 @@ struct UserInfo {
             .filter { $0 != nil } .map { $0! }
         
         socialsDispatchGroup.notify(queue: .main) {
-            if let imageURLString = dictionary["image"] as? String,
-                let imageURL = URL(string: imageURLString) {
-                UIImage.getImage(from: imageURL) { (image) in
-                    let userInfo = UserInfo(image: image, socialMedia: socialMediaArr, hashtags: hashTags, orderSettings: orderSettings, isReceivingOrders: isReceivingOrders, currencySign: currencySign)
-                    completion(userInfo)
-                }
-            }
-            else {
-                let userInfo = UserInfo(image: UIImage(named: "Portrait_Placeholder"), socialMedia: socialMediaArr, hashtags: hashTags, orderSettings: orderSettings, isReceivingOrders: true, currencySign: currencySign)
-                completion(userInfo)
-            }
+            let userInfo = UserInfo(socialMedia: socialMediaArr, hashtags: hashTags, orderSettings: orderSettings, isReceivingOrders: isReceivingOrders, currencySign: currencySign)
+            completion(userInfo)
         }
     }
     
@@ -87,8 +77,8 @@ extension UserInfo: Equatable {
     static func ==(lhs: UserInfo, rhs: UserInfo) -> Bool {
         return
             lhs.hashtags == rhs.hashtags &&
-            lhs.socialMedia == rhs.socialMedia &&
-            lhs.orderSettings == rhs.orderSettings &&
-            lhs.isReceivingOrders == rhs.isReceivingOrders
+                lhs.socialMedia == rhs.socialMedia &&
+                lhs.orderSettings == rhs.orderSettings &&
+                lhs.isReceivingOrders == rhs.isReceivingOrders
     }
 }

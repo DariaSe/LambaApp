@@ -48,7 +48,7 @@ class FinancesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         
-        stackView.pinToLayoutMargins(to: view, constant: 10)
+        stackView.constrainToLayoutMargins(of: view, leading: 10, trailing: 10, top: 10, bottom: 25)
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.addArrangedSubview(scrollView)

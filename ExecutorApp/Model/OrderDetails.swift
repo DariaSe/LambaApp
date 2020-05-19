@@ -40,7 +40,7 @@ struct OrderDetails {
             let cost = dictionary["costs"] as? Int,
             let videoURLString = dictionary["videoUrl"] as? String
             else { return nil }
-        let sign = InfoService.userInfo?.currencySign ?? ""
+        let sign = InfoService.shared.userInfo?.currencySign ?? ""
         let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
         let videoURL = URL(string: videoURLString)
         let units = fields.map{ OrderDetailUnit.initialize(from: $0) }.filter { $0 != nil } as! [OrderDetailUnit]

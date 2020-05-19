@@ -43,12 +43,18 @@ extension VideoPickerViewController: UIImagePickerControllerDelegate {
         guard
             let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
             mediaType == (kUTTypeMovie as String),
-            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
-            let newURL = VideoService.createTemporaryURLforVideoFile(url: url) else {
+            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL else {
                 urlReceived?(nil, Strings.noAccessError)
                 self.remove()
                 return }
-        VideoService.encodeVideo(videoUrl: newURL) { (comprURL) in
+        var newUrl: URL
+        if #available(iOS 13.0, *) {
+            newUrl = VideoService.createTemporaryURLforVideoFile(url: url) ?? url
+        }
+        else {
+            newUrl = url
+        }
+        VideoService.encodeVideo(videoUrl: newUrl) { (comprURL) in
             DispatchQueue.main.async {
                 guard let comprURL = comprURL else {
                     self.urlReceived?(nil, Strings.noAccessError)

@@ -28,10 +28,17 @@ class SettingsCoordinator: Coordinator {
         settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: settingsImage, tag: 2)
         settingsVC.title = Strings.settings
         errorVC.reload = { [weak self] in self?.getUserInfo() }
+        NotificationCenter.default.addObserver(self, selector: #selector(setUserImage), name: NotificationService.userImageNName, object: nil)
+    }
+    
+    @objc func setUserImage() {
+        DispatchQueue.main.async {
+            self.settingsVC.setImage(InfoService.shared.userImage)
+        }
     }
     
     func getUserInfo() {
-        InfoService.getUserInfo() { [weak self] (userInfo, errorMessage) in
+        InfoService.shared.getUserInfo() { [weak self] (userInfo, errorMessage) in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     self?.showFullScreenError(message: errorMessage)
@@ -58,6 +65,7 @@ class SettingsCoordinator: Coordinator {
                 }
             }
             self?.settingsVC.setImage(image)
+            InfoService.shared.userImage = image
         }
         photoPicker.imagePicked = { [weak self] image in
             cropperVC.image = image

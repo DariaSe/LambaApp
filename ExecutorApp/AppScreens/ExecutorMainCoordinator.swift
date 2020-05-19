@@ -29,7 +29,7 @@ class ExecutorMainCoordinator {
     }
     
     func getUserInfo() {
-        InfoService.getUserInfo(completion: { [weak self] userInfo, errorMessage in
+        InfoService.shared.getUserInfo(completion: { [weak self] userInfo, errorMessage in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     let errorVC = ErrorViewController()
@@ -43,8 +43,6 @@ class ExecutorMainCoordinator {
                     self?.loginCoordinator.loginVC.present(errorVC, animated: true)
                 }
                 if let userInfo = userInfo {
-                    self?.mainVC.ordersCoordinator.ordersVC.userImage = userInfo.image
-                    self?.mainVC.settingsCoordinator.userInfo = userInfo
                     self?.loginCoordinator.loginVC.dismiss(animated: true, completion: nil)
                     self?.mainVC.getData()
                 }

@@ -24,6 +24,7 @@
 		DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */; };
 		DA941DEB246FC3FA006485B3 /* AppNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEA246FC3FA006485B3 /* AppNavController.swift */; };
 		DA941DED247000D1006485B3 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEC247000D1006485B3 /* UserButton.swift */; };
+		DAACA0682472696A00651E24 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0672472696A00651E24 /* Notifications.swift */; };
 		DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */; };
 		DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963032455BD1D002BBC3F /* UserInfo.swift */; };
 		DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963052455BDB2002BBC3F /* SocialMedia.swift */; };
@@ -118,6 +119,7 @@
 		DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDescriptionViewController.swift; sourceTree = "<group>"; };
 		DA941DEA246FC3FA006485B3 /* AppNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavController.swift; sourceTree = "<group>"; };
 		DA941DEC247000D1006485B3 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
+		DAACA0672472696A00651E24 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		DAB963032455BD1D002BBC3F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		DAB963052455BDB2002BBC3F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			children = (
 				DABCA634244DD78200682368 /* AppDelegate.swift */,
 				DABCA661244EF5EF00682368 /* Defaults.swift */,
+				DAACA0672472696A00651E24 /* Notifications.swift */,
 				DAB96343245B3825002BBC3F /* AppURL.swift */,
 				DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */,
 				DABCA69D2450991D00682368 /* States */,
@@ -695,6 +698,7 @@
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,
 				DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */,
 				DA6716C42454167D001791E3 /* ReadyToTransferView.swift in Sources */,
+				DAACA0682472696A00651E24 /* Notifications.swift in Sources */,
 				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
 				DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
@@ -848,7 +852,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9B6XMQ42ZT;
 				INFOPLIST_FILE = ExecutorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -856,11 +860,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dariaS.ExecutorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -869,7 +873,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 9B6XMQ42ZT;
 				INFOPLIST_FILE = ExecutorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -877,11 +881,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dariaS.ExecutorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

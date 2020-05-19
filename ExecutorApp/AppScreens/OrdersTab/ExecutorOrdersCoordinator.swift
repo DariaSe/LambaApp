@@ -25,8 +25,14 @@ class ExecutorOrdersCoordinator: Coordinator {
         let starImage = UIImage(named: "Star")
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: starImage, tag: 0)
         ordersVC.title = Strings.orders
+        NotificationCenter.default.addObserver(self, selector: #selector(setUserImage), name: NotificationService.userImageNName, object: nil)
     }
     
+    @objc func setUserImage() {
+        DispatchQueue.main.async {
+            self.ordersVC.userImage = InfoService.shared.userImage
+        }
+    }
     
     func getOrders() {
         ordersApiService.page = 1
