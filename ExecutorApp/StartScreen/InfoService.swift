@@ -12,8 +12,10 @@ class InfoService {
     
     static let shared = InfoService()
     
+    let placeholderImage = UIImage(named: "Portrait_Placeholder")
+    
     private init() {
-        userImage = UIImage(named: "Portrait_Placeholder")
+        userImage = placeholderImage
     }
     
     var userInfo: UserInfo?

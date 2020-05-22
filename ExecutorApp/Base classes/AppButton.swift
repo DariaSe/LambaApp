@@ -23,7 +23,7 @@ class AppButton: UIButton {
             setup()
         }
     }
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -40,6 +40,7 @@ class AppButton: UIButton {
     
     
     func setup() {
+        setHeight(equalTo: SizeConstants.buttonHeight)
         layer.cornerRadius = SizeConstants.buttonCornerRadius
         layer.borderWidth = 1.0
         layer.borderColor = color.cgColor

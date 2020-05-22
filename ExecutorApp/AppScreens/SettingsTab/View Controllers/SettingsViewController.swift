@@ -101,7 +101,7 @@ extension SettingsViewController: SettingsDelegate {
             socialMedia: profileSettingsView.socialMediaTableView.socialMedia,
             hashtags: profileSettingsView.hashtagsView.hashtags,
             orderSettings: orderSettingsTableView.orderSettings,
-            isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "")
+            isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "", role: nil)
         if userInfo != newUserInfo {
             userInfo = newUserInfo
             coordinator?.postUserInfo(newUserInfo)

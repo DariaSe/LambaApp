@@ -10,12 +10,16 @@ import UIKit
 
 class Coordinator: NSObject {
     
-    var navigationController = AppNavigationController()
+    var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
+           self.navigationController = navigationController
+       }
     
     let loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
     let clearLoadingVC = LoadingViewController(backgroundColor: .clear)
-    let errorVC = ErrorViewController()
-    let popUpErrorVC = PopupErrorViewController()
+    lazy var errorVC = ErrorViewController()
+    lazy var popUpErrorVC = PopupErrorViewController()
     
     func showFullScreenLoading() {
         navigationController.topViewController?.add(loadingVC)

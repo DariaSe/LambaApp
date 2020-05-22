@@ -25,6 +25,19 @@
 		DA941DEB246FC3FA006485B3 /* AppNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEA246FC3FA006485B3 /* AppNavController.swift */; };
 		DA941DED247000D1006485B3 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEC247000D1006485B3 /* UserButton.swift */; };
 		DAACA0682472696A00651E24 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0672472696A00651E24 /* Notifications.swift */; };
+		DAACA06A247421CF00651E24 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA069247421CE00651E24 /* StartCoordinator.swift */; };
+		DAACA06E2476600D00651E24 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA06D2476600C00651E24 /* RegistrationViewController.swift */; };
+		DAACA07024769E8100651E24 /* ForgotPassEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */; };
+		DAACA0722476A25700651E24 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0712476A25700651E24 /* ResetPassViewController.swift */; };
+		DAACA0782476DF2B00651E24 /* InputFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0772476DF2B00651E24 /* InputFormViewController.swift */; };
+		DAACA07A2477FD2C00651E24 /* InputFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0792477FD2C00651E24 /* InputFormView.swift */; };
+		DAACA07C2477FE8800651E24 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA07B2477FE8800651E24 /* FormTextField.swift */; };
+		DAACA07E247813B300651E24 /* ForgotPassCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA07D247813B300651E24 /* ForgotPassCoordinator.swift */; };
+		DAACA080247813C100651E24 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA07F247813C100651E24 /* RegistrationCoordinator.swift */; };
+		DAACA08424781AA300651E24 /* p_FormDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08324781AA300651E24 /* p_FormDelegate.swift */; };
+		DAACA0882478371D00651E24 /* AuthCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0872478371D00651E24 /* AuthCodeViewController.swift */; };
+		DAACA08B24783A2E00651E24 /* ForgotPassApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08A24783A2E00651E24 /* ForgotPassApiService.swift */; };
+		DAACA08D247841AF00651E24 /* RegistrationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08C247841AF00651E24 /* RegistrationApiService.swift */; };
 		DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */; };
 		DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963032455BD1D002BBC3F /* UserInfo.swift */; };
 		DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963052455BDB2002BBC3F /* SocialMedia.swift */; };
@@ -78,10 +91,9 @@
 		DABCA651244DF2FA00682368 /* e_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA650244DF2FA00682368 /* e_UIColor.swift */; };
 		DABCA655244DFC8E00682368 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DABCA657244DFC8E00682368 /* Localizable.strings */; };
 		DABCA65A244DFCA800682368 /* e_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA659244DFCA800682368 /* e_String.swift */; };
-		DABCA65C244DFE2500682368 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65B244DFE2500682368 /* LoginService.swift */; };
+		DABCA65C244DFE2500682368 /* LoginApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65B244DFE2500682368 /* LoginApiService.swift */; };
 		DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA65D244E09E400682368 /* e_UITextField.swift */; };
 		DABCA662244EF5EF00682368 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA661244EF5EF00682368 /* Defaults.swift */; };
-		DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */; };
 		DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */; };
 		DABCA671244F1C4900682368 /* ExecutorTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA670244F1C4900682368 /* ExecutorTabBarController.swift */; };
 		DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA672244F1C6600682368 /* OrdersViewController.swift */; };
@@ -120,6 +132,19 @@
 		DA941DEA246FC3FA006485B3 /* AppNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavController.swift; sourceTree = "<group>"; };
 		DA941DEC247000D1006485B3 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
 		DAACA0672472696A00651E24 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		DAACA069247421CE00651E24 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		DAACA06D2476600C00651E24 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassEmailViewController.swift; sourceTree = "<group>"; };
+		DAACA0712476A25700651E24 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
+		DAACA0772476DF2B00651E24 /* InputFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFormViewController.swift; sourceTree = "<group>"; };
+		DAACA0792477FD2C00651E24 /* InputFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFormView.swift; sourceTree = "<group>"; };
+		DAACA07B2477FE8800651E24 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		DAACA07D247813B300651E24 /* ForgotPassCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassCoordinator.swift; sourceTree = "<group>"; };
+		DAACA07F247813C100651E24 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		DAACA08324781AA300651E24 /* p_FormDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_FormDelegate.swift; sourceTree = "<group>"; };
+		DAACA0872478371D00651E24 /* AuthCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeViewController.swift; sourceTree = "<group>"; };
+		DAACA08A24783A2E00651E24 /* ForgotPassApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassApiService.swift; sourceTree = "<group>"; };
+		DAACA08C247841AF00651E24 /* RegistrationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationApiService.swift; sourceTree = "<group>"; };
 		DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		DAB963032455BD1D002BBC3F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		DAB963052455BDB2002BBC3F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
@@ -177,10 +202,9 @@
 		DABCA656244DFC8E00682368 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DABCA658244DFC9200682368 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DABCA659244DFCA800682368 /* e_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_String.swift; sourceTree = "<group>"; };
-		DABCA65B244DFE2500682368 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		DABCA65B244DFE2500682368 /* LoginApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApiService.swift; sourceTree = "<group>"; };
 		DABCA65D244E09E400682368 /* e_UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UITextField.swift; sourceTree = "<group>"; };
 		DABCA661244EF5EF00682368 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_KeyboardHandler.swift; sourceTree = "<group>"; };
 		DABCA670244F1C4900682368 /* ExecutorTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorTabBarController.swift; sourceTree = "<group>"; };
 		DABCA672244F1C6600682368 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +263,67 @@
 				DABCA657244DFC8E00682368 /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		DAACA08924783A1600651E24 /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				DABCA65B244DFE2500682368 /* LoginApiService.swift */,
+				DAACA08A24783A2E00651E24 /* ForgotPassApiService.swift */,
+				DAACA08C247841AF00651E24 /* RegistrationApiService.swift */,
+			);
+			path = "API Services";
+			sourceTree = "<group>";
+		};
+		DAACA08E247843B200651E24 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				DAB963682462DF45002BBC3F /* LoginCoordinator.swift */,
+				DAACA07D247813B300651E24 /* ForgotPassCoordinator.swift */,
+				DAACA07F247813C100651E24 /* RegistrationCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		DAACA08F2478443D00651E24 /* Base classes */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0772476DF2B00651E24 /* InputFormViewController.swift */,
+				DAACA0792477FD2C00651E24 /* InputFormView.swift */,
+				DAACA07B2477FE8800651E24 /* FormTextField.swift */,
+			);
+			path = "Base classes";
+			sourceTree = "<group>";
+		};
+		DAACA090247844AB00651E24 /* Customer Part */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA091247844BE00651E24 /* ExecutorsTab */,
+				DAACA092247844DA00651E24 /* OrdersTab */,
+				DAACA093247844E900651E24 /* SettingsTab */,
+			);
+			path = "Customer Part";
+			sourceTree = "<group>";
+		};
+		DAACA091247844BE00651E24 /* ExecutorsTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExecutorsTab;
+			sourceTree = "<group>";
+		};
+		DAACA092247844DA00651E24 /* OrdersTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrdersTab;
+			sourceTree = "<group>";
+		};
+		DAACA093247844E900651E24 /* SettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingsTab;
 			sourceTree = "<group>";
 		};
 		DAB9631D24583EF6002BBC3F /* View Controllers */ = {
@@ -359,6 +444,7 @@
 				DABCA6862450278100682368 /* Base classes */,
 				DABCA667244F088E00682368 /* StartScreen */,
 				DABCA66C244F1BB600682368 /* AppScreens */,
+				DAACA090247844AB00651E24 /* Customer Part */,
 				DABCA64D244DF15B00682368 /* Design */,
 				DABCA64A244DD9AE00682368 /* Extensions */,
 				DABCA63D244DD78500682368 /* Assets.xcassets */,
@@ -402,9 +488,13 @@
 		DABCA667244F088E00682368 /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				DAB963682462DF45002BBC3F /* LoginCoordinator.swift */,
+				DAACA08324781AA300651E24 /* p_FormDelegate.swift */,
+				DAACA069247421CE00651E24 /* StartCoordinator.swift */,
+				DAB9633F2459FE2D002BBC3F /* InfoService.swift */,
+				DAACA08F2478443D00651E24 /* Base classes */,
+				DAACA08E247843B200651E24 /* Coordinators */,
+				DAACA08924783A1600651E24 /* API Services */,
 				DABCA668244F08B100682368 /* ViewControllers */,
-				DABCA669244F08BA00682368 /* Services */,
 			);
 			path = StartScreen;
 			sourceTree = "<group>";
@@ -414,18 +504,12 @@
 			children = (
 				DAB96347245B5852002BBC3F /* StartViewController.swift */,
 				DABCA648244DD84A00682368 /* LoginViewController.swift */,
+				DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */,
+				DAACA0872478371D00651E24 /* AuthCodeViewController.swift */,
+				DAACA0712476A25700651E24 /* ResetPassViewController.swift */,
+				DAACA06D2476600C00651E24 /* RegistrationViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		DABCA669244F08BA00682368 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				DAB9633F2459FE2D002BBC3F /* InfoService.swift */,
-				DABCA65B244DFE2500682368 /* LoginService.swift */,
-				DABCA665244EF8CC00682368 /* KeychainPasswordItem.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		DABCA66C244F1BB600682368 /* AppScreens */ = {
@@ -617,11 +701,16 @@
 			files = (
 				DABCA651244DF2FA00682368 /* e_UIColor.swift in Sources */,
 				DAB963372459BECA002BBC3F /* PopupErrorViewController.swift in Sources */,
+				DAACA07E247813B300651E24 /* ForgotPassCoordinator.swift in Sources */,
 				DAB96383246975B0002BBC3F /* Coordinator.swift in Sources */,
 				DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */,
+				DAACA06E2476600D00651E24 /* RegistrationViewController.swift in Sources */,
 				DAB96387246AE07D002BBC3F /* FinancesApiServiceMain.swift in Sources */,
+				DAACA0882478371D00651E24 /* AuthCodeViewController.swift in Sources */,
 				DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */,
 				DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */,
+				DAACA06A247421CF00651E24 /* StartCoordinator.swift in Sources */,
+				DAACA07024769E8100651E24 /* ForgotPassEmailViewController.swift in Sources */,
 				DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */,
 				DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */,
 				DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */,
@@ -629,7 +718,9 @@
 				DAB9632924584246002BBC3F /* AppSwitch.swift in Sources */,
 				DABCA683244F396600682368 /* OrderDetailsUnitView.swift in Sources */,
 				DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */,
+				DAACA08D247841AF00651E24 /* RegistrationApiService.swift in Sources */,
 				DAB96344245B3825002BBC3F /* AppURL.swift in Sources */,
+				DAACA0722476A25700651E24 /* ResetPassViewController.swift in Sources */,
 				DAB9636B2463061B002BBC3F /* p_VideoActionsDelegate.swift in Sources */,
 				DABCA6882450279E00682368 /* AppButton.swift in Sources */,
 				DABCA67B244F243500682368 /* Order.swift in Sources */,
@@ -642,6 +733,7 @@
 				DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */,
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
+				DAACA08424781AA300651E24 /* p_FormDelegate.swift in Sources */,
 				DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */,
 				DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */,
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
@@ -654,6 +746,7 @@
 				DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */,
 				DABCA65A244DFCA800682368 /* e_String.swift in Sources */,
 				DABCA662244EF5EF00682368 /* Defaults.swift in Sources */,
+				DAACA07C2477FE8800651E24 /* FormTextField.swift in Sources */,
 				DAB963352459B06C002BBC3F /* e_UIAlertController.swift in Sources */,
 				DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */,
 				DA6716C624541868001791E3 /* SumView.swift in Sources */,
@@ -664,13 +757,16 @@
 				DA6716C224532F63001791E3 /* CameraViewController.swift in Sources */,
 				DAB9635B245C1D93002BBC3F /* ExecutorOrderDetailsApiService.swift in Sources */,
 				DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */,
+				DAACA08B24783A2E00651E24 /* ForgotPassApiService.swift in Sources */,
 				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
 				DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
 				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,
+				DAACA07A2477FD2C00651E24 /* InputFormView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA941DED247000D1006485B3 /* UserButton.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
+				DAACA080247813C100651E24 /* RegistrationCoordinator.swift in Sources */,
 				DAB963752465B977002BBC3F /* e_URLSession.swift in Sources */,
 				DAB96389246C65A7002BBC3F /* Print.swift in Sources */,
 				DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */,
@@ -689,18 +785,18 @@
 				DAB96365245F047E002BBC3F /* ImageCropperViewController.swift in Sources */,
 				DABCA675244F1C7500682368 /* FinancesViewController.swift in Sources */,
 				DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */,
-				DABCA65C244DFE2500682368 /* LoginService.swift in Sources */,
+				DABCA65C244DFE2500682368 /* LoginApiService.swift in Sources */,
 				DAB963402459FE2D002BBC3F /* InfoService.swift in Sources */,
 				DAB9631C24582A50002BBC3F /* PassInfo.swift in Sources */,
 				DA6716C824541A8D001791E3 /* ReadyToTransferTableViewCell.swift in Sources */,
 				DABCA694245090A300682368 /* ExecutorOrdersCoordinator.swift in Sources */,
+				DAACA0782476DF2B00651E24 /* InputFormViewController.swift in Sources */,
 				DAB9635F245C9AE9002BBC3F /* SettingsApiServiceMain.swift in Sources */,
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,
 				DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */,
 				DA6716C42454167D001791E3 /* ReadyToTransferView.swift in Sources */,
 				DAACA0682472696A00651E24 /* Notifications.swift in Sources */,
 				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
-				DABCA666244EF8CC00682368 /* KeychainPasswordItem.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
 				DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */,
 				DAB96359245C1D65002BBC3F /* ExecutorOrdersApiService.swift in Sources */,

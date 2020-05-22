@@ -25,6 +25,16 @@
 "Login" = "Войти";
 "Incorrect e-mail or password" = "Неправильный e-mail или пароль";
 "Login failed" = "Не удалось выполнить вход.";
+"Forgot password?" = "Забыли пароль?";
+"E-mail not found" = "E-mail не найден";
+"Send authorization code" = "Отправить код авторизации";
+"I already have code" = "У меня уже есть код";
+"Enter code from e-mail here" = "Введите код из e-mail";
+"Send" = "Отправить";
+"Reset password" = "Reset password";
+"Register" = "Зарегистрироваться";
+"Confirm password" = "Подтвердите пароль";
+"Passwords don't match" = "Пароли не совпадают";
 
 
 // Orders

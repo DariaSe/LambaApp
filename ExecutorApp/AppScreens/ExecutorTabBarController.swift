@@ -12,13 +12,13 @@ class ExecutorTabBarController: UITabBarController {
     
     weak var coordinator: ExecutorMainCoordinator?
     
-    let ordersCoordinator = ExecutorOrdersCoordinator()
-    let financesCoordinator = FinancesCoordinator()
-    let settingsCoordinator = SettingsCoordinator()
+    let ordersCoordinator = ExecutorOrdersCoordinator(navigationController: AppNavigationController())
+    let financesCoordinator = FinancesCoordinator(navigationController: AppNavigationController())
+    let settingsCoordinator = SettingsCoordinator(navigationController: AppNavigationController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.modalPresentationStyle = .overFullScreen
         UserDefaults.standard.addObserver(self, forKeyPath: Defaults.tokenKey, options: .new, context: nil)
         
         ordersCoordinator.start()
@@ -32,6 +32,10 @@ class ExecutorTabBarController: UITabBarController {
         
         ordersCoordinator.ordersVC.delegate = self
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedIndex = 0
     }
     
     override func viewWillLayoutSubviews() {
@@ -51,11 +55,12 @@ class ExecutorTabBarController: UITabBarController {
         tabBar.frame.size.height = newHeight
         tabBar.frame.origin.y = view.frame.height - newHeight
     }
+    
     func getData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.ordersCoordinator.getOrders()
-            self?.financesCoordinator.getFinancesInfo()
-            self?.settingsCoordinator.getUserInfo()
+        DispatchQueue.main.async { [unowned self] in
+            self.ordersCoordinator.getOrders()
+            self.financesCoordinator.getFinancesInfo()
+            self.settingsCoordinator.getUserInfo()
         }
     }
     
@@ -66,12 +71,6 @@ class ExecutorTabBarController: UITabBarController {
     }
 }
 
-extension ExecutorTabBarController: LoginDelegate {
-    func showOrders() {
-        selectedIndex = 0
-        getData()
-    }
-}
 
 extension ExecutorTabBarController: UserButtonDelegate {
     func showSettings() {

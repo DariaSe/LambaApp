@@ -19,6 +19,7 @@ class AppTextField: UITextField {
     }
     
     private func initialSetup() {
+        setHeight(equalTo: SizeConstants.textFieldHeight)
         backgroundColor = UIColor.textControlsBackgroundColor
         setLeftPaddingPoints(10)
         

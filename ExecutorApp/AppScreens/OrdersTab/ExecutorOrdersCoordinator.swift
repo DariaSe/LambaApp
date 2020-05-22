@@ -20,7 +20,7 @@ class ExecutorOrdersCoordinator: Coordinator {
         orderDetailsApiService.delegate = self
         navigationController.delegate = self
         ordersVC.coordinator = self
-        errorVC.reload = { [weak self] in self?.getOrders() }
+        errorVC.reload = { [unowned self] in self.getOrders() }
         navigationController.viewControllers = [ordersVC]
         let starImage = UIImage(named: "Star")
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: starImage, tag: 0)
@@ -36,20 +36,21 @@ class ExecutorOrdersCoordinator: Coordinator {
     
     func getOrders() {
         ordersApiService.page = 1
-        errorVC.reload = { [weak self] in self?.getOrders() }
+        errorVC.reload = { [unowned self] in self.getOrders() }
         showLoadingIndicator()
-        ordersApiService.getOrders { [weak self] orders, errorMessage in
-            self?.removeLoadingIndicator()
+        ordersApiService.getOrders { [unowned self] orders, errorMessage in
+            self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
-                self?.showFullScreenError(message: errorMessage)
+                self.showFullScreenError(message: errorMessage)
             }
-            guard let orders = orders else { return }
-            self?.removeFullScreenError()
-            if !orders.isEmpty {
-                self?.ordersVC.orders = orders
-            }
-            else {
-                self?.showFullScreenError(message: Strings.noOrdersYet)
+            else if let orders = orders {
+                self.removeFullScreenError()
+                if !orders.isEmpty {
+                    self.ordersVC.orders = orders
+                }
+                else {
+                    self.showFullScreenError(message: Strings.noOrdersYet)
+                }
             }
         }
     }
@@ -58,13 +59,13 @@ class ExecutorOrdersCoordinator: Coordinator {
         if ordersApiService.isMore {
             showLoadingIndicator()
             ordersApiService.page += 1
-            ordersApiService.getOrders { [weak self] orders, errorMessage in
-                self?.removeLoadingIndicator()
+            ordersApiService.getOrders { [unowned self] orders, errorMessage in
+                self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
-                    self?.showPopUpError(message: errorMessage)
+                    self.showPopUpError(message: errorMessage)
                 }
                 if let orders = orders {
-                    self?.ordersVC.orders.append(contentsOf: orders)
+                    self.ordersVC.orders.append(contentsOf: orders)
                 }
             }
         }
@@ -82,17 +83,17 @@ class ExecutorOrdersCoordinator: Coordinator {
     }
     
     func getOrderDetails(orderID: Int) {
-        errorVC.reload = { [weak self] in self?.getOrderDetails(orderID: orderID) }
+        errorVC.reload = { [unowned self] in self.getOrderDetails(orderID: orderID) }
         showFullScreenLoading()
-        ordersApiService.showOrderDetails(orderID: orderID) { [weak self] orderDetails, errorMessage in
-            self?.removeFullScreenLoading()
+        ordersApiService.showOrderDetails(orderID: orderID) { [unowned self] orderDetails, errorMessage in
+            self.removeFullScreenLoading()
             if let errorMessage = errorMessage {
-                self?.showFullScreenError(message: errorMessage)
+                self.showFullScreenError(message: errorMessage)
                 
             }
             else {
-                self?.removeFullScreenError()
-                self?.orderDetailsVC.orderDetails = orderDetails
+                self.removeFullScreenError()
+                self.orderDetailsVC.orderDetails = orderDetails
             }
         }
     }
@@ -100,14 +101,14 @@ class ExecutorOrdersCoordinator: Coordinator {
     func showUploadOptions(orderID: Int) {
         showLoadingIndicator()
         let alert = UIAlertController(title: Strings.chooseVideoSource, message: Strings.durationWarning, preferredStyle: .alert)
-        let cameraAction = UIAlertAction(title: Strings.camera, style: .default) { [weak self] (_) in
-            self?.openCamera(orderID: orderID)
+        let cameraAction = UIAlertAction(title: Strings.camera, style: .default) { [unowned self] (_) in
+            self.openCamera(orderID: orderID)
         }
-        let libraryAction = UIAlertAction(title: Strings.mediaLibrary, style: .default) { [weak self] (_) in
-            self?.openLibrary(orderID: orderID)
+        let libraryAction = UIAlertAction(title: Strings.mediaLibrary, style: .default) { [unowned self] (_) in
+            self.openLibrary(orderID: orderID)
         }
-        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel) { [weak self] (_) in
-            self?.removeLoadingIndicator()
+        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel) { [unowned self] (_) in
+            self.removeLoadingIndicator()
         }
         alert.addAction(cameraAction)
         alert.addAction(libraryAction)
@@ -119,15 +120,15 @@ class ExecutorOrdersCoordinator: Coordinator {
         let cameraVC = CameraViewController()
         orderDetailsVC.add(cameraVC)
         cameraVC.showImagePicker()
-        cameraVC.urlReceived = { [weak self] url, errorMessage in
+        cameraVC.urlReceived = { [unowned self] url, errorMessage in
             DispatchQueue.main.async {
                 if let url = url {
-                self?.uploadVideo(orderID: orderID, url: url)
+                    self.uploadVideo(orderID: orderID, url: url)
                 }
                 else {
-                    self?.removeLoadingIndicator()
+                    self.removeLoadingIndicator()
                     if let errorMessage = errorMessage {
-                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                        self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
                 }
             }
@@ -138,15 +139,15 @@ class ExecutorOrdersCoordinator: Coordinator {
         let videoPicker = VideoPickerViewController()
         orderDetailsVC.add(videoPicker)
         videoPicker.showVideoPicker()
-        videoPicker.urlReceived = { [weak self] url, errorMessage in
+        videoPicker.urlReceived = { [unowned self] url, errorMessage in
             DispatchQueue.main.async {
                 if let url = url {
-                    self?.uploadVideo(orderID: orderID, url: url)
+                    self.uploadVideo(orderID: orderID, url: url)
                 }
                 else {
-                    self?.removeLoadingIndicator()
+                    self.removeLoadingIndicator()
                     if let errorMessage = errorMessage {
-                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                        self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
                 }
             }
@@ -155,15 +156,15 @@ class ExecutorOrdersCoordinator: Coordinator {
     
     func uploadVideo(orderID: Int, url: URL) {
         showLoadingIndicator()
-        orderDetailsApiService.setOrderStatus(status: .uploading, orderID: orderID) { [weak self] (success, errorMessage) in
+        orderDetailsApiService.setOrderStatus(status: .uploading, orderID: orderID) { [unowned self] (success, errorMessage) in
             DispatchQueue.main.async {
                 if success {
-                    self?.orderDetailsVC.statusView.status = .uploading
-                    self?.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
+                    self.orderDetailsVC.statusView.status = .uploading
+                    self.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
                 }
                 else {
-                    self?.removeLoadingIndicator()
-                    self?.showSimpleAlert(title: errorMessage ?? Strings.uploadError, handler: nil)
+                    self.removeLoadingIndicator()
+                    self.showSimpleAlert(title: errorMessage ?? Strings.uploadError, handler: nil)
                 }
             }
         }
@@ -172,19 +173,19 @@ class ExecutorOrdersCoordinator: Coordinator {
     
     func rejectOrder(orderID: Int) {
         let alert = UIAlertController(title: Strings.doYouWantToReject, message: Strings.actionCanNotBeUndone, preferredStyle: .alert)
-        let rejectAction = UIAlertAction(title: Strings.reject, style: .destructive) { [weak self] (_) in
-            self?.showLoadingIndicator()
-            self?.orderDetailsApiService.rejectOrder(orderID: orderID) { [weak self] success, errorMessage  in
+        let rejectAction = UIAlertAction(title: Strings.reject, style: .destructive) { [unowned self] (_) in
+            self.showLoadingIndicator()
+            self.orderDetailsApiService.rejectOrder(orderID: orderID) { [unowned self] success, errorMessage  in
                 DispatchQueue.main.async {
-                    self?.removeLoadingIndicator()
+                    self.removeLoadingIndicator()
                     if let errorMessage = errorMessage {
-                        self?.showSimpleAlert(title: errorMessage, handler: nil)
+                        self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
                     if success {
-                        self?.orderDetailsVC.statusView.status = .rejected
+                        self.orderDetailsVC.statusView.status = .rejected
                     }
                     else {
-                        self?.showSimpleAlert(title: Strings.error, handler: nil)
+                        self.showSimpleAlert(title: Strings.error, handler: nil)
                     }
                 }
             }
@@ -209,17 +210,17 @@ extension ExecutorOrdersCoordinator: UINavigationControllerDelegate {
 extension ExecutorOrdersCoordinator: URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        DispatchQueue.main.async { [weak self] in
-            self?.removeLoadingIndicator()
+        DispatchQueue.main.async { [unowned self] in
+            self.removeLoadingIndicator()
             if let error = error {
-                self?.showSimpleAlert(title: error.localizedDescription, handler: nil)
+                self.showSimpleAlert(title: error.localizedDescription, handler: nil)
             }
             else {
-                if self?.navigationController.topViewController == self?.orderDetailsVC, let orderDetails = self?.orderDetailsVC.orderDetails {
-                    self?.getOrderDetails(orderID: orderDetails.id)
+                if self.navigationController.topViewController == self.orderDetailsVC, let orderDetails = self.orderDetailsVC.orderDetails {
+                    self.getOrderDetails(orderID: orderDetails.id)
                 }
                 else {
-                    self?.getOrders()
+                    self.getOrders()
                 }
             }
         }

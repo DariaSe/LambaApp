@@ -21,7 +21,7 @@ class ErrorViewController: UIViewController {
     private let stackView = UIStackView()
     
     private let errorLabel = UILabel()
-    let reloadButton = AppButton()
+    let reloadButton = AppButton(title: Strings.tryAgain)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +37,8 @@ class ErrorViewController: UIViewController {
         errorLabel.text = message
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0
-        
-        reloadButton.setTitle(Strings.tryAgain, for: .normal)
+
         reloadButton.setWidth(equalTo: 200)
-        reloadButton.setHeight(equalTo: SizeConstants.buttonHeight)
         reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
     }
     

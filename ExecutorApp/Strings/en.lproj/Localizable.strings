@@ -24,6 +24,16 @@
 "Login" = "Login";
 "Incorrect e-mail or password" = "Incorrect e-mail or password";
 "Login failed" = "Login failed";
+"Forgot password?" = "Forgot password?";
+"E-mail not found" = "E-mail not found";
+"Send authorization code" = "Send authorization code";
+"I already have code" = "I already have code";
+"Enter code from e-mail here" = "Enter code from e-mail here";
+"Send" = "Send";
+"Reset password" = "Reset password";
+"Register" = "Register";
+"Confirm password" = "Confirm password";
+"Passwords don't match" = "Passwords don't match";
 
 
 // Orders

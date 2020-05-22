@@ -8,102 +8,72 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, KeyboardHandler {
+class LoginViewController: InputFormViewController {
     
     weak var loginCoordinator: LoginCoordinator?
-   
-    let scrollView = UIScrollView()
-    let stackView = UIStackView()
     
-    let textFieldsStackView = UIStackView()
+    weak var delegate: FormDelegate?
     
-//    let logoImageView = UIImageView()
+    //    let logoImageView = UIImageView()
     
-    let emailTextField = AppTextField()
-    let passwordTextField = AppTextField()
+    let emailTextField = FormTextField(type: .email, placeholder: Strings.email)
+    let passwordTextField = FormTextField(type: .password, placeholder: Strings.password)
     
-    let loginButton = AppButton()
-
+    let loginButton = AppButton(title: Strings.login)
+    let forgotPasswordButton = UIButton(title: Strings.forgotPassword)
+    
+    let registerButton = UIButton(title: Strings.register)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyboardNotifications(for: scrollView)
         view.backgroundColor = UIColor.backgroundColor
-        setupLayout()
+        //        stackView.insertArrangedSubview(logoImageView, at: 0)
         initialSetup()
     }
-    
-   
-    func setupLayout() {
-        scrollView.pinToEdges(to: view)
-        scrollView.contentSize = CGSize(width: view.bounds.width - view.layoutMargins.left - view.layoutMargins.right, height: view.bounds.height - view.layoutMargins.top - view.layoutMargins.bottom)
-        
-        stackView.center(in: scrollView)
-        stackView.setWidth(equalTo: view, multiplier: 0.8)
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = 40
-        stackView.distribution = .equalSpacing
-//        stackView.addArrangedSubview(logoImageView)
-        stackView.addArrangedSubview(textFieldsStackView)
-        stackView.addArrangedSubview(loginButton)
-        
-        textFieldsStackView.axis = .vertical
-        textFieldsStackView.alignment = .fill
-        textFieldsStackView.spacing = 20
-        textFieldsStackView.setWidth(equalTo: stackView)
-        textFieldsStackView.addArrangedSubview(emailTextField)
-        textFieldsStackView.addArrangedSubview(passwordTextField)
-        
-        emailTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
-        passwordTextField.setHeight(equalTo: emailTextField)
-        
-        loginButton.setWidth(equalTo: 100)
-        loginButton.setHeight(equalTo: SizeConstants.buttonHeight)
-    }
+  
     
     func initialSetup() {
         
-        emailTextField.delegate = self
-        emailTextField.placeholder = Strings.email
+        add(emailTextField)
+        add(passwordTextField)
+        add(loginButton)
+        add(forgotPasswordButton)
         
-        passwordTextField.delegate = self
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.placeholder = Strings.password
+        addToBottom(registerButton)
         
-        loginButton.setTitle(Strings.login, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        
+        forgotPasswordButton.setTitleColor(UIColor.tintColor, for: .normal)
+        forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonPressed), for: .touchUpInside)
+      
+        registerButton.setTitleColor(UIColor.tintColor, for: .normal)
+        registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
     }
     
     @objc func loginButtonPressed() {
         view.endEditing(true)
-        guard let email = emailTextField.text, !email.isEmpty else {
-            emailTextField.showInvalid()
-            return
-        }
-        guard let password = passwordTextField.text, !password.isEmpty else { passwordTextField.showInvalid()
-            return
-        }
+        loginButton.animate(scale: 1.05)
+        guard let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty else { return }
         loginCoordinator?.login(email: email, password: password)
+    }
+    
+    @objc func forgotPasswordButtonPressed() {
+        view.endEditing(true)
+        forgotPasswordButton.animate(scale: 1.05)
+        delegate?.showForgotPassScreen()
+    }
+    
+    @objc func registerButtonPressed() {
+        view.endEditing(true)
+        registerButton.animate(scale: 1.05)
+        delegate?.showRegistrationScreen()
     }
     
     
     func restoreAppearance() {
-        emailTextField.setNormalBorder()
-        passwordTextField.setNormalBorder()
         passwordTextField.text = ""
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        emailTextField.setNormalBorder()
-        passwordTextField.setNormalBorder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
-    }
-}
 

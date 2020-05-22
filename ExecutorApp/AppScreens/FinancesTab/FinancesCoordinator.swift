@@ -17,7 +17,7 @@ class FinancesCoordinator: Coordinator {
     
     func start() {
         financesVC.coordinator = self
-        errorVC.reload = { [weak self] in self?.getFinancesInfo() }
+        errorVC.reload = { [unowned self] in self.getFinancesInfo() }
         navigationController.viewControllers = [financesVC]
         let dollarImage = UIImage(named: "DSign")
         financesVC.tabBarItem = UITabBarItem(title: Strings.finances, image: dollarImage, tag: 1)
@@ -26,21 +26,15 @@ class FinancesCoordinator: Coordinator {
 
     func getFinancesInfo() {
         showLoadingIndicator()
-        apiService.getFinances { [weak self] (financesInfo, errorMessage) in
-            self?.removeLoadingIndicator()
+        apiService.getFinances { [unowned self] (financesInfo, errorMessage) in
+            self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
-                self?.showFullScreenError(message: errorMessage)
+                self.showFullScreenError(message: errorMessage)
             }
             if let financesInfo = financesInfo {
-                self?.removeFullScreenError()
-                self?.financesVC.financesInfo = financesInfo
-                self?.infoVC.text = financesInfo.transferDescription
-                
-            }
-            else {
-                let emptyVC = ErrorViewController()
-                emptyVC.message = Strings.noOrdersYet
-                self?.financesVC.add(emptyVC)
+                self.removeFullScreenError()
+                self.financesVC.financesInfo = financesInfo
+                self.infoVC.text = financesInfo.transferDescription
             }
         }
     }
@@ -52,14 +46,14 @@ class FinancesCoordinator: Coordinator {
     
     func transferMoney() {
         showLoadingIndicator()
-        apiService.transferMoney { [weak self] success, errorMessage in
-            self?.removeLoadingIndicator()
+        apiService.transferMoney { [unowned self] success, errorMessage in
+            self.removeLoadingIndicator()
             let title = success ? Strings.transactionSuccess : Strings.transactionFailed
             let message = success ? "" : Strings.error
-            let alert = UIAlertController.simpleAlert(title: title, message: message) { [weak self] (_) in
-                self?.getFinancesInfo()
+            let alert = UIAlertController.simpleAlert(title: title, message: message) { [unowned self] (_) in
+                self.getFinancesInfo()
             }
-            self?.financesVC.present(alert, animated: true, completion: nil)
+            self.financesVC.present(alert, animated: true, completion: nil)
         }
     }
 }

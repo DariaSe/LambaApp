@@ -62,9 +62,9 @@ extension SocialMediaTableView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SocialMediaTableViewCell.reuseIdentifier, for: indexPath) as! SocialMediaTableViewCell
         let socialMediaUnit = socialMedia[indexPath.row]
         cell.update(with: socialMediaUnit)
-        cell.textChanged = { [weak self] text in
-            self?.socialMedia[indexPath.row].url = text
-            self?.delegate?.sendChanges()
+        cell.textChanged = { [unowned self] text in
+            self.socialMedia[indexPath.row].url = text
+            self.delegate?.sendChanges()
         }
         return cell
     }

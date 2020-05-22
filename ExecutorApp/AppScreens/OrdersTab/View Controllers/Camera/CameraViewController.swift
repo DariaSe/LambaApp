@@ -65,9 +65,9 @@ extension CameraViewController: UIImagePickerControllerDelegate {
             else {
                 self.urlReceived?(nil, Strings.noAccessError)
                 return }
-        VideoService.encodeVideo(videoUrl: url) { [weak self] (comprURL) in
-            guard let comprURL = comprURL else { self?.urlReceived?(url, Strings.noAccessError); return }
-            self?.urlReceived?(comprURL, nil)
+        VideoService.encodeVideo(videoUrl: url) { [unowned self] (comprURL) in
+            guard let comprURL = comprURL else { self.urlReceived?(url, Strings.noAccessError); return }
+            self.urlReceived?(comprURL, nil)
         }
         showSaveToLibraryAlert(videoURL: url)
         

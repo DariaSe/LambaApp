@@ -94,13 +94,11 @@ class ProfileSettingsView: UIView {
         
         hashtagsView.setWidth(equalTo: stackView, multiplier: 0.9)
         
-        changePasswordButton.setHeight(equalTo: SizeConstants.buttonHeight)
         changePasswordButton.setWidth(equalTo: self, multiplier: 0.9)
         changePasswordButton.setTitle(Strings.changePassword, for: .normal)
         changePasswordButton.addTarget(self, action: #selector(changePasswordButtonPressed), for: .touchUpInside)
         
         logoutButton.isSolid = false
-        logoutButton.setHeight(equalTo: SizeConstants.buttonHeight)
         logoutButton.setWidth(equalTo: self, multiplier: 0.9)
         logoutButton.setTitle(Strings.logout, for: .normal)
         logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
@@ -112,8 +110,8 @@ class ProfileSettingsView: UIView {
     @objc func refresh() {
         refreshControl.beginRefreshing()
         delegate?.refresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-            self?.refreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [unowned self] in
+            self.refreshControl.endRefreshing()
         })
     }
     

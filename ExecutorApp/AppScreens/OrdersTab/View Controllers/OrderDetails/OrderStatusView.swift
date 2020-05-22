@@ -57,16 +57,16 @@ class OrderStatusView: UIView {
         stackView.addArrangedSubview(buttonsStatusView)
         stackView.addArrangedSubview(imageStatusView)
         
-        buttonsStatusView.uploadOptions = { [weak self] in
-            self?.delegate?.showUploadOptions()
+        buttonsStatusView.uploadOptions = { [unowned self] in
+            self.delegate?.showUploadOptions()
         }
         
-        buttonsStatusView.reject = { [weak self] in
-            self?.delegate?.reject()
+        buttonsStatusView.reject = { [unowned self] in
+            self.delegate?.reject()
         }
         
-        imageStatusView.openVideo = { [weak self] in
-            self?.delegate?.openVideo()
+        imageStatusView.openVideo = { [unowned self] in
+            self.delegate?.openVideo()
         }
     }
 }

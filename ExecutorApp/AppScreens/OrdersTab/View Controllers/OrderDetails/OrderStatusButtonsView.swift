@@ -36,13 +36,11 @@ class OrderStatusButtonsView: UIView {
         stackView.addArrangedSubview(rejectButton)
         
         uploadButton.setTitle(Strings.uploadVideo, for: .normal)
-        uploadButton.setHeight(equalTo: SizeConstants.buttonHeight)
         uploadButton.setWidth(equalTo: self)
         uploadButton.addTarget(self, action: #selector(uploadButtonPressed), for: .touchUpInside)
         
         rejectButton.setTitle(Strings.reject, for: .normal)
         rejectButton.isDestructive = true
-        rejectButton.setHeight(equalTo: SizeConstants.buttonHeight)
         rejectButton.setWidth(equalTo: self)
         rejectButton.addTarget(self, action: #selector(rejectButtonPressed), for: .touchUpInside)
     }

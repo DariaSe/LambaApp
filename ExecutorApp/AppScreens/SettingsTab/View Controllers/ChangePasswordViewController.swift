@@ -48,13 +48,13 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         oldPassUnit.title = Strings.oldPassword
         newPassUnit.title = Strings.newPassword
         confirmNewPassUnit.title = Strings.confirmNewPass
-        confirmNewPassUnit.textChanged = { [weak self] text in
+        confirmNewPassUnit.textChanged = { [unowned self] text in
             guard !text.isEmpty else { return }
-            if text == self?.newPassUnit.textField.text {
-                self?.confirmNewPassUnit.textField.setGreenBorder()
+            if text == self.newPassUnit.textField.text {
+                self.confirmNewPassUnit.textField.setGreenBorder()
             }
             else {
-                self?.confirmNewPassUnit.textField.setRedBorder()
+                self.confirmNewPassUnit.textField.setRedBorder()
             }
         }
         
@@ -65,7 +65,6 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         
         stackView.addArrangedSubview(doneButton)
         
-        doneButton.setHeight(equalTo: SizeConstants.buttonHeight)
         doneButton.setTitle(Strings.changePassword, for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
 
@@ -80,8 +79,8 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         }
         else {
             let alert = UIAlertController(title: Strings.passReqiurements, message: nil, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] (_) in
-                self?.clearTextFields()
+            let okAction = UIAlertAction(title: "OK", style: .default) { [unowned self] (_) in
+                self.clearTextFields()
             }
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)

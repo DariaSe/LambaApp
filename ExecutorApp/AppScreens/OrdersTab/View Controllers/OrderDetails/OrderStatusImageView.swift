@@ -71,7 +71,6 @@ class OrderStatusImageView: UIView {
         descrLabel.font = UIFont.systemFont(ofSize: 12)
         
         openVideoButton.setTitle(Strings.openVideo, for: .normal)
-        openVideoButton.setHeight(equalTo: SizeConstants.buttonHeight)
         openVideoButton.setWidth(equalTo: self, multiplier: 0.7)
         openVideoButton.addTarget(self, action: #selector(openVideoButtonPressed), for: .touchUpInside)
         

@@ -44,8 +44,7 @@ class TransferDescriptionViewController: UIViewController {
         
         infoTextView.isEditable = false
         infoTextView.font = UIFont.systemFont(ofSize: 16)
-        
-        okButton.setHeight(equalTo: SizeConstants.buttonHeight)
+
         okButton.setTitle("OK", for: .normal)
         okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
         

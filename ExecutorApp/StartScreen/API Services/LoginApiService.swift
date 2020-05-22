@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoginService {
+class LoginApiService {
     
     func login(email: String, password: String, completion: @escaping (_ token: String?, _ error: String?) -> Void) {
         let url = AppURL.loginURL

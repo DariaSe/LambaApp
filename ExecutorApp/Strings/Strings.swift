@@ -27,6 +27,16 @@ struct Strings {
     static let login = "Login".localized
     static let incorrectEmailOrPassword = "Incorrect e-mail or password".localized
     static let loginFailed = "Login failed".localized
+    static let forgotPassword = "Forgot password?".localized
+    static let sendAuthCode = "Send authorization code".localized
+    static let haveCode = "I already have code".localized
+    static let enterCode = "Enter code from e-mail here".localized
+    static let send = "Send".localized
+    static let emailNotFound = "E-mail not found".localized
+    static let resetPassword = "Reset password".localized
+    static let register = "Register".localized
+    static let confirmPass = "Confirm password".localized
+    static let passNoMatch = "Passwords don't match".localized
     
     // Orders
     static let noOrdersYet = "You have no orders yet".localized

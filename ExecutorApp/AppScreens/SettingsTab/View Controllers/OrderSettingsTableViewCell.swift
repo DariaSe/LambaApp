@@ -71,7 +71,6 @@ class OrderSettingsTableViewCell: UITableViewCell {
         separatorView.backgroundColor = UIColor.textControlsBackgroundColor
         
         priceTextField.delegate = self
-        priceTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
         priceTextField.setWidth(equalTo: 130)
         priceTextField.keyboardType = .decimalPad
         priceTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)

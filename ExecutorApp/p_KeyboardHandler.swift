@@ -17,11 +17,11 @@ extension KeyboardHandler {
     
     func registerForKeyboardNotifications(for scrollView: UIScrollView) {
         
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] notification in
-            self?.keyboardWasShown(for: scrollView, notification)
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
+            self.keyboardWasShown(for: scrollView, notification)
         }
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [weak self] _ in
-            self?.keyboardWillBeHidden(for: scrollView)
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [unowned self] _ in
+            self.keyboardWillBeHidden(for: scrollView)
         }
     }
     

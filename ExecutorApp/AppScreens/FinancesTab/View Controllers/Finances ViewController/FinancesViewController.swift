@@ -39,7 +39,7 @@ class FinancesViewController: UIViewController {
     private let bottomElementsStackView = UIStackView()
     private let descrStackView = UIStackView()
     private let descrLabel = UILabel()
-    private let descrButton = UIButton()
+    private let descrButton = UIButton(title: "?")
     private let transferButton = AppButton()
     
     private let refreshControl = UIRefreshControl()
@@ -82,11 +82,9 @@ class FinancesViewController: UIViewController {
         descrButton.layer.borderWidth = 1.0
         descrButton.layer.borderColor = UIColor.tintColor.cgColor
         descrButton.setTitleColor(UIColor.tintColor, for: .normal)
-        descrButton.setTitle("?", for: .normal)
         descrButton.addTarget(self, action: #selector(descriptionButtonPressed), for: .touchUpInside)
         
         transferButton.setTitle(Strings.transferMoney, for: .normal)
-        transferButton.setHeight(equalTo: SizeConstants.buttonHeight)
         transferButton.addTarget(self, action: #selector(transferButtonPressed), for: .touchUpInside)
         
         scrollView.indicatorStyle = .black

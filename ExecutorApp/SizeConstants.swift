@@ -9,11 +9,11 @@
 import UIKit
 
 struct SizeConstants {
-    static let buttonHeight: CGFloat = 50
+    static let buttonHeight: CGFloat = 48
     static let buttonCornerRadius: CGFloat = 12
     
     static let textFieldHeight: CGFloat = 40
     static let textFieldCornerRadius: CGFloat = 10
     
-    static let sumViewHeight: CGFloat = 50
+    static let sumViewHeight: CGFloat = 48
 }

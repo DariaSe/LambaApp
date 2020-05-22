@@ -9,5 +9,8 @@
 import UIKit
 
 extension UIButton {
-    
+    convenience init(title: String) {
+        self.init()
+        setTitle(title, for: .normal)
+    }
 }

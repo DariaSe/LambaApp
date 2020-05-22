@@ -44,7 +44,6 @@ class PasswordLabelTextFieldView: UIView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.textColor.withAlphaComponent(0.8)
         
-        textField.setHeight(equalTo: SizeConstants.textFieldHeight)
         textField.isSecureTextEntry = true
         textField.delegate = self
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)

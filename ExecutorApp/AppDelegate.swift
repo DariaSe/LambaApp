@@ -13,16 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let mainCoordinator = ExecutorMainCoordinator()
+//    let mainCoordinator = ExecutorMainCoordinator()
+    let startCoordinator = StartCoordinator()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Defaults.setDefault()
     
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = mainCoordinator.mainVC
+//        window?.rootViewController = mainCoordinator.mainVC
+        window?.rootViewController = startCoordinator.startVC
         window?.makeKeyAndVisible()
-        mainCoordinator.start()
+//        mainCoordinator.start()
+        startCoordinator.start()
         
         FileManager.default.clearTmpDirectory()
 

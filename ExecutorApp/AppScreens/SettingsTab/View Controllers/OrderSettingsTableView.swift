@@ -53,8 +53,8 @@ class OrderSettingsTableView: UIView {
     @objc func refresh() {
         refreshControl.beginRefreshing()
         delegate?.refresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-            self?.refreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [unowned self] in
+            self.refreshControl.endRefreshing()
         })
     }
     
@@ -70,27 +70,27 @@ extension OrderSettingsTableView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderSettingsTableViewCell.reuseIdentifier, for: indexPath) as! OrderSettingsTableViewCell
         if indexPath.row == orderSettings.count {
             cell.updateReceiveOrders(isOn: isReceivingOrders)
-            cell.switchIsOn = { [weak self] bool in
-                self?.userInfo?.isReceivingOrders = bool
+            cell.switchIsOn = { [unowned self] bool in
+                self.userInfo?.isReceivingOrders = bool
             }
         }
         else {
             let settings = orderSettings[indexPath.row]
             cell.update(with: settings)
-            cell.switchIsOn = { [weak self] bool in
-                self?.userInfo?.orderSettings[indexPath.row].isOn = bool
-                if let price = self?.userInfo?.orderSettings[indexPath.row].price,
+            cell.switchIsOn = { [unowned self] bool in
+                self.userInfo?.orderSettings[indexPath.row].isOn = bool
+                if let price = self.userInfo?.orderSettings[indexPath.row].price,
                     (price == "" || price == "0" || price.containsInvalidCharacters()) {
-                    self?.delegate?.showEmptyPriceAlert()
-                    self?.userInfo?.orderSettings[indexPath.row].isOn = false
+                    self.delegate?.showEmptyPriceAlert()
+                    self.userInfo?.orderSettings[indexPath.row].isOn = false
                     tableView.reloadData()
                 }
             }
-            cell.textChanged = { [weak self] text in
-                self?.userInfo?.orderSettings[indexPath.row].price = text
+            cell.textChanged = { [unowned self] text in
+                self.userInfo?.orderSettings[indexPath.row].price = text
                 if text.isEmpty {
-                    self?.userInfo?.orderSettings[indexPath.row].isOn = false
-                    self?.userInfo?.orderSettings[indexPath.row].price = "0"
+                    self.userInfo?.orderSettings[indexPath.row].isOn = false
+                    self.userInfo?.orderSettings[indexPath.row].price = "0"
                     tableView.reloadData()
                 }
             }

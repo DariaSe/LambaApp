@@ -30,7 +30,7 @@ class OrdersViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     
     let userButton = UserButton()
-    var delegate: UserButtonDelegate?
+    weak var delegate: UserButtonDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class OrdersViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        userButton.userTapped = { [weak self] in self?.delegate?.showSettings() }
+        userButton.userTapped = { [unowned self] in self.delegate?.showSettings() }
     }
     
    
@@ -86,6 +86,6 @@ extension OrdersViewController: UITableViewDelegate {
     }
 }
 
-protocol UserButtonDelegate {
+protocol UserButtonDelegate: AnyObject {
     func showSettings()
 }

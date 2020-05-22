@@ -17,18 +17,18 @@ class ExecutorOrdersApiService {
     
     func getOrders(completion: @escaping ([Order]?, String?) -> Void) {
         guard let request = URLRequest.signedGetRequest(url: AppURL.getOrdersURL(page: page, limit: limit)) else { return }
-        let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { [unowned self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(nil, error.localizedDescription)
                 }
-                if let data = data,
+                else if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let ordersDict = jsonDict["orders"] as? [[String : Any]] {
                     let orders = ordersDict
                         .map { Order.initialize(from: $0) }
                         .filter { $0 != nil }
-                    self?.isMore = orders.count == self?.limit
+                    self.isMore = orders.count == self.limit
                     completion(orders as? [Order], nil)
                 }
                 else {
