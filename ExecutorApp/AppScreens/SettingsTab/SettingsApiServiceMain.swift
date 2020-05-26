@@ -14,21 +14,21 @@ class SettingsApiServiceMain {
         guard let jpgData = image.jpegData(compressionQuality: 0.5) else { return }
         let jpgString = jpgData.base64EncodedString()
         let json = ["image" : jpgString]
-        guard let request = URLRequest.signedPostRequest(url: AppURL.imageChangeURL, jsonDict: json) else { return }
+        guard let request = URLRequest.signedPostRequest(url: AppURL.executorImageChangeURL, jsonDict: json) else { return }
         let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
         task.resume()
     }
     
     func postUserInfo(_ userInfo: UserInfo, completion: @escaping (Bool, String?) -> Void) {
         let jsonDict = userInfo.dict()
-        guard let request = URLRequest.signedPostRequest(url: AppURL.changeSettingsURL, jsonDict: jsonDict) else { return }
+        guard let request = URLRequest.signedPostRequest(url: AppURL.executorChangeSettingsURL, jsonDict: jsonDict) else { return }
         let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
         task.resume()
     }
     
     func changePassword(passInfo: PassInfo, completion: @escaping (Bool, String?) -> Void) {
         let json = ["oldPassword" : passInfo.oldPass, "password" : passInfo.newPass, "confirm" : passInfo.newPass]
-        guard let request = URLRequest.signedPostRequest(url: AppURL.changeSettingsURL, jsonDict: json) else { return }
+        guard let request = URLRequest.signedPostRequest(url: AppURL.executorPasswordChangeURL, jsonDict: json) else { return }
         let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
         task.resume()
     }

@@ -1,5 +1,5 @@
 //
-//  PasswordLabelTextFieldView.swift
+//  LabelTextFieldView.swift
 //  ExecutorApp
 //
 //  Created by Дарья Селезнёва on 27.04.2020.
@@ -8,11 +8,17 @@
 
 import UIKit
 
-class PasswordLabelTextFieldView: UIView {
+class LabelTextFieldView: UIView {
     
     var title: String = "" {
         didSet {
-            label.text = title
+            label.text = " " + title
+        }
+    }
+    
+    var text: String = "" {
+        didSet {
+            textField.text = text
         }
     }
     
@@ -20,7 +26,13 @@ class PasswordLabelTextFieldView: UIView {
     
     let stackView = UIStackView()
     let label = UILabel()
-    let textField = AppTextField()
+    let textField = FormTextField()
+    
+    convenience init(title: String, type: FormTextFieldType) {
+        self.init()
+        label.text = " " + title
+        textField.type = type
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +46,7 @@ class PasswordLabelTextFieldView: UIView {
     private func initialSetup() {
         stackView.pinToEdges(to: self)
         stackView.axis = .vertical
-//        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.distribution = .fillProportionally
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(textField)
@@ -44,7 +56,6 @@ class PasswordLabelTextFieldView: UIView {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.textColor.withAlphaComponent(0.8)
         
-        textField.isSecureTextEntry = true
         textField.delegate = self
         textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
@@ -64,7 +75,7 @@ class PasswordLabelTextFieldView: UIView {
     
 }
 
-extension PasswordLabelTextFieldView: UITextFieldDelegate {
+extension LabelTextFieldView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.textControlsBackgroundColor.cgColor
     }

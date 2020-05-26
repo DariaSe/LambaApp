@@ -9,6 +9,7 @@
 import Foundation
 
 struct AppURL {
+    
     static let baseURL = "https://lamba.media"
     
     static let xAuthToken = "x-auth-token"
@@ -20,16 +21,52 @@ struct AppURL {
     static let login = "/login"
     static let info = "/info"
     static let logout = "/logout"
-       
+    static let signUp = "/signup"
+    static let resetPassword = "/reset-password"
+    
     static let loginURL = URL(string: baseURL + api + login)!
     static let checkInfoURL = URL(string: baseURL + api + info)!
     static let logoutURL = URL(string: baseURL + api + logout)!
+    static let signUpURL = URL(string: baseURL + api + signUp)!
+    static let resetPasswordURL = URL(string: baseURL + api + resetPassword)!
     
-    // Executor controller
-    static let executor = "/executor"
-    
+    // Common
     static let orders = "/orders"
     static let order = "/order"
+    
+    static let image = "/image"
+    static let passwordChange = "/password-change"
+    static let settings = "/settings"
+    
+    // Customer
+    static let customer = "/customer"
+    
+    static let executors = "/executors"
+    static let favorite = "/favorite"
+    
+    // Customer URLs
+    
+    static func getExecutorsURL(page: Int, limit: Int, search: String, order: String) -> URL {
+        let query = "?page=\(page)&limit=\(limit)&search=\(search)&order=\(order)"
+        return URL(string: baseURL + api + customer + executors + query)!
+    }
+    static func setFavorite(executorID: Int) -> URL {
+        return URL(string: baseURL + api + customer + favorite + "/" + String(executorID))!
+    }
+    static func getCustomerOrdersURL(page: Int, limit: Int) -> URL {
+        let query = "?page=\(page)&limit=\(limit)"
+        return URL(string: baseURL + api + customer + orders + query)!
+    }
+    static func getCustomerOrderDetailsURL(orderID: Int) -> URL {
+        return URL(string: baseURL + api + customer + order + "/" + String(orderID))!
+    }
+    static let customerImageChangeURL = URL(string: baseURL + api + customer + image)!
+    static let customerPasswordChangeURL = URL(string: baseURL + api + customer + passwordChange)!
+    static let customerChangeSettingsURL = URL(string: baseURL + api + customer + settings)!
+    
+    
+    // Executor
+    static let executor = "/executor"
     
     static let changeOrderStatus = "/order-status"
     static let videoUpload = "/upload"
@@ -37,18 +74,15 @@ struct AppURL {
     
     static let finances = "/finances"
     static let transferDescription = "/finances-description"
-     #warning("replace with actual api")
+    #warning("replace with actual api")
     static let transfer = "/transfer"
     
-    static let image = "/image"
-    static let passwordChange = "/password-change"
-    static let settings = "/settings"
-    
-    static func getOrdersURL(page: Int, limit: Int) -> URL {
+    // Executor URLs
+    static func getExecutorOrdersURL(page: Int, limit: Int) -> URL {
         let query = "?page=\(page)&limit=\(limit)"
         return URL(string: baseURL + api + executor + orders + query)!
     }
-    static func getOrderDetailsURL(orderID: Int) -> URL {
+    static func getExecutorOrderDetailsURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + order + "/" + String(orderID))!
     }
     static func setOrderStatusURL() -> URL {
@@ -57,7 +91,7 @@ struct AppURL {
     static func uploadVideoURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + videoUpload + "/" + String(orderID))!
     }
-    static func rejectOrderURL(orderID: Int) -> URL {
+    static func executorRejectOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + executor + orderReject + "/" + String(orderID))!
     }
     
@@ -65,7 +99,7 @@ struct AppURL {
     static let transferDescriptionURL = URL(string: baseURL + api + executor + transferDescription)!
     static let transferURL = URL(string: baseURL + api + executor + transfer)!
     
-    static let imageChangeURL = URL(string: baseURL + api + executor + image)!
-    static let passwordChangeURL = URL(string: baseURL + api + executor + passwordChange)!
-    static let changeSettingsURL = URL(string: baseURL + api + executor + settings)!
+    static let executorImageChangeURL = URL(string: baseURL + api + executor + image)!
+    static let executorPasswordChangeURL = URL(string: baseURL + api + executor + passwordChange)!
+    static let executorChangeSettingsURL = URL(string: baseURL + api + executor + settings)!
 }

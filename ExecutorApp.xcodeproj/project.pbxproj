@@ -24,7 +24,6 @@
 		DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */; };
 		DA941DEB246FC3FA006485B3 /* AppNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEA246FC3FA006485B3 /* AppNavController.swift */; };
 		DA941DED247000D1006485B3 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEC247000D1006485B3 /* UserButton.swift */; };
-		DAACA0682472696A00651E24 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0672472696A00651E24 /* Notifications.swift */; };
 		DAACA06A247421CF00651E24 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA069247421CE00651E24 /* StartCoordinator.swift */; };
 		DAACA06E2476600D00651E24 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA06D2476600C00651E24 /* RegistrationViewController.swift */; };
 		DAACA07024769E8100651E24 /* ForgotPassEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */; };
@@ -35,9 +34,28 @@
 		DAACA07E247813B300651E24 /* ForgotPassCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA07D247813B300651E24 /* ForgotPassCoordinator.swift */; };
 		DAACA080247813C100651E24 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA07F247813C100651E24 /* RegistrationCoordinator.swift */; };
 		DAACA08424781AA300651E24 /* p_FormDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08324781AA300651E24 /* p_FormDelegate.swift */; };
-		DAACA0882478371D00651E24 /* AuthCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0872478371D00651E24 /* AuthCodeViewController.swift */; };
 		DAACA08B24783A2E00651E24 /* ForgotPassApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08A24783A2E00651E24 /* ForgotPassApiService.swift */; };
 		DAACA08D247841AF00651E24 /* RegistrationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA08C247841AF00651E24 /* RegistrationApiService.swift */; };
+		DAACA095247845CD00651E24 /* CustomerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA094247845CD00651E24 /* CustomerTabBarController.swift */; };
+		DAACA0972478460700651E24 /* ExecutorsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0962478460700651E24 /* ExecutorsTabCoordinator.swift */; };
+		DAACA09B2478474000651E24 /* CustomerOrdersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA09A2478474000651E24 /* CustomerOrdersCoordinator.swift */; };
+		DAACA09D2478476200651E24 /* CustomerSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA09C2478476200651E24 /* CustomerSettingsCoordinator.swift */; };
+		DAACA0A5247847D400651E24 /* ExecutorsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0A4247847D400651E24 /* ExecutorsApiService.swift */; };
+		DAACA0A72478491F00651E24 /* ExecutorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0A62478491F00651E24 /* ExecutorsListViewController.swift */; };
+		DAACA0A9247904E700651E24 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0A8247904E700651E24 /* AppTabBarController.swift */; };
+		DAACA0AB2479078E00651E24 /* ExecutorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0AA2479078E00651E24 /* ExecutorDetailsViewController.swift */; };
+		DAACA0AD2479236A00651E24 /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0AC2479236A00651E24 /* Executor.swift */; };
+		DAACA0AF247923B400651E24 /* ExecutorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0AE247923B400651E24 /* ExecutorDetails.swift */; };
+		DAACA0B12479266E00651E24 /* ExecutorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0B02479266E00651E24 /* ExecutorTableViewCell.swift */; };
+		DAACA0B324793E1F00651E24 /* AppSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0B224793E1F00651E24 /* AppSearchBar.swift */; };
+		DAACA0B5247A56A400651E24 /* CustomerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0B4247A56A400651E24 /* CustomerSettingsViewController.swift */; };
+		DAACA0B7247A56B800651E24 /* CustomerSettingsApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0B6247A56B800651E24 /* CustomerSettingsApiService.swift */; };
+		DAACA0B9247A61D800651E24 /* CustomerImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0B8247A61D800651E24 /* CustomerImageButton.swift */; };
+		DAACA0BB247A6F1600651E24 /* CustomerUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0BA247A6F1600651E24 /* CustomerUserInfo.swift */; };
+		DAACA0BD247BF10E00651E24 /* e_UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0BC247BF10E00651E24 /* e_UIImageView.swift */; };
+		DAACA0BF247C243600651E24 /* CustomerOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0BE247C243600651E24 /* CustomerOrdersViewController.swift */; };
+		DAACA0C1247C253700651E24 /* CustomerOrdersApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0C0247C253700651E24 /* CustomerOrdersApiService.swift */; };
+		DAACA0C3247C25EF00651E24 /* CustomerOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA0C2247C25EF00651E24 /* CustomerOrderDetailsViewController.swift */; };
 		DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */; };
 		DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963032455BD1D002BBC3F /* UserInfo.swift */; };
 		DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963052455BDB2002BBC3F /* SocialMedia.swift */; };
@@ -48,7 +66,7 @@
 		DAB963122456D18E002BBC3F /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */; };
 		DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */; };
 		DAB9631824570E73002BBC3F /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631724570E73002BBC3F /* SizeConstants.swift */; };
-		DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */; };
+		DAB9631A245715DC002BBC3F /* LabelTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96319245715DC002BBC3F /* LabelTextFieldView.swift */; };
 		DAB9631C24582A50002BBC3F /* PassInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9631B24582A50002BBC3F /* PassInfo.swift */; };
 		DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632624584144002BBC3F /* OrderSettingsTableViewCell.swift */; };
 		DAB9632924584246002BBC3F /* AppSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9632824584246002BBC3F /* AppSwitch.swift */; };
@@ -66,7 +84,6 @@
 		DAB9635F245C9AE9002BBC3F /* SettingsApiServiceMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9635E245C9AE9002BBC3F /* SettingsApiServiceMain.swift */; };
 		DAB96361245EB9DE002BBC3F /* e_Converting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96360245EB9DD002BBC3F /* e_Converting.swift */; };
 		DAB96365245F047E002BBC3F /* ImageCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB96364245F047E002BBC3F /* ImageCropperViewController.swift */; };
-		DAB963672462DBE8002BBC3F /* ExecutorMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963662462DBE8002BBC3F /* ExecutorMainCoordinator.swift */; };
 		DAB963692462DF45002BBC3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB963682462DF45002BBC3F /* LoginCoordinator.swift */; };
 		DAB9636B2463061B002BBC3F /* p_VideoActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9636A2463061B002BBC3F /* p_VideoActionsDelegate.swift */; };
 		DAB9636D246324E2002BBC3F /* OrderStatusButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9636C246324E1002BBC3F /* OrderStatusButtonsView.swift */; };
@@ -131,7 +148,6 @@
 		DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDescriptionViewController.swift; sourceTree = "<group>"; };
 		DA941DEA246FC3FA006485B3 /* AppNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavController.swift; sourceTree = "<group>"; };
 		DA941DEC247000D1006485B3 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
-		DAACA0672472696A00651E24 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		DAACA069247421CE00651E24 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
 		DAACA06D2476600C00651E24 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassEmailViewController.swift; sourceTree = "<group>"; };
@@ -142,9 +158,28 @@
 		DAACA07D247813B300651E24 /* ForgotPassCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassCoordinator.swift; sourceTree = "<group>"; };
 		DAACA07F247813C100651E24 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		DAACA08324781AA300651E24 /* p_FormDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_FormDelegate.swift; sourceTree = "<group>"; };
-		DAACA0872478371D00651E24 /* AuthCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeViewController.swift; sourceTree = "<group>"; };
 		DAACA08A24783A2E00651E24 /* ForgotPassApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassApiService.swift; sourceTree = "<group>"; };
 		DAACA08C247841AF00651E24 /* RegistrationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationApiService.swift; sourceTree = "<group>"; };
+		DAACA094247845CD00651E24 /* CustomerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTabBarController.swift; sourceTree = "<group>"; };
+		DAACA0962478460700651E24 /* ExecutorsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorsTabCoordinator.swift; sourceTree = "<group>"; };
+		DAACA09A2478474000651E24 /* CustomerOrdersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrdersCoordinator.swift; sourceTree = "<group>"; };
+		DAACA09C2478476200651E24 /* CustomerSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSettingsCoordinator.swift; sourceTree = "<group>"; };
+		DAACA0A4247847D400651E24 /* ExecutorsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorsApiService.swift; sourceTree = "<group>"; };
+		DAACA0A62478491F00651E24 /* ExecutorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorsListViewController.swift; sourceTree = "<group>"; };
+		DAACA0A8247904E700651E24 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
+		DAACA0AA2479078E00651E24 /* ExecutorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorDetailsViewController.swift; sourceTree = "<group>"; };
+		DAACA0AC2479236A00651E24 /* Executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
+		DAACA0AE247923B400651E24 /* ExecutorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorDetails.swift; sourceTree = "<group>"; };
+		DAACA0B02479266E00651E24 /* ExecutorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorTableViewCell.swift; sourceTree = "<group>"; };
+		DAACA0B224793E1F00651E24 /* AppSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchBar.swift; sourceTree = "<group>"; };
+		DAACA0B4247A56A400651E24 /* CustomerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSettingsViewController.swift; sourceTree = "<group>"; };
+		DAACA0B6247A56B800651E24 /* CustomerSettingsApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSettingsApiService.swift; sourceTree = "<group>"; };
+		DAACA0B8247A61D800651E24 /* CustomerImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerImageButton.swift; sourceTree = "<group>"; };
+		DAACA0BA247A6F1600651E24 /* CustomerUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerUserInfo.swift; sourceTree = "<group>"; };
+		DAACA0BC247BF10E00651E24 /* e_UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIImageView.swift; sourceTree = "<group>"; };
+		DAACA0BE247C243600651E24 /* CustomerOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrdersViewController.swift; sourceTree = "<group>"; };
+		DAACA0C0247C253700651E24 /* CustomerOrdersApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrdersApiService.swift; sourceTree = "<group>"; };
+		DAACA0C2247C25EF00651E24 /* CustomerOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrderDetailsViewController.swift; sourceTree = "<group>"; };
 		DAB962FB2455B873002BBC3F /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		DAB963032455BD1D002BBC3F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		DAB963052455BDB2002BBC3F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
@@ -155,7 +190,7 @@
 		DAB963112456D18E002BBC3F /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		DAB9631724570E73002BBC3F /* SizeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstants.swift; sourceTree = "<group>"; };
-		DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordLabelTextFieldView.swift; sourceTree = "<group>"; };
+		DAB96319245715DC002BBC3F /* LabelTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextFieldView.swift; sourceTree = "<group>"; };
 		DAB9631B24582A50002BBC3F /* PassInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassInfo.swift; sourceTree = "<group>"; };
 		DAB9632624584144002BBC3F /* OrderSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		DAB9632824584246002BBC3F /* AppSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitch.swift; sourceTree = "<group>"; };
@@ -173,7 +208,6 @@
 		DAB9635E245C9AE9002BBC3F /* SettingsApiServiceMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsApiServiceMain.swift; sourceTree = "<group>"; };
 		DAB96360245EB9DD002BBC3F /* e_Converting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_Converting.swift; sourceTree = "<group>"; };
 		DAB96364245F047E002BBC3F /* ImageCropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropperViewController.swift; sourceTree = "<group>"; };
-		DAB963662462DBE8002BBC3F /* ExecutorMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorMainCoordinator.swift; sourceTree = "<group>"; };
 		DAB963682462DF45002BBC3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		DAB9636A2463061B002BBC3F /* p_VideoActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p_VideoActionsDelegate.swift; sourceTree = "<group>"; };
 		DAB9636C246324E1002BBC3F /* OrderStatusButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusButtonsView.swift; sourceTree = "<group>"; };
@@ -298,6 +332,7 @@
 		DAACA090247844AB00651E24 /* Customer Part */ = {
 			isa = PBXGroup;
 			children = (
+				DAACA094247845CD00651E24 /* CustomerTabBarController.swift */,
 				DAACA091247844BE00651E24 /* ExecutorsTab */,
 				DAACA092247844DA00651E24 /* OrdersTab */,
 				DAACA093247844E900651E24 /* SettingsTab */,
@@ -308,6 +343,9 @@
 		DAACA091247844BE00651E24 /* ExecutorsTab */ = {
 			isa = PBXGroup;
 			children = (
+				DAACA0962478460700651E24 /* ExecutorsTabCoordinator.swift */,
+				DAACA09F2478478000651E24 /* API Services */,
+				DAACA09E2478477800651E24 /* ViewControllers */,
 			);
 			path = ExecutorsTab;
 			sourceTree = "<group>";
@@ -315,6 +353,9 @@
 		DAACA092247844DA00651E24 /* OrdersTab */ = {
 			isa = PBXGroup;
 			children = (
+				DAACA09A2478474000651E24 /* CustomerOrdersCoordinator.swift */,
+				DAACA0A12478479600651E24 /* API Services */,
+				DAACA0A02478478800651E24 /* ViewControllers */,
 			);
 			path = OrdersTab;
 			sourceTree = "<group>";
@@ -322,8 +363,63 @@
 		DAACA093247844E900651E24 /* SettingsTab */ = {
 			isa = PBXGroup;
 			children = (
+				DAACA09C2478476200651E24 /* CustomerSettingsCoordinator.swift */,
+				DAACA0A3247847B400651E24 /* API Services */,
+				DAACA0A2247847A000651E24 /* ViewControllers */,
 			);
 			path = SettingsTab;
+			sourceTree = "<group>";
+		};
+		DAACA09E2478477800651E24 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0A62478491F00651E24 /* ExecutorsListViewController.swift */,
+				DAACA0B02479266E00651E24 /* ExecutorTableViewCell.swift */,
+				DAACA0AA2479078E00651E24 /* ExecutorDetailsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DAACA09F2478478000651E24 /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0A4247847D400651E24 /* ExecutorsApiService.swift */,
+			);
+			path = "API Services";
+			sourceTree = "<group>";
+		};
+		DAACA0A02478478800651E24 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0BE247C243600651E24 /* CustomerOrdersViewController.swift */,
+				DAACA0C2247C25EF00651E24 /* CustomerOrderDetailsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DAACA0A12478479600651E24 /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0C0247C253700651E24 /* CustomerOrdersApiService.swift */,
+			);
+			path = "API Services";
+			sourceTree = "<group>";
+		};
+		DAACA0A2247847A000651E24 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0B4247A56A400651E24 /* CustomerSettingsViewController.swift */,
+				DAACA0B8247A61D800651E24 /* CustomerImageButton.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DAACA0A3247847B400651E24 /* API Services */ = {
+			isa = PBXGroup;
+			children = (
+				DAACA0B6247A56B800651E24 /* CustomerSettingsApiService.swift */,
+			);
+			path = "API Services";
 			sourceTree = "<group>";
 		};
 		DAB9631D24583EF6002BBC3F /* View Controllers */ = {
@@ -372,7 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB9631324570843002BBC3F /* ChangePasswordViewController.swift */,
-				DAB96319245715DC002BBC3F /* PasswordLabelTextFieldView.swift */,
+				DAB96319245715DC002BBC3F /* LabelTextFieldView.swift */,
 			);
 			name = "Change Password ViewController";
 			sourceTree = "<group>";
@@ -437,7 +533,6 @@
 			children = (
 				DABCA634244DD78200682368 /* AppDelegate.swift */,
 				DABCA661244EF5EF00682368 /* Defaults.swift */,
-				DAACA0672472696A00651E24 /* Notifications.swift */,
 				DAB96343245B3825002BBC3F /* AppURL.swift */,
 				DABCA66A244F0B3900682368 /* p_KeyboardHandler.swift */,
 				DABCA69D2450991D00682368 /* States */,
@@ -463,6 +558,7 @@
 				DABCA64B244DD9C000682368 /* e_UIView.swift */,
 				DABCA6A0245099B800682368 /* e_UIViewController.swift */,
 				DAB9635C245C9410002BBC3F /* e_UIImage.swift */,
+				DAACA0BC247BF10E00651E24 /* e_UIImageView.swift */,
 				DA6716BD245322E2001791E3 /* e_UIButton.swift */,
 				DAB963342459B06C002BBC3F /* e_UIAlertController.swift */,
 				DABCA65D244E09E400682368 /* e_UITextField.swift */,
@@ -505,7 +601,6 @@
 				DAB96347245B5852002BBC3F /* StartViewController.swift */,
 				DABCA648244DD84A00682368 /* LoginViewController.swift */,
 				DAACA06F24769E8100651E24 /* ForgotPassEmailViewController.swift */,
-				DAACA0872478371D00651E24 /* AuthCodeViewController.swift */,
 				DAACA0712476A25700651E24 /* ResetPassViewController.swift */,
 				DAACA06D2476600C00651E24 /* RegistrationViewController.swift */,
 			);
@@ -516,7 +611,6 @@
 			isa = PBXGroup;
 			children = (
 				DABCA670244F1C4900682368 /* ExecutorTabBarController.swift */,
-				DAB963662462DBE8002BBC3F /* ExecutorMainCoordinator.swift */,
 				DABCA66D244F1BD200682368 /* OrdersTab */,
 				DABCA66E244F1C0000682368 /* FinancesTab */,
 				DABCA66F244F1C1700682368 /* SettingsTab */,
@@ -562,9 +656,12 @@
 				DABCA68B2450878600682368 /* OrderDetailUnit.swift */,
 				DA6716C924541D2B001791E3 /* FinancesInfo.swift */,
 				DAB963032455BD1D002BBC3F /* UserInfo.swift */,
+				DAACA0BA247A6F1600651E24 /* CustomerUserInfo.swift */,
 				DAB963052455BDB2002BBC3F /* SocialMedia.swift */,
 				DAB963072455C244002BBC3F /* OrderSettings.swift */,
 				DAB9631B24582A50002BBC3F /* PassInfo.swift */,
+				DAACA0AC2479236A00651E24 /* Executor.swift */,
+				DAACA0AE247923B400651E24 /* ExecutorDetails.swift */,
 				DAB96388246C65A6002BBC3F /* Print.swift */,
 			);
 			path = Model;
@@ -607,12 +704,14 @@
 			isa = PBXGroup;
 			children = (
 				DAB96382246975B0002BBC3F /* Coordinator.swift */,
+				DAACA0A8247904E700651E24 /* AppTabBarController.swift */,
 				DA941DEA246FC3FA006485B3 /* AppNavController.swift */,
 				DABCA6872450279E00682368 /* AppButton.swift */,
 				DA941DEC247000D1006485B3 /* UserButton.swift */,
 				DAB9632824584246002BBC3F /* AppSwitch.swift */,
 				DAB9632A24584CBD002BBC3F /* AppTextField.swift */,
 				DAB963802468891A002BBC3F /* NoPasteTextField.swift */,
+				DAACA0B224793E1F00651E24 /* AppSearchBar.swift */,
 			);
 			path = "Base classes";
 			sourceTree = "<group>";
@@ -706,7 +805,8 @@
 				DA6716BE245322E2001791E3 /* e_UIButton.swift in Sources */,
 				DAACA06E2476600D00651E24 /* RegistrationViewController.swift in Sources */,
 				DAB96387246AE07D002BBC3F /* FinancesApiServiceMain.swift in Sources */,
-				DAACA0882478371D00651E24 /* AuthCodeViewController.swift in Sources */,
+				DAACA0B12479266E00651E24 /* ExecutorTableViewCell.swift in Sources */,
+				DAACA0C1247C253700651E24 /* CustomerOrdersApiService.swift in Sources */,
 				DABCA68C2450878600682368 /* OrderDetailUnit.swift in Sources */,
 				DA6716CC24541E75001791E3 /* ReadyToTransferTableView.swift in Sources */,
 				DAACA06A247421CF00651E24 /* StartCoordinator.swift in Sources */,
@@ -714,23 +814,30 @@
 				DAB9637B2466EB83002BBC3F /* VideoService.swift in Sources */,
 				DABCA66B244F0B3900682368 /* p_KeyboardHandler.swift in Sources */,
 				DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */,
+				DAACA0BB247A6F1600651E24 /* CustomerUserInfo.swift in Sources */,
 				DAB9631824570E73002BBC3F /* SizeConstants.swift in Sources */,
 				DAB9632924584246002BBC3F /* AppSwitch.swift in Sources */,
+				DAACA09D2478476200651E24 /* CustomerSettingsCoordinator.swift in Sources */,
 				DABCA683244F396600682368 /* OrderDetailsUnitView.swift in Sources */,
 				DABCA65E244E09E400682368 /* e_UITextField.swift in Sources */,
 				DAACA08D247841AF00651E24 /* RegistrationApiService.swift in Sources */,
 				DAB96344245B3825002BBC3F /* AppURL.swift in Sources */,
+				DAACA0972478460700651E24 /* ExecutorsTabCoordinator.swift in Sources */,
 				DAACA0722476A25700651E24 /* ResetPassViewController.swift in Sources */,
+				DAACA0C3247C25EF00651E24 /* CustomerOrderDetailsViewController.swift in Sources */,
 				DAB9636B2463061B002BBC3F /* p_VideoActionsDelegate.swift in Sources */,
 				DABCA6882450279E00682368 /* AppButton.swift in Sources */,
 				DABCA67B244F243500682368 /* Order.swift in Sources */,
 				DA6716BC24531A31001791E3 /* Strings.swift in Sources */,
+				DAACA0A9247904E700651E24 /* AppTabBarController.swift in Sources */,
 				DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */,
-				DAB963672462DBE8002BBC3F /* ExecutorMainCoordinator.swift in Sources */,
+				DAACA095247845CD00651E24 /* CustomerTabBarController.swift in Sources */,
 				DABCA64C244DD9C000682368 /* e_UIView.swift in Sources */,
+				DAACA0B5247A56A400651E24 /* CustomerSettingsViewController.swift in Sources */,
 				DABCA64F244DF17000682368 /* Colors.swift in Sources */,
 				DA941DEB246FC3FA006485B3 /* AppNavController.swift in Sources */,
 				DAB963852469C00F002BBC3F /* e_FileManager.swift in Sources */,
+				DAACA0AF247923B400651E24 /* ExecutorDetails.swift in Sources */,
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
 				DAACA08424781AA300651E24 /* p_FormDelegate.swift in Sources */,
@@ -738,14 +845,18 @@
 				DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */,
 				DABCA679244F200400682368 /* OrderTableViewCell.swift in Sources */,
 				DABCA67E244F38D300682368 /* OrderDetailsViewController.swift in Sources */,
+				DAACA0B9247A61D800651E24 /* CustomerImageButton.swift in Sources */,
+				DAACA0AB2479078E00651E24 /* ExecutorDetailsViewController.swift in Sources */,
 				DAB963692462DF45002BBC3F /* LoginCoordinator.swift in Sources */,
 				DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */,
 				DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */,
 				DAB9637124632DF5002BBC3F /* VideoPickerViewController.swift in Sources */,
 				DAB96361245EB9DE002BBC3F /* e_Converting.swift in Sources */,
+				DAACA0BD247BF10E00651E24 /* e_UIImageView.swift in Sources */,
 				DAB96348245B5852002BBC3F /* StartViewController.swift in Sources */,
 				DABCA65A244DFCA800682368 /* e_String.swift in Sources */,
 				DABCA662244EF5EF00682368 /* Defaults.swift in Sources */,
+				DAACA0A72478491F00651E24 /* ExecutorsListViewController.swift in Sources */,
 				DAACA07C2477FE8800651E24 /* FormTextField.swift in Sources */,
 				DAB963352459B06C002BBC3F /* e_UIAlertController.swift in Sources */,
 				DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */,
@@ -765,20 +876,25 @@
 				DAACA07A2477FD2C00651E24 /* InputFormView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA941DED247000D1006485B3 /* UserButton.swift in Sources */,
+				DAACA0B324793E1F00651E24 /* AppSearchBar.swift in Sources */,
 				DA6716CA24541D2B001791E3 /* FinancesInfo.swift in Sources */,
+				DAACA0A5247847D400651E24 /* ExecutorsApiService.swift in Sources */,
 				DAACA080247813C100651E24 /* RegistrationCoordinator.swift in Sources */,
 				DAB963752465B977002BBC3F /* e_URLSession.swift in Sources */,
+				DAACA0BF247C243600651E24 /* CustomerOrdersViewController.swift in Sources */,
 				DAB96389246C65A7002BBC3F /* Print.swift in Sources */,
 				DAB963812468891A002BBC3F /* NoPasteTextField.swift in Sources */,
 				DABCA671244F1C4900682368 /* ExecutorTabBarController.swift in Sources */,
 				DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */,
 				DABCA677244F1C8000682368 /* SettingsViewController.swift in Sources */,
+				DAACA0AD2479236A00651E24 /* Executor.swift in Sources */,
 				DAB9636D246324E2002BBC3F /* OrderStatusButtonsView.swift in Sources */,
 				DABCA635244DD78200682368 /* AppDelegate.swift in Sources */,
 				DAB9630A2455C9E3002BBC3F /* ProfileSettingsView.swift in Sources */,
 				DAB9631424570843002BBC3F /* ChangePasswordViewController.swift in Sources */,
-				DAB9631A245715DC002BBC3F /* PasswordLabelTextFieldView.swift in Sources */,
+				DAB9631A245715DC002BBC3F /* LabelTextFieldView.swift in Sources */,
 				DABCA68E245087FD00682368 /* OrderDetails.swift in Sources */,
+				DAACA09B2478474000651E24 /* CustomerOrdersCoordinator.swift in Sources */,
 				DAB962FC2455B873002BBC3F /* SettingsCoordinator.swift in Sources */,
 				DAB963082455C244002BBC3F /* OrderSettings.swift in Sources */,
 				DAB9636F24632721002BBC3F /* OrderStatusImageView.swift in Sources */,
@@ -787,6 +903,7 @@
 				DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */,
 				DABCA65C244DFE2500682368 /* LoginApiService.swift in Sources */,
 				DAB963402459FE2D002BBC3F /* InfoService.swift in Sources */,
+				DAACA0B7247A56B800651E24 /* CustomerSettingsApiService.swift in Sources */,
 				DAB9631C24582A50002BBC3F /* PassInfo.swift in Sources */,
 				DA6716C824541A8D001791E3 /* ReadyToTransferTableViewCell.swift in Sources */,
 				DABCA694245090A300682368 /* ExecutorOrdersCoordinator.swift in Sources */,
@@ -795,7 +912,6 @@
 				DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */,
 				DAB9632724584144002BBC3F /* OrderSettingsTableViewCell.swift in Sources */,
 				DA6716C42454167D001791E3 /* ReadyToTransferView.swift in Sources */,
-				DAACA0682472696A00651E24 /* Notifications.swift in Sources */,
 				DAB9635D245C9410002BBC3F /* e_UIImage.swift in Sources */,
 				DAB963042455BD1D002BBC3F /* UserInfo.swift in Sources */,
 				DAB963772465C929002BBC3F /* e_URLRequest.swift in Sources */,

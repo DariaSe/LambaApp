@@ -6,16 +6,18 @@
 //  Copyright © 2020 dariaS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum OrderStatus {
     case done
     case active
-    case rejected
+    case rejectedExecutor
+    case rejectedCustomer
     case uploading
 }
 
 struct Order {
+    var image: UIImage?
     var id: Int
     var cost: String
     var orderTypeTitle: String
@@ -29,7 +31,7 @@ struct Order {
     }
     
     static func sampleOrders() -> [Order] {
-        return [Order(id: 1, cost: "2000", orderTypeTitle: "Order description", date: "21.09.2019", status: .active), Order(id: 2, cost: "5000", orderTypeTitle: "Order description", date: "23.11.2019", status: .rejected), Order(id: 3, cost: "3000", orderTypeTitle: "Some very very long order description", date: "23.12.2019", status: .done)]
+        return [Order(image: UIImage(named: "DollarSign"), id: 1, cost: "2000", orderTypeTitle: "Order description", date: "21.09.2019", status: .active), Order(id: 2, cost: "5000", orderTypeTitle: "Order description", date: "23.11.2019", status: .rejectedExecutor), Order(id: 3, cost: "3000", orderTypeTitle: "Some very very long order description", date: "23.12.2019", status: .done)]
     }
     
     static func initialize(from dictionary: [String : Any]) -> Order? {
@@ -55,7 +57,8 @@ struct Order {
     static func status(from string: String) -> OrderStatus? {
         switch string {
         case "active" : return .active
-        case "rejected_executor": return .rejected
+        case "rejected_executor": return .rejectedExecutor
+        case "rejected_customer": return .rejectedCustomer
         case "done": return .done
         case "upload": return .uploading
         default: return nil
@@ -66,7 +69,8 @@ struct Order {
         switch status {
         case .active: return Strings.statusActive
         case .done: return Strings.statusDone
-        case .rejected: return Strings.statusRejected
+        case .rejectedExecutor: return Strings.statusYouRejected
+        case .rejectedCustomer: return Strings.statusYouRejected
         case .uploading: return Strings.statusUploading
         }
     }

@@ -16,7 +16,7 @@ class LoginCoordinator: Coordinator {
     
     let loginVC = LoginViewController()
     
-    let loginService = LoginService()
+    let loginApiService = LoginApiService()
     
     func start() {
         loginVC.loginCoordinator = self
@@ -28,7 +28,7 @@ class LoginCoordinator: Coordinator {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.center(in: loginVC.view)
         activityIndicator.startAnimating()
-        loginService.login(email: email, password: password) { [unowned self] (token, errorMessage) in
+        loginApiService.login(email: email, password: password) { [unowned self] (token, errorMessage) in
             if let token = token {
                 Defaults.token = token
                 DispatchQueue.main.async {

@@ -26,6 +26,12 @@ class OrdersViewController: UIViewController {
         }
     }
     
+    var imageURLs: [URL] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
@@ -36,7 +42,7 @@ class OrdersViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         navigationItem.rightBarButtonItem = userButton
-        tableView.constrainToEdges(of: view, leading: 4, trailing: 4, top: 4, bottom: 15)
+        tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 4, trailing: 4, top: 4, bottom: 15)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -65,7 +71,8 @@ extension OrdersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
         let order = orders[indexPath.row]
-        cell.update(with: order)
+        let imageURL = imageURLs[indexPath.row]
+        cell.update(with: order, userRole: .executor, imageURL: imageURL)
         if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
             if indexPath.row == (orders.count - 1) && indexPathsForVisibleRows.count < orders.count {
                 coordinator?.loadMore()
@@ -84,8 +91,4 @@ extension OrdersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 82
     }
-}
-
-protocol UserButtonDelegate: AnyObject {
-    func showSettings()
 }

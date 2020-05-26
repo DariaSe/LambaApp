@@ -16,11 +16,6 @@ extension URLSession {
                 completion(false, error.localizedDescription)
             }
             if let data = data, let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                
-                #if DEBUG
-                printWithTime(String(data: data, encoding: .utf8)!)
-                #endif
-                
                 if let code = jsonDict["code"] as? String, code == "OK" {
                     completion(true, nil)
                 }

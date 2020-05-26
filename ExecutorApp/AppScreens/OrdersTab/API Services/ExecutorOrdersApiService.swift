@@ -15,12 +15,12 @@ class ExecutorOrdersApiService {
     var page: Int = 1
     var limit: Int = 30
     
-    func getOrders(completion: @escaping ([Order]?, String?) -> Void) {
-        guard let request = URLRequest.signedGetRequest(url: AppURL.getOrdersURL(page: page, limit: limit)) else { return }
+    func getOrders(completion: @escaping ([Order]?, [URL]?, String?) -> Void) {
+        guard let request = URLRequest.signedGetRequest(url: AppURL.getExecutorOrdersURL(page: page, limit: limit)) else { return }
         let task = URLSession.shared.dataTask(with: request) { [unowned self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    completion(nil, error.localizedDescription)
+                    completion(nil, nil, error.localizedDescription)
                 }
                 else if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
@@ -29,10 +29,16 @@ class ExecutorOrdersApiService {
                         .map { Order.initialize(from: $0) }
                         .filter { $0 != nil }
                     self.isMore = orders.count == self.limit
-                    completion(orders as? [Order], nil)
+                    if let imageUrlStrings = ordersDict.map({$0["image"] as? String}) as? [String],
+                        let urls = imageUrlStrings.map({URL(string: $0)}) as? [URL] {
+                        completion(orders as? [Order], urls, nil)
+                    }
+                    else {
+                        completion(orders as? [Order], nil, nil)
+                    }
                 }
                 else {
-                    completion(nil, Strings.error)
+                    completion(nil, nil, Strings.error)
                 }
             }
         }
@@ -40,7 +46,7 @@ class ExecutorOrdersApiService {
     }
     
     func showOrderDetails(orderID: Int, completion: @escaping (OrderDetails?, String?) -> Void) {
-        guard let request = URLRequest.signedGetRequest(url: AppURL.getOrderDetailsURL(orderID: orderID)) else { return }
+        guard let request = URLRequest.signedGetRequest(url: AppURL.getExecutorOrderDetailsURL(orderID: orderID)) else { return }
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {

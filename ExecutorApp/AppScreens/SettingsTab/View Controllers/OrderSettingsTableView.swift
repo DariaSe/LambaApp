@@ -43,6 +43,7 @@ class OrderSettingsTableView: UIView {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(OrderSettingsTableViewCell.self, forCellReuseIdentifier: OrderSettingsTableViewCell.reuseIdentifier)
         tableView.separatorInset = UIEdgeInsets.zero
         

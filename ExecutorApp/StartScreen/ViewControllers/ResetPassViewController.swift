@@ -12,6 +12,10 @@ class ResetPassViewController: InputFormViewController {
     
     weak var coordinator: ForgotPassCoordinator?
     
+    var email: String?
+    
+    let codeTextField = FormTextField(type: .code, placeholder: Strings.enterCode)
+    
     let passwordTextField = FormTextField(type: .password, placeholder: Strings.newPassword)
     let confirmTextField = FormTextField(type: .password, placeholder: Strings.confirmPass)
     
@@ -20,6 +24,7 @@ class ResetPassViewController: InputFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        add(codeTextField)
         add(passwordTextField)
         add(confirmTextField)
         add(resetButton)
@@ -31,11 +36,17 @@ class ResetPassViewController: InputFormViewController {
     @objc func resetButtonPressed() {
         view.endEditing(true)
         resetButton.animate(scale: 1.05)
-        guard let password = passwordTextField.text, !password.isEmpty,
-            let confirmedPassword = confirmTextField.text, !confirmedPassword.isEmpty else {
+        guard
+            let email = email,
+            let code = codeTextField.text,
+            let password = passwordTextField.text,
+            let confirmedPassword = confirmTextField.text,
+            !code.isEmpty,
+            !password.isEmpty,
+            !confirmedPassword.isEmpty else {
                 return
         }
-        coordinator?.sendPassword(old: password, new: confirmedPassword)
+        coordinator?.sendCodeAndPassword(code: code, email: email, password: password, confirmedPassword: confirmedPassword)
     }
     
 }

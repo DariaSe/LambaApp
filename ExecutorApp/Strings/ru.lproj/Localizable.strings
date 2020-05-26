@@ -12,12 +12,14 @@
 "Done" = "Исполнено";
 "Active" = "Активный";
 "You rejected" = "Вы отказались";
+"Executor rejected" = "Исполнитель отказался";
 "Uploading" = "Загружается";
 
 // Tab bar
 "Orders" = "Заказы";
 "Finances" = "Финансы";
 "Settings" = "Настройки";
+"Executors" = "Исполнители";
 
 // Login Screen
 "E-mail" = "E-mail";
@@ -28,6 +30,7 @@
 "Forgot password?" = "Забыли пароль?";
 "E-mail not found" = "E-mail не найден";
 "Send authorization code" = "Отправить код авторизации";
+"Enter e-mail" = "Введите e-mail";
 "I already have code" = "У меня уже есть код";
 "Enter code from e-mail here" = "Введите код из e-mail";
 "Send" = "Отправить";
@@ -35,6 +38,7 @@
 "Register" = "Зарегистрироваться";
 "Confirm password" = "Подтвердите пароль";
 "Passwords don't match" = "Пароли не совпадают";
+"Couldn't register. Try again later" = "Не удалось зарегистрироваться. Повторите попытку позже";
 
 
 // Orders
@@ -108,3 +112,12 @@
 "Camera" = "Камера";
 "Photos" = "Мои фото";
 "Image successfully changed" = "Фото было успешно изменено";
+
+// Customer
+//Executors Screen
+"Search" = "Поиск";
+
+// Settings
+"First name" = "Имя";
+"Last name" = "Фамилия";
+"Fill all fields" = "Заполните все поля";

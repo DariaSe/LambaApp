@@ -25,20 +25,17 @@ class ExecutorOrdersCoordinator: Coordinator {
         let starImage = UIImage(named: "Star")
         ordersVC.tabBarItem = UITabBarItem(title: Strings.orders, image: starImage, tag: 0)
         ordersVC.title = Strings.orders
-        NotificationCenter.default.addObserver(self, selector: #selector(setUserImage), name: NotificationService.userImageNName, object: nil)
     }
     
-    @objc func setUserImage() {
-        DispatchQueue.main.async {
-            self.ordersVC.userImage = InfoService.shared.userImage
-        }
+    func setImage(_ image: UIImage?) {
+        ordersVC.userImage = image
     }
     
     func getOrders() {
-        ordersApiService.page = 1
+//        ordersApiService.page = 1
         errorVC.reload = { [unowned self] in self.getOrders() }
         showLoadingIndicator()
-        ordersApiService.getOrders { [unowned self] orders, errorMessage in
+        ordersApiService.getOrders { [unowned self] orders, imageURLs, errorMessage in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
@@ -51,6 +48,9 @@ class ExecutorOrdersCoordinator: Coordinator {
                 else {
                     self.showFullScreenError(message: Strings.noOrdersYet)
                 }
+                if let imageURLs = imageURLs {
+                    self.ordersVC.imageURLs = imageURLs
+                }
             }
         }
     }
@@ -59,13 +59,16 @@ class ExecutorOrdersCoordinator: Coordinator {
         if ordersApiService.isMore {
             showLoadingIndicator()
             ordersApiService.page += 1
-            ordersApiService.getOrders { [unowned self] orders, errorMessage in
+            ordersApiService.getOrders { [unowned self] orders, imageURLs, errorMessage in
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showPopUpError(message: errorMessage)
                 }
                 if let orders = orders {
                     self.ordersVC.orders.append(contentsOf: orders)
+                }
+                if let imageURLs = imageURLs {
+                    self.ordersVC.imageURLs = imageURLs
                 }
             }
         }
@@ -182,7 +185,7 @@ class ExecutorOrdersCoordinator: Coordinator {
                         self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
                     if success {
-                        self.orderDetailsVC.statusView.status = .rejected
+                        self.orderDetailsVC.statusView.status = .rejectedExecutor
                     }
                     else {
                         self.showSimpleAlert(title: Strings.error, handler: nil)

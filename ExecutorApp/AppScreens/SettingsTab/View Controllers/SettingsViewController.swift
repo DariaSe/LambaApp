@@ -72,6 +72,10 @@ class SettingsViewController: UIViewController, KeyboardHandler {
     func setImage(_  image: UIImage?) {
         profileSettingsView.imageView.image = image
     }
+    
+    func passSocialmagesURLs(_ urls: [URL]) {
+        profileSettingsView.socialMediaTableView.socialImagesURLs = urls
+    }
 }
 
 extension SettingsViewController: SettingsDelegate {
@@ -97,13 +101,14 @@ extension SettingsViewController: SettingsDelegate {
     }
     
     func sendChanges() {
-        let newUserInfo = UserInfo(
+        guard let userInfo = userInfo else { return }
+        let newUserInfo = UserInfo(firstName: userInfo.firstName, lastName: userInfo.lastName, email: userInfo.email,
             socialMedia: profileSettingsView.socialMediaTableView.socialMedia,
             hashtags: profileSettingsView.hashtagsView.hashtags,
             orderSettings: orderSettingsTableView.orderSettings,
             isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "", role: nil)
         if userInfo != newUserInfo {
-            userInfo = newUserInfo
+            self.userInfo = newUserInfo
             coordinator?.postUserInfo(newUserInfo)
         }
     }

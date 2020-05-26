@@ -13,13 +13,15 @@ struct Strings {
     // Order status
     static let statusDone = "Done".localized
     static let statusActive = "Active".localized
-    static let statusRejected = "You rejected".localized
+    static let statusYouRejected = "You rejected".localized
+    static let statusRejectedExecutor = "Executor rejected".localized
     static let statusUploading = "Uploading".localized
     
     // Tab bar
     static let orders = "Orders".localized
     static let finances = "Finances".localized
     static let settings = "Settings".localized
+    static let executors = "Executors".localized
     
     // Login Screen
     static let email = "E-mail".localized
@@ -29,6 +31,7 @@ struct Strings {
     static let loginFailed = "Login failed".localized
     static let forgotPassword = "Forgot password?".localized
     static let sendAuthCode = "Send authorization code".localized
+    static let enterEmail = "Enter e-mail".localized
     static let haveCode = "I already have code".localized
     static let enterCode = "Enter code from e-mail here".localized
     static let send = "Send".localized
@@ -37,6 +40,7 @@ struct Strings {
     static let register = "Register".localized
     static let confirmPass = "Confirm password".localized
     static let passNoMatch = "Passwords don't match".localized
+    static let signupError = "Couldn't register. Try again later".localized
     
     // Orders
     static let noOrdersYet = "You have no orders yet".localized
@@ -109,5 +113,14 @@ struct Strings {
     static let camera = "Camera".localized
     static let photos = "Photos".localized
     static let imageChanged = "Image successfully changed".localized
+    
+    // Customer
+    //Executors Screen
+    static let search = "Search".localized
+    
+    // Settings
+    static let name = "First name".localized
+    static let lastName = "Last name".localized
+    static let fillAllFields = "Fill all fields".localized
     
 }

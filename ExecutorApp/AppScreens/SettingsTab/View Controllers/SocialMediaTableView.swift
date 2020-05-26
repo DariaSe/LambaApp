@@ -16,6 +16,12 @@ class SocialMediaTableView: UIView {
         }
     }
     
+    var socialImagesURLs: [URL] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private let stackView = UIStackView()
     private let descriptionLabel = UILabel()
     let tableView = UITableView()
@@ -61,7 +67,8 @@ extension SocialMediaTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SocialMediaTableViewCell.reuseIdentifier, for: indexPath) as! SocialMediaTableViewCell
         let socialMediaUnit = socialMedia[indexPath.row]
-        cell.update(with: socialMediaUnit)
+        let imageURL = socialImagesURLs[indexPath.row]
+        cell.update(with: socialMediaUnit, imageURL: imageURL )
         cell.textChanged = { [unowned self] text in
             self.socialMedia[indexPath.row].url = text
             self.delegate?.sendChanges()

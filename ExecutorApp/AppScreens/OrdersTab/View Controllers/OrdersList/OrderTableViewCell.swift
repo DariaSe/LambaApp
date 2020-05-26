@@ -17,7 +17,7 @@ class OrderTableViewCell: UITableViewCell {
     private let containerView = UIView()
     private let shadowView = UIView()
     
-    private let moneySignImageView = UIImageView()
+    private let leftImageView = UIImageView()
     
     private let sumDescrStackView = UIStackView()
     private let costLabel = UILabel()
@@ -26,8 +26,10 @@ class OrderTableViewCell: UITableViewCell {
     private let statusDateStackView = UIStackView()
     private let statusLabel = UILabel()
     private let dateLabel = UILabel()
-
+    
     private let statusIndicatorView = UIView()
+    
+    private var imageViewHeightConstraint = NSLayoutConstraint()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -56,10 +58,12 @@ class OrderTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 14
-        stackView.addArrangedSubview(moneySignImageView)
+        stackView.addArrangedSubview(leftImageView)
         stackView.addArrangedSubview(sumDescrStackView)
         stackView.addArrangedSubview(statusDateStackView)
-        moneySignImageView.setSize(width: 25, height: 25)
+        imageViewHeightConstraint = leftImageView.heightAnchor.constraint(equalToConstant: 48)
+        imageViewHeightConstraint.isActive = true
+        leftImageView.widthAnchor.constraint(equalTo: leftImageView.heightAnchor).isActive = true
         
         sumDescrStackView.axis = .vertical
         sumDescrStackView.spacing = 4
@@ -80,7 +84,10 @@ class OrderTableViewCell: UITableViewCell {
         containerView.layer.borderWidth = 1.0
         containerView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
         
-        moneySignImageView.image = UIImage(named: "DollarSign")
+        leftImageView.image = UIImage(named: "DollarSign")
+        leftImageView.layer.cornerRadius = 10
+        leftImageView.clipsToBounds = true
+        leftImageView.contentMode = .scaleAspectFill
         
         costLabel.textAlignment = .left
         costLabel.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
@@ -95,24 +102,31 @@ class OrderTableViewCell: UITableViewCell {
         dateLabel.textColor = UIColor.gray
     }
     
-    func update(with order: Order) {
+    func update(with order: Order, userRole: UserRole, imageURL: URL) {
+        imageViewHeightConstraint.constant = userRole == .executor ? 25 : 48
+        leftImageView.downloadImageFrom(url: imageURL)
         costLabel.text = order.cost
         descriptionLabel.text = order.orderTypeTitle
         statusLabel.text = Order.statusString(status: order.status)
         dateLabel.text = order.date
-        var color: UIColor {
-            switch order.status {
-            case .done:
-                return UIColor.greenIndicatorColor
-            case .active:
-                return UIColor.yellowIndicatorColor
-            case .rejected:
-                return UIColor.redIndicatorColor
-            case .uploading:
-                return UIColor.gray
-            }
+        switch order.status {
+        case .done:
+            statusLabel.text = Strings.statusDone
+            statusIndicatorView.backgroundColor =  UIColor.greenIndicatorColor
+        case .active:
+            statusLabel.text = Strings.statusActive
+            statusIndicatorView.backgroundColor = UIColor.yellowIndicatorColor
+        case .rejectedExecutor:
+            statusLabel.text = userRole == .executor ? Strings.statusYouRejected : Strings.statusRejectedExecutor
+            statusIndicatorView.backgroundColor = UIColor.redIndicatorColor
+        case .rejectedCustomer:
+            statusLabel.text = userRole == .executor ? "" : Strings.statusYouRejected
+            statusIndicatorView.backgroundColor = UIColor.redIndicatorColor
+        case .uploading:
+            statusLabel.text = Strings.statusUploading
+            statusIndicatorView.backgroundColor = UIColor.gray
         }
-        statusIndicatorView.backgroundColor = color
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -120,8 +134,8 @@ class OrderTableViewCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = UIColor.backgroundColor
         selectedBackgroundView = view
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

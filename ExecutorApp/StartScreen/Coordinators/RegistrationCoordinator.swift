@@ -29,13 +29,16 @@ class RegistrationCoordinator: Coordinator {
             return
         }
         showLoadingIndicator()
-        apiService.register(email: email, password: password, confirmedPassword: confirmedPassword) {  [unowned self] (success, errorMessage) in
-            self.removeLoadingIndicator()
-            if let errorMessage = errorMessage {
-                self.showSimpleAlert(title: errorMessage, handler: nil)
-            }
-            else if success {
-                self.startCoordinator?.start()
+        apiService.register(email: email, password: password, confirmedPassword: confirmedPassword) {  [unowned self] (token, errorMessage) in
+            DispatchQueue.main.async {
+                self.removeLoadingIndicator()
+                if let token = token {
+                    Defaults.token = token
+                    self.startCoordinator?.getUserInfo()
+                }
+                else if let errorMessage = errorMessage {
+                    self.showSimpleAlert(title: errorMessage, handler: nil)
+                }
             }
         }
     }

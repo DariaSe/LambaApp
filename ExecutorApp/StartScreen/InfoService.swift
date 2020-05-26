@@ -22,11 +22,13 @@ class InfoService {
     
     var userImage: UIImage? {
         didSet {
-            NotificationService.postUserImageNotification()
+            delegate?.setImage(userImage)
         }
     }
     
-    func getUserInfo(completion: @escaping (UserInfo?, String?) -> Void) {
+    var delegate: UserImageDelegate?
+    
+    func getUserInfo(completion: @escaping (_ userInfo: UserInfo?, _ socialMediaImageURLs: [URL]?, _ errorMessage: String?) -> Void) {
         guard let token = Defaults.token else { return }
         var request = URLRequest(url: AppURL.checkInfoURL)
         request.httpMethod = "GET"
@@ -35,7 +37,7 @@ class InfoService {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error as NSError? {
-                    completion(nil, error.localizedDescription)
+                    completion(nil, nil, error.localizedDescription)
                 }
                 else if
                     let data = data,
@@ -47,16 +49,29 @@ class InfoService {
                             self.userImage = image ?? UIImage(named: "Portrait_Placeholder")
                         }
                     }
-                    UserInfo.initialize(from: user) { (userInfo) in
-                        self.userInfo = userInfo
-                        completion(userInfo, nil)
+                    let userInfo = UserInfo.initialize(from: user)
+                    self.userInfo = userInfo
+                    if
+                        let socials = user["socialLinks"] as? [[String : Any]],
+                        let socialTypes = socials.map({$0["socialType"] as? [String : Any]}) as? [[String : Any]],
+                        let urlStrings = socialTypes.map({$0["image"] as? String}) as? [String],
+                        let urls = urlStrings.map({URL(string: $0)}) as? [URL] {
+                        completion(userInfo, urls, nil)
+                    }
+                    else {
+                        completion(userInfo, nil, nil)
                     }
                 }
                 else {
-                    completion(nil, nil)
+                    completion(nil, nil, nil)
                 }
             }
         }
         task.resume()
     }
+}
+
+
+protocol UserImageDelegate: AnyObject {
+    func setImage(_ image: UIImage?)
 }

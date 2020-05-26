@@ -11,7 +11,6 @@ import UIKit
 class PhotoPickerViewController: UIViewController {
     
     var imagePicked: ((UIImage) -> Void)?
-    var deletePhoto: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +49,13 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imagePicked?(selectedImage)
-            dismiss(animated: true, completion: nil)
+            picker.dismiss(animated: true, completion: nil)
             self.remove()
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
         self.remove()
     }
 }

@@ -20,11 +20,14 @@ class OrderStatusImageView: UIView {
                 descrLabel.textColor = UIColor.greenIndicatorColor
                 openVideoButton.isHidden = false
 
-            case .rejected:
+            case .rejectedExecutor:
                 imageView.image = UIImage(named: "Cancelled")
                 descrLabel.text = Strings.youRejected
                 descrLabel.textColor = UIColor.redIndicatorColor
                 openVideoButton.isHidden = true
+                
+            case .rejectedCustomer:
+                break
 
             case .uploading:
                 imageView.image = UIImage(named: "Uploading")

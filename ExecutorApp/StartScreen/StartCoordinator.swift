@@ -24,7 +24,8 @@ class StartCoordinator: FormDelegate {
         return RegistrationCoordinator(navigationController: self.navigationController)
     }()
     
-    lazy var mainVC = ExecutorTabBarController()
+    lazy var executorTabBarVC = ExecutorTabBarController()
+    lazy var customerTabBarVC = CustomerTabBarController()
     
     func start() {
         if Defaults.token != nil {
@@ -36,7 +37,7 @@ class StartCoordinator: FormDelegate {
     }
     
     func getUserInfo() {
-        InfoService.shared.getUserInfo(completion: { [unowned self] userInfo, errorMessage in
+        InfoService.shared.getUserInfo(completion: { [unowned self] userInfo, _, errorMessage in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     let errorVC = ErrorViewController()
@@ -64,7 +65,7 @@ class StartCoordinator: FormDelegate {
     }
     
     func showLoginScreen() {
-        if startVC.presentedViewController == nil || startVC.presentedViewController == mainVC {
+        if startVC.presentedViewController == nil || startVC.presentedViewController == executorTabBarVC || startVC.presentedViewController == customerTabBarVC {
             loginCoordinator.startCoordinator = self
             loginCoordinator.delegate = self
             loginCoordinator.start()
@@ -77,12 +78,16 @@ class StartCoordinator: FormDelegate {
     
     func showExecutorPart() {
         guard let topVC = topViewController() else { return }
-        topVC.present(mainVC, animated: true)
-        mainVC.getData()
+        InfoService.shared.delegate = executorTabBarVC
+        topVC.present(executorTabBarVC, animated: true)
+        executorTabBarVC.getData()
     }
     
     func showCustomerPart() {
-        #warning("present tabbarVC for customer here")
+        guard let topVC = topViewController() else { return }
+        InfoService.shared.delegate = customerTabBarVC
+        topVC.present(customerTabBarVC, animated: true)
+        customerTabBarVC.getData()
     }
     
     func showForgotPassScreen() {

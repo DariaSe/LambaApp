@@ -98,6 +98,8 @@ class ProfileSettingsView: UIView {
         changePasswordButton.setTitle(Strings.changePassword, for: .normal)
         changePasswordButton.addTarget(self, action: #selector(changePasswordButtonPressed), for: .touchUpInside)
         
+        scrollView.keyboardDismissMode = .onDrag
+        
         logoutButton.isSolid = false
         logoutButton.setWidth(equalTo: self, multiplier: 0.9)
         logoutButton.setTitle(Strings.logout, for: .normal)

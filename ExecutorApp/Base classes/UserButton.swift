@@ -41,3 +41,7 @@ class UserButton: UIBarButtonItem {
         userTapped?()
     }
 }
+
+protocol UserButtonDelegate: AnyObject {
+    func showSettings()
+}

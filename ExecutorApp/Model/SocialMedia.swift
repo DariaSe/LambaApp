@@ -14,19 +14,14 @@ struct SocialMedia: Equatable {
     var title: String
     var url: String
     
-    static func initialize(from dictionary: Dictionary<String, Any>, completion: @escaping (SocialMedia?) -> Void) {
+    static func initialize(from dictionary: [String : Any]) -> SocialMedia? {
         guard
             let socialType = dictionary["socialType"] as? [String : Any],
             let id = socialType["id"] as? Int,
             let title = socialType["title"] as? String,
-            let url = dictionary["url"] as? String,
-            let imageURLString = socialType["image"] as? String,
-            let imageURL = URL(string: imageURLString)
-            else { completion(nil); return }
-        UIImage.getImage(from: imageURL) { (image) in
-            let socialMedia = SocialMedia(id: id, image: image, title: title, url: url)
-            completion(socialMedia)
-        }
+            let url = dictionary["url"] as? String
+            else { return nil }
+            return SocialMedia(id: id, image: nil, title: title, url: url)
     }
     
     func dict() -> [String : Any] {

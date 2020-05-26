@@ -17,7 +17,6 @@ class ForgotPassCoordinator: Coordinator {
     let apiService = ForgotPassApiService()
     
     lazy var emailVC = ForgotPassEmailViewController()
-    lazy var authCodeVC = AuthCodeViewController()
     lazy var resetPassVC = ResetPassViewController()
     
     func start() {
@@ -28,48 +27,38 @@ class ForgotPassCoordinator: Coordinator {
     func requestAuthCode(email: String) {
         showLoadingIndicator()
         apiService.requestAuthCode(email: email) { [unowned self] (success, errorMessage) in
-            self.removeLoadingIndicator()
-            if let errorMessage = errorMessage {
-                self.showSimpleAlert(title: errorMessage, handler: nil)
-            }
-            else if success {
-                self.showAuthCodeScreen()
-            }
-        }
-    }
-    
-    func showAuthCodeScreen() {
-        authCodeVC.coordinator = self
-        navigationController.pushViewController(authCodeVC, animated: true)
-    }
-    
-    func sendAuthCode(code: String) {
-        showLoadingIndicator()
-        apiService.sendAuthCode(code: code) {  [unowned self] (success, errorMessage) in
-            self.removeLoadingIndicator()
-            if let errorMessage = errorMessage {
-                self.showSimpleAlert(title: errorMessage, handler: nil)
-            }
-            else if success {
-                self.showResetPassScreen()
+            DispatchQueue.main.async {
+                print(success)
+                print(errorMessage)
+                self.removeLoadingIndicator()
+                if let errorMessage = errorMessage {
+                    self.showSimpleAlert(title: errorMessage, handler: nil)
+                }
+                else if success {
+                    self.showResetPassScreen(email: email)
+                }
             }
         }
     }
     
-    func showResetPassScreen() {
+    func showResetPassScreen(email: String) {
         resetPassVC.coordinator = self
+        resetPassVC.email = email
         navigationController.pushViewController(resetPassVC, animated: true)
     }
     
-    func sendPassword(old: String, new: String) {
+    func sendCodeAndPassword(code: String, email: String, password: String, confirmedPassword: String) {
         showLoadingIndicator()
-        apiService.sendPassword(old: old, new: new) { [unowned self] (success, errorMessage) in
-            self.removeLoadingIndicator()
-            if let errorMessage = errorMessage {
-                self.showSimpleAlert(title: errorMessage, handler: nil)
-            }
-            else if success {
-                self.startCoordinator?.start()
+        apiService.sendCodeAndPassword(code: code, email: email, password: password, confirmedPassword: password) { [unowned self] (token, errorMessage) in
+            DispatchQueue.main.async {
+                self.removeLoadingIndicator()
+                if let token = token {
+                    Defaults.token = token
+                    self.startCoordinator?.getUserInfo()
+                }
+                else if let errorMessage = errorMessage {
+                    self.showSimpleAlert(title: errorMessage, handler: nil)
+                }
             }
         }
     }

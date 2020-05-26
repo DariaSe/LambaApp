@@ -11,12 +11,14 @@
 "Done" = "Done";
 "Active" = "Active";
 "You rejected" = "You rejected";
+"Executor rejected" = "Executor rejected";
 "Uploading" = "Uploading";
 
 // Tab bar
 "Orders" = "Orders";
 "Finances" = "Finances";
 "Settings" = "Settings";
+"Executors" = "Executors";
 
 // Login Screen
 "E-mail" = "E-mail";
@@ -27,6 +29,7 @@
 "Forgot password?" = "Forgot password?";
 "E-mail not found" = "E-mail not found";
 "Send authorization code" = "Send authorization code";
+"Enter e-mail" = "Enter e-mail";
 "I already have code" = "I already have code";
 "Enter code from e-mail here" = "Enter code from e-mail here";
 "Send" = "Send";
@@ -34,6 +37,7 @@
 "Register" = "Register";
 "Confirm password" = "Confirm password";
 "Passwords don't match" = "Passwords don't match";
+"Couldn't register. Try again later" = "Couldn't register. Try again later";
 
 
 // Orders
@@ -108,3 +112,11 @@
 "Photos" = "Photos";
 "Image successfully changed" = "Image successfully changed";
 
+// Customer
+//Executors Screen
+"Search" = "Search";
+
+// Settings
+"First name" = "First name";
+"Last name" = "Last name";
+"Fill all fields" = "Fill all fields";

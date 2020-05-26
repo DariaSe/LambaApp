@@ -9,7 +9,7 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController, KeyboardHandler {
-   
+    
     var changePassword: ((PassInfo) -> Void)?
     
     private let scrollView = UIScrollView()
@@ -17,23 +17,28 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
     private let stackView = UIStackView()
     
     private let unitsStackView = UIStackView()
-    private let oldPassUnit = PasswordLabelTextFieldView()
-    private let newPassUnit = PasswordLabelTextFieldView()
-    private let confirmNewPassUnit = PasswordLabelTextFieldView()
+    private let oldPassUnit = LabelTextFieldView(title: Strings.oldPassword, type: .password)
+    private let newPassUnit = LabelTextFieldView(title: Strings.newPassword, type: .password)
+    private let confirmNewPassUnit = LabelTextFieldView(title: Strings.confirmNewPass, type: .password)
     private let reqiurementsLabel = UILabel()
     
     private let buttonsStackView = UIStackView()
     private let doneButton = AppButton()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         title = Strings.changePassword
         registerForKeyboardNotifications(for: scrollView)
         view.backgroundColor = UIColor.backgroundColor
+        
         scrollView.pinTopAndBottomToLayoutMargins(to: view)
-        stackView.pinToLayoutMargins(to: scrollView, constant: 10)
+        scrollView.keyboardDismissMode = .onDrag
+        stackView.center(in: scrollView)
+        stackView.setWidth(equalTo: scrollView, multiplier: 0.9)
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
         stackView.addArrangedSubview(unitsStackView)
         
         unitsStackView.axis = .vertical
@@ -45,9 +50,6 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         unitsStackView.addArrangedSubview(confirmNewPassUnit)
         unitsStackView.addArrangedSubview(reqiurementsLabel)
         
-        oldPassUnit.title = Strings.oldPassword
-        newPassUnit.title = Strings.newPassword
-        confirmNewPassUnit.title = Strings.confirmNewPass
         confirmNewPassUnit.textChanged = { [unowned self] text in
             guard !text.isEmpty else { return }
             if text == self.newPassUnit.textField.text {
@@ -67,7 +69,12 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         
         doneButton.setTitle(Strings.changePassword, for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
-
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height - view.layoutMargins.top - view.layoutMargins.bottom)
     }
     
     @objc func doneButtonPressed() {
@@ -102,6 +109,6 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         confirmNewPassUnit.textField.text = ""
         confirmNewPassUnit.textField.setNormalBorder()
     }
-   
-
+    
+    
 }

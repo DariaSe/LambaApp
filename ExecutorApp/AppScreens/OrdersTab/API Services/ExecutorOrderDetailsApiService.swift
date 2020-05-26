@@ -23,7 +23,7 @@ class ExecutorOrderDetailsApiService {
     
     func rejectOrder(orderID: Int, completion: @escaping (Bool, String?) -> Void) {
         guard let token = Defaults.token else { return }
-        var request = URLRequest(url: AppURL.rejectOrderURL(orderID: orderID))
+        var request = URLRequest(url: AppURL.executorRejectOrderURL(orderID: orderID))
         request.httpMethod = "DELETE"
         request.setValue(token, forHTTPHeaderField: AppURL.xAuthToken)
         if let locale = Locale.current.languageCode {

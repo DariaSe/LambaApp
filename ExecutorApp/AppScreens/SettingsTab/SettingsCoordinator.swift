@@ -21,6 +21,8 @@ class SettingsCoordinator: Coordinator {
     
     let settingsVC = SettingsViewController()
     
+    lazy var photoPicker = PhotoPickerViewController()
+    
     func start() {
         settingsVC.coordinator = self
         navigationController.viewControllers = [settingsVC]
@@ -28,17 +30,11 @@ class SettingsCoordinator: Coordinator {
         settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: settingsImage, tag: 2)
         settingsVC.title = Strings.settings
         errorVC.reload = { [unowned self] in self.getUserInfo() }
-        NotificationCenter.default.addObserver(self, selector: #selector(setUserImage), name: NotificationService.userImageNName, object: nil)
     }
     
-    @objc func setUserImage() {
-        DispatchQueue.main.async {
-            self.settingsVC.setImage(InfoService.shared.userImage)
-        }
-    }
-    
+   
     func getUserInfo() {
-        InfoService.shared.getUserInfo() { [unowned self] (userInfo, errorMessage) in
+        InfoService.shared.getUserInfo() { [unowned self] (userInfo, socialImagesURLs, errorMessage) in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     self.showFullScreenError(message: errorMessage)
@@ -47,12 +43,18 @@ class SettingsCoordinator: Coordinator {
                     self.removeFullScreenError()
                     self.userInfo = userInfo
                 }
+                if let socialImagesURLs = socialImagesURLs {
+                    self.settingsVC.passSocialmagesURLs(socialImagesURLs)
+                }
             }
         }
     }
     
+    func setImage(_ image: UIImage?) {
+        settingsVC.setImage(image)
+    }
+    
     func showPhotoPicker() {
-        let photoPicker = PhotoPickerViewController()
         settingsVC.add(photoPicker)
         photoPicker.showImagePicker()
         let cropperVC = ImageCropperViewController()
@@ -69,7 +71,7 @@ class SettingsCoordinator: Coordinator {
         }
         photoPicker.imagePicked = { [unowned self] image in
             cropperVC.image = image
-            self.settingsVC.navigationController?.pushViewController(cropperVC, animated: false)
+            self.navigationController.pushViewController(cropperVC, animated: true)
         }
     }
     
@@ -124,7 +126,8 @@ class SettingsCoordinator: Coordinator {
                         Defaults.token = nil
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         let startCoordinator = appDelegate.startCoordinator
-                        startCoordinator.mainVC.dismiss(animated: true, completion: nil)
+                        startCoordinator.executorTabBarVC.selectedIndex = 0
+                        startCoordinator.executorTabBarVC.dismiss(animated: true, completion: nil)
                         startCoordinator.start()
                     }
                     else {

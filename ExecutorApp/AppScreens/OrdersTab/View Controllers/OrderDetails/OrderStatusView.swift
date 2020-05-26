@@ -21,10 +21,12 @@ class OrderStatusView: UIView {
             case .active:
                 imageStatusView.isHidden = true
                 buttonsStatusView.isHidden = false
-            case .rejected:
-                imageStatusView.status = .rejected
+            case .rejectedExecutor:
+                imageStatusView.status = .rejectedExecutor
                 imageStatusView.isHidden = false
                 buttonsStatusView.isHidden = true
+            case .rejectedCustomer:
+                break
             case .uploading:
                imageStatusView.status = .uploading
                imageStatusView.isHidden = false

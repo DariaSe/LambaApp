@@ -8,9 +8,7 @@
 
 import UIKit
 
-class ExecutorTabBarController: UITabBarController {
-    
-    weak var coordinator: ExecutorMainCoordinator?
+class ExecutorTabBarController: AppTabBarController {
     
     let ordersCoordinator = ExecutorOrdersCoordinator(navigationController: AppNavigationController())
     let financesCoordinator = FinancesCoordinator(navigationController: AppNavigationController())
@@ -18,9 +16,7 @@ class ExecutorTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.modalPresentationStyle = .overFullScreen
-        UserDefaults.standard.addObserver(self, forKeyPath: Defaults.tokenKey, options: .new, context: nil)
-        
+      
         ordersCoordinator.start()
         financesCoordinator.start()
         settingsCoordinator.start()
@@ -31,29 +27,6 @@ class ExecutorTabBarController: UITabBarController {
             settingsCoordinator.navigationController]
         
         ordersCoordinator.ordersVC.delegate = self
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        selectedIndex = 0
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        tabBar.layer.masksToBounds = true
-        tabBar.isTranslucent = true
-        tabBar.barStyle = .default
-        tabBar.layer.cornerRadius = 15
-        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        tabBar.layer.borderWidth = 1.0
-        tabBar.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let newHeight = tabBar.frame.size.height + 10
-        tabBar.frame.size.height = newHeight
-        tabBar.frame.origin.y = view.frame.height - newHeight
     }
     
     func getData() {
@@ -71,9 +44,11 @@ class ExecutorTabBarController: UITabBarController {
     }
 }
 
-
-extension ExecutorTabBarController: UserButtonDelegate {
-    func showSettings() {
-        selectedIndex = 2
+extension ExecutorTabBarController: UserImageDelegate {
+    func setImage(_ image: UIImage?) {
+        DispatchQueue.main.async {
+            self.ordersCoordinator.setImage(image)
+            self.settingsCoordinator.setImage(image)
+        }
     }
 }

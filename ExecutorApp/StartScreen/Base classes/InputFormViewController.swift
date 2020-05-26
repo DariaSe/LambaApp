@@ -23,6 +23,7 @@ class InputFormViewController: UIViewController, KeyboardHandler {
         view.backgroundColor = UIColor.backgroundColor
         
         scrollView.pinToEdges(to: view)
+        scrollView.keyboardDismissMode = .onDrag
         contentView.center(in: scrollView)
         contentView.setWidth(equalTo: view)
        
@@ -34,6 +35,8 @@ class InputFormViewController: UIViewController, KeyboardHandler {
         
         stackView.addArrangedSubview(inputFormView)
         inputFormView.setWidth(equalTo: view, multiplier: 0.8)
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidLayoutSubviews() {

@@ -36,13 +36,20 @@ class ForgotPassEmailViewController: InputFormViewController {
     @objc func resetButtonPressed() {
         view.endEditing(true)
         sendCodeButton.animate(scale: 1.05)
-        guard let email = emailTextField.text, !email.isEmpty else { return }
+        guard let email = emailTextField.text, !email.isEmpty else {
+            coordinator?.showSimpleAlert(title: Strings.enterEmail, handler: nil)
+            return
+        }
         coordinator?.requestAuthCode(email: email)
     }
     
     @objc func haveCodeButtonPressed() {
         view.endEditing(true)
         haveCodeButton.animate(scale: 1.05)
-        coordinator?.showAuthCodeScreen()
+        guard let email = emailTextField.text, !email.isEmpty else {
+            coordinator?.showSimpleAlert(title: Strings.enterEmail, handler: nil)
+            return
+        }
+        coordinator?.showResetPassScreen(email: email)
     }
 }
