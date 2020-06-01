@@ -35,7 +35,7 @@ class ExecutorOrdersCoordinator: Coordinator {
 //        ordersApiService.page = 1
         errorVC.reload = { [unowned self] in self.getOrders() }
         showLoadingIndicator()
-        ordersApiService.getOrders { [unowned self] orders, imageURLs, errorMessage in
+        ordersApiService.getOrders { [unowned self] orders, errorMessage in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
@@ -48,9 +48,6 @@ class ExecutorOrdersCoordinator: Coordinator {
                 else {
                     self.showFullScreenError(message: Strings.noOrdersYet)
                 }
-                if let imageURLs = imageURLs {
-                    self.ordersVC.imageURLs = imageURLs
-                }
             }
         }
     }
@@ -59,16 +56,13 @@ class ExecutorOrdersCoordinator: Coordinator {
         if ordersApiService.isMore {
             showLoadingIndicator()
             ordersApiService.page += 1
-            ordersApiService.getOrders { [unowned self] orders, imageURLs, errorMessage in
+            ordersApiService.getOrders { [unowned self] orders, errorMessage in
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showPopUpError(message: errorMessage)
                 }
                 if let orders = orders {
                     self.ordersVC.orders.append(contentsOf: orders)
-                }
-                if let imageURLs = imageURLs {
-                    self.ordersVC.imageURLs = imageURLs
                 }
             }
         }

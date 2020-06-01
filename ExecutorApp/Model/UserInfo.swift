@@ -20,7 +20,7 @@ struct UserInfo {
     var role: UserRole?
     
     static func sample() -> UserInfo {
-        return UserInfo(firstName: "Harold", lastName: "Pain", email: "email@email.com", socialMedia: [SocialMedia(id: 1, image: UIImage(named: "insta"), title: "Instagram", url: "harold_pain"), SocialMedia(id: 2, image: UIImage(named: "youtube"), title: "YouTube", url: "harold_pain"), SocialMedia(id: 3, image: UIImage(named: "tiktok"), title: "TikTok", url: "harold_pain")], hashtags: ["harold", "pain"], orderSettings: OrderSettings.sample(), isReceivingOrders: true, currencySign: "$", role: .executor)
+        return UserInfo(firstName: "Harold", lastName: "Pain", email: "email@email.com", socialMedia: SocialMedia.samples(), hashtags: ["harold", "pain"], orderSettings: OrderSettings.sample(), isReceivingOrders: true, currencySign: "$", role: .executor)
     }
     
     static func initialize(from dictionary: [String : Any]) -> UserInfo? {
@@ -56,8 +56,8 @@ struct UserInfo {
         dictionary["orderOptions"] = self.orderSettings.map { $0.dict() }
         
         #if DEBUG
-        let data = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
-        printWithTime(String(data: data, encoding: .utf8)!)
+        let text = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
+        printWithTime(String(data: text, encoding: .utf8)!)
         #endif
         
         return dictionary

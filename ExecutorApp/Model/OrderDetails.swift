@@ -21,6 +21,7 @@ struct OrderDetails {
     var cost: String
     var units: [OrderDetailUnit]
     var status: OrderStatus
+    var thumbnailURL: URL?
     var videoURL: URL?
     
     static func sample() -> OrderDetails {
@@ -34,18 +35,23 @@ struct OrderDetails {
             let orderTypeInt = orderTypeDict["id"] as? Int,
             let orderType = OrderType(rawValue: orderTypeInt),
             let orderTypeTitle = orderTypeDict["title"] as? String,
-            let fields = dictionary["fields"] as? [[String : Any]],
             let statusString = dictionary["status"] as? String,
             let orderStatus = Order.status(from: statusString),
-            let cost = dictionary["costs"] as? Int,
-            let videoURLString = dictionary["videoUrl"] as? String
+            let cost = dictionary["costs"] as? Int
             else { return nil }
+        
         let sign = InfoService.shared.userInfo?.currencySign ?? ""
         let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
+        
+        let thumbnailURLString = dictionary["videoPreview"] as? String ?? ""
+        let thumbnailURL = URL(string: thumbnailURLString)
+        let videoURLString = dictionary["videoUrl"] as? String ?? ""
         let videoURL = URL(string: videoURLString)
+        
+        let fields = dictionary["fields"] as? [[String : Any]] ?? [[:]]
         let units = fields.map{ OrderDetailUnit.initialize(from: $0) }.filter { $0 != nil } as! [OrderDetailUnit]
         let sortedUnits = units.sorted(by: <)
-        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: costString, units: sortedUnits, status: orderStatus, videoURL: videoURL)
+        let orderDetails = OrderDetails(id: id, type: orderType, orderTypeTitle: orderTypeTitle, cost: costString, units: sortedUnits, status: orderStatus, thumbnailURL: thumbnailURL, videoURL: videoURL)
         return orderDetails
     }
 }

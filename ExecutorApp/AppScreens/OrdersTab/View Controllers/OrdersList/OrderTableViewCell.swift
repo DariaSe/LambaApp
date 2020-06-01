@@ -102,14 +102,22 @@ class OrderTableViewCell: UITableViewCell {
         dateLabel.textColor = UIColor.gray
     }
     
-    func update(with order: Order, userRole: UserRole, imageURL: URL) {
+    func update(with order: Order, userRole: UserRole) {
         imageViewHeightConstraint.constant = userRole == .executor ? 25 : 48
-        leftImageView.downloadImageFrom(url: imageURL)
+        if let url = URL(string: order.imageURLString ?? "") {
+            leftImageView.downloadImageFrom(url: url)
+        }
+        else {
+            leftImageView.image = userRole == .executor ? UIImage(named: "DollarSign") : InfoService.shared.placeholderImage
+        }
         costLabel.text = order.cost
         descriptionLabel.text = order.orderTypeTitle
         statusLabel.text = Order.statusString(status: order.status)
         dateLabel.text = order.date
         switch order.status {
+        case .moderation:
+            statusLabel.text = Strings.statusModeration
+            statusIndicatorView.backgroundColor =  UIColor.lightGray
         case .done:
             statusLabel.text = Strings.statusDone
             statusIndicatorView.backgroundColor =  UIColor.greenIndicatorColor
@@ -120,8 +128,11 @@ class OrderTableViewCell: UITableViewCell {
             statusLabel.text = userRole == .executor ? Strings.statusYouRejected : Strings.statusRejectedExecutor
             statusIndicatorView.backgroundColor = UIColor.redIndicatorColor
         case .rejectedCustomer:
-            statusLabel.text = userRole == .executor ? "" : Strings.statusYouRejected
+            statusLabel.text = userRole == .executor ? "" : Strings.statusYouCancelled
             statusIndicatorView.backgroundColor = UIColor.redIndicatorColor
+        case .rejectedModerator:
+            statusLabel.text = Strings.statusRejectedModerator
+            statusIndicatorView.backgroundColor =  UIColor.redIndicatorColor
         case .uploading:
             statusLabel.text = Strings.statusUploading
             statusIndicatorView.backgroundColor = UIColor.gray

@@ -29,7 +29,7 @@ class OrderDetailTableViewCell: UITableViewCell {
     
     func update(with unit: OrderDetailUnit) {
         view.titleText = unit.title
-        view.dataText = unit.data
+        view.dataText = unit.text
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

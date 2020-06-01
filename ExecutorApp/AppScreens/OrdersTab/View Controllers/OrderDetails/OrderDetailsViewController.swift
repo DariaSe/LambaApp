@@ -23,9 +23,7 @@ class OrderDetailsViewController: UIViewController {
             statusView.delegate = self
         }
     }
-    
-    let scrollView = UIScrollView()
-    
+   
     let stackView = UIStackView()
     
     let costView = CostView()

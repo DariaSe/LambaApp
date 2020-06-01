@@ -35,6 +35,7 @@ class RegistrationCoordinator: Coordinator {
                 if let token = token {
                     Defaults.token = token
                     self.startCoordinator?.getUserInfo()
+                    self.navigationController.popViewController(animated: true)
                 }
                 else if let errorMessage = errorMessage {
                     self.showSimpleAlert(title: errorMessage, handler: nil)

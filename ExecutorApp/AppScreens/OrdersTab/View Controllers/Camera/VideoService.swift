@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Photos
 
 class VideoService {
     
@@ -90,5 +91,31 @@ class VideoService {
             print("*** Error generating thumbnail: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    static func saveDownloadedVideo(suggestedFileName: String?, localFileName: String, location: URL,  completion: @escaping (Bool, String?) -> Void) {
+        guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let destinationURL = documentsDirectoryURL.appendingPathComponent(suggestedFileName ?? localFileName)
+        if FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(localFileName).path) {
+            try? FileManager.default.removeItem(at: destinationURL)
+        }
+        do {
+            try FileManager.default.moveItem(at: location, to: destinationURL)
+            
+                PHPhotoLibrary.shared().performChanges({
+                    let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)
+                    let assetPlaceholder = createAssetRequest?.placeholderForCreatedAsset
+                    let changeRequest = PHAssetCollectionChangeRequest()
+                    changeRequest.addAssets([assetPlaceholder] as NSFastEnumeration)
+                }) { (success, error) in
+                    if let error = error {
+                        completion(false, error.localizedDescription)
+                    }
+                    else if success {
+                        completion(true, nil)
+                    }
+                }
+        }
+        catch { completion(false, error.localizedDescription) }
     }
 }

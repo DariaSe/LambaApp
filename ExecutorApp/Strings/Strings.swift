@@ -10,12 +10,19 @@ import Foundation
 
 struct Strings {
     
+    // Unicode symbols
+    static let arrowUp = "\u{2191}"
+    static let arrowDown = "\u{2193}"
+    
     // Order status
     static let statusDone = "Done".localized
     static let statusActive = "Active".localized
     static let statusYouRejected = "You rejected".localized
+    static let statusYouCancelled = "You cancelled".localized
     static let statusRejectedExecutor = "Executor rejected".localized
+    static let statusRejectedModerator = "Moderator rejected".localized
     static let statusUploading = "Uploading".localized
+    static let statusModeration = "Moderation".localized
     
     // Tab bar
     static let orders = "Orders".localized
@@ -117,10 +124,27 @@ struct Strings {
     // Customer
     //Executors Screen
     static let search = "Search".localized
+    static let openLink = "Open link in Safari?".localized
+    static let invalidURL = "Can't open link".localized
+    static let continueString = "Continue".localized
+    static let youDoNotPayWarning = "You do not pay for anything yet".localized
+    static let options = "Options".localized
+    
+    // Orders
+    static let downloadVideo = "Download video".localized
+    static let videoDownloaded = "Video downloaded".localized
+    static let goToPhotos = "Go to Photos".localized
+    static let invalidFormat = "Invalid file format".localized
+    static let cancelOrder = "Cancel order".localized
+    static let openDispute = "Open dispute".localized
+    static let disputeOnOrder = "dispute on order".localized
     
     // Settings
     static let name = "First name".localized
     static let lastName = "Last name".localized
     static let fillAllFields = "Fill all fields".localized
     
+    // Permissions
+    static let accessError = "Access error".localized
+    static let allowPhotoAccess = "Allow the app access to photo library in the Settings".localized
 }

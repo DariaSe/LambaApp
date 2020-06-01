@@ -33,7 +33,7 @@ class CustomerSettingsCoordinator: Coordinator {
     }
     
     func getUserInfo() {
-        InfoService.shared.getUserInfo() { [unowned self] (userInfo, _, errorMessage) in
+        InfoService.shared.getUserInfo() { [unowned self] (userInfo, errorMessage) in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     self.showFullScreenError(message: errorMessage)

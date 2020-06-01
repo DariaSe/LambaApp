@@ -12,8 +12,11 @@
 "Done" = "Исполнено";
 "Active" = "Активный";
 "You rejected" = "Вы отказались";
+"You cancelled" = "Вы отменили заказ";
 "Executor rejected" = "Исполнитель отказался";
+"Moderator rejected" = "Отклонено модератором";
 "Uploading" = "Загружается";
+"Moderation" = "На модерации";
 
 // Tab bar
 "Orders" = "Заказы";
@@ -116,8 +119,26 @@
 // Customer
 //Executors Screen
 "Search" = "Поиск";
+"Open link in Safari?" = "Открыть ссылку в браузере?";
+"Can't open link" = "Невозможно открыть ссылку";
+"Continue" = "Продолжить";
+"You do not pay for anything yet" = "Пока вы ни за что не платите";
+"Options" = "Опции";
+
+// Orders
+"Download video" = "Скачать видео";
+"Video downloaded" = "Видео загружено";
+"Invalid file format" = "Неподдерживаемый формат файла";
+"Go to Photos" = "Перейти в Медиатеку";
+"Cancel order" = "Отменить заказ";
+"Open dispute" = "Открыть спор по заказу";
+"dispute on order" = "спор по заказу";
 
 // Settings
 "First name" = "Имя";
 "Last name" = "Фамилия";
 "Fill all fields" = "Заполните все поля";
+
+// Permissions
+"Access error" = "Ошибка доступа";
+"Allow the app access to photo library in the Settings" = "Разрешите приложению доступ к Фото в Настройках";

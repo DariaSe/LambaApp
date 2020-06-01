@@ -72,10 +72,6 @@ class SettingsViewController: UIViewController, KeyboardHandler {
     func setImage(_  image: UIImage?) {
         profileSettingsView.imageView.image = image
     }
-    
-    func passSocialmagesURLs(_ urls: [URL]) {
-        profileSettingsView.socialMediaTableView.socialImagesURLs = urls
-    }
 }
 
 extension SettingsViewController: SettingsDelegate {

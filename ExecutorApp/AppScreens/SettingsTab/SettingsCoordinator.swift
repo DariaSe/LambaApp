@@ -34,7 +34,7 @@ class SettingsCoordinator: Coordinator {
     
    
     func getUserInfo() {
-        InfoService.shared.getUserInfo() { [unowned self] (userInfo, socialImagesURLs, errorMessage) in
+        InfoService.shared.getUserInfo() { [unowned self] (userInfo, errorMessage) in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     self.showFullScreenError(message: errorMessage)
@@ -42,9 +42,6 @@ class SettingsCoordinator: Coordinator {
                 if let userInfo = userInfo {
                     self.removeFullScreenError()
                     self.userInfo = userInfo
-                }
-                if let socialImagesURLs = socialImagesURLs {
-                    self.settingsVC.passSocialmagesURLs(socialImagesURLs)
                 }
             }
         }

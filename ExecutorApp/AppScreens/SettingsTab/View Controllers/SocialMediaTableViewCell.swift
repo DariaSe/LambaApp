@@ -56,8 +56,13 @@ class SocialMediaTableViewCell: UITableViewCell {
         textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
     }
     
-    func update(with socialMedia: SocialMedia, imageURL: URL) {
-        socialMediaImageView.downloadImageFrom(url: imageURL)
+    func update(with socialMedia: SocialMedia) {
+        if let url = URL(string: socialMedia.imageURLString) {
+            socialMediaImageView.downloadImageFrom(url: url)
+        }
+        else {
+            socialMediaImageView.image = UIImage(named: "Star")
+        }
         titleLabel.text = socialMedia.title
         textField.text = socialMedia.url
     }

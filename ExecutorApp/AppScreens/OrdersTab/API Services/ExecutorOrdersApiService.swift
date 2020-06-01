@@ -15,30 +15,24 @@ class ExecutorOrdersApiService {
     var page: Int = 1
     var limit: Int = 30
     
-    func getOrders(completion: @escaping ([Order]?, [URL]?, String?) -> Void) {
+    func getOrders(completion: @escaping ([Order]?, String?) -> Void) {
         guard let request = URLRequest.signedGetRequest(url: AppURL.getExecutorOrdersURL(page: page, limit: limit)) else { return }
         let task = URLSession.shared.dataTask(with: request) { [unowned self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    completion(nil, nil, error.localizedDescription)
+                    completion(nil, error.localizedDescription)
                 }
                 else if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                    let ordersDict = jsonDict["orders"] as? [[String : Any]] {
+                    let ordersDict = jsonDict["orders"] as? Array<[String : Any]> {
                     let orders = ordersDict
                         .map { Order.initialize(from: $0) }
                         .filter { $0 != nil }
                     self.isMore = orders.count == self.limit
-                    if let imageUrlStrings = ordersDict.map({$0["image"] as? String}) as? [String],
-                        let urls = imageUrlStrings.map({URL(string: $0)}) as? [URL] {
-                        completion(orders as? [Order], urls, nil)
-                    }
-                    else {
-                        completion(orders as? [Order], nil, nil)
-                    }
+                    completion(orders as? [Order], nil)
                 }
                 else {
-                    completion(nil, nil, Strings.error)
+                    completion(nil, Strings.error)
                 }
             }
         }

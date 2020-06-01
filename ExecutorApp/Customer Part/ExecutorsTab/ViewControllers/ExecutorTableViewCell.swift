@@ -79,9 +79,13 @@ class ExecutorTableViewCell: UITableViewCell {
         favoritePressed?()
     }
     
-    func update(with executor: Executor, imageURL: URL) {
-        leftImageView.downloadImageFrom(url: imageURL)
-//        leftImageView.image = executor.image ?? InfoService.shared.placeholderImage
+    func update(with executor: Executor) {
+        if let url = URL(string: executor.imageURLString) {
+            leftImageView.downloadImageFrom(url: url)
+        }
+        else {
+            leftImageView.image = InfoService.shared.placeholderImage
+        }
         nameLabel.text = executor.name
         hashtagsLabel.text = executor.hashtags
         favoriteButton.tintColor = executor.isFavorite ? UIColor.destructiveColor : UIColor.lightGray

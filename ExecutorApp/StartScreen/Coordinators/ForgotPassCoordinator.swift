@@ -28,8 +28,6 @@ class ForgotPassCoordinator: Coordinator {
         showLoadingIndicator()
         apiService.requestAuthCode(email: email) { [unowned self] (success, errorMessage) in
             DispatchQueue.main.async {
-                print(success)
-                print(errorMessage)
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showSimpleAlert(title: errorMessage, handler: nil)

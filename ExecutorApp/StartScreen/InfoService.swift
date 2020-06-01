@@ -28,7 +28,7 @@ class InfoService {
     
     var delegate: UserImageDelegate?
     
-    func getUserInfo(completion: @escaping (_ userInfo: UserInfo?, _ socialMediaImageURLs: [URL]?, _ errorMessage: String?) -> Void) {
+    func getUserInfo(completion: @escaping (UserInfo?, String?) -> Void) {
         guard let token = Defaults.token else { return }
         var request = URLRequest(url: AppURL.checkInfoURL)
         request.httpMethod = "GET"
@@ -37,7 +37,7 @@ class InfoService {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error as NSError? {
-                    completion(nil, nil, error.localizedDescription)
+                    completion(nil, error.localizedDescription)
                 }
                 else if
                     let data = data,
@@ -51,19 +51,11 @@ class InfoService {
                     }
                     let userInfo = UserInfo.initialize(from: user)
                     self.userInfo = userInfo
-                    if
-                        let socials = user["socialLinks"] as? [[String : Any]],
-                        let socialTypes = socials.map({$0["socialType"] as? [String : Any]}) as? [[String : Any]],
-                        let urlStrings = socialTypes.map({$0["image"] as? String}) as? [String],
-                        let urls = urlStrings.map({URL(string: $0)}) as? [URL] {
-                        completion(userInfo, urls, nil)
-                    }
-                    else {
-                        completion(userInfo, nil, nil)
-                    }
+                    completion(userInfo, nil)
+                    
                 }
                 else {
-                    completion(nil, nil, nil)
+                    completion(nil, nil)
                 }
             }
         }

@@ -50,6 +50,9 @@ struct AppURL {
         let query = "?page=\(page)&limit=\(limit)&search=\(search)&order=\(order)"
         return URL(string: baseURL + api + customer + executors + query)!
     }
+    static func getExecutorDetailsURL(executorID: Int) -> URL {
+        return URL(string: baseURL + api + customer + executor + "/" + executorID.string)!
+    }
     static func setFavorite(executorID: Int) -> URL {
         return URL(string: baseURL + api + customer + favorite + "/" + String(executorID))!
     }
@@ -58,6 +61,9 @@ struct AppURL {
         return URL(string: baseURL + api + customer + orders + query)!
     }
     static func getCustomerOrderDetailsURL(orderID: Int) -> URL {
+        return URL(string: baseURL + api + customer + order + "/" + String(orderID))!
+    }
+    static func customerCancelOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + customer + order + "/" + String(orderID))!
     }
     static let customerImageChangeURL = URL(string: baseURL + api + customer + image)!

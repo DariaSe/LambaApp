@@ -54,5 +54,18 @@ class PopupErrorViewController: UIViewController {
         }
     }
     
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.errorContainerView.alpha = 1.0
+        }) { (_) in
+            UIView.animate(withDuration: 0.3, delay: 3.0, options: [], animations: {
+                self.errorContainerView.alpha = 0.0
+            }) { (_) in
+                self.remove()
+            }
+        }
+    }
+    
 
 }

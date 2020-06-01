@@ -11,8 +11,11 @@
 "Done" = "Done";
 "Active" = "Active";
 "You rejected" = "You rejected";
+"You cancelled" = "You cancelled";
 "Executor rejected" = "Executor rejected";
+"Moderator rejected" = "Moderator rejected";
 "Uploading" = "Uploading";
+"Moderation" = "Moderation";
 
 // Tab bar
 "Orders" = "Orders";
@@ -115,8 +118,26 @@
 // Customer
 //Executors Screen
 "Search" = "Search";
+"Open link in Safari?" = "Open link in Safari?";
+"Can't open link" = "Can't open link";
+"Continue" = "Continue";
+"You do not pay for anything yet" = "You do not pay for anything yet";
+"Options" = "Options";
+
+// Orders
+"Download video" = "Download video";
+"Video downloaded" = "Video downloaded";
+"Invalid file format" = "Invalid file format";
+"Go to Photos" = "Go to Photos";
+"Cancel order" = "Cancel order";
+"Open dispute" = "Open dispute";
+"dispute on order" = "dispute on order";
 
 // Settings
 "First name" = "First name";
 "Last name" = "Last name";
 "Fill all fields" = "Fill all fields";
+
+// Permissions
+"Access error" = "Access error";
+"Allow the app access to photo library in the Settings" = "Allow the app access to photo library in the Settings";

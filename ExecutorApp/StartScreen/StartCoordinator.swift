@@ -37,7 +37,7 @@ class StartCoordinator: FormDelegate {
     }
     
     func getUserInfo() {
-        InfoService.shared.getUserInfo(completion: { [unowned self] userInfo, _, errorMessage in
+        InfoService.shared.getUserInfo(completion: { [unowned self] userInfo, errorMessage in
             DispatchQueue.main.async {
                 if let errorMessage = errorMessage {
                     let errorVC = ErrorViewController()

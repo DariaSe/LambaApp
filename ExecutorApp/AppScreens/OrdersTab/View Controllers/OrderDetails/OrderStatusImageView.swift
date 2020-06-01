@@ -19,23 +19,17 @@ class OrderStatusImageView: UIView {
                 descrLabel.text = Strings.statusDone
                 descrLabel.textColor = UIColor.greenIndicatorColor
                 openVideoButton.isHidden = false
-
             case .rejectedExecutor:
                 imageView.image = UIImage(named: "Cancelled")
                 descrLabel.text = Strings.youRejected
                 descrLabel.textColor = UIColor.redIndicatorColor
                 openVideoButton.isHidden = true
-                
-            case .rejectedCustomer:
-                break
-
             case .uploading:
                 imageView.image = UIImage(named: "Uploading")
                 descrLabel.text = Strings.videoUploading
                 descrLabel.textColor = UIColor.gray
                 openVideoButton.isHidden = true
-                
-            case .active:
+            default:
                 break
             }
         }
@@ -80,7 +74,7 @@ class OrderStatusImageView: UIView {
     }
     
     @objc func openVideoButtonPressed() {
-           openVideoButton.animate(scale: 1.05)
-           openVideo?()
-       }
+        openVideoButton.animate(scale: 1.05)
+        openVideo?()
+    }
 }

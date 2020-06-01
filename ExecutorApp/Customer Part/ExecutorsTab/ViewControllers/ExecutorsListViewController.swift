@@ -18,17 +18,10 @@ class ExecutorsListViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    
-    var imageURLs: [URL] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
+  
     var userImage: UIImage? {
         didSet {
             userButton.userImage = userImage
-            
         }
     }
     
@@ -82,11 +75,9 @@ extension ExecutorsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExecutorTableViewCell.reuseIdentifier, for: indexPath) as! ExecutorTableViewCell
         let executor = executors[indexPath.row]
-        let imageURL = imageURLs[indexPath.row]
-        cell.update(with: executor, imageURL: imageURL)
+        cell.update(with: executor)
         cell.favoritePressed = { [unowned self] in
             self.coordinator?.setFavorite(executorID: executor.id)
-            self.executors[indexPath.row].isFavorite = !self.executors[indexPath.row].isFavorite
         }
         if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
             if indexPath.row == (executors.count - 1) && indexPathsForVisibleRows.count < executors.count {
@@ -100,7 +91,7 @@ extension ExecutorsListViewController: UITableViewDataSource {
 extension ExecutorsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        coordinator?.showExecutor(executorID: executors[indexPath.row].id)
+        coordinator?.getExecutorDetails(executorID: executors[indexPath.row].id)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -126,14 +126,8 @@ class CustomerSettingsViewController: UIViewController, KeyboardHandler {
         guard
             let firstName = nameUnit.textField.text,
             let lastName = lastNameUnit.textField.text,
-            let email = emailUnit.textField.text,
-            !firstName.isEmpty,
-            !lastName.isEmpty,
-            !email.isEmpty
-            else {
-                coordinator?.showSimpleAlert(title: Strings.fillAllFields, handler: nil)
-                return
-        }
+            let email = emailUnit.textField.text
+            else { return }
         let newUserInfo = CustomerUserInfo(firstName: firstName, lastName: lastName, email: email)
         if userInfo != newUserInfo {
             self.userInfo = newUserInfo

@@ -10,9 +10,13 @@ import UIKit
 
 struct SocialMedia: Equatable {
     var id: Int
-    var image: UIImage?
+    var imageURLString: String
     var title: String
     var url: String
+    
+    static func samples() -> [SocialMedia] {
+        return [SocialMedia(id: 1, imageURLString: "", title: "Instagram", url: "harold_pain"), SocialMedia(id: 2, imageURLString: "", title: "YouTube", url: "harold_pain"), SocialMedia(id: 3, imageURLString: "", title: "TikTok", url: "harold_pain")]
+    }
     
     static func initialize(from dictionary: [String : Any]) -> SocialMedia? {
         guard
@@ -21,7 +25,8 @@ struct SocialMedia: Equatable {
             let title = socialType["title"] as? String,
             let url = dictionary["url"] as? String
             else { return nil }
-            return SocialMedia(id: id, image: nil, title: title, url: url)
+        let imageURLString = socialType["image"] as? String ?? ""
+        return SocialMedia(id: id, imageURLString: imageURLString, title: title, url: url)
     }
     
     func dict() -> [String : Any] {

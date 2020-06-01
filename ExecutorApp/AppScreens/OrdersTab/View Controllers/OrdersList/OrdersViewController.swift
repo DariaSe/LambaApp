@@ -26,12 +26,6 @@ class OrdersViewController: UIViewController {
         }
     }
     
-    var imageURLs: [URL] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
@@ -71,8 +65,7 @@ extension OrdersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
         let order = orders[indexPath.row]
-        let imageURL = imageURLs[indexPath.row]
-        cell.update(with: order, userRole: .executor, imageURL: imageURL)
+        cell.update(with: order, userRole: .executor)
         if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
             if indexPath.row == (orders.count - 1) && indexPathsForVisibleRows.count < orders.count {
                 coordinator?.loadMore()
