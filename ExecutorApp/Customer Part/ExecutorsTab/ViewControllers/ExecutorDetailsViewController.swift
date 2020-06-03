@@ -72,6 +72,11 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
             self.coordinator?.openURL(url: url)
         }
         
+        detailsView.orderFormView.continuePressed = { [unowned self] orderScheme, index in
+            guard let executorDetails = self.executorDetails else { return }
+            self.coordinator?.showOrderOptions(executorID: executorDetails.id)
+        }
+        
         favoriteButton.constrainToEdges(of: detailsView, leading: nil, trailing: 25, top: -20, bottom: nil)
         favoriteButton.setSize(width: 40, height: 40)
         favoriteButton.backgroundColor = .white

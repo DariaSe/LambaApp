@@ -33,6 +33,23 @@ class CustomerSettingsApiService {
         task.resume()
     }
     
+    func sendEmailChangeAuthCode(completion: @escaping (Bool, String?) -> Void) {
+//        guard let request = URLRequest.signedPostRequest(url: AppURL., jsonDict: nil) else { return }
+//        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+//        task.resume()
+        executeAfterSecond {
+            completion(true, nil)
+        }
+    }
+    
+    func changeEmail(code: String, email: String, completion: @escaping (Bool, String?) -> Void) {
+//        let jsonDict =
+        //        guard let request = URLRequest.signedPostRequest(url: AppURL., jsonDict: jsonDict) else { return }
+        //        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+        //        task.resume()
+        
+    }
+    
     
     func logout(completion: @escaping (Bool, String?) -> Void) {
         guard let request = URLRequest.signedPostRequest(url: AppURL.logoutURL, jsonDict: nil) else { return }

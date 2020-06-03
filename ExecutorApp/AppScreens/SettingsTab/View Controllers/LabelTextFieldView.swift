@@ -28,6 +28,17 @@ class LabelTextFieldView: UIView {
     let label = UILabel()
     let textField = FormTextField()
     
+    var isTransparent: Bool = false {
+        didSet {
+            textField.backgroundColor = isTransparent ? UIColor.clear : UIColor.textControlsBackgroundColor
+            textField.layer.borderColor = UIColor.clear.cgColor
+            let separatorView = UIView()
+            separatorView.constrainToEdges(of: self, leading: 0, trailing: 0, top: nil, bottom: 0)
+            separatorView.setHeight(equalTo: 1)
+            separatorView.backgroundColor = UIColor.black.withAlphaComponent(0.12)
+        }
+    }
+    
     convenience init(title: String, type: FormTextFieldType) {
         self.init()
         label.text = " " + title

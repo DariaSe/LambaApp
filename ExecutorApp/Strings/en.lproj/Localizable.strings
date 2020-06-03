@@ -118,6 +118,7 @@
 // Customer
 //Executors Screen
 "Search" = "Search";
+"No search results" = "No search results";
 "Open link in Safari?" = "Open link in Safari?";
 "Can't open link" = "Can't open link";
 "Continue" = "Continue";
@@ -137,6 +138,9 @@
 "First name" = "First name";
 "Last name" = "Last name";
 "Fill all fields" = "Fill all fields";
+"We've sent you an authorization code on your e-mail" = "We've sent you an authorization code on your e-mail";
+"New e-mail" = "New e-mail";
+"E-mail successfully changed" = "E-mail successfully changed";
 
 // Permissions
 "Access error" = "Access error";

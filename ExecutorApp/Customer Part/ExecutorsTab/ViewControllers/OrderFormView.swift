@@ -26,6 +26,8 @@ class OrderFormView: UIView {
     let continueButton = AppButton(title: Strings.continueString)
     let warningLabel = UILabel()
     
+    var continuePressed: ((OrderScheme, Int) -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialSetup()
@@ -62,6 +64,8 @@ class OrderFormView: UIView {
         tableView.separatorStyle = .none
         tableView.register(OrderFormTableViewCell.self, forCellReuseIdentifier: OrderFormTableViewCell.reuseIdentifier)
         
+        continueButton.addTarget(self, action: #selector(continueButtonPressed), for: .touchUpInside)
+        
         warningLabel.font = UIFont.systemFont(ofSize: 12)
         warningLabel.textColor = UIColor.lightGray
         warningLabel.textAlignment = .center
@@ -71,6 +75,12 @@ class OrderFormView: UIView {
     @objc func segmentSelected() {
         currentSchemeIndex = segmentedControl.selectedSegmentIndex
         tableView.reloadData()
+    }
+    
+    @objc func continueButtonPressed() {
+        continueButton.animate(scale: 1.05)
+        guard let orderScheme = orderScheme else { return }
+        continuePressed?(orderScheme, currentSchemeIndex)
     }
     
     func setInitialData() {

@@ -72,6 +72,49 @@ class CustomerSettingsCoordinator: Coordinator {
         }
     }
     
+    func showChangeEmailModal() {
+        apiService.sendEmailChangeAuthCode { [unowned self] (success, errorMessage) in
+            if let errorMessage = errorMessage {
+                self.showSimpleAlert(title: errorMessage, handler: nil)
+            }
+            else if success {
+                let alertController = UIAlertController(title: Strings.authCodeSent, message: nil, preferredStyle: .alert)
+                let saveAction = UIAlertAction(title: Strings.save, style: .default) { [unowned self] (action) in
+                    if let codeTextField = alertController.textFields?[0],
+                        let code = codeTextField.text,
+                        let newEmailTextField = alertController.textFields?[1],
+                        let newEmail = newEmailTextField.text {
+                        self.apiService.changeEmail(code: code, email: newEmail) { [unowned self] (success, errorMessage) in
+                            if let errorMessage = errorMessage {
+                                self.showSimpleAlert(title: errorMessage, handler: nil)
+                            }
+                            else if success {
+                                self.showSimpleAlert(title: Strings.emailChanged, handler: nil)
+                            }
+                        }
+                    }
+                }
+                let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
+                alertController.addAction(saveAction)
+                alertController.addAction(cancelAction)
+                alertController.addTextField { (codeTextField) in
+                    codeTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
+                    codeTextField.placeholder = Strings.enterCode
+                    codeTextField.font = UIFont.systemFont(ofSize: 16)
+                    codeTextField.layer.cornerRadius = SizeConstants.textFieldCornerRadius
+                }
+                alertController.addTextField { (newEmailTextField) in
+                    newEmailTextField.setHeight(equalTo: SizeConstants.textFieldHeight)
+                    newEmailTextField.placeholder = Strings.newEmail
+                    newEmailTextField.font = UIFont.systemFont(ofSize: 16)
+                    newEmailTextField.layer.cornerRadius = SizeConstants.textFieldCornerRadius
+                }
+                alertController.view.setHeight(equalTo: 250)
+                self.settingsVC.present(alertController, animated: true)
+            }
+        }
+    }
+    
     func showChangePasswordScreen() {
         let passwordVC = ChangePasswordViewController()
         passwordVC.changePassword = { [unowned self] passInfo in

@@ -22,6 +22,12 @@ class ErrorViewController: UIViewController {
     
     private let errorLabel = UILabel()
     let reloadButton = AppButton(title: Strings.tryAgain)
+    
+    var hasButton: Bool = true {
+        didSet {
+            reloadButton.isHidden = !hasButton
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

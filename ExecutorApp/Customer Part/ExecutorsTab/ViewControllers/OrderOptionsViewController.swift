@@ -16,6 +16,8 @@ class OrderOptionsViewController: UIViewController {
         }
     }
     
+    var executorName: String?
+    
     let stackView = UIStackView()
     
     let tableView = UITableView()
@@ -58,7 +60,7 @@ extension OrderOptionsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderOptionTableViewCell.reuseIdentifier, for: indexPath) as! OrderOptionTableViewCell
-        cell.update(with: options[indexPath.row])
+        cell.update(with: options[indexPath.row], name: executorName)
         cell.switchValueChanged = { [unowned self] in
             
         }

@@ -119,6 +119,7 @@
 // Customer
 //Executors Screen
 "Search" = "Поиск";
+"No search results" = "Поиск не дал результатов";
 "Open link in Safari?" = "Открыть ссылку в браузере?";
 "Can't open link" = "Невозможно открыть ссылку";
 "Continue" = "Продолжить";
@@ -138,6 +139,9 @@
 "First name" = "Имя";
 "Last name" = "Фамилия";
 "Fill all fields" = "Заполните все поля";
+"We've sent you an authorization code on your e-mail" = "На Ваш e-mail был отправлен код авторизации";
+"New e-mail" = "Новый e-mail";
+"E-mail successfully changed" = "E-mail успешно изменён";
 
 // Permissions
 "Access error" = "Ошибка доступа";

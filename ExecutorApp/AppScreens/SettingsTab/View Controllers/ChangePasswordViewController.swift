@@ -50,6 +50,10 @@ class ChangePasswordViewController: UIViewController, KeyboardHandler {
         unitsStackView.addArrangedSubview(confirmNewPassUnit)
         unitsStackView.addArrangedSubview(reqiurementsLabel)
         
+        oldPassUnit.isTransparent = true
+        newPassUnit.isTransparent = true
+        confirmNewPassUnit.isTransparent = true
+        
         confirmNewPassUnit.textChanged = { [unowned self] text in
             guard !text.isEmpty else { return }
             if text == self.newPassUnit.textField.text {

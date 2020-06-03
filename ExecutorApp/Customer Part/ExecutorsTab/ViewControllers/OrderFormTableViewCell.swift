@@ -13,9 +13,9 @@ class OrderFormTableViewCell: UITableViewCell {
     static let reuseIdentifier = "OrderFormCell"
     
     private let stackView = UIStackView()
-    
+  
     private let label = UILabel()
-    let textView = UITextView()
+    private let textView = UITextView()
     private let placeholderLabel = UILabel()
     
     var textChanged: ((String) -> Void)?
@@ -60,6 +60,13 @@ class OrderFormTableViewCell: UITableViewCell {
         placeholderLabel.text = unit.placeholder
         placeholderLabel.isHidden = !unit.text.isEmpty
         textView.text = unit.text
+        if unit.isRequired {
+            let attrText = NSMutableAttributedString(string: label.text ?? "")
+            let attributes = [NSAttributedString.Key.foregroundColor : UIColor.destructiveColor]
+            let asterisk = NSAttributedString(string: "*", attributes: attributes)
+            attrText.append(asterisk)
+            label.attributedText = attrText
+        }
     }
 }
 

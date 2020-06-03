@@ -38,8 +38,12 @@ class ExecutorsListViewController: UIViewController {
         super.viewDidLoad()
         self.extendedLayoutIncludesOpaqueBars = true
         view.backgroundColor = UIColor.backgroundColor
+        
         navigationItem.titleView = searchBar
         searchBar.sizeToFit()
+        searchBar.delegate = self
+        searchBar.enablesReturnKeyAutomatically = true
+        
         navigationItem.rightBarButtonItem = userButton
         userButton.userTapped = { [unowned self] in self.delegate?.showSettings() }
         
@@ -96,5 +100,17 @@ extension ExecutorsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 86
+    }
+}
+
+extension ExecutorsListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        coordinator?.searchString = searchText
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            coordinator?.searchString = text
+        }
+        searchBar.resignFirstResponder()
     }
 }

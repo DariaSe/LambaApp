@@ -16,6 +16,12 @@ class ExecutorsTabCoordinator: Coordinator {
     
     let apiService = ExecutorsApiService()
     
+    var searchString: String = "" {
+        didSet {
+            getExecutors()
+        }
+    }
+    
     func start() {
         navigationController.navigationBar.tintColor = UIColor.textColor
         navigationController.delegate = self
@@ -33,24 +39,30 @@ class ExecutorsTabCoordinator: Coordinator {
     }
     
    
-    func getExecutors(search: String = "", order: String = "") {
+    func getExecutors(order: String = "") {
+        removeEmptyScreen()
         showLoadingIndicator()
-        apiService.getExecutors(search: search, order: order) { [unowned self] (executors, errorMessage) in
+        apiService.getExecutors(search: searchString, order: order) { [unowned self] (executors, errorMessage) in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
             }
             if let executors = executors {
-                self.executorsListVC.executors = executors
+                if !executors.isEmpty {
+                    self.executorsListVC.executors = executors
+                }
+                else {
+                    self.showEmptyScreen(message: Strings.noSearchResults)
+                }
             }
         }
     }
     
-    func loadMore(search: String = "", order: String = "") {
+    func loadMore(order: String = "") {
         if apiService.isMore {
             showLoadingIndicator()
             apiService.page += 1
-            apiService.getExecutors(search: search, order: order) { [unowned self] (executors, errorMessage) in
+            apiService.getExecutors(search: searchString, order: order) { [unowned self] (executors, errorMessage) in
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showPopUpError(message: errorMessage)
@@ -64,6 +76,7 @@ class ExecutorsTabCoordinator: Coordinator {
     
     func refresh() {
         apiService.page = 1
+        searchString = ""
         getExecutors()
     }
     
@@ -117,6 +130,10 @@ class ExecutorsTabCoordinator: Coordinator {
         alert.addAction(yesAction)
         alert.addAction(cancelAction)
         executorDetailsVC.present(alert, animated: true)
+    }
+    
+    func showOrderOptions(executorID: Int) {
+        
     }
 }
 

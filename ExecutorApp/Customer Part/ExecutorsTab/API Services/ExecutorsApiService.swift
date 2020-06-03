@@ -38,7 +38,6 @@ class ExecutorsApiService {
             }
         }
         task.resume()
-        
     }
     
     func getExecutorDetails(executorID: Int, completion: @escaping (ExecutorDetails?, String?) -> Void) {
@@ -52,7 +51,6 @@ class ExecutorsApiService {
                     let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let executorDict = jsonDict["executor"] as? [String : Any] {
-//                    print(executorDict)
                     let executorDetails = ExecutorDetails.initialize(from: executorDict)
                     completion(executorDetails, nil)
                 }
@@ -67,7 +65,7 @@ class ExecutorsApiService {
         task.resume()
     }
     
-    func sendOrder(executorID: Int, orderDict: [String : Any]) {
+    func sendOrder(executorID: Int, orderDict: [String : Any], completion: @escaping (Bool, String?) -> Void) {
         
     }
 }

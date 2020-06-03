@@ -124,6 +124,7 @@ struct Strings {
     // Customer
     //Executors Screen
     static let search = "Search".localized
+    static let noSearchResults = "No search results".localized
     static let openLink = "Open link in Safari?".localized
     static let invalidURL = "Can't open link".localized
     static let continueString = "Continue".localized
@@ -142,7 +143,10 @@ struct Strings {
     // Settings
     static let name = "First name".localized
     static let lastName = "Last name".localized
-    static let fillAllFields = "Fill all fields".localized
+    static let authCodeSent = "We've sent you an authorization code on your e-mail".localized
+//    static let fillAllFields = "Fill all fields".localized
+    static let newEmail = "New e-mail".localized
+    static let emailChanged = "E-mail successfully changed".localized
     
     // Permissions
     static let accessError = "Access error".localized

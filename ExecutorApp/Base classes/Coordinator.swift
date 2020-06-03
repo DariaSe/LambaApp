@@ -39,10 +39,21 @@ class Coordinator: NSObject {
     
     func showFullScreenError(message: String) {
         errorVC.message = message
+        errorVC.hasButton = true
         navigationController.topViewController?.add(errorVC)
     }
     
     func removeFullScreenError() {
+        errorVC.remove()
+    }
+    
+    func showEmptyScreen(message: String) {
+        errorVC.message = message
+        errorVC.hasButton = false
+        navigationController.topViewController?.add(errorVC)
+    }
+    
+    func removeEmptyScreen() {
         errorVC.remove()
     }
     

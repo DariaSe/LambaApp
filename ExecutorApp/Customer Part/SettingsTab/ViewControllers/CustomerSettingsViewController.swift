@@ -96,6 +96,11 @@ class CustomerSettingsViewController: UIViewController, KeyboardHandler {
         nameUnit.textField.delegate = self
         lastNameUnit.textField.delegate = self
         emailUnit.textField.delegate = self
+        
+        nameUnit.isTransparent = true
+        lastNameUnit.isTransparent = true
+        emailUnit.isTransparent = true
+        
         imageButton.addTarget(self, action: #selector(imageButtonPressed), for: .touchUpInside)
         changePassButton.addTarget(self, action: #selector(changePasswordButtonPressed), for: .touchUpInside)
         logoutButton.isSolid = false
@@ -137,6 +142,13 @@ class CustomerSettingsViewController: UIViewController, KeyboardHandler {
 }
 
 extension CustomerSettingsViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailUnit.textField {
+            coordinator?.showChangeEmailModal()
+            view.endEditing(true)
+        }
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         sendChanges()
