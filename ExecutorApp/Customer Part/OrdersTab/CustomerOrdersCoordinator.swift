@@ -19,8 +19,11 @@ class CustomerOrdersCoordinator: Coordinator {
     let ordersApiService = CustomerOrdersApiService()
     
     func start() {
+        navigationController.delegate = self
         ordersApiService.delegate = self
         ordersVC.coordinator = self
+        orderDetailsVC.coordinator = self
+        orderDetailsVC.hidesBottomBarWhenPushed = true
         errorVC.reload = { [unowned self] in self.getOrders() }
         navigationController.viewControllers = [ordersVC]
         let envelopeImage = UIImage(named: "Envelope")
@@ -70,7 +73,6 @@ class CustomerOrdersCoordinator: Coordinator {
     }
     
     func showOrderDetails(orderID: Int) {
-        orderDetailsVC.coordinator = self
         navigationController.pushViewController(orderDetailsVC, animated: true)
         getOrderDetails(orderID: orderID)
     }
@@ -105,7 +107,7 @@ class CustomerOrdersCoordinator: Coordinator {
             PHPhotoLibrary.requestAuthorization { (authStatus) in
                 DispatchQueue.main.async {
                     guard authStatus == .authorized else {
-                        let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowPhotoAccess)
+                        let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowMediaAccess)
                         self.orderDetailsVC.present(settingsAlert, animated: true)
                         return
                     }

@@ -14,7 +14,6 @@ class OrderOptionTableViewCell: UITableViewCell {
     
     private let stackView = UIStackView()
     private let labelsStackView = UIStackView()
-    private let switchStackView = UIStackView()
     
     private let optionTitleLabel = UILabel()
     private let nameLabel = UILabel()
@@ -34,24 +33,30 @@ class OrderOptionTableViewCell: UITableViewCell {
     }
     
     private func initialSetup() {
-        stackView.pinToLayoutMargins(to: contentView)
-        stackView.axis = .horizontal
-        stackView.addArrangedSubview(labelsStackView)
-        stackView.addArrangedSubview(switchStackView)
-        
+        contentView.addSubview(labelsStackView)
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        labelsStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         labelsStackView.axis = .vertical
-        labelsStackView.spacing = 12
-        labelsStackView.alignment = .top
+//        labelsStackView.spacing = 12
+        labelsStackView.alignment = .leading
         labelsStackView.addArrangedSubview(optionTitleLabel)
         labelsStackView.addArrangedSubview(nameLabel)
+        labelsStackView.setHeight(equalTo: 44)
         
-        switchStackView.axis = .vertical
-        switchStackView.spacing = 5
-        switchStackView.alignment = .bottom
-        switchStackView.addArrangedSubview(optionSwitch)
-        switchStackView.addArrangedSubview(optionTitleLabel)
+        contentView.addSubview(optionSwitch)
+        optionSwitch.translatesAutoresizingMaskIntoConstraints = false
+        optionSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        optionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        
+        contentView.addSubview(costLabel)
+        costLabel.translatesAutoresizingMaskIntoConstraints = false
+        costLabel.centerXAnchor.constraint(equalTo: optionSwitch.centerXAnchor).isActive = true
+        costLabel.topAnchor.constraint(equalTo: optionSwitch.bottomAnchor, constant: 5).isActive = true
         
         optionTitleLabel.font = UIFont.systemFont(ofSize: 16)
+        optionTitleLabel.textAlignment = .left
+        nameLabel.textAlignment = .left
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         nameLabel.adjustsFontSizeToFitWidth = true
         
@@ -62,7 +67,8 @@ class OrderOptionTableViewCell: UITableViewCell {
     
     func update(with option: OrderSettings, name: String?) {
         optionTitleLabel.text = option.title
-        costLabel.text = option.currencySign == "₽" ? option.price + option.currencySign : option.currencySign + option.price
+        print(option.currencySign)
+        costLabel.text = option.currencySign == "₽" ? "+" + option.price + option.currencySign : "+" + option.currencySign + option.price
         nameLabel.text = name
     }
 }

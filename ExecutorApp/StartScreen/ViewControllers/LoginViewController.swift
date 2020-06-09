@@ -14,7 +14,9 @@ class LoginViewController: InputFormViewController {
     
     weak var delegate: FormDelegate?
     
-    //    let logoImageView = UIImageView()
+    let logoImageView = UIImageView()
+    
+    let signInWithGoogleButton = UIButton()
     
     let emailTextField = FormTextField(type: .email, placeholder: Strings.email)
     let passwordTextField = FormTextField(type: .password, placeholder: Strings.password)
@@ -27,19 +29,24 @@ class LoginViewController: InputFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
-        //        stackView.insertArrangedSubview(logoImageView, at: 0)
         initialSetup()
     }
   
     
     func initialSetup() {
-        
+        stackView.insertArrangedSubview(logoImageView, at: 0)
+        stackView.insertArrangedSubview(signInWithGoogleButton, at: 1)
         add(emailTextField)
         add(passwordTextField)
         add(loginButton)
         add(forgotPasswordButton)
         
         addToBottom(registerButton)
+        
+        signInWithGoogleButton.setSize(width: 208, height: 50)
+        signInWithGoogleButton.setImage(UIImage(named: "btn_google_signin_normal"), for: .normal)
+        signInWithGoogleButton.setImage(UIImage(named: "btn_google_signin_pressed"), for: .highlighted)
+        signInWithGoogleButton.addTarget(self, action: #selector(singInWithGoogleButtonPressed), for: .touchUpInside)
         
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         
@@ -48,6 +55,10 @@ class LoginViewController: InputFormViewController {
       
         registerButton.setTitleColor(UIColor.tintColor, for: .normal)
         registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func singInWithGoogleButtonPressed() {
+        signInWithGoogleButton.animate(scale: 1.05)
     }
     
     @objc func loginButtonPressed() {

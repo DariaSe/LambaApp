@@ -74,7 +74,7 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         
         detailsView.orderFormView.continuePressed = { [unowned self] orderScheme, index in
             guard let executorDetails = self.executorDetails else { return }
-            self.coordinator?.showOrderOptions(executorID: executorDetails.id)
+            self.coordinator?.showOrderOptions(executorDetails: executorDetails)
         }
         
         favoriteButton.constrainToEdges(of: detailsView, leading: nil, trailing: 25, top: -20, bottom: nil)
@@ -84,12 +84,11 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         favoriteButton.clipsToBounds = true
         favoriteButton.setImage(heart, for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        favoriteButton.dropShadow(height: 2, shadowRadius: 4, opacity: 0.25, cornerRadius: 20)
+        favoriteButton.dropShadow(height: 0, shadowRadius: 6, opacity: 0.25, cornerRadius: 20)
     }
     
     @objc func favoriteButtonPressed() {

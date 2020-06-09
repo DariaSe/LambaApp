@@ -119,6 +119,8 @@
 //Executors Screen
 "Search" = "Search";
 "No search results" = "No search results";
+"Oops! It seems that " = "Oops! It seems that ";
+" isn't accepting\norders right now :(" = " isn't accepting\norders right now :(";
 "Open link in Safari?" = "Open link in Safari?";
 "Can't open link" = "Can't open link";
 "Continue" = "Continue";
@@ -144,4 +146,6 @@
 
 // Permissions
 "Access error" = "Access error";
-"Allow the app access to photo library in the Settings" = "Allow the app access to photo library in the Settings";
+"Allow the app access to media library in the Settings" = "Allow the app access to media library in the Settings";
+"Allow the app access to camera in the Settings" = "Allow the app access to camera in the Settings";
+"Allow the app access to camera and mic in the Settings" = "Allow the app access to camera and mic in the Settings";

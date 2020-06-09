@@ -13,8 +13,9 @@ class Coordinator: NSObject {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
-           self.navigationController = navigationController
-       }
+        self.navigationController = navigationController
+        navigationController.navigationBar.tintColor = UIColor.textColor
+    }
     
     let loadingVC = LoadingViewController(backgroundColor: UIColor.backgroundColor)
     let clearLoadingVC = LoadingViewController(backgroundColor: .clear)

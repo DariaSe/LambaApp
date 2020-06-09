@@ -14,6 +14,8 @@ class CameraViewController: UIViewController {
     
     var urlReceived: ((URL?, String?) -> Void)?
     
+    var accessError: ((UIAlertController) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,8 +41,17 @@ class CameraViewController: UIViewController {
     func showSaveToLibraryAlert(videoURL: URL) {
         let alert = UIAlertController(title: Strings.saveVideoToLibrary, message: Strings.youMightNeedItLater, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: Strings.save, style: .default) { (_) in
-            UISaveVideoAtPathToSavedPhotosAlbum(videoURL.path, nil, nil, nil)
-            self.remove()
+            PermissionsService.requestAccessToMediaLibrary { (granted) in
+                if granted {
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.path, nil, nil, nil)
+                    self.remove()
+                }
+                else {
+                    let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowMediaAccess)
+                    self.accessError?(settingsAlert)
+                    self.remove()
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: Strings.doNotSave, style: .destructive) {
             (_) in

@@ -40,8 +40,14 @@ struct OrderDetails {
             let cost = dictionary["costs"] as? Int
             else { return nil }
         
-        let sign = InfoService.shared.userInfo?.currencySign ?? ""
-        let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
+        var currencySign: String
+        if let executor = dictionary["executorDto"] as? [String : Any], let currency = executor["currency"] as? [String : Any], let sign = currency["sign"] as? String {
+            currencySign = sign
+        }
+        else {
+            currencySign = InfoService.shared.userInfo?.currencySign ?? ""
+        }
+        let costString = currencySign == "₽" ? cost.string + " " + currencySign : currencySign + " " + cost.string
         
         let thumbnailURLString = dictionary["videoPreview"] as? String ?? ""
         let thumbnailURL = URL(string: thumbnailURLString)

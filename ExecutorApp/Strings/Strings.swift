@@ -127,6 +127,8 @@ struct Strings {
     static let noSearchResults = "No search results".localized
     static let openLink = "Open link in Safari?".localized
     static let invalidURL = "Can't open link".localized
+    static let notReceivingOrdersStart = "Oops! It seems that ".localized
+    static let notReceivingOrdersEnd = " isn't accepting\norders right now :(".localized
     static let continueString = "Continue".localized
     static let youDoNotPayWarning = "You do not pay for anything yet".localized
     static let options = "Options".localized
@@ -150,5 +152,7 @@ struct Strings {
     
     // Permissions
     static let accessError = "Access error".localized
-    static let allowPhotoAccess = "Allow the app access to photo library in the Settings".localized
+    static let allowMediaAccess = "Allow the app access to media library in the Settings".localized
+    static let allowCameraAccess = "Allow the app access to camera in the Settings".localized
+    static let allowCameraAndMicAccess = "Allow the app access to camera and mic in the Settings".localized
 }

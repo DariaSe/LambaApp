@@ -120,6 +120,8 @@
 //Executors Screen
 "Search" = "Поиск";
 "No search results" = "Поиск не дал результатов";
+"Oops! It seems that " = "Упс! Кажется, ";
+" isn't accepting\norders right now :(" = " сейчас не\nпринимает заказы :(";
 "Open link in Safari?" = "Открыть ссылку в браузере?";
 "Can't open link" = "Невозможно открыть ссылку";
 "Continue" = "Продолжить";
@@ -145,4 +147,6 @@
 
 // Permissions
 "Access error" = "Ошибка доступа";
-"Allow the app access to photo library in the Settings" = "Разрешите приложению доступ к Фото в Настройках";
+"Allow the app access to media library in the Settings" = "Разрешите приложению доступ к Медиатеке в Настройках";
+"Allow the app access to camera in the Settings" = "Разрешите приложению доступ к камере в Настройках";
+"Allow the app access to camera and mic in the Settings" = "Разрешите приложению доступ к камере и микрофону в Настройках";

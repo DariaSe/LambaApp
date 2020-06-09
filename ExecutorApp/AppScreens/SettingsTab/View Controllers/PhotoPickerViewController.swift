@@ -11,10 +11,12 @@ import UIKit
 class PhotoPickerViewController: UIViewController {
     
     var imagePicked: ((UIImage) -> Void)?
-
+    
+    var accessError: ((UIAlertController) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     func showImagePicker() {
@@ -30,19 +32,44 @@ class PhotoPickerViewController: UIViewController {
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: Strings.camera, style: .default, handler: { [unowned self] _ in
-            imagePicker.sourceType = .camera
-                self.present(imagePicker, animated: true, completion: nil) })
-            alertController.addAction(cameraAction) }
+                PermissionsService.requestAccessToCamera { [unowned self] (granted) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            imagePicker.sourceType = .camera
+                            self.present(imagePicker, animated: true, completion: nil)
+                        }
+                        else {
+                            let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowCameraAccess)
+                            self.accessError?(settingsAlert)
+                            self.remove()
+                        }
+                    }
+                }
+            })
+            alertController.addAction(cameraAction)
+        }
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let photoLibraryAction = UIAlertAction(title: Strings.photos, style: .default, handler: { [unowned self] _ in
-                imagePicker.sourceType = .photoLibrary
-                self.present(imagePicker, animated: true,completion: nil) })
-            alertController.addAction(photoLibraryAction) }
-        
+                PermissionsService.requestAccessToMediaLibrary { [unowned self] (granted) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            imagePicker.sourceType = .photoLibrary
+                            self.present(imagePicker, animated: true,completion: nil)
+                        }
+                        else {
+                            let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowMediaAccess)
+                            self.accessError?(settingsAlert)
+                            self.remove()
+                        }
+                    }
+                }
+            })
+            alertController.addAction(photoLibraryAction)
+        }
         present(alertController, animated: true, completion: nil)
     }
-
+    
 }
 
 extension PhotoPickerViewController: UIImagePickerControllerDelegate {

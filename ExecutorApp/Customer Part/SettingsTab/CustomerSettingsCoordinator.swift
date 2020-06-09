@@ -70,6 +70,9 @@ class CustomerSettingsCoordinator: Coordinator {
             cropperVC.image = image
             self.navigationController.pushViewController(cropperVC, animated: true)
         }
+        photoPicker.accessError = { [unowned self] alert in
+            self.settingsVC.present(alert, animated: true)
+        }
     }
     
     func showChangeEmailModal() {
@@ -117,6 +120,7 @@ class CustomerSettingsCoordinator: Coordinator {
     
     func showChangePasswordScreen() {
         let passwordVC = ChangePasswordViewController()
+        passwordVC.hidesBottomBarWhenPushed = true
         passwordVC.changePassword = { [unowned self] passInfo in
             self.showLoadingIndicator()
             self.apiService.changePassword(passInfo: passInfo) { [unowned self] (success, message) in
@@ -154,7 +158,7 @@ class CustomerSettingsCoordinator: Coordinator {
     }
     
     func logout() {
-        let alert = UIAlertController(title: "", message: Strings.logoutWarning, preferredStyle: .alert)
+        let alert = UIAlertController(title: Strings.logoutWarning, message: "", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: Strings.yes, style: .destructive) { [unowned self] (_) in
             self.apiService.logout { [unowned self] (success, errorMessage) in
                 DispatchQueue.main.async {

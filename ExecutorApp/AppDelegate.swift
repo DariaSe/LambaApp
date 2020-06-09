@@ -13,18 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-//    let mainCoordinator = ExecutorMainCoordinator()
     let startCoordinator = StartCoordinator()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Defaults.setDefault()
+        
+//        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
     
         window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = mainCoordinator.mainVC
         window?.rootViewController = startCoordinator.startVC
         window?.makeKeyAndVisible()
-//        mainCoordinator.start()
+
         startCoordinator.start()
         
         FileManager.default.clearTmpDirectory()

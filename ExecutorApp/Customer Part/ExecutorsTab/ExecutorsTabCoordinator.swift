@@ -12,7 +12,19 @@ import SafariServices
 class ExecutorsTabCoordinator: Coordinator {
     
     let executorsListVC = ExecutorsListViewController()
-    let executorDetailsVC = ExecutorDetailsViewController()
+    
+    lazy var executorDetailsVC: ExecutorDetailsViewController = {
+        let detailsVC = ExecutorDetailsViewController()
+        detailsVC.coordinator = self
+        detailsVC.hidesBottomBarWhenPushed = true
+        return detailsVC
+    }()
+    
+    lazy var orderOptionsVC: OrderOptionsViewController = {
+        let optionsVC = OrderOptionsViewController()
+        optionsVC.coordinator = self
+        return optionsVC
+    }()
     
     let apiService = ExecutorsApiService()
     
@@ -22,11 +34,15 @@ class ExecutorsTabCoordinator: Coordinator {
         }
     }
     
+    var sortingOption: String = "" {
+        didSet {
+            getExecutors()
+        }
+    }
+    
     func start() {
-        navigationController.navigationBar.tintColor = UIColor.textColor
         navigationController.delegate = self
         executorsListVC.coordinator = self
-        executorDetailsVC.coordinator = self
         navigationController.viewControllers = [executorsListVC]
         errorVC.reload = { [unowned self] in self.getExecutors() }
         let starImage = UIImage(named: "Star")
@@ -42,7 +58,7 @@ class ExecutorsTabCoordinator: Coordinator {
     func getExecutors(order: String = "") {
         removeEmptyScreen()
         showLoadingIndicator()
-        apiService.getExecutors(search: searchString, order: order) { [unowned self] (executors, errorMessage) in
+        apiService.getExecutors(search: searchString, order: sortingOption) { [unowned self] (executors, errorMessage) in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
@@ -50,6 +66,7 @@ class ExecutorsTabCoordinator: Coordinator {
             if let executors = executors {
                 if !executors.isEmpty {
                     self.executorsListVC.executors = executors
+                    self.executorsListVC.sortingOptions = ["Foo", "Bar", "Harold", "Something long", "Foo", "Bar", "Harold", "Something long"]
                 }
                 else {
                     self.showEmptyScreen(message: Strings.noSearchResults)
@@ -98,7 +115,6 @@ class ExecutorsTabCoordinator: Coordinator {
     }
     
     func getExecutorDetails(executorID: Int) {
-        executorDetailsVC.hidesBottomBarWhenPushed = true
         if navigationController.topViewController == executorsListVC {
             navigationController.pushViewController(executorDetailsVC, animated: true)
             showFullScreenLoading()
@@ -132,8 +148,10 @@ class ExecutorsTabCoordinator: Coordinator {
         executorDetailsVC.present(alert, animated: true)
     }
     
-    func showOrderOptions(executorID: Int) {
-        
+    func showOrderOptions(executorDetails: ExecutorDetails) {
+        orderOptionsVC.options = executorDetails.orderSettings
+        orderOptionsVC.executorName = executorDetails.firstName + " " + executorDetails.lastName
+        navigationController.pushViewController(orderOptionsVC, animated: true)
     }
 }
 

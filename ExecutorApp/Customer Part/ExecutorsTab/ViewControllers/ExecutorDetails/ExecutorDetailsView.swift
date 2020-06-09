@@ -15,8 +15,17 @@ class ExecutorDetailsView: UIView {
             guard let executorDetails = executorDetails else { return }
             nameLabel.text = executorDetails.firstName + " " + executorDetails.lastName
             socialsView.socials = executorDetails.socialMedia
-            orderFormView.orderScheme = OrderScheme.sample()
-            orderFormView.setInitialData()
+            if executorDetails.isReceivingOrders {
+                notReceivingOrdersView.isHidden = true
+                orderFormView.isHidden = false
+                orderFormView.orderScheme = OrderScheme.sample()
+                orderFormView.setInitialData()
+            }
+            else {
+                notReceivingOrdersView.isHidden = false
+                orderFormView.isHidden = true
+                notReceivingOrdersLabel.text = Strings.notReceivingOrdersStart + executorDetails.firstName + "\n" + executorDetails.lastName + Strings.notReceivingOrdersEnd
+            }
         }
     }
     
@@ -46,8 +55,8 @@ class ExecutorDetailsView: UIView {
         backgroundColor = UIColor.backgroundColor
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         layer.cornerRadius = 20
-        
-        stackView.constrainToEdges(of: self, leading: 0, trailing: 0, top: nil, bottom: 30)
+                
+        stackView.constrainToEdges(of: self, leading: 0, trailing: 0, top: nil, bottom: nil)
         topConstraint = stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30)
         topConstraint.isActive = true
         stackView.axis = .vertical
@@ -55,15 +64,24 @@ class ExecutorDetailsView: UIView {
         stackView.spacing = 12
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(socialsView)
-        stackView.addArrangedSubview(orderFormView)
+    
+        orderFormView.constrainToEdges(of: self, leading: 12, trailing: 12, top: nil, bottom: 20)
+        orderFormView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 12).isActive = true
+        notReceivingOrdersView.constrainToEdges(of: self, leading: 30, trailing: 30, top: nil, bottom: nil)
+        notReceivingOrdersView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 45).isActive = true
+        notReceivingOrdersView.setHeight(equalTo: 150)
+        notReceivingOrdersView.layer.cornerRadius = 15
+        notReceivingOrdersView.backgroundColor = UIColor.textControlsBackgroundColor
+        notReceivingOrdersLabel.center(in: notReceivingOrdersView)
+        notReceivingOrdersLabel.textAlignment = .center
+        notReceivingOrdersLabel.numberOfLines = 3
+        notReceivingOrdersLabel.font = UIFont.systemFont(ofSize: 18)
         
         nameLabel.numberOfLines = 2
         nameLabel.textAlignment = .center
         nameLabel.font = UIFont.systemFont(ofSize: 28)
         socialsView.setWidth(equalTo: 150)
         socialsView.setHeight(equalTo: 40)
-        
-        orderFormView.setWidth(equalTo: stackView, multiplier: 0.95)
     }
     
     func setFullScreenMode() {

@@ -25,7 +25,15 @@ class ExecutorsListViewController: UIViewController {
         }
     }
     
+    var sortingOptions: [String] = [] {
+        didSet {
+            sortingView.sortingOptions = sortingOptions
+        }
+    }
+    
     let searchBar = AppSearchBar()
+    
+    let sortingView = ExecutorsSortingView()
     
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
@@ -47,7 +55,13 @@ class ExecutorsListViewController: UIViewController {
         navigationItem.rightBarButtonItem = userButton
         userButton.userTapped = { [unowned self] in self.delegate?.showSettings() }
         
-        tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 12, trailing: 12, top: 10, bottom: 15)
+        sortingView.constrainTopAndBottomToLayoutMargins(of: view, leading: 12, trailing: 0, top: 10, bottom: nil)
+        sortingView.setHeight(equalTo: 40)
+        sortingView.didSelectOption = { [unowned self] option in
+            self.coordinator?.sortingOption = option
+        }
+        
+        tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 12, trailing: 12, top: 60, bottom: 15)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none

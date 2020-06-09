@@ -10,6 +10,8 @@ import UIKit
 
 class OrderOptionsViewController: UIViewController {
     
+    weak var coordinator: ExecutorsTabCoordinator?
+    
     var options: [OrderSettings] = [] {
         didSet {
             tableView.reloadData()
@@ -28,6 +30,7 @@ class OrderOptionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.backgroundColor
         title = Strings.options
         stackView.pinToLayoutMargins(to: view)
         stackView.axis = .vertical
@@ -71,5 +74,9 @@ extension OrderOptionsViewController: UITableViewDataSource {
 extension OrderOptionsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
 }

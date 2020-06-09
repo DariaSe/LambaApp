@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ExecutorOrdersCoordinator: Coordinator {
     
@@ -20,6 +21,8 @@ class ExecutorOrdersCoordinator: Coordinator {
         orderDetailsApiService.delegate = self
         navigationController.delegate = self
         ordersVC.coordinator = self
+        orderDetailsVC.coordinator = self
+        orderDetailsVC.hidesBottomBarWhenPushed = true
         errorVC.reload = { [unowned self] in self.getOrders() }
         navigationController.viewControllers = [ordersVC]
         let starImage = UIImage(named: "Star")
@@ -74,7 +77,6 @@ class ExecutorOrdersCoordinator: Coordinator {
     }
     
     func showOrderDetails(orderID: Int) {
-        orderDetailsVC.coordinator = self
         navigationController.pushViewController(orderDetailsVC, animated: true)
         getOrderDetails(orderID: orderID)
     }
@@ -99,10 +101,10 @@ class ExecutorOrdersCoordinator: Coordinator {
         showLoadingIndicator()
         let alert = UIAlertController(title: Strings.chooseVideoSource, message: Strings.durationWarning, preferredStyle: .alert)
         let cameraAction = UIAlertAction(title: Strings.camera, style: .default) { [unowned self] (_) in
-            self.openCamera(orderID: orderID)
+            self.requestCameraUsage(orderID: orderID)
         }
         let libraryAction = UIAlertAction(title: Strings.mediaLibrary, style: .default) { [unowned self] (_) in
-            self.openLibrary(orderID: orderID)
+            self.requestMediaLibraryUsage(orderID: orderID)
         }
         let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel) { [unowned self] (_) in
             self.removeLoadingIndicator()
@@ -111,6 +113,21 @@ class ExecutorOrdersCoordinator: Coordinator {
         alert.addAction(libraryAction)
         alert.addAction(cancelAction)
         orderDetailsVC.present(alert, animated: true)
+    }
+    
+    func requestCameraUsage(orderID: Int) {
+        PermissionsService.requestVideoRecordingPermission { [unowned self] (granted) in
+            DispatchQueue.main.async {
+                if granted {
+                    self.openCamera(orderID: orderID)
+                }
+                else {
+                    self.removeLoadingIndicator()
+                    let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowCameraAndMicAccess)
+                    self.orderDetailsVC.present(settingsAlert, animated: true)
+                }
+            }
+        }
     }
     
     func openCamera(orderID: Int) {
@@ -127,6 +144,26 @@ class ExecutorOrdersCoordinator: Coordinator {
                     if let errorMessage = errorMessage {
                         self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
+                }
+            }
+        }
+        cameraVC.accessError = { [unowned self] alert in
+            DispatchQueue.main.async {
+                self.orderDetailsVC.present(alert, animated: true)
+            }
+        }
+    }
+    
+    func requestMediaLibraryUsage(orderID: Int) {
+        PermissionsService.requestAccessToMediaLibrary { [unowned self] (granted) in
+            DispatchQueue.main.async {
+                if granted {
+                    self.openLibrary(orderID: orderID)
+                }
+                else {
+                    self.removeLoadingIndicator()
+                    let settingsAlert = PermissionsService.alertToSettings(title: Strings.accessError, message: Strings.allowMediaAccess)
+                    self.orderDetailsVC.present(settingsAlert, animated: true)
                 }
             }
         }
