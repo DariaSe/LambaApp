@@ -29,6 +29,11 @@ class OrderStatusImageView: UIView {
                 descrLabel.text = Strings.videoUploading
                 descrLabel.textColor = UIColor.gray
                 openVideoButton.isHidden = true
+            case .disputeInProcess:
+                imageView.image = UIImage(named: "Dispute")
+                descrLabel.text = Strings.statusDispute
+                descrLabel.textColor = UIColor.gray
+                openVideoButton.isHidden = true
             default:
                 break
             }

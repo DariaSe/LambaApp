@@ -30,11 +30,9 @@ struct UserInfo {
             let role = dictionary["role"] as? String
             else { return nil }
         let socialLinks = dictionary["socialLinks"] as? [[String : Any]] ?? [[:]]
-        let socialMediaArr = socialLinks.map {SocialMedia.initialize(from: $0)} as? [SocialMedia] ?? []
+        let socialMediaArr = socialLinks.compactMap(SocialMedia.initialize)
         let options = dictionary["options"] as? [[String : Any]] ?? [[:]]
-        let orderSettings = options
-            .map { OrderSettings.initialize(from: $0) }
-            .filter { $0 != nil } .map { $0! }
+        let orderSettings = options.compactMap(OrderSettings.initialize)
         let hashTags = dictionary["hashTags"] as? [String] ?? []
         let userRole = UserRole(rawValue: role)
         let currency = dictionary["currency"] as? [String : Any] ?? [:]

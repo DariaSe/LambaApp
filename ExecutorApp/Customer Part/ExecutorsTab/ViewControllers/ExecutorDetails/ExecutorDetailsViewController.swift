@@ -26,6 +26,13 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         }
     }
     
+    var orderScheme: OrderScheme? {
+        didSet {
+            detailsView.orderFormView.orderScheme = orderScheme
+            detailsView.orderFormView.setInitialData()
+        }
+    }
+    
     let photoImageView = UIImageView()
     let shadowingView = UIView()
     
@@ -73,8 +80,9 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         }
         
         detailsView.orderFormView.continuePressed = { [unowned self] orderScheme, index in
-            guard let executorDetails = self.executorDetails else { return }
-            self.coordinator?.showOrderOptions(executorDetails: executorDetails)
+            self.coordinator?.orderPreform?.variation = index
+            self.coordinator?.orderPreform?.fields = orderScheme.variations[index].units
+            self.coordinator?.showOrderOptions()
         }
         
         favoriteButton.constrainToEdges(of: detailsView, leading: nil, trailing: 25, top: -20, bottom: nil)

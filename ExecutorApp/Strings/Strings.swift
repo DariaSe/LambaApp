@@ -23,6 +23,7 @@ struct Strings {
     static let statusRejectedModerator = "Moderator rejected".localized
     static let statusUploading = "Uploading".localized
     static let statusModeration = "Moderation".localized
+    static let statusDispute = "Dispute in process".localized
     
     // Tab bar
     static let orders = "Orders".localized
@@ -132,6 +133,10 @@ struct Strings {
     static let continueString = "Continue".localized
     static let youDoNotPayWarning = "You do not pay for anything yet".localized
     static let options = "Options".localized
+    static let payment = "Payment".localized
+    static let services = "Services".localized
+    static let totalCost = "Total cost".localized
+    static let payWithCard = "Pay with credit card".localized
     
     // Orders
     static let downloadVideo = "Download video".localized
@@ -141,6 +146,7 @@ struct Strings {
     static let cancelOrder = "Cancel order".localized
     static let openDispute = "Open dispute".localized
     static let disputeOnOrder = "dispute on order".localized
+    static let no = "No".localized
     
     // Settings
     static let name = "First name".localized

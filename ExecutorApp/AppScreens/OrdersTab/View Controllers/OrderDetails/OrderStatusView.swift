@@ -29,6 +29,10 @@ class OrderStatusView: UIView {
                 imageStatusView.status = .uploading
                 imageStatusView.isHidden = false
                 buttonsStatusView.isHidden = true
+            case .disputeInProcess:
+                imageStatusView.status = .disputeInProcess
+                imageStatusView.isHidden = false
+                buttonsStatusView.isHidden = true
             default:
                 break
             }

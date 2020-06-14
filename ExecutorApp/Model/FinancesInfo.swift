@@ -25,7 +25,7 @@ struct FinancesInfo {
             let totalUnfinishedOrders = dictionary["totalUnfinishedOrders"] as? Int,
             let transferDescription = dictionary["transferDescription"] as? String
             else { return nil }
-        let units = financeReadyList.map { ReadyToTransferUnit.initialize(from: $0) }
+        let units = financeReadyList.map(ReadyToTransferUnit.initialize)
         let sign = InfoService.shared.userInfo?.currencySign ?? ""
         let sum = sign == "₽" ? totalToWithdraw.string + sign : sign + totalToWithdraw.string
         let notReadySum = sign == "₽" ? totalUnfinishedOrders.string + sign : sign + totalUnfinishedOrders.string

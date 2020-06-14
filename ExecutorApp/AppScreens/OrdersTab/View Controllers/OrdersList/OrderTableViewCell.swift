@@ -117,7 +117,7 @@ class OrderTableViewCell: UITableViewCell {
         switch order.status {
         case .moderation:
             statusLabel.text = Strings.statusModeration
-            statusIndicatorView.backgroundColor =  UIColor.lightGray
+            statusIndicatorView.backgroundColor =  UIColor.moderationIndicatorColor
         case .done:
             statusLabel.text = Strings.statusDone
             statusIndicatorView.backgroundColor =  UIColor.greenIndicatorColor
@@ -135,7 +135,10 @@ class OrderTableViewCell: UITableViewCell {
             statusIndicatorView.backgroundColor =  UIColor.redIndicatorColor
         case .uploading:
             statusLabel.text = Strings.statusUploading
-            statusIndicatorView.backgroundColor = UIColor.gray
+            statusIndicatorView.backgroundColor = UIColor.uploadIndicatorColor
+        case .disputeInProcess:
+            statusLabel.text = Strings.statusDispute
+            statusIndicatorView.backgroundColor = UIColor.disputeIndicatorColor
         }
         
     }
@@ -147,6 +150,11 @@ class OrderTableViewCell: UITableViewCell {
         selectedBackgroundView = view
         
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        leftImageView.image = nil
     }
     
 }

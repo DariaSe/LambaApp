@@ -18,8 +18,6 @@ class ExecutorDetailsView: UIView {
             if executorDetails.isReceivingOrders {
                 notReceivingOrdersView.isHidden = true
                 orderFormView.isHidden = false
-                orderFormView.orderScheme = OrderScheme.sample()
-                orderFormView.setInitialData()
             }
             else {
                 notReceivingOrdersView.isHidden = false

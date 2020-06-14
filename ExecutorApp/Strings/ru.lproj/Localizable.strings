@@ -17,6 +17,7 @@
 "Moderator rejected" = "Отклонено модератором";
 "Uploading" = "Загружается";
 "Moderation" = "На модерации";
+"Dispute in process" = "Спор открыт";
 
 // Tab bar
 "Orders" = "Заказы";
@@ -126,7 +127,11 @@
 "Can't open link" = "Невозможно открыть ссылку";
 "Continue" = "Продолжить";
 "You do not pay for anything yet" = "Пока вы ни за что не платите";
+"Payment" = "Оплата";
 "Options" = "Опции";
+"Services" = "Услуги";
+"Total cost" = "Стоимость";
+"Pay with credit card" = "Оплатить банковской картой";
 
 // Orders
 "Download video" = "Скачать видео";
@@ -136,6 +141,7 @@
 "Cancel order" = "Отменить заказ";
 "Open dispute" = "Открыть спор по заказу";
 "dispute on order" = "спор по заказу";
+"No" = "Нет";
 
 // Settings
 "First name" = "Имя";

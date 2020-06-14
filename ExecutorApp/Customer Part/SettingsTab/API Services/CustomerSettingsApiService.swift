@@ -10,7 +10,7 @@ import UIKit
 
 class CustomerSettingsApiService {
     
-   func postImage(_ image: UIImage, completion: @escaping (Bool, String?) -> Void) {
+    func postImage(_ image: UIImage, completion: @escaping (Bool, String?) -> Void) {
         guard let jpgData = image.jpegData(compressionQuality: 0.5) else { return }
         let jpgString = jpgData.base64EncodedString()
         let json = ["image" : jpgString]
@@ -34,20 +34,16 @@ class CustomerSettingsApiService {
     }
     
     func sendEmailChangeAuthCode(completion: @escaping (Bool, String?) -> Void) {
-//        guard let request = URLRequest.signedPostRequest(url: AppURL., jsonDict: nil) else { return }
-//        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
-//        task.resume()
-        executeAfterSecond {
-            completion(true, nil)
-        }
+        guard let request = URLRequest.signedPostRequest(url: AppURL.customerChangeEmailURL, jsonDict: nil) else { return }
+        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+        task.resume()
     }
     
     func changeEmail(code: String, email: String, completion: @escaping (Bool, String?) -> Void) {
-//        let jsonDict =
-        //        guard let request = URLRequest.signedPostRequest(url: AppURL., jsonDict: jsonDict) else { return }
-        //        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
-        //        task.resume()
-        
+        let jsonDict = ["code" : code, "newEmail": email]
+        guard let request = URLRequest.signedPostRequest(url: AppURL.customerChangeEmailURL, jsonDict: jsonDict) else { return }
+        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+        task.resume()
     }
     
     

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		DA02F8902487DDBB0087E274 /* ExecutorsSortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02F88F2487DDBB0087E274 /* ExecutorsSortingView.swift */; };
 		DA02F8922487DE950087E274 /* SortingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02F8912487DE950087E274 /* SortingCollectionViewCell.swift */; };
 		DA02F89C248927DB0087E274 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02F89B248927DB0087E274 /* PayViewController.swift */; };
+		DA57E1E524914AE400248AD9 /* OrderPreform.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E1E424914AE400248AD9 /* OrderPreform.swift */; };
+		DA57E1E8249656A100248AD9 /* EmailChangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E1E7249656A000248AD9 /* EmailChangeService.swift */; };
 		DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B02450C795001791E3 /* OrderStatusView.swift */; };
 		DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */; };
 		DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */; };
@@ -153,6 +155,8 @@
 		DA02F88F2487DDBB0087E274 /* ExecutorsSortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorsSortingView.swift; sourceTree = "<group>"; };
 		DA02F8912487DE950087E274 /* SortingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA02F89B248927DB0087E274 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		DA57E1E424914AE400248AD9 /* OrderPreform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPreform.swift; sourceTree = "<group>"; };
+		DA57E1E7249656A000248AD9 /* EmailChangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailChangeService.swift; sourceTree = "<group>"; };
 		DA6716B02450C795001791E3 /* OrderStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusView.swift; sourceTree = "<group>"; };
 		DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsTableView.swift; sourceTree = "<group>"; };
 		DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -318,7 +322,6 @@
 				11F898A3F8C6BA67855DF20E /* Pods-ExecutorApp.debug.xcconfig */,
 				2D92F9CA652923BEBC0E25AC /* Pods-ExecutorApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -385,6 +388,14 @@
 				DA02F89B248927DB0087E274 /* PayViewController.swift */,
 			);
 			path = PayScreen;
+			sourceTree = "<group>";
+		};
+		DA57E1E62496567800248AD9 /* Coordinator Services */ = {
+			isa = PBXGroup;
+			children = (
+				DA57E1E7249656A000248AD9 /* EmailChangeService.swift */,
+			);
+			path = "Coordinator Services";
 			sourceTree = "<group>";
 		};
 		DA6716B62452C088001791E3 /* OrderDetailsTableView */ = {
@@ -482,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				DAACA09C2478476200651E24 /* CustomerSettingsCoordinator.swift */,
+				DA57E1E62496567800248AD9 /* Coordinator Services */,
 				DAACA0A3247847B400651E24 /* API Services */,
 				DAACA0A2247847A000651E24 /* ViewControllers */,
 			);
@@ -780,6 +792,7 @@
 				DABCA68B2450878600682368 /* OrderDetailUnit.swift */,
 				DAACA0D6248289D900651E24 /* OrderScheme.swift */,
 				DAACA0D824828ABC00651E24 /* OrderSchemeUnit.swift */,
+				DA57E1E424914AE400248AD9 /* OrderPreform.swift */,
 				DA6716C924541D2B001791E3 /* FinancesInfo.swift */,
 				DAB963032455BD1D002BBC3F /* UserInfo.swift */,
 				DAACA0BA247A6F1600651E24 /* CustomerUserInfo.swift */,
@@ -1034,6 +1047,7 @@
 				DAB963062455BDB2002BBC3F /* SocialMedia.swift in Sources */,
 				DAACA0D52482843300651E24 /* OrderFormTableViewCell.swift in Sources */,
 				DABCA649244DD84A00682368 /* LoginViewController.swift in Sources */,
+				DA57E1E524914AE400248AD9 /* OrderPreform.swift in Sources */,
 				DAACA08424781AA300651E24 /* p_FormDelegate.swift in Sources */,
 				DAB9630E2455CAA1002BBC3F /* SocialMediaTableView.swift in Sources */,
 				DA02F89C248927DB0087E274 /* PayViewController.swift in Sources */,
@@ -1066,6 +1080,7 @@
 				DAACA08B24783A2E00651E24 /* ForgotPassApiService.swift in Sources */,
 				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
 				DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */,
+				DA57E1E8249656A100248AD9 /* EmailChangeService.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
 				DAACA0C7247D48B300651E24 /* PriceStatusView.swift in Sources */,
 				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,

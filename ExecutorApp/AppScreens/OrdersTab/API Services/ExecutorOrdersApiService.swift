@@ -25,11 +25,9 @@ class ExecutorOrdersApiService {
                 else if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let ordersDict = jsonDict["orders"] as? Array<[String : Any]> {
-                    let orders = ordersDict
-                        .map { Order.initialize(from: $0) }
-                        .filter { $0 != nil }
+                    let orders = ordersDict.compactMap(Order.initialize)
                     self.isMore = orders.count == self.limit
-                    completion(orders as? [Order], nil)
+                    completion(orders, nil)
                 }
                 else {
                     completion(nil, Strings.error)

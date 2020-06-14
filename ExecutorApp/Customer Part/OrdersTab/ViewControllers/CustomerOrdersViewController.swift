@@ -53,8 +53,8 @@ extension CustomerOrdersViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
         let order = orders[indexPath.row]
         cell.update(with: order, userRole: .customer)
-        if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
-            if indexPath.row == (orders.count - 1) && indexPathsForVisibleRows.count < orders.count {
+        if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, let lastPath = indexPathsForVisibleRows.last {
+            if lastPath.row == (orders.count - 1) && indexPathsForVisibleRows.count < orders.count {
                 coordinator?.loadMore()
             }
         }
@@ -63,6 +63,7 @@ extension CustomerOrdersViewController: UITableViewDataSource {
 }
 
 extension CustomerOrdersViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         coordinator?.showOrderDetails(orderID: orders[indexPath.row].id)

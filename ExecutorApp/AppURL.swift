@@ -43,6 +43,8 @@ struct AppURL {
     
     static let executors = "/executors"
     static let favorite = "/favorite"
+    static let dispute = "/dispute"
+    static let changeEmail = "/change-email"
     
     // Customer URLs
     
@@ -66,9 +68,13 @@ struct AppURL {
     static func customerCancelOrderURL(orderID: Int) -> URL {
         return URL(string: baseURL + api + customer + order + "/" + String(orderID))!
     }
+    static func openDisputeURL(orderID: Int) -> URL {
+        return URL(string: baseURL + api + customer + order + "/" + String(orderID) + dispute)!
+    }
     static let customerImageChangeURL = URL(string: baseURL + api + customer + image)!
     static let customerPasswordChangeURL = URL(string: baseURL + api + customer + passwordChange)!
     static let customerChangeSettingsURL = URL(string: baseURL + api + customer + settings)!
+    static let customerChangeEmailURL = URL(string: baseURL + api + customer + changeEmail)!
     
     
     // Executor

@@ -18,6 +18,8 @@ class OrderOptionsViewController: UIViewController {
         }
     }
     
+    var selectedOptions: [OrderSettings] = []
+    
     var executorName: String?
     
     let stackView = UIStackView()
@@ -53,6 +55,15 @@ class OrderOptionsViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.register(OrderOptionTableViewCell.self, forCellReuseIdentifier: OrderOptionTableViewCell.reuseIdentifier)
+        tableView.tableFooterView = UIView()
+        
+        continueButton.addTarget(self, action: #selector(continueButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func continueButtonPressed() {
+        continueButton.animate(scale: 1.05)
+        coordinator?.orderPreform?.selectedOptions = selectedOptions
+        coordinator?.showPayScreen()
     }
 }
 
@@ -64,8 +75,13 @@ extension OrderOptionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderOptionTableViewCell.reuseIdentifier, for: indexPath) as! OrderOptionTableViewCell
         cell.update(with: options[indexPath.row], name: executorName)
-        cell.switchValueChanged = { [unowned self] in
-            
+        cell.switchValueChanged = { [unowned self] isOn in
+            if isOn {
+                self.selectedOptions.append(self.options[indexPath.row])
+            }
+            else {
+                self.selectedOptions.removeAll { $0 == self.options[indexPath.row] }
+            }
         }
         return cell
     }

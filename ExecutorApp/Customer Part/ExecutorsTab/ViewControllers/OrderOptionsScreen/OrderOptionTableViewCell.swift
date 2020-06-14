@@ -21,7 +21,7 @@ class OrderOptionTableViewCell: UITableViewCell {
     private let optionSwitch = AppSwitch()
     private let costLabel = UILabel()
     
-    var switchValueChanged: (() -> Void)?
+    var switchValueChanged: ((Bool) -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,6 +48,7 @@ class OrderOptionTableViewCell: UITableViewCell {
         optionSwitch.translatesAutoresizingMaskIntoConstraints = false
         optionSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         optionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        optionSwitch.addTarget(self, action: #selector(switchValueChanged(sender:)), for: .valueChanged)
         
         contentView.addSubview(costLabel)
         costLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +64,10 @@ class OrderOptionTableViewCell: UITableViewCell {
         costLabel.font = UIFont.systemFont(ofSize: 14)
         costLabel.textColor = UIColor.lightGray
         costLabel.textAlignment = .center
+    }
+    
+    @objc func switchValueChanged(sender: UISwitch) {
+        switchValueChanged?(sender.isOn)
     }
     
     func update(with option: OrderSettings, name: String?) {

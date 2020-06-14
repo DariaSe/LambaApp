@@ -38,6 +38,11 @@ extension UIColor {
     static let yellowIndicatorColor = UIColor(netHex: 0xFFA800)
     static let redIndicatorColor = UIColor(netHex: 0xEB5757)
     static let greenIndicatorColor = UIColor(netHex: 0x2ECD51)
+    static let uploadIndicatorColor = UIColor.lightGray
+    static let moderationIndicatorColor = UIColor(netHex: 0x49A5DE)
+    static let disputeIndicatorColor = UIColor.black
+    
+    static let payButtonBgColor = UIColor(netHex: 0xFF9500)
     
     static let readyToTransferBgColor =  UIColor(netHex: 0xE5F3F4)
     static let unexecutedBgColor = UIColor(netHex: 0xFDF3F1)

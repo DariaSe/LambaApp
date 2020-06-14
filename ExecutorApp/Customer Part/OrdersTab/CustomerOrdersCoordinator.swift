@@ -18,10 +18,19 @@ class CustomerOrdersCoordinator: Coordinator {
     
     let ordersApiService = CustomerOrdersApiService()
     
+    var isMore: Bool = false
+    
+    var page: Int = 1
+    var limit: Int = 10
+    
+    var currentOrderID: Int?
+    
     func start() {
+        ordersApiService.coordinator = self
         navigationController.delegate = self
         ordersApiService.delegate = self
         ordersVC.coordinator = self
+        ordersVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         orderDetailsVC.coordinator = self
         orderDetailsVC.hidesBottomBarWhenPushed = true
         errorVC.reload = { [unowned self] in self.getOrders() }
@@ -34,7 +43,7 @@ class CustomerOrdersCoordinator: Coordinator {
     func getOrders() {
         errorVC.reload = { [unowned self] in self.getOrders() }
         showLoadingIndicator()
-        ordersApiService.getOrders { [unowned self] orders, errorMessage in
+        ordersApiService.getOrders(page: page, limit: limit) { [unowned self] orders, errorMessage in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
@@ -52,10 +61,10 @@ class CustomerOrdersCoordinator: Coordinator {
     }
     
     func loadMore() {
-        if ordersApiService.isMore {
+        if isMore {
             showLoadingIndicator()
-            ordersApiService.page += 1
-            ordersApiService.getOrders { [unowned self] orders, errorMessage in
+            page += 1
+            ordersApiService.getOrders(page: page, limit: limit) { [unowned self] orders, errorMessage in
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showPopUpError(message: errorMessage)
@@ -67,8 +76,25 @@ class CustomerOrdersCoordinator: Coordinator {
         }
     }
     
+    func getPreviousOrders() {
+        if page > 1 {
+            showLoadingIndicator()
+            page += 1
+            ordersApiService.getOrders(page: page, limit: limit) { [unowned self] orders, errorMessage in
+                self.removeLoadingIndicator()
+                if let errorMessage = errorMessage {
+                    self.showPopUpError(message: errorMessage)
+                }
+                if let orders = orders {
+                    self.ordersVC.orders.insert(contentsOf: orders, at: 0)
+                    print(self.ordersVC.orders.count)
+                }
+            }
+        }
+    }
+    
     func refresh() {
-        ordersApiService.page = 1
+        page = 1
         getOrders()
     }
     
@@ -123,6 +149,17 @@ class CustomerOrdersCoordinator: Coordinator {
         
     }
     
+    func showCancelOrderAlert(orderID: Int) {
+        let alert = UIAlertController(title: Strings.cancelOrder + "?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Strings.yes, style: .destructive) { [unowned self] (_) in
+            self.cancelOrder(orderID: orderID)
+        }
+        let cancelAction = UIAlertAction(title: Strings.no, style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        orderDetailsVC.present(alert, animated: true)
+    }
+    
     func cancelOrder(orderID: Int) {
         showLoadingIndicator()
         ordersApiService.cancelOrder(orderID: orderID) { [unowned self] success, errorMessage in
@@ -133,18 +170,24 @@ class CustomerOrdersCoordinator: Coordinator {
                 }
                 else if success {
                     self.getOrderDetails(orderID: orderID)
+                    if var changedOrder = self.ordersVC.orders.filter({ $0.id == orderID}).first,
+                        let index = self.ordersVC.orders.firstIndex(of: changedOrder) {
+                        changedOrder.status = .rejectedCustomer
+                        self.ordersVC.orders[index] = changedOrder
+                    }
                 }
             }
         }
     }
     
     func openDispute(orderID: Int) {
+        currentOrderID = orderID
         let firstName = InfoService.shared.userInfo?.firstName ?? ""
         let lastName = InfoService.shared.userInfo?.lastName ?? ""
         let userEmail = InfoService.shared.userInfo?.email ?? ""
         let emailTitle = [firstName, lastName, "-", Strings.disputeOnOrder, orderID.string].joined(separator: " ")
         let messageBody = ["\n\n", (firstName + " " + lastName), userEmail].joined(separator: "\n")
-        let toRecipents = ["lamba@support.com"]
+        let toRecipents = ["daria.samosledova@gmail.com"]
         let mailVC = MFMailComposeViewController()
         mailVC.mailComposeDelegate = self
         mailVC.setSubject(emailTitle)
@@ -201,7 +244,36 @@ extension CustomerOrdersCoordinator: UINavigationControllerDelegate {
 
 extension CustomerOrdersCoordinator: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-         controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
+        guard let currentOrderID = currentOrderID else {
+            return
+        }
+        switch result {
+        case .sent:
+            showLoadingIndicator()
+            ordersApiService.openDispute(orderID: currentOrderID) { [unowned self] (success, errorMessage) in
+                DispatchQueue.main.async {
+                    self.removeLoadingIndicator()
+                    if let errorMessage = errorMessage {
+                        self.showSimpleAlert(title: errorMessage, handler: nil)
+                    }
+                    else if success {
+                        self.getOrderDetails(orderID: currentOrderID)
+                        if var changedOrder = self.ordersVC.orders.filter({ $0.id == currentOrderID}).first,
+                            let index = self.ordersVC.orders.firstIndex(of: changedOrder) {
+                            changedOrder.status = .disputeInProcess
+                            self.ordersVC.orders[index] = changedOrder
+                        }
+                    }
+                }
+            }
+        case .failed:
+            if let error = error {
+                self.showSimpleAlert(title: error.localizedDescription, handler: nil)
+            }
+        default:
+            break
+        }
     }
 }
 

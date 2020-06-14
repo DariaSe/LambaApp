@@ -34,9 +34,9 @@ struct ExecutorDetails {
             else { return nil }
         let imageURLString = dictionary["image"] as? String ?? ""
         let socialMediaDict = dictionary["socialLinks"] as? [[String : Any]] ?? [[:]]
-        let socials = socialMediaDict.map { SocialMedia.initialize(from: $0) } as? [SocialMedia] ?? []
+        let socials = socialMediaDict.compactMap(SocialMedia.initialize)
         let optionsDict = dictionary["options"] as? [[String : Any]] ?? [[:]]
-        let orderSettings = optionsDict.map { OrderSettings.initialize(from: $0) } as? [OrderSettings] ?? []
+        let orderSettings = optionsDict.compactMap(OrderSettings.initialize)
         return ExecutorDetails(id: id, firstName: firstName, lastName: lastName, imageURLString: imageURLString, isFavorite: isFavorite, socialMedia: socials, orderSettings: orderSettings, isReceivingOrders: isReceivingOrders)
     }
 }

@@ -19,8 +19,8 @@ class ExecutorOrdersCoordinator: Coordinator {
     
     func start() {
         orderDetailsApiService.delegate = self
-        navigationController.delegate = self
         ordersVC.coordinator = self
+        ordersVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         orderDetailsVC.coordinator = self
         orderDetailsVC.hidesBottomBarWhenPushed = true
         errorVC.reload = { [unowned self] in self.getOrders() }
@@ -35,7 +35,6 @@ class ExecutorOrdersCoordinator: Coordinator {
     }
     
     func getOrders() {
-//        ordersApiService.page = 1
         errorVC.reload = { [unowned self] in self.getOrders() }
         showLoadingIndicator()
         ordersApiService.getOrders { [unowned self] orders, errorMessage in
@@ -195,6 +194,11 @@ class ExecutorOrdersCoordinator: Coordinator {
                 if success {
                     self.orderDetailsVC.statusView.status = .uploading
                     self.orderDetailsApiService.uploadVideo(orderID: orderID, url: url)
+                    if var changedOrder = self.ordersVC.orders.filter({ $0.id == orderID}).first,
+                        let index = self.ordersVC.orders.firstIndex(of: changedOrder) {
+                        changedOrder.status = .uploading
+                        self.ordersVC.orders[index] = changedOrder
+                    }
                 }
                 else {
                     self.removeLoadingIndicator()
@@ -216,7 +220,12 @@ class ExecutorOrdersCoordinator: Coordinator {
                         self.showSimpleAlert(title: errorMessage, handler: nil)
                     }
                     if success {
-                        self.orderDetailsVC.statusView.status = .rejectedExecutor
+                        self.getOrderDetails(orderID: orderID)
+                        if var changedOrder = self.ordersVC.orders.filter({ $0.id == orderID}).first,
+                            let index = self.ordersVC.orders.firstIndex(of: changedOrder) {
+                            changedOrder.status = .rejectedExecutor
+                            self.ordersVC.orders[index] = changedOrder
+                        }
                     }
                     else {
                         self.showSimpleAlert(title: Strings.error, handler: nil)
@@ -228,16 +237,6 @@ class ExecutorOrdersCoordinator: Coordinator {
         alert.addAction(rejectAction)
         alert.addAction(cancelAction)
         orderDetailsVC.present(alert, animated: true)
-    }
-}
-
-extension ExecutorOrdersCoordinator: UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if viewController == ordersVC {
-            ordersApiService.page = 1
-            getOrders()
-        }
     }
 }
 
@@ -254,6 +253,7 @@ extension ExecutorOrdersCoordinator: URLSessionDataDelegate {
                     self.getOrderDetails(orderID: orderDetails.id)
                 }
                 else {
+                    self.ordersApiService.page = 1
                     self.getOrders()
                 }
             }

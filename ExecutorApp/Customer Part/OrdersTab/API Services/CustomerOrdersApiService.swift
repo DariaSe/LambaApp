@@ -10,12 +10,9 @@ import Foundation
 
 class CustomerOrdersApiService {
     
+    weak var coordinator: CustomerOrdersCoordinator?
+    
     var delegate: (URLSessionDataDelegate&URLSessionDownloadDelegate)?
-    
-    var isMore: Bool = false
-    
-    var page: Int = 1
-    var limit: Int = 30
     
     var orderID: Int?
     
@@ -26,7 +23,7 @@ class CustomerOrdersApiService {
                           delegateQueue: nil) }()
     
     
-    func getOrders(completion: @escaping ([Order]?, String?) -> Void) {
+    func getOrders(page: Int, limit: Int, completion: @escaping ([Order]?, String?) -> Void) {
         guard let request = URLRequest.signedGetRequest(url: AppURL.getCustomerOrdersURL(page: page, limit: limit)) else { return }
         let task = URLSession.shared.dataTask(with: request) { [unowned self] (data, response, error) in
             DispatchQueue.main.async {
@@ -36,11 +33,9 @@ class CustomerOrdersApiService {
                 else if let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let ordersDict = jsonDict["orders"] as? Array<[String : Any]> {
-                    let orders = ordersDict
-                        .map { Order.initialize(from: $0) }
-                        .filter { $0 != nil }
-                    self.isMore = orders.count == self.limit
-                    completion(orders as? [Order], nil)
+                    let orders = ordersDict.compactMap(Order.initialize)
+                    self.coordinator?.isMore = orders.count == self.coordinator?.limit
+                    completion(orders, nil)
                 }
                 else {
                     completion(nil, Strings.error)
@@ -89,7 +84,9 @@ class CustomerOrdersApiService {
         task.resume()
     }
     
-    func openDispute(orderID: Int) {
-        
+    func openDispute(orderID: Int, completion: @escaping(Bool, String?) -> Void) {
+        guard let request = URLRequest.signedPostRequest(url: AppURL.openDisputeURL(orderID: orderID), jsonDict: nil) else { return }
+        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+        task.resume()
     }
 }

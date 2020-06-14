@@ -25,6 +25,7 @@ class SettingsCoordinator: Coordinator {
     
     func start() {
         settingsVC.coordinator = self
+        settingsVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController.viewControllers = [settingsVC]
         let settingsImage = UIImage(named: "Settings")
         settingsVC.tabBarItem = UITabBarItem(title: Strings.settings, image: settingsImage, tag: 2)

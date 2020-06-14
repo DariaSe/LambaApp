@@ -33,6 +33,9 @@ class CustomerOrderDetailsViewController: UIViewController {
                 thumbnailView.isHidden = true
                 cancelOpenDisputeButton.isHidden = false
                 cancelOpenDisputeButton.setTitle(Strings.openDispute, for: .normal)
+            case .disputeInProcess:
+                thumbnailView.isHidden = false
+                cancelOpenDisputeButton.isHidden = true
             default:
                 thumbnailView.isHidden = true
                 cancelOpenDisputeButton.isHidden = true
@@ -81,7 +84,7 @@ class CustomerOrderDetailsViewController: UIViewController {
         guard let orderDetails = orderDetails else { return }
         switch orderDetails.status {
         case .active, .moderation:
-            coordinator?.cancelOrder(orderID: orderDetails.id)
+            coordinator?.showCancelOrderAlert(orderID: orderDetails.id)
         case .done, .rejectedModerator:
             coordinator?.openDispute(orderID: orderDetails.id)
         default:

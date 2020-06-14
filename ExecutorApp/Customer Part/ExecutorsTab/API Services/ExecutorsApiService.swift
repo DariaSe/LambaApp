@@ -26,11 +26,9 @@ class ExecutorsApiService {
                     let data = data,
                     let jsonDict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let executorsDict = jsonDict["executors"] as? [[String : Any]] {
-                    let executors = executorsDict
-                        .map { Executor.initialize(from: $0) }
-                        .filter { $0 != nil }
+                    let executors = executorsDict.compactMap(Executor.initialize)
                     self.isMore = executors.count == self.limit
-                    completion(executors as? [Executor], nil)
+                    completion(executors, nil)
                 }
                 else {
                     completion(nil, Strings.error)

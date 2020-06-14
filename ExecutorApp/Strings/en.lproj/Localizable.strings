@@ -16,6 +16,7 @@
 "Moderator rejected" = "Moderator rejected";
 "Uploading" = "Uploading";
 "Moderation" = "Moderation";
+"Dispute in process" = "Dispute in process";
 
 // Tab bar
 "Orders" = "Orders";
@@ -126,6 +127,10 @@
 "Continue" = "Continue";
 "You do not pay for anything yet" = "You do not pay for anything yet";
 "Options" = "Options";
+"Payment" = "Payment";
+"Services" = "Services";
+"Total cost" = "Total cost";
+"Pay with credit card" = "Pay with credit card";
 
 // Orders
 "Download video" = "Download video";
@@ -135,6 +140,7 @@
 "Cancel order" = "Cancel order";
 "Open dispute" = "Open dispute";
 "dispute on order" = "dispute on order";
+"No" = "No";
 
 // Settings
 "First name" = "First name";

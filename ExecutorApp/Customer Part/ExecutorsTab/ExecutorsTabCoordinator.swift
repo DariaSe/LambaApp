@@ -15,6 +15,7 @@ class ExecutorsTabCoordinator: Coordinator {
     
     lazy var executorDetailsVC: ExecutorDetailsViewController = {
         let detailsVC = ExecutorDetailsViewController()
+        detailsVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         detailsVC.coordinator = self
         detailsVC.hidesBottomBarWhenPushed = true
         return detailsVC
@@ -22,8 +23,15 @@ class ExecutorsTabCoordinator: Coordinator {
     
     lazy var orderOptionsVC: OrderOptionsViewController = {
         let optionsVC = OrderOptionsViewController()
+        optionsVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         optionsVC.coordinator = self
         return optionsVC
+    }()
+    
+    lazy var payVC: PayViewController = {
+        let payViewController = PayViewController()
+        payViewController.coordinator = self
+        return payViewController
     }()
     
     let apiService = ExecutorsApiService()
@@ -40,9 +48,14 @@ class ExecutorsTabCoordinator: Coordinator {
         }
     }
     
+    var currentExecutor: ExecutorDetails?
+    
+    var orderPreform: OrderPreform?
+    
     func start() {
         navigationController.delegate = self
         executorsListVC.coordinator = self
+        executorsListVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController.viewControllers = [executorsListVC]
         errorVC.reload = { [unowned self] in self.getExecutors() }
         let starImage = UIImage(named: "Star")
@@ -115,6 +128,9 @@ class ExecutorsTabCoordinator: Coordinator {
     }
     
     func getExecutorDetails(executorID: Int) {
+        removeEmptyScreen()
+        errorVC.reload = { [unowned self] in self.getExecutorDetails(executorID: executorID) }
+        orderPreform = OrderPreform(executorID: executorID)
         if navigationController.topViewController == executorsListVC {
             navigationController.pushViewController(executorDetailsVC, animated: true)
             showFullScreenLoading()
@@ -125,7 +141,9 @@ class ExecutorsTabCoordinator: Coordinator {
                 self.showFullScreenError(message: errorMessage)
             }
             if let executorDetails = executorDetails {
+                self.currentExecutor = executorDetails
                 self.executorDetailsVC.executorDetails = executorDetails
+                self.executorDetailsVC.orderScheme = OrderScheme.sample()
             }
         }
     }
@@ -148,10 +166,18 @@ class ExecutorsTabCoordinator: Coordinator {
         executorDetailsVC.present(alert, animated: true)
     }
     
-    func showOrderOptions(executorDetails: ExecutorDetails) {
-        orderOptionsVC.options = executorDetails.orderSettings
-        orderOptionsVC.executorName = executorDetails.firstName + " " + executorDetails.lastName
+    func showOrderOptions() {
+        guard let executor = currentExecutor else { return }
+        orderOptionsVC.options = executor.orderSettings
+        orderOptionsVC.executorName = executor.firstName + " " + executor.lastName
         navigationController.pushViewController(orderOptionsVC, animated: true)
+    }
+    
+    func showPayScreen() {
+        guard let orderPreform = orderPreform else { return }
+        payVC.orderSchemeUnits = orderPreform.fields
+        payVC.sum = orderPreform.selectedOptions.map{(Int($0.price) ?? 0)}.reduce(0) {$0 + $1}.string
+        navigationController.pushViewController(payVC, animated: true)
     }
 }
 
@@ -162,7 +188,6 @@ extension ExecutorsTabCoordinator: UINavigationControllerDelegate {
             errorVC.reload = { [unowned self] in self.getExecutors() }
         }
         else {
-            errorVC.reload = { [unowned self] in self.getExecutorDetails(executorID: self.executorDetailsVC.executorDetails?.id ?? -1) }
             navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController.navigationBar.shadowImage = UIImage()
             navigationController.navigationBar.backgroundColor = UIColor.clear
@@ -173,6 +198,7 @@ extension ExecutorsTabCoordinator: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController == executorsListVC {
             executorDetailsVC.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            orderPreform = nil
         }
     }
 }

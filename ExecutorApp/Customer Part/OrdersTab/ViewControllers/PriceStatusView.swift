@@ -16,7 +16,7 @@ class PriceStatusView: UIView {
             switch status {
             case .moderation:
                 statusLabel.text = Strings.statusModeration
-                statusView.backgroundColor = UIColor.lightGray
+                statusView.backgroundColor = UIColor.moderationIndicatorColor
             case .active:
                 statusLabel.text = Strings.statusActive
                 statusView.backgroundColor = UIColor.yellowIndicatorColor
@@ -34,7 +34,10 @@ class PriceStatusView: UIView {
                 statusView.backgroundColor = UIColor.redIndicatorColor
             case .uploading:
                 statusLabel.text = Strings.statusUploading
-                statusView.backgroundColor = UIColor.lightGray
+                statusView.backgroundColor = UIColor.uploadIndicatorColor
+            case .disputeInProcess:
+                statusLabel.text = Strings.statusDispute
+                statusView.backgroundColor = UIColor.disputeIndicatorColor
             }
         }
     }

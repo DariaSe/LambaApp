@@ -20,6 +20,19 @@ class OrderFormTableViewCell: UITableViewCell {
     
     var textChanged: ((String) -> Void)?
     
+    var isEditable: Bool = true {
+        didSet {
+            if isEditable {
+                textView.backgroundColor = UIColor.textControlsBackgroundColor
+                textView.isEditable = true
+            }
+            else {
+                textView.backgroundColor = UIColor.clear
+                textView.isEditable = false
+            }
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialSetup()

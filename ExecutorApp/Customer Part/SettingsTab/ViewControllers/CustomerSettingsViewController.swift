@@ -145,7 +145,7 @@ extension CustomerSettingsViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailUnit.textField {
-            coordinator?.showChangeEmailModal()
+            coordinator?.requestEmailChange()
             view.endEditing(true)
         }
     }

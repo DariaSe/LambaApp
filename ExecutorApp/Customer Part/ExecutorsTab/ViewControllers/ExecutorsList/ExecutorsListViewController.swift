@@ -97,8 +97,8 @@ extension ExecutorsListViewController: UITableViewDataSource {
         cell.favoritePressed = { [unowned self] in
             self.coordinator?.setFavorite(executorID: executor.id)
         }
-        if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
-            if indexPath.row == (executors.count - 1) && indexPathsForVisibleRows.count < executors.count {
+        if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, let lastPath = indexPathsForVisibleRows.last {
+            if lastPath.row == (executors.count - 1) && indexPathsForVisibleRows.count < executors.count {
                 coordinator?.loadMore()
             }
         }

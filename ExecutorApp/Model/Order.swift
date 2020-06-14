@@ -16,6 +16,7 @@ enum OrderStatus {
     case rejectedModerator
     case uploading
     case moderation
+    case disputeInProcess
 }
 
 struct Order {
@@ -45,14 +46,21 @@ struct Order {
             let timeInterval = dictionary["createdAt"] as? TimeInterval,
             let statusString = dictionary["status"] as? String,
             let orderStatus = status(from: statusString) else { return nil }
-        
         let imageURLString = dictionary["image"] as? String ?? ""
         let date = Date(timeIntervalSince1970: timeInterval / 1000)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy, HH:mm"
         let dateString = dateFormatter.string(from: date)
-        let sign = InfoService.shared.userInfo?.currencySign ?? ""
-        let costString = sign == "₽" ? cost.string + " " + sign : sign + " " + cost.string
+        var currencySign: String
+        if let executor = dictionary["executorDto"] as? [String : Any],
+            let currency = executor["currency"] as? [String : Any],
+            let sign = currency["sign"] as? String {
+            currencySign = sign
+        }
+        else {
+           currencySign = InfoService.shared.userInfo?.currencySign ?? ""
+        }
+        let costString = currencySign == "₽" ? cost.string + " " + currencySign : currencySign + " " + cost.string
         let order = Order(imageURLString: imageURLString, id: id, cost: costString, orderTypeTitle: orderTypeTitle, date: dateString, status: orderStatus)
         return order
     }
@@ -66,6 +74,7 @@ struct Order {
         case "rejected_executor": return .rejectedExecutor
         case "rejected_customer": return .rejectedCustomer
         case "rejected_moderator": return .rejectedModerator
+        case "dispute": return .disputeInProcess
         default: return nil
         }
     }
@@ -79,6 +88,13 @@ struct Order {
         case .rejectedExecutor: return Strings.statusYouRejected
         case .rejectedCustomer: return Strings.statusYouRejected
         case .rejectedModerator: return Strings.statusRejectedModerator
+        case .disputeInProcess: return Strings.statusDispute
         }
+    }
+}
+
+extension Order: Equatable {
+    static func ==(lhs: Order, rhs: Order) -> Bool {
+        return lhs.id == rhs.id
     }
 }
