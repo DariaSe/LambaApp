@@ -86,9 +86,9 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         }
         
         favoriteButton.constrainToEdges(of: detailsView, leading: nil, trailing: 25, top: -20, bottom: nil)
-        favoriteButton.setSize(width: 40, height: 40)
+        favoriteButton.setSize(width: 44, height: 44)
         favoriteButton.backgroundColor = .white
-        favoriteButton.layer.cornerRadius = 20
+        favoriteButton.layer.cornerRadius = 22
         favoriteButton.clipsToBounds = true
         favoriteButton.setImage(heart, for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
@@ -96,7 +96,7 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        favoriteButton.dropShadow(height: 0, shadowRadius: 6, opacity: 0.25, cornerRadius: 20)
+        favoriteButton.dropShadow(height: 0, shadowRadius: 6, opacity: 0.25, cornerRadius: 22)
     }
     
     @objc func favoriteButtonPressed() {

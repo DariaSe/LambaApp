@@ -17,7 +17,7 @@ class OrderTableViewCell: UITableViewCell {
     private let containerView = UIView()
     private let shadowView = UIView()
     
-    private let leftImageView = UIImageView()
+    let leftImageView = UIImageView()
     
     private let sumDescrStackView = UIStackView()
     private let costLabel = UILabel()
@@ -140,7 +140,6 @@ class OrderTableViewCell: UITableViewCell {
             statusLabel.text = Strings.statusDispute
             statusIndicatorView.backgroundColor = UIColor.disputeIndicatorColor
         }
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -156,5 +155,4 @@ class OrderTableViewCell: UITableViewCell {
         super.prepareForReuse()
         leftImageView.image = nil
     }
-    
 }

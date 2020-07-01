@@ -25,7 +25,6 @@ class PermissionsService {
     
     static func requestAccessToMediaLibrary(completion:  @escaping (Bool) -> Void) {
         let status = PHPhotoLibrary.authorizationStatus()
-        print(status)
         switch status {
         case .authorized: completion(true)
         case .denied: completion(false)

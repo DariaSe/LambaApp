@@ -17,6 +17,8 @@ class ExecutorOrdersCoordinator: Coordinator {
     let ordersVC = OrdersViewController()
     let orderDetailsVC = OrderDetailsViewController()
     
+    lazy var infoVC = SimpleInfoViewController()
+    
     func start() {
         orderDetailsApiService.delegate = self
         ordersVC.coordinator = self
@@ -73,6 +75,15 @@ class ExecutorOrdersCoordinator: Coordinator {
     func refresh() {
         ordersApiService.page = 1
         getOrders()
+    }
+    
+    func showNotReceivingOrdersDescription() {
+        guard let userInfo = InfoService.shared.userInfo,
+            let baseOption = userInfo.orderSettings.filter({$0.isBase}).first
+            else { return }
+        infoVC.text = Strings.whyDescription(baseOption: baseOption.title)
+        infoVC.modalPresentationStyle = .overFullScreen
+        ordersVC.present(infoVC, animated: true)
     }
     
     func showOrderDetails(orderID: Int) {

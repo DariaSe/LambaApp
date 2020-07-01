@@ -17,8 +17,15 @@ class AppButton: UIButton {
     }
     
     var color: UIColor { isDestructive ? UIColor.destructiveColor : UIColor.tintColor }
+    let disabledColor = UIColor.lightGray.withAlphaComponent(0.6)
     
     var isSolid: Bool = true {
+        didSet {
+            setup()
+        }
+    }
+    
+    override var isEnabled: Bool {
         didSet {
             setup()
         }
@@ -43,13 +50,14 @@ class AppButton: UIButton {
         setHeight(equalTo: SizeConstants.buttonHeight)
         layer.cornerRadius = SizeConstants.buttonCornerRadius
         layer.borderWidth = 1.0
-        layer.borderColor = color.cgColor
+        layer.borderColor = isEnabled ? color.cgColor : disabledColor.cgColor
         if isSolid {
             setTitleColor(UIColor.white, for: .normal)
-            backgroundColor = color
+            backgroundColor = isEnabled ? color : disabledColor
         }
         else {
-            setTitleColor(color, for: .normal)
+            let titleColor = isEnabled ? color : disabledColor
+            setTitleColor(titleColor, for: .normal)
             backgroundColor = UIColor.backgroundColor
         }
     }

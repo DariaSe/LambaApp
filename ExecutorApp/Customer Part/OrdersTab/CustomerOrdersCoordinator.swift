@@ -87,7 +87,6 @@ class CustomerOrdersCoordinator: Coordinator {
                 }
                 if let orders = orders {
                     self.ordersVC.orders.insert(contentsOf: orders, at: 0)
-                    print(self.ordersVC.orders.count)
                 }
             }
         }

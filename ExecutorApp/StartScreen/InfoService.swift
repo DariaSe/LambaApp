@@ -20,6 +20,8 @@ class InfoService {
     
     var userInfo: UserInfo?
     
+    var orderScheme: OrderScheme?
+    
     var userImage: UIImage? {
         didSet {
             delegate?.setImage(userImage)
@@ -51,6 +53,10 @@ class InfoService {
                     }
                     let userInfo = UserInfo.initialize(from: user)
                     self.userInfo = userInfo
+                    if let orderTypes = jsonDict["orderTypes"] as? [[String : Any]] {
+                        let orderScheme = OrderScheme.initialize(from: orderTypes)
+                        self.orderScheme = orderScheme
+                    }
                     completion(userInfo, nil)
                     
                 }

@@ -51,6 +51,7 @@ extension CustomerOrdersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
+        cell.leftImageView.image = nil
         let order = orders[indexPath.row]
         cell.update(with: order, userRole: .customer)
         if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, let lastPath = indexPathsForVisibleRows.last {

@@ -32,6 +32,7 @@ class OrderOptionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         view.backgroundColor = UIColor.backgroundColor
         title = Strings.options
         stackView.pinToLayoutMargins(to: view)

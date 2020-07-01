@@ -46,6 +46,11 @@
 
 
 // Orders
+"You aren't receiving orders." = "Вы не получаете заказы.";
+"Why?" = "Почему?";
+"To receive orders, both options " = "Чтобы получать заказы, обе опции ";
+" and " = " и ";
+" should be switched on." = " должны быть включены.";
 "You have no orders yet" = "У вас пока нет заказов";
 "Try again" = "Попробовать снова";
 "Open camera" = "Открыть камеру";
@@ -132,6 +137,12 @@
 "Services" = "Услуги";
 "Total cost" = "Стоимость";
 "Pay with credit card" = "Оплатить банковской картой";
+
+// Sorting options
+"By popularity" = "По популярности";
+"By orders" = "По заказам";
+"New" = "Новые";
+"Favorites" = "Понравившиеся";
 
 // Orders
 "Download video" = "Скачать видео";

@@ -15,7 +15,6 @@ class OrdersViewController: UIViewController {
     var userImage: UIImage? {
         didSet {
             userButton.userImage = userImage
-            
         }
     }
     
@@ -29,6 +28,11 @@ class OrdersViewController: UIViewController {
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
+    let notAcceptingView = AcceptWarningView()
+    let notAcceptingViewHeight = 60
+    var notAcceptingViewHeightConstraint: NSLayoutConstraint!
+    var tableViewBottomConstraint: NSLayoutConstraint!
+    
     let userButton = UserButton()
     weak var delegate: UserButtonDelegate?
     
@@ -36,7 +40,15 @@ class OrdersViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         navigationItem.rightBarButtonItem = userButton
-        tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 4, trailing: 4, top: 4, bottom: 15)
+        tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 4, trailing: 4, top: 4, bottom: nil)
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10)
+        tableViewBottomConstraint.isActive = true
+        notAcceptingView.constrainTopAndBottomToLayoutMargins(of: view, leading: 0, trailing: 0, top: nil, bottom: 20)
+        notAcceptingViewHeightConstraint = notAcceptingView.heightAnchor.constraint(equalToConstant: 0)
+        notAcceptingViewHeightConstraint.isActive = true
+        notAcceptingView.whyPressed = { [unowned self] in
+            self.coordinator?.showNotReceivingOrdersDescription()
+        }
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -47,6 +59,14 @@ class OrdersViewController: UIViewController {
         tableView.refreshControl = refreshControl
         
         userButton.userTapped = { [unowned self] in self.delegate?.showSettings() }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let userInfo = InfoService.shared.userInfo else { return }
+        let receiveOrders = userInfo.isReceivingOrders
+        tableViewBottomConstraint.constant = receiveOrders ? -10 : -70
+        notAcceptingViewHeightConstraint.constant = receiveOrders ? 0 : 60
     }
     
    

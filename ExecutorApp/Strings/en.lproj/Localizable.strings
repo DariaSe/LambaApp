@@ -45,6 +45,11 @@
 
 
 // Orders
+"You aren't receiving orders." = "You aren't receiving orders.";
+"Why?" = "Why?";
+"To receive orders, both options " = "To receive orders, both options ";
+" and " = " and ";
+" should be switched on." = " should be switched on.";
 "You have no orders yet" = "You have no orders yet";
 "Try again" = "Try again";
 "Open camera" = "Open camera";
@@ -131,6 +136,12 @@
 "Services" = "Services";
 "Total cost" = "Total cost";
 "Pay with credit card" = "Pay with credit card";
+
+// Sorting options
+"By popularity" = "By popularity";
+"By orders" = "By orders";
+"New" = "New";
+"Favorites" = "Favorites";
 
 // Orders
 "Download video" = "Download video";

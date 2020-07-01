@@ -17,11 +17,6 @@ class AppTabBarController: UITabBarController {
         UserDefaults.standard.addObserver(self, forKeyPath: Defaults.tokenKey, options: .new, context: nil)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        selectedIndex = 0
-//    }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tabBar.layer.masksToBounds = true

@@ -105,6 +105,9 @@ class SettingsCoordinator: Coordinator {
                 if errorMessage != nil || !success {
                     self.showPopUpError(message: errorMessage ?? Strings.error)
                 }
+                else {
+                    InfoService.shared.userInfo = userInfo
+                }
             }
         }
     }

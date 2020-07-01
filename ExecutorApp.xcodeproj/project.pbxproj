@@ -13,6 +13,7 @@
 		DA02F89C248927DB0087E274 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA02F89B248927DB0087E274 /* PayViewController.swift */; };
 		DA57E1E524914AE400248AD9 /* OrderPreform.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E1E424914AE400248AD9 /* OrderPreform.swift */; };
 		DA57E1E8249656A100248AD9 /* EmailChangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E1E7249656A000248AD9 /* EmailChangeService.swift */; };
+		DA57E1EC24979C8A00248AD9 /* Executor sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E1EB24979C8A00248AD9 /* Executor sorting.swift */; };
 		DA6716B12450C796001791E3 /* OrderStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B02450C795001791E3 /* OrderStatusView.swift */; };
 		DA6716B32452B494001791E3 /* OrderDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */; };
 		DA6716B52452B4D4001791E3 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */; };
@@ -27,7 +28,9 @@
 		DA6716CF245457CA001791E3 /* UnexecutedOrdersSumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */; };
 		DA6716D124545A7E001791E3 /* FinancesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */; };
 		DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D72454783A001791E3 /* SelfSizingTableView.swift */; };
-		DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */; };
+		DA6716DA2454C812001791E3 /* SimpleInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6716D92454C812001791E3 /* SimpleInfoViewController.swift */; };
+		DA8721B124AA227D00547425 /* e_UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8721B024AA227D00547425 /* e_UILabel.swift */; };
+		DA8721B324AA236D00547425 /* AcceptWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8721B224AA236D00547425 /* AcceptWarningView.swift */; };
 		DA941DEB246FC3FA006485B3 /* AppNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEA246FC3FA006485B3 /* AppNavController.swift */; };
 		DA941DED247000D1006485B3 /* UserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA941DEC247000D1006485B3 /* UserButton.swift */; };
 		DAACA06A247421CF00651E24 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACA069247421CE00651E24 /* StartCoordinator.swift */; };
@@ -157,6 +160,7 @@
 		DA02F89B248927DB0087E274 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		DA57E1E424914AE400248AD9 /* OrderPreform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPreform.swift; sourceTree = "<group>"; };
 		DA57E1E7249656A000248AD9 /* EmailChangeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailChangeService.swift; sourceTree = "<group>"; };
+		DA57E1EB24979C8A00248AD9 /* Executor sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Executor sorting.swift"; sourceTree = "<group>"; };
 		DA6716B02450C795001791E3 /* OrderStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusView.swift; sourceTree = "<group>"; };
 		DA6716B22452B494001791E3 /* OrderDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsTableView.swift; sourceTree = "<group>"; };
 		DA6716B42452B4D4001791E3 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -171,7 +175,9 @@
 		DA6716CE245457CA001791E3 /* UnexecutedOrdersSumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnexecutedOrdersSumView.swift; sourceTree = "<group>"; };
 		DA6716D024545A7E001791E3 /* FinancesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancesCoordinator.swift; sourceTree = "<group>"; };
 		DA6716D72454783A001791E3 /* SelfSizingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizingTableView.swift; sourceTree = "<group>"; };
-		DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferDescriptionViewController.swift; sourceTree = "<group>"; };
+		DA6716D92454C812001791E3 /* SimpleInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInfoViewController.swift; sourceTree = "<group>"; };
+		DA8721B024AA227D00547425 /* e_UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UILabel.swift; sourceTree = "<group>"; };
+		DA8721B224AA236D00547425 /* AcceptWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptWarningView.swift; sourceTree = "<group>"; };
 		DA941DEA246FC3FA006485B3 /* AppNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavController.swift; sourceTree = "<group>"; };
 		DA941DEC247000D1006485B3 /* UserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserButton.swift; sourceTree = "<group>"; };
 		DAACA069247421CE00651E24 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
@@ -620,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				DAB963242458400A002BBC3F /* Finances ViewController */,
-				DA6716D92454C812001791E3 /* TransferDescriptionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -695,6 +700,7 @@
 				DAB9635C245C9410002BBC3F /* e_UIImage.swift */,
 				DAACA0BC247BF10E00651E24 /* e_UIImageView.swift */,
 				DA6716BD245322E2001791E3 /* e_UIButton.swift */,
+				DA8721B024AA227D00547425 /* e_UILabel.swift */,
 				DAB963342459B06C002BBC3F /* e_UIAlertController.swift */,
 				DABCA65D244E09E400682368 /* e_UITextField.swift */,
 				DABCA650244DF2FA00682368 /* e_UIColor.swift */,
@@ -800,6 +806,7 @@
 				DAB963072455C244002BBC3F /* OrderSettings.swift */,
 				DAB9631B24582A50002BBC3F /* PassInfo.swift */,
 				DAACA0AC2479236A00651E24 /* Executor.swift */,
+				DA57E1EB24979C8A00248AD9 /* Executor sorting.swift */,
 				DAACA0AE247923B400651E24 /* ExecutorDetails.swift */,
 				DAB96388246C65A6002BBC3F /* Print.swift */,
 			);
@@ -811,6 +818,7 @@
 			children = (
 				DABCA672244F1C6600682368 /* OrdersViewController.swift */,
 				DABCA678244F200400682368 /* OrderTableViewCell.swift */,
+				DA8721B224AA236D00547425 /* AcceptWarningView.swift */,
 			);
 			path = OrdersList;
 			sourceTree = "<group>";
@@ -851,6 +859,7 @@
 				DAB9632A24584CBD002BBC3F /* AppTextField.swift */,
 				DAB963802468891A002BBC3F /* NoPasteTextField.swift */,
 				DAACA0B224793E1F00651E24 /* AppSearchBar.swift */,
+				DA6716D92454C812001791E3 /* SimpleInfoViewController.swift */,
 			);
 			path = "Base classes";
 			sourceTree = "<group>";
@@ -1037,6 +1046,7 @@
 				DAACA0CF2482718400651E24 /* SocialMediaCollectionViewCell.swift in Sources */,
 				DA6716D82454783A001791E3 /* SelfSizingTableView.swift in Sources */,
 				DAACA095247845CD00651E24 /* CustomerTabBarController.swift in Sources */,
+				DA57E1EC24979C8A00248AD9 /* Executor sorting.swift in Sources */,
 				DABCA64C244DD9C000682368 /* e_UIView.swift in Sources */,
 				DAACA0B5247A56A400651E24 /* CustomerSettingsViewController.swift in Sources */,
 				DAACA0D3248283F800651E24 /* OrderFormView.swift in Sources */,
@@ -1057,7 +1067,7 @@
 				DAACA0B9247A61D800651E24 /* CustomerImageButton.swift in Sources */,
 				DAACA0AB2479078E00651E24 /* ExecutorDetailsViewController.swift in Sources */,
 				DAB963692462DF45002BBC3F /* LoginCoordinator.swift in Sources */,
-				DA6716DA2454C812001791E3 /* TransferDescriptionViewController.swift in Sources */,
+				DA6716DA2454C812001791E3 /* SimpleInfoViewController.swift in Sources */,
 				DAB9632F24589E1D002BBC3F /* HashtagsView.swift in Sources */,
 				DAB9637124632DF5002BBC3F /* VideoPickerViewController.swift in Sources */,
 				DAB96361245EB9DE002BBC3F /* e_Converting.swift in Sources */,
@@ -1081,9 +1091,11 @@
 				DAB9632B24584CBD002BBC3F /* AppTextField.swift in Sources */,
 				DAB963732465AFAF002BBC3F /* p_SettingsDelegate.swift in Sources */,
 				DA57E1E8249656A100248AD9 /* EmailChangeService.swift in Sources */,
+				DA8721B324AA236D00547425 /* AcceptWarningView.swift in Sources */,
 				DABCA673244F1C6600682368 /* OrdersViewController.swift in Sources */,
 				DAACA0C7247D48B300651E24 /* PriceStatusView.swift in Sources */,
 				DAB9632D24585B98002BBC3F /* OrderSettingsTableView.swift in Sources */,
+				DA8721B124AA227D00547425 /* e_UILabel.swift in Sources */,
 				DAACA07A2477FD2C00651E24 /* InputFormView.swift in Sources */,
 				DAB963102455CB40002BBC3F /* SocialMediaTableViewCell.swift in Sources */,
 				DA941DED247000D1006485B3 /* UserButton.swift in Sources */,

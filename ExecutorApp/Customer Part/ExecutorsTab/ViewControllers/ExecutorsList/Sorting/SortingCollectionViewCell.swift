@@ -32,9 +32,10 @@ class SortingCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 13)
     }
     
-    func update(text: String, isSelected: Bool) {
-        label.text = text
-        containerView.backgroundColor = isSelected ? UIColor.tintColor : UIColor.textControlsBackgroundColor
-        label.textColor = isSelected ? UIColor.white : UIColor.tintColor
+    func update(with option: SortingOption) {
+        let arrow = option.sortingDirection == .descending ? Strings.arrowDown : Strings.arrowUp
+        label.text = option.title + " " + arrow
+        containerView.backgroundColor = option.isSelected ? UIColor.tintColor : UIColor.textControlsBackgroundColor
+        label.textColor = option.isSelected ? UIColor.white : UIColor.tintColor
     }
 }

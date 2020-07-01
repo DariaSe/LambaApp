@@ -39,7 +39,6 @@ struct OrderDetails {
             let orderStatus = Order.status(from: statusString),
             let cost = dictionary["costs"] as? Int
             else { return nil }
-        print(dictionary)
         var currencySign: String
         if let executor = dictionary["executorDto"] as? [String : Any], let currency = executor["currency"] as? [String : Any], let sign = currency["sign"] as? String {
             currencySign = sign

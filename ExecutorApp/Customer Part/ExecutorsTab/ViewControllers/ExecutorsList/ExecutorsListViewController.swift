@@ -25,12 +25,7 @@ class ExecutorsListViewController: UIViewController {
         }
     }
     
-    var sortingOptions: [String] = [] {
-        didSet {
-            sortingView.sortingOptions = sortingOptions
-        }
-    }
-    
+   
     let searchBar = AppSearchBar()
     
     let sortingView = ExecutorsSortingView()
@@ -92,6 +87,7 @@ extension ExecutorsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExecutorTableViewCell.reuseIdentifier, for: indexPath) as! ExecutorTableViewCell
+        cell.leftImageView.image = nil
         let executor = executors[indexPath.row]
         cell.update(with: executor)
         cell.favoritePressed = { [unowned self] in

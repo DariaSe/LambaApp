@@ -69,16 +69,12 @@ class OrderFormTableViewCell: UITableViewCell {
     }
     
     func update(with unit: OrderSchemeUnit) {
-        label.text = unit.title
+        label.text = " " + unit.title
         placeholderLabel.text = unit.placeholder
         placeholderLabel.isHidden = !unit.text.isEmpty
         textView.text = unit.text
         if unit.isRequired {
-            let attrText = NSMutableAttributedString(string: label.text ?? "")
-            let attributes = [NSAttributedString.Key.foregroundColor : UIColor.destructiveColor]
-            let asterisk = NSAttributedString(string: "*", attributes: attributes)
-            attrText.append(asterisk)
-            label.attributedText = attrText
+            label.addAsterisk()
         }
     }
 }

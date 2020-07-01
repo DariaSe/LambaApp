@@ -52,7 +52,7 @@ class SocialMediaTableViewCell: UITableViewCell {
         titleLabel.textColor = UIColor.darkGray
         
         textField.delegate = self
-        textField.font = UIFont.systemFont(ofSize: 20)
+        textField.font = UIFont.systemFont(ofSize: 16)
         textField.addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
     }
     

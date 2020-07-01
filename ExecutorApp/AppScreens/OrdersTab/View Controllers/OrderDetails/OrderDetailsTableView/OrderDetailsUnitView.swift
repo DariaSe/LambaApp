@@ -48,6 +48,7 @@ class OrderDetailsUnitView: UIView {
         
         dataLabel.textAlignment = .center
         dataLabel.font = UIFont.systemFont(ofSize: 18)
+        dataLabel.numberOfLines = 0
     }
     
 }

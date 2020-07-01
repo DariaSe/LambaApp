@@ -15,8 +15,8 @@ class ExecutorsApiService {
     var page: Int = 1
     var limit: Int = 30
     
-    func getExecutors(search: String, order: String, completion: @escaping ([Executor]?, String?) -> Void) {
-        guard let request = URLRequest.signedGetRequest(url: AppURL.getExecutorsURL(page: page, limit: limit, search: search, order: order)) else { return }
+    func getExecutors(search: String, order: String, direction: String, completion: @escaping ([Executor]?, String?) -> Void) {
+        guard let request = URLRequest.signedGetRequest(url: AppURL.getExecutorsURL(page: page, limit: limit, search: search, order: order, direction: direction)) else { return }
         let task = URLSession.shared.dataTask(with: request) { [unowned self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
@@ -63,7 +63,9 @@ class ExecutorsApiService {
         task.resume()
     }
     
-    func sendOrder(executorID: Int, orderDict: [String : Any], completion: @escaping (Bool, String?) -> Void) {
-        
+    func placeOrder(orderDict: [String : Any], completion: @escaping (Bool, String?) -> Void) {
+        guard let request = URLRequest.signedPostRequest(url: AppURL.createOrder, jsonDict: orderDict) else { return }
+        let task = URLSession.shared.postRequestDataTask(with: request, completion: completion)
+        task.resume()
     }
 }

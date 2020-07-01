@@ -72,7 +72,6 @@ class OrderOptionTableViewCell: UITableViewCell {
     
     func update(with option: OrderSettings, name: String?) {
         optionTitleLabel.text = option.title
-        print(option.currencySign)
         costLabel.text = option.currencySign == "₽" ? "+" + option.price + option.currencySign : "+" + option.currencySign + option.price
         nameLabel.text = name
     }

@@ -80,6 +80,9 @@ class OrderSettingsTableViewCell: UITableViewCell {
     
     func update(with settings: OrderSettings) {
         titleLabel.text = settings.title
+        if settings.isBase {
+            titleLabel.addAsterisk()
+        }
         optionSwitch.isOn = settings.isOn
         priceTextField.text = settings.price
         currencyLabel.text = settings.currencySign

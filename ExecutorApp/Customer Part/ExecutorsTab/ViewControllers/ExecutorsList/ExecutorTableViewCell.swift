@@ -14,7 +14,7 @@ class ExecutorTableViewCell: UITableViewCell {
     
     private let stackView = UIStackView()
 
-    private let leftImageView = UIImageView()
+    let leftImageView = UIImageView()
     
     private let nameHashtagsStackView = UIStackView()
     private let nameLabel = UILabel()

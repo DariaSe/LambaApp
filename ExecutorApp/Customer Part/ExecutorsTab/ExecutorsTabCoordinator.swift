@@ -34,6 +34,8 @@ class ExecutorsTabCoordinator: Coordinator {
         return payViewController
     }()
     
+    lazy var infoVC = SimpleInfoViewController()
+    
     let apiService = ExecutorsApiService()
     
     var searchString: String = "" {
@@ -42,7 +44,7 @@ class ExecutorsTabCoordinator: Coordinator {
         }
     }
     
-    var sortingOption: String = "" {
+    var sortingOption: SortingOption = SortingOption(title: Strings.popularityOption, sortingOrder: .popularity, sortingDirection: .descending, isSelected: true) {
         didSet {
             getExecutors()
         }
@@ -67,11 +69,13 @@ class ExecutorsTabCoordinator: Coordinator {
         executorsListVC.userImage = image
     }
     
-   
+    
     func getExecutors(order: String = "") {
         removeEmptyScreen()
         showLoadingIndicator()
-        apiService.getExecutors(search: searchString, order: sortingOption) { [unowned self] (executors, errorMessage) in
+        let sortingOrder = sortingOption.sortingOrder.rawValue
+        let sortingDirection = sortingOption.sortingDirection.rawValue
+        apiService.getExecutors(search: searchString, order: sortingOrder, direction: sortingDirection) { [unowned self] (executors, errorMessage) in
             self.removeLoadingIndicator()
             if let errorMessage = errorMessage {
                 self.showFullScreenError(message: errorMessage)
@@ -79,7 +83,6 @@ class ExecutorsTabCoordinator: Coordinator {
             if let executors = executors {
                 if !executors.isEmpty {
                     self.executorsListVC.executors = executors
-                    self.executorsListVC.sortingOptions = ["Foo", "Bar", "Harold", "Something long", "Foo", "Bar", "Harold", "Something long"]
                 }
                 else {
                     self.showEmptyScreen(message: Strings.noSearchResults)
@@ -92,7 +95,9 @@ class ExecutorsTabCoordinator: Coordinator {
         if apiService.isMore {
             showLoadingIndicator()
             apiService.page += 1
-            apiService.getExecutors(search: searchString, order: order) { [unowned self] (executors, errorMessage) in
+            let sortingOrder = sortingOption.sortingOrder.rawValue
+            let sortingDirection = sortingOption.sortingDirection.rawValue
+            apiService.getExecutors(search: searchString, order: sortingOrder, direction: sortingDirection) { [unowned self] (executors, errorMessage) in
                 self.removeLoadingIndicator()
                 if let errorMessage = errorMessage {
                     self.showPopUpError(message: errorMessage)
@@ -143,7 +148,7 @@ class ExecutorsTabCoordinator: Coordinator {
             if let executorDetails = executorDetails {
                 self.currentExecutor = executorDetails
                 self.executorDetailsVC.executorDetails = executorDetails
-                self.executorDetailsVC.orderScheme = OrderScheme.sample()
+                self.executorDetailsVC.orderScheme = InfoService.shared.orderScheme
             }
         }
     }
@@ -168,16 +173,67 @@ class ExecutorsTabCoordinator: Coordinator {
     
     func showOrderOptions() {
         guard let executor = currentExecutor else { return }
-        orderOptionsVC.options = executor.orderSettings
-        orderOptionsVC.executorName = executor.firstName + " " + executor.lastName
-        navigationController.pushViewController(orderOptionsVC, animated: true)
+        let options = executor.orderSettings.filter({!$0.isBase})
+        if !options.isEmpty {
+            orderOptionsVC.options = options
+            orderOptionsVC.executorName = executor.firstName + " " + executor.lastName
+            navigationController.pushViewController(orderOptionsVC, animated: true)
+        }
+        else {
+            showPayScreen()
+        }
     }
     
     func showPayScreen() {
-        guard let orderPreform = orderPreform else { return }
-        payVC.orderSchemeUnits = orderPreform.fields
-        payVC.sum = orderPreform.selectedOptions.map{(Int($0.price) ?? 0)}.reduce(0) {$0 + $1}.string
+        guard let executor = currentExecutor, let orderPreform = orderPreform else { return }
+        payVC.orderSchemeUnits = orderPreform.fields.filter { !(!$0.isRequired && $0.text.isEmpty) }
+        let baseCost = Int(executor.orderSettings.filter({$0.isBase}).first?.price ?? "") ?? 0
+        let selectedOptionsCost = orderPreform.selectedOptions.map{(Int($0.price) ?? 0)}.reduce(0) {$0 + $1}
+        payVC.sum = (baseCost + selectedOptionsCost).string
         navigationController.pushViewController(payVC, animated: true)
+    }
+    
+    func showPaymentDescription() {
+        let string = "Payment description text"
+        infoVC.text = string
+        infoVC.modalPresentationStyle = .overFullScreen
+        payVC.present(infoVC, animated: true, completion: nil)
+    }
+    
+    func placeOrder(completion: @escaping () -> Void) {
+        showLoadingIndicator()
+        guard let orderPreform = orderPreform else { return }
+        let orderDict = orderPreform.dict()
+        apiService.placeOrder(orderDict: orderDict) { [unowned self] (success, errorMessage) in
+            DispatchQueue.main.async {
+                if let errorMessage = errorMessage {
+                    self.removeLoadingIndicator()
+                    self.showSimpleAlert(title: errorMessage, handler: nil)
+                }
+                else if success {
+                    // remove this line later
+                    self.removeLoadingIndicator()
+                    self.showSimpleAlert(title: "Success!") {
+                        self.navigateToRoot()
+                    }
+                    completion()
+                }
+            }
+        }
+    }
+    
+    func payWithApplePay() {
+//        self.removeLoadingIndicator()
+        print("paid with Apple Pay")
+    }
+    
+    func payWithCard() {
+//        self.removeLoadingIndicator()
+        print("paid with card")
+    }
+    
+    func navigateToRoot() {
+        navigationController.popToViewController(executorsListVC, animated: true)
     }
 }
 
@@ -198,6 +254,7 @@ extension ExecutorsTabCoordinator: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController == executorsListVC {
             executorDetailsVC.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            executorDetailsVC.orderScheme = nil
             orderPreform = nil
         }
     }

@@ -98,11 +98,12 @@ extension SettingsViewController: SettingsDelegate {
     
     func sendChanges() {
         guard let userInfo = userInfo else { return }
+        let baseOptionIsOn = orderSettingsTableView.orderSettings.filter({$0.isBase}).first?.isOn ?? false
         let newUserInfo = UserInfo(firstName: userInfo.firstName, lastName: userInfo.lastName, email: userInfo.email,
             socialMedia: profileSettingsView.socialMediaTableView.socialMedia,
             hashtags: profileSettingsView.hashtagsView.hashtags,
             orderSettings: orderSettingsTableView.orderSettings,
-            isReceivingOrders: orderSettingsTableView.isReceivingOrders, currencySign: "", role: nil)
+            isReceivingOrders: orderSettingsTableView.isReceivingOrders && baseOptionIsOn, currencySign: "", role: nil)
         if userInfo != newUserInfo {
             self.userInfo = newUserInfo
             coordinator?.postUserInfo(newUserInfo)

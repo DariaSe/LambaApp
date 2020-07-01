@@ -53,7 +53,6 @@ class OrderFormView: UIView {
         
         segmentedControl.setHeight(equalTo: 40)
         segmentedControl.tintColor = UIColor.tintColor
-        
         segmentedControl.addTarget(self, action: #selector(segmentSelected), for: .valueChanged)
         continueButton.setHeight(equalTo: SizeConstants.buttonHeight)
         
@@ -74,6 +73,7 @@ class OrderFormView: UIView {
     
     @objc func segmentSelected() {
         currentSchemeIndex = segmentedControl.selectedSegmentIndex
+        setupContinueButton()
         tableView.reloadData()
     }
     
@@ -90,7 +90,9 @@ class OrderFormView: UIView {
             segmentedControl.insertSegment(withTitle: scheme.title, at: index, animated: false)
         }
         segmentedControl.selectedSegmentIndex = 0
+        currentSchemeIndex = 0
         tableView.reloadData()
+        continueButton.isEnabled = false
     }
 }
 
@@ -107,8 +109,14 @@ extension OrderFormView: UITableViewDataSource {
             self.orderScheme?.variations[self.currentSchemeIndex].units[indexPath.row].text = text
             tableView.beginUpdates()
             tableView.endUpdates()
+            self.setupContinueButton()
         }
         return cell
+    }
+    
+    func setupContinueButton() {
+        guard let orderScheme = self.orderScheme else { return }
+        continueButton.isEnabled = orderScheme.variations[currentSchemeIndex].units.filter{ $0.isRequired && $0.text.isEmpty }.isEmpty
     }
 }
 

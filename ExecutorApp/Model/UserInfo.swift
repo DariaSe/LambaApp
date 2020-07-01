@@ -54,8 +54,8 @@ struct UserInfo {
         dictionary["orderOptions"] = self.orderSettings.map { $0.dict() }
         
         #if DEBUG
-        let text = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
-        printWithTime(String(data: text, encoding: .utf8)!)
+//        let text = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
+//        printWithTime(String(data: text, encoding: .utf8)!)
         #endif
         
         return dictionary

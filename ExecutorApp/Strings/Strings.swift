@@ -51,6 +51,12 @@ struct Strings {
     static let signupError = "Couldn't register. Try again later".localized
     
     // Orders
+    static let notReceivingOrders = "You aren't receiving orders.".localized
+    static let why = "Why?".localized
+    static func whyDescription(baseOption: String) -> String { return whyDescrPart1 + "\"" + baseOption + "\"" + and + "\"" + receiveOrders + "\"" + whyDescrPart2 }
+    private static let whyDescrPart1 = "To receive orders, both options ".localized
+    private static let and = " and ".localized
+    private static let whyDescrPart2 = " should be switched on.".localized
     static let noOrdersYet = "You have no orders yet".localized
     static let tryAgain = "Try again".localized
     static let openCamera = "Open camera".localized
@@ -137,6 +143,12 @@ struct Strings {
     static let services = "Services".localized
     static let totalCost = "Total cost".localized
     static let payWithCard = "Pay with credit card".localized
+    
+    // Sorting options
+    static let popularityOption = "By popularity".localized
+    static let ordersOption = "By orders".localized
+    static let newOption = "New".localized
+    static let favoritesOption = "Favorites".localized
     
     // Orders
     static let downloadVideo = "Download video".localized

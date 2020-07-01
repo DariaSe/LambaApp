@@ -15,15 +15,11 @@ class ExecutorDetailsView: UIView {
             guard let executorDetails = executorDetails else { return }
             nameLabel.text = executorDetails.firstName + " " + executorDetails.lastName
             socialsView.socials = executorDetails.socialMedia
-            if executorDetails.isReceivingOrders {
-                notReceivingOrdersView.isHidden = true
-                orderFormView.isHidden = false
-            }
-            else {
-                notReceivingOrdersView.isHidden = false
-                orderFormView.isHidden = true
-                notReceivingOrdersLabel.text = Strings.notReceivingOrdersStart + executorDetails.firstName + "\n" + executorDetails.lastName + Strings.notReceivingOrdersEnd
-            }
+            let baseOptionIsOn = executorDetails.orderSettings.filter({$0.isBase}).first?.isOn ?? false
+            let isReceivingOrders = executorDetails.isReceivingOrders && baseOptionIsOn
+            notReceivingOrdersView.isHidden = isReceivingOrders
+            orderFormView.isHidden = !isReceivingOrders
+            notReceivingOrdersLabel.text = Strings.notReceivingOrdersStart + executorDetails.firstName + "\n" + executorDetails.lastName + Strings.notReceivingOrdersEnd
         }
     }
     
@@ -39,7 +35,7 @@ class ExecutorDetailsView: UIView {
     let orderFormView = OrderFormView()
     
     var topConstraint: NSLayoutConstraint!
-  
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialSetup()
@@ -53,7 +49,7 @@ class ExecutorDetailsView: UIView {
         backgroundColor = UIColor.backgroundColor
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         layer.cornerRadius = 20
-                
+        
         stackView.constrainToEdges(of: self, leading: 0, trailing: 0, top: nil, bottom: nil)
         topConstraint = stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30)
         topConstraint.isActive = true
@@ -62,7 +58,7 @@ class ExecutorDetailsView: UIView {
         stackView.spacing = 12
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(socialsView)
-    
+        
         orderFormView.constrainToEdges(of: self, leading: 12, trailing: 12, top: nil, bottom: 20)
         orderFormView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 12).isActive = true
         notReceivingOrdersView.constrainToEdges(of: self, leading: 30, trailing: 30, top: nil, bottom: nil)

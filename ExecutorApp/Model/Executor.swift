@@ -41,9 +41,3 @@ struct Executor {
     }
 }
 
-enum SortingOrder: String {
-    case popular
-    case numberOfOrders
-    case new
-    case favorites
-}

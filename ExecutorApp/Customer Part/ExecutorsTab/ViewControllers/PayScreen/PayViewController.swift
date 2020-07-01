@@ -39,6 +39,7 @@ class PayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         title = Strings.payment
         view.backgroundColor = UIColor.backgroundColor
         stackView.pinToLayoutMargins(to: view)
@@ -93,14 +94,21 @@ class PayViewController: UIViewController {
     
     @objc func descrButtonPressed() {
         descrButton.animate(scale: 1.05)
+        coordinator?.showPaymentDescription()
     }
     
     @objc func applePayButtonPressed() {
         applePayButton.animate(scale: 1.05)
+        coordinator?.placeOrder { [unowned self] in
+            self.coordinator?.payWithApplePay()
+        }
     }
     
     @objc func payWithCardButtonPressed() {
         payWithCardButton.animate(scale: 1.05)
+        coordinator?.placeOrder { [unowned self] in
+            self.coordinator?.payWithCard()
+        }
     }
 }
 

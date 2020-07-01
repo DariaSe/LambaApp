@@ -10,19 +10,13 @@ import UIKit
 
 class ExecutorsSortingView: UIView {
     
-    var sortingOptions: [String] = [] {
+    var sortingOptions: [SortingOption] = SortingOption.defaultOptions() {
         didSet {
             collectionView.reloadData()
         }
     }
     
-    var selectedOptionIndex: Int = 0 {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    
-    var didSelectOption: ((String) -> Void)?
+    var didSelectOption: ((SortingOption) -> Void)?
     
     lazy var collectionView: UICollectionView = {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
@@ -58,16 +52,15 @@ extension ExecutorsSortingView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SortingCollectionViewCell.reuseIdentifier, for: indexPath) as! SortingCollectionViewCell
-        let text = sortingOptions[indexPath.row]
-        let isSelected = indexPath.row == selectedOptionIndex
-        cell.update(text: text, isSelected: isSelected)
+        let option = sortingOptions[indexPath.row]
+        cell.update(with: option)
         return cell
     }
 }
 
 extension ExecutorsSortingView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let string = sortingOptions[indexPath.row]
+        let string = sortingOptions[indexPath.row].title + " " + Strings.arrowDown
         let width = string.width(withConstrainedHeight: 13, font: UIFont.systemFont(ofSize: 13)) + 38
         return CGSize(width: width, height: 40)
     }
@@ -79,7 +72,12 @@ extension ExecutorsSortingView: UICollectionViewDelegateFlowLayout {
 
 extension ExecutorsSortingView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if sortingOptions[indexPath.row].isSelected {
+            sortingOptions[indexPath.row].toggleSortingDirection()
+        }
+        for (index, _) in sortingOptions.enumerated() {
+            sortingOptions[index].isSelected = index == indexPath.row
+        }
         didSelectOption?(sortingOptions[indexPath.row])
-        selectedOptionIndex = indexPath.row
     }
 }

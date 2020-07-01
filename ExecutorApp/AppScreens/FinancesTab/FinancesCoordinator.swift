@@ -13,7 +13,7 @@ class FinancesCoordinator: Coordinator {
     let apiService = FinancesApiServiceMain()
     
     let financesVC = FinancesViewController()
-    let infoVC = TransferDescriptionViewController()
+    let infoVC = SimpleInfoViewController()
     
     func start() {
         financesVC.coordinator = self
@@ -40,7 +40,7 @@ class FinancesCoordinator: Coordinator {
     }
     
     func showTransferDescription() {
-        infoVC.modalPresentationStyle = .overCurrentContext
+        infoVC.modalPresentationStyle = .overFullScreen
         financesVC.present(infoVC, animated: true, completion: nil)
     }
     
