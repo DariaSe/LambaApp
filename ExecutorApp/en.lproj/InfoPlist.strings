@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  ExecutorApp
+
+  Created by Дарья Селезнёва on 01.07.2020.
+  Copyright © 2020 dariaS. All rights reserved.
+*/
+
+NSCameraUsageDescription = "To be able to take photos and record videos, allow the app to access the camera.";
+NSMicrophoneUsageDescription = "To be able to record video with sound, allow the app to access the microphone.";
+NSPhotoLibraryAddUsageDescription = "To be able to save videos, allow the app to access the media library.";
+NSPhotoLibraryUsageDescription = "To be able to use saved videos, allow the app to access the media library.";

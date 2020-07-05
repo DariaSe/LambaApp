@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartCoordinator: FormDelegate {
+class StartCoordinator: NSObject, FormDelegate {
     
     lazy var navigationController = AppNavigationController()
     

@@ -49,7 +49,8 @@ struct AppURL {
     // Customer URLs
     
     static func getExecutorsURL(page: Int, limit: Int, search: String, order: String, direction: String) -> URL {
-        let query = "?page=\(page)&limit=\(limit)&search=\(search)&order=\(order)&direction=\(direction)"
+        let searchEncoded = search.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
+        let query = "?page=\(page)&limit=\(limit)&search=\(searchEncoded)&order=\(order)&direction=\(direction)"
         return URL(string: baseURL + api + customer + executors + query)!
     }
     static func getExecutorDetailsURL(executorID: Int) -> URL {

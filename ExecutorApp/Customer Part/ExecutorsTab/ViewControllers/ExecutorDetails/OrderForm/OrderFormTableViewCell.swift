@@ -19,6 +19,7 @@ class OrderFormTableViewCell: UITableViewCell {
     private let placeholderLabel = UILabel()
     
     var textChanged: ((String) -> Void)?
+    var didBeginEditing: (() -> Void)?
     
     var isEditable: Bool = true {
         didSet {
@@ -82,6 +83,7 @@ class OrderFormTableViewCell: UITableViewCell {
 extension OrderFormTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderLabel.isHidden = true
+        didBeginEditing?()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

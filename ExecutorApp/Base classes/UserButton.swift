@@ -27,7 +27,7 @@ class UserButton: UIBarButtonItem {
         button.layer.mask = maskLayer
         button.setWidth(equalTo: 40)
         button.setHeight(equalTo: 40)
-        button.contentMode = .scaleAspectFill
+        button.imageView?.contentMode = .scaleAspectFill
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         button.setImage(UIImage(named: "Portrait_Placeholder"), for: .normal)
         customView = button

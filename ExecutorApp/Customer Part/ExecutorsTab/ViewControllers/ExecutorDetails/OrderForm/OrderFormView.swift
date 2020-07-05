@@ -27,6 +27,7 @@ class OrderFormView: UIView {
     let warningLabel = UILabel()
     
     var continuePressed: ((OrderScheme, Int) -> Void)?
+    var didBeginEditing: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,6 +106,9 @@ extension OrderFormView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrderFormTableViewCell.reuseIdentifier, for: indexPath) as! OrderFormTableViewCell
         let unit = currentScheme[indexPath.row]
         cell.update(with: unit)
+        cell.didBeginEditing = { [unowned self] in
+            self.didBeginEditing?()
+        }
         cell.textChanged = { [unowned self] text in
             self.orderScheme?.variations[self.currentSchemeIndex].units[indexPath.row].text = text
             tableView.beginUpdates()

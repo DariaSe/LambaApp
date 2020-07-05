@@ -48,6 +48,8 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
     
     let constrConstant = UIScreen.main.bounds.width - 50
     
+    var didAppear: Bool = false
+    
     let favoriteButton = UIButton()
     private let heart = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
 
@@ -78,6 +80,11 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         detailsView.socialsView.openURL = { [unowned self] url in
             self.coordinator?.openURL(url: url)
         }
+        detailsView.orderFormView.didBeginEditing = { [unowned self] in
+            if self.didAppear {
+                self.scrollView.contentOffset.y = self.constrConstant
+            }
+        }
         
         detailsView.orderFormView.continuePressed = { [unowned self] orderScheme, index in
             self.coordinator?.orderPreform?.variation = index
@@ -99,6 +106,16 @@ class ExecutorDetailsViewController: UIViewController, KeyboardHandler {
         favoriteButton.dropShadow(height: 0, shadowRadius: 6, opacity: 0.25, cornerRadius: 22)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppear = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        didAppear = false
+    }
+
     @objc func favoriteButtonPressed() {
         guard let executorDetails = executorDetails else { return }
         favoriteButton.animate(scale: 1.1)
@@ -111,7 +128,7 @@ extension ExecutorDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let shadowOpacity = (scrollView.contentOffset.y + 88) / (constrConstant * 2)
         shadowingView.backgroundColor = UIColor.black.withAlphaComponent(shadowOpacity)
-        
+        print(scrollView.contentOffset)
         if scrollView.contentOffset.y >= constrConstant {
             favoriteButton.isHidden = true
             detailsView.setFullScreenMode()
@@ -120,10 +137,9 @@ extension ExecutorDetailsViewController: UIScrollViewDelegate {
             favoriteButton.isHidden = false
             detailsView.setOverlayMode()
         }
-        
+        print(scrollView.contentOffset)
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
     }
-    
 }

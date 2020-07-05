@@ -253,9 +253,9 @@ extension ExecutorsTabCoordinator: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController == executorsListVC {
-            executorDetailsVC.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             executorDetailsVC.orderScheme = nil
             orderPreform = nil
+            executorDetailsVC.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
     }
 }

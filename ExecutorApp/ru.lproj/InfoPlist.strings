@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  ExecutorApp
+
+  Created by Дарья Селезнёва on 01.07.2020.
+  Copyright © 2020 dariaS. All rights reserved.
+*/
+
+NSCameraUsageDescription = "Приложению необходим доступ к камере для записи фото и видео.";
+NSMicrophoneUsageDescription = "Приложению необходим доступ к микрофону для записи видео.";
+NSPhotoLibraryAddUsageDescription = "Приложению необходим доступ к медиатеке для добавления видео.";
+NSPhotoLibraryUsageDescription = "Приложению необходим доступ к медиатеке для использования сохранённых видео.";

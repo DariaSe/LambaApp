@@ -149,6 +149,7 @@
 		DABCA69F2450994200682368 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA69E2450994200682368 /* LoadingViewController.swift */; };
 		DABCA6A1245099B800682368 /* e_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A0245099B800682368 /* e_UIViewController.swift */; };
 		DABCA6A724509C3B00682368 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCA6A624509C3B00682368 /* ErrorViewController.swift */; };
+		DAC7023724AC830D0039D6C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DAC7023924AC830D0039D6C8 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -300,6 +301,8 @@
 		DABCA69E2450994200682368 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		DABCA6A0245099B800682368 /* e_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = e_UIViewController.swift; sourceTree = "<group>"; };
 		DABCA6A624509C3B00682368 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		DAC7023824AC830D0039D6C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DAC7023A24AC830F0039D6C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -686,6 +689,7 @@
 				DABCA67C244F243A00682368 /* Model */,
 				DABCA63F244DD78500682368 /* LaunchScreen.storyboard */,
 				DABCA642244DD78500682368 /* Info.plist */,
+				DAC7023924AC830D0039D6C8 /* InfoPlist.strings */,
 				DAB9631724570E73002BBC3F /* SizeConstants.swift */,
 				DA6716D624546B9D001791E3 /* Strings */,
 			);
@@ -937,6 +941,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DABCA641244DD78500682368 /* LaunchScreen.storyboard in Resources */,
+				DAC7023724AC830D0039D6C8 /* InfoPlist.strings in Resources */,
 				DABCA655244DFC8E00682368 /* Localizable.strings in Resources */,
 				DABCA63E244DD78500682368 /* Assets.xcassets in Resources */,
 			);
@@ -1170,6 +1175,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		DAC7023924AC830D0039D6C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC7023824AC830D0039D6C8 /* en */,
+				DAC7023A24AC830F0039D6C8 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1295,7 +1309,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 9B6XMQ42ZT;
 				INFOPLIST_FILE = ExecutorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1317,7 +1331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 9B6XMQ42ZT;
 				INFOPLIST_FILE = ExecutorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -16,7 +16,7 @@ class CustomerTabBarController: AppTabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       delegate = self
         executorsCoordinator.start()
         ordersCoordinator.start()
         settingsCoordinator.start()
@@ -50,6 +50,16 @@ extension CustomerTabBarController: UserImageDelegate {
         DispatchQueue.main.async {
             self.executorsCoordinator.setImage(image)
             self.settingsCoordinator.setImage(image)
+        }
+    }
+}
+
+extension CustomerTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let viewControllers = tabBarController.viewControllers, let tappedIndex = viewControllers.firstIndex(of: viewController) else { return }
+        if tappedIndex == 1 {
+            ordersCoordinator.page = 1
+            ordersCoordinator.getOrders()
         }
     }
 }
