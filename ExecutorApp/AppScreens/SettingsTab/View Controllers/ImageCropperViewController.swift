@@ -117,8 +117,7 @@ class ImageCropperViewController: UIViewController, UIScrollViewDelegate {
         else { return }
 
         let croppedImage: UIImage = UIImage(cgImage: imageRef)
-        if croppedImage.size.width > 400 {
-            let resizedImage = croppedImage.resized(for: 400)
+        if croppedImage.size.width > 400, let resizedImage = croppedImage.resized(toWidth: 400) {
             imageCropped?(resizedImage)
         }
         else {

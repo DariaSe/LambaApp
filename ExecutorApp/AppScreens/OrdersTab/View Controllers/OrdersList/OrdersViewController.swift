@@ -40,6 +40,7 @@ class OrdersViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         navigationItem.rightBarButtonItem = userButton
+        userButton.setSize(CGSize(width: 40, height: 40))
         tableView.constrainTopAndBottomToLayoutMargins(of: view, leading: 4, trailing: 4, top: 4, bottom: nil)
         tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10)
         tableViewBottomConstraint.isActive = true

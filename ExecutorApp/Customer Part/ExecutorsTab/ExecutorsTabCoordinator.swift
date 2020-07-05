@@ -253,6 +253,7 @@ extension ExecutorsTabCoordinator: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController == executorsListVC {
+            executorDetailsVC.photoImageView.image = InfoService.shared.placeholderImage
             executorDetailsVC.orderScheme = nil
             orderPreform = nil
             executorDetailsVC.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)

@@ -48,6 +48,7 @@ class ExecutorsListViewController: UIViewController {
         searchBar.enablesReturnKeyAutomatically = true
         
         navigationItem.rightBarButtonItem = userButton
+        userButton.setSize(CGSize(width: 40, height: 40))
         userButton.userTapped = { [unowned self] in self.delegate?.showSettings() }
         
         sortingView.constrainTopAndBottomToLayoutMargins(of: view, leading: 12, trailing: 0, top: 10, bottom: nil)
@@ -87,7 +88,7 @@ extension ExecutorsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExecutorTableViewCell.reuseIdentifier, for: indexPath) as! ExecutorTableViewCell
-        cell.leftImageView.image = nil
+        cell.leftImageView.image = InfoService.shared.placeholderImage
         let executor = executors[indexPath.row]
         cell.update(with: executor)
         cell.favoritePressed = { [unowned self] in

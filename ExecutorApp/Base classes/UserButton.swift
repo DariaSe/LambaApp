@@ -22,15 +22,13 @@ class UserButton: UIBarButtonItem {
     
     override init() {
         super.init()
+        customView = button
         let maskLayer = CAShapeLayer()
         maskLayer.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).cgPath
         button.layer.mask = maskLayer
-        button.setWidth(equalTo: 40)
-        button.setHeight(equalTo: 40)
         button.imageView?.contentMode = .scaleAspectFill
         button.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         button.setImage(UIImage(named: "Portrait_Placeholder"), for: .normal)
-        customView = button
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +37,10 @@ class UserButton: UIBarButtonItem {
 
     @objc func pressed() {
         userTapped?()
+    }
+    
+    func setSize(_ size: CGSize) {
+        button.setSize(width: size.width, height: size.height)
     }
 }
 
